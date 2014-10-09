@@ -14,4 +14,4 @@ Java SDK 要求 JDK 1.6 及以上版本
 
 ##接入方法
 
-关于如何使用 SDK 请参考 [技术文档](https://pingplusplus.com/document) 或者参考 [example](https://github.com/PingPlusPlus/pingpp-PHP/tree/master/example) 文件夹里的示例。
+关于如何使用 SDK 请参考 [技术文档](https://pingplusplus.com/document) 或者参考 [example](https://github.com/PingPlusPlus/pingpp-java/tree/master/example) 文件夹里的示例。
