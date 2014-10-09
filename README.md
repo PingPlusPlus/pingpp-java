@@ -3,7 +3,7 @@ Java SDK
 
 ****
 
-##仓库简介
+##简介
 
 src/main/java/com/pingplusplus 文件夹下是 Java SDK 文件，<br>
 lib 文件夹下是此 SDK 所依赖的gson 包， <br>
