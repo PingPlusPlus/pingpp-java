@@ -1,4 +1,4 @@
-Java SDK 
+pingpp Java SDK 
 =================
 
 ****
