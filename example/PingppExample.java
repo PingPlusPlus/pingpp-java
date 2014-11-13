@@ -23,7 +23,6 @@ public class PingppExample {
         chargeMap.put("currency", "cny");
         chargeMap.put("subject",  "苹果");
         chargeMap.put("body",  "一个又大又红的红富士苹果");
-        chargeMap.put("amount",  800);
         chargeMap.put("order_no",  "1234567890ab");
         chargeMap.put("channel",  Channel.WECHAT);
         chargeMap.put("client_ip",  "127.0.0.1");
