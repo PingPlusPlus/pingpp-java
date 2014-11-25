@@ -31,7 +31,7 @@ public abstract class APIResource extends PingppObject {
 
 	public static final Gson GSON = new GsonBuilder()
 			.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-            .registerTypeAdapter(Charge.class, new ChargeDeserializer())
+			.registerTypeAdapter(Charge.class, new ChargeDeserializer())
 			.registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
 			.registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
 			.create();
