@@ -18,7 +18,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     Boolean livemode;
     Boolean paid;
     Boolean refunded;
-    String app;
+    Object app;
     String channel;
     String orderNo;
     String clientIp;
@@ -191,11 +191,11 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.channel = channel;
     }
 
-    public String getApp() {
+    public Object getApp() {
         return app;
     }
 
-    public void setApp(String app) {
+    public void setApp(Object app) {
         this.app = app;
     }
 
@@ -272,7 +272,13 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException {
-        return retrieve(id, null);
+        return retrieve(id, null, null);
+    }
+
+    public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException {
+        return retrieve(id, params, null);
     }
 
     public Charge update(Map<String, Object> params)
@@ -306,10 +312,10 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
                 Charge.class, apiKey);
     }
 
-    public static Charge retrieve(String id, String apiKey)
+    public static Charge retrieve(String id, Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), null,
+        return request(RequestMethod.GET, instanceURL(Charge.class, id), params,
                 Charge.class, apiKey);
     }
 

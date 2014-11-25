@@ -1,6 +1,9 @@
 package com.pingplusplus.model;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pingplusplus.net.APIResource;
 
 public class Notify {
     class InnerObject {
@@ -21,9 +24,12 @@ public class Notify {
             return null;
 
         if(innerObject.object.equals("charge")) {
-            return new Gson().fromJson(notifyJson, Charge.class);
+            return APIResource.GSON.fromJson(notifyJson, Charge.class);
         } else if(innerObject.object.equals("refund")) {
-            return new Gson().fromJson(notifyJson, Refund.class);
+            return new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create()
+                    .fromJson(notifyJson, Refund.class);
         }
 
         return null;

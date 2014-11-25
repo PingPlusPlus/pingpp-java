@@ -15,11 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.List;
+import java.util.*;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -29,16 +25,13 @@ import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.InvalidRequestException;
-import com.pingplusplus.model.ChargeRefundCollection;
-import com.pingplusplus.model.ChargeRefundCollectionDeserializer;
-import com.pingplusplus.model.PingppObject;
-import com.pingplusplus.model.PingppRawJsonObject;
-import com.pingplusplus.model.PingppRawJsonObjectDeserializer;
+import com.pingplusplus.model.*;
 
 public abstract class APIResource extends PingppObject {
 
 	public static final Gson GSON = new GsonBuilder()
 			.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .registerTypeAdapter(Charge.class, new ChargeDeserializer())
 			.registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
 			.registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
 			.create();
@@ -300,6 +293,14 @@ public abstract class APIResource extends PingppObject {
 					flatNestedMap.put(
 							String.format("%s[%s]", key, nestedEntry.getKey()),
 							nestedEntry.getValue());
+				}
+				flatParams.putAll(flattenParams(flatNestedMap));
+			} else if (value instanceof ArrayList<?>) {
+				ArrayList<?> ar = (ArrayList<?>) value;
+				Map<String, Object> flatNestedMap = new HashMap<String, Object>();
+				int size = ar.size();
+				for (int i = 0; i < size; i++) {
+					flatNestedMap.put(String.format("%s[%d]", key, i), ar.get(i));
 				}
 				flatParams.putAll(flattenParams(flatNestedMap));
 			} else if ("".equals(value)) {
