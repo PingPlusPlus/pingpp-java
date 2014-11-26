@@ -293,18 +293,6 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         return all(params, null);
     }
 
-    public Charge refund() throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException {
-        return this.refund(null, null);
-    }
-
-    public Charge refund(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return this.refund(params, null);
-    }
-
     public static Charge create(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
@@ -331,21 +319,5 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
             APIConnectionException, APIException {
         return request(RequestMethod.GET, classURL(Charge.class), params,
                 ChargeCollection.class, apiKey);
-    }
-
-    public Charge refund(String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException {
-        return this.refund((Map<String, Object>) null, apiKey); // full refund
-    }
-
-    public Charge refund(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return request(
-                RequestMethod.POST,
-                String.format("%s/refunds",
-                        instanceURL(Charge.class, this.getId())), params,
-                Charge.class, apiKey);
     }
 }

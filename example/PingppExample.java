@@ -47,8 +47,8 @@ public class PingppExample {
             Map<String, Object> refundMap = new HashMap<String, Object>();
             refundMap.put("amount", 100);
             refundMap.put("description", "小苹果");
-            charge.refund(refundMap);
-            System.out.println(charge);
+            Refund re = charge.getRefunds().create(refundMap);
+            System.out.println(re);
         } catch (PingppException e) {
             e.printStackTrace();
         }

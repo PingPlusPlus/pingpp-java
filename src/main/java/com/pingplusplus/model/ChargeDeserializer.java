@@ -19,7 +19,7 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
         Charge charge = gson.fromJson(jsonElement, Charge.class);
         final JsonObject obj = jsonElement.getAsJsonObject();
         final JsonElement appElement = obj.get("app");
-        if (appElement.isJsonObject()) {
+        if (appElement != null && appElement.isJsonObject()) {
             App app = gson.fromJson(appElement, App.class);
             charge.setApp(app);
         }
