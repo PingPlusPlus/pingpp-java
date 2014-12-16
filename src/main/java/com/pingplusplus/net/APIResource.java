@@ -310,7 +310,7 @@ public abstract class APIResource extends PingppObject {
 							      key, null);
 			} else if (value == null) {
 				flatParams.put(key, "");
-			} else if (value != null) {
+			} else {
 				flatParams.put(key, value.toString());
 			}
 		}
