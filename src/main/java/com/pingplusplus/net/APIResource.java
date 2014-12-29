@@ -62,7 +62,7 @@ public abstract class APIResource extends PingppObject {
 		} catch (UnsupportedEncodingException e) {
 			throw new InvalidRequestException("Unable to encode parameters to "
 					+ CHARSET
-					+ ". Please contact support@pingplusplus.com for assistance.",
+					+ ". Please contact support@pingxx.com for assistance.",
 					null, e);
 		}
 	}
@@ -172,11 +172,11 @@ public abstract class APIResource extends PingppObject {
 	}
 
 	private static void throwInvalidCertificateException() throws APIConnectionException {
-		throw new APIConnectionException("Invalid server certificate. You tried to connect to a server that has a revoked SSL certificate, which means we cannot securely send data to that server. Please email support@pingplusplus.com if you need help connecting to the correct API server.");
+		throw new APIConnectionException("Invalid server certificate. You tried to connect to a server that has a revoked SSL certificate, which means we cannot securely send data to that server. Please email support@pingxx.com if you need help connecting to the correct API server.");
 	}
 
 	private static void checkSSLCert(java.net.HttpURLConnection hconn) throws IOException, APIConnectionException {
-		if (!Pingpp.getVerifySSL() && !hconn.getURL().getHost().equals("api.pingplusplus.com")) {
+		if (!Pingpp.getVerifySSL() && !hconn.getURL().getHost().equals("api.pingxx.com")) {
 			return;
 		}
 
@@ -365,7 +365,7 @@ public abstract class APIResource extends PingppObject {
 						String.format(
 								"Unrecognized HTTP method %s. "
 										+ "This indicates a bug in the Pingpp bindings. Please contact "
-										+ "support@pingplusplus.com for assistance.",
+										+ "support@pingxx.com for assistance.",
 								method));
 			}
                         // trigger the request
@@ -386,8 +386,8 @@ public abstract class APIResource extends PingppObject {
 					String.format(
 							"IOException during API request to Pingpp (%s): %s "
 									+ "Please check your internet connection and try again. If this problem persists,"
-									+ "you should check Pingpp's service status at https://pingplusplus.com,"
-									+ " or let us know at support@pingplusplus.com.",
+									+ "you should check Pingpp's service status at https://pingxx.com,"
+									+ " or let us know at support@pingxx.com.",
 							Pingpp.getApiBase(), e.getMessage()), e);
 		} finally {
 			if (conn != null) {
@@ -440,7 +440,7 @@ public abstract class APIResource extends PingppObject {
 			throw new AuthenticationException(
 					"No API key provided. (HINT: set your API key using 'Pingpp.apiKey = <API-KEY>'. "
 							+ "You can generate API keys from the Pingpp web interface. "
-							+ "See https://pingplusplus.com for details or email support@pingplusplus.com if you have questions.");
+							+ "See https://pingxx.com for details or email support@pingxx.com if you have questions.");
 		}
 
 		if (apiKey == null) {
@@ -454,7 +454,7 @@ public abstract class APIResource extends PingppObject {
 		} catch (UnsupportedEncodingException e) {
 			throw new InvalidRequestException("Unable to encode parameters to "
 					+ CHARSET
-					+ ". Please contact support@pingplusplus.com for assistance.",
+					+ ". Please contact support@pingxx.com for assistance.",
 					null, e);
 		}
 
@@ -505,7 +505,7 @@ public abstract class APIResource extends PingppObject {
 	private static PingppResponse makeAppEngineRequest(RequestMethod method,
 			String url, String query, String apiKey) throws APIException {
 		String unknownErrorMessage = "Sorry, an unknown error occurred while trying to use the "
-				+ "Google App Engine runtime. Please contact support@pingplusplus.com for assistance.";
+				+ "Google App Engine runtime. Please contact support@pingxx.com for assistance.";
 		try {
 			if (method == RequestMethod.GET || method == RequestMethod.DELETE) {
 				url = String.format("%s?%s", url, query);
@@ -527,7 +527,7 @@ public abstract class APIResource extends PingppObject {
 				System.err
 						.println("Warning: this App Engine SDK version does not allow verification of SSL certificates;"
 								+ "this exposes you to a MITM attack. Please upgrade your App Engine SDK to >=1.5.0. "
-								+ "If you have questions, contact support@pingplusplus.com.");
+								+ "If you have questions, contact support@pingxx.com.");
 				fetchOptions = fetchOptionsBuilderClass.getDeclaredMethod(
 						"withDefaults").invoke(null);
 			}

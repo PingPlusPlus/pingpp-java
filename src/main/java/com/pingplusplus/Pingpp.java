@@ -22,7 +22,7 @@ public abstract class Pingpp
 	/**
 	 * (FOR TESTING ONLY)
 	 * Only disable SSL verification if you're using your own (mocked) server.
-	 * Disabling verification on pingplusplus.com is not supported
+	 * Disabling verification on pingxx.com is not supported
 	 */
 	public static void setVerifySSL(boolean verify) {
 		verifySSL = verify;
