@@ -2,10 +2,10 @@ package com.pingplusplus;
 
 public abstract class Pingpp
 {
-	public static final String LIVE_API_BASE = "https://api.pingplusplus.com/";
-	public static final String VERSION = "1.0.4";
+	public static final String LIVE_API_BASE = "https://api.pingxx.com/";
+	public static final String VERSION = "2.0.0";
 	public static volatile String apiKey;
-	public static volatile String apiVersion = "2014-10-10";
+	public static volatile String apiVersion = "2015-01-01";
 
 	private static volatile boolean verifySSL = true;
 	private static volatile String apiBase = LIVE_API_BASE;
