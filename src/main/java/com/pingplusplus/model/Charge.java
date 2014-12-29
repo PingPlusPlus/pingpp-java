@@ -36,6 +36,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     String failureMsg;
     Map<String, String> metadata;
     Map<String, Object> credential;
+    Map<String, String> extra;
     String description;
 
     public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
@@ -201,18 +202,20 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
 
     public String getCredential() {
         Map<String, Object> credParams = new HashMap<String, Object>();
-        if (channel.equals(Channel.UPMP)) {
-            credParams.put(channel, credential.get(channel));
-        } else if (channel.equals(Channel.WECHAT)) {
-            credParams.put(channel, credential.get(channel));
-        } else if (channel.equals(Channel.ALIPAY)) {
-            credParams.put(channel, credential.get(channel));
-        }
+        credParams.put(channel, credential.get(channel));
         return PRETTY_PRINT_GSON.toJson(credParams);
     }
 
     public void setCredential(Map<String, Object> credential) {
         this.credential = credential;
+    }
+
+    public Map<String, String> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, String> extra) {
+        this.extra = extra;
     }
 
     public String getOrderNo() {
