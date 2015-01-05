@@ -46,7 +46,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
             setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
             setLongSerializationPolicy(LongSerializationPolicy.STRING).
             registerTypeAdapter(Double.class, new JsonSerializer<Double>() {
-//                @Override
+                @Override
                 public JsonElement serialize(Double src, Type typeOfSrc, JsonSerializationContext context) {
                     if (src == src.longValue())
                         return new JsonPrimitive(src.longValue());
@@ -202,6 +202,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
 
     public String getCredential() {
         Map<String, Object> credParams = new HashMap<String, Object>();
+        credParams.put("object", "credential");
         credParams.put(channel, credential.get(channel));
         return PRETTY_PRINT_GSON.toJson(credParams);
     }
