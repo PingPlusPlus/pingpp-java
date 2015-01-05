@@ -27,6 +27,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     String currency;
     String subject;
     String body;
+    Long timePaid;
     Long timeExpire;
     Long timeSettle;
     String transactionNo;
@@ -251,6 +252,14 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Long getTimePaid() {
+        return timePaid;
+    }
+
+    public void setTimePaid(Long timePaid) {
+        this.timePaid = timePaid;
     }
 
     public Long getTimeExpire() {
