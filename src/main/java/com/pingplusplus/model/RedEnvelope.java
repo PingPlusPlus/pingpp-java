@@ -18,35 +18,22 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Charge extends APIResource implements MetadataStore<Charge> {
+public class RedEnvelope extends APIResource  {
     String id;
     String object;
     Long created;
     Boolean livemode;
     Boolean paid;
-    Boolean refunded;
     Object app;
     String channel;
     String orderNo;
-    String clientIp;
     Integer amount;
-    Integer amountSettle;
     String currency;
+    String recipient;
     String subject;
     String body;
-    Long timePaid;
-    Long timeExpire;
-    Long timeSettle;
-    String transactionNo;
-    ChargeRefundCollection refunds;
-    Integer amountRefunded;
-    String failureCode;
-    String failureMsg;
-    Map<String, String> metadata;
-    Map<String, Object> credential;
-    Map<String, String> extra;
     String description;
-
+    Map<String, String> extra;
     public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
             setPrettyPrinting().
             serializeNulls().
@@ -94,6 +81,14 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
+    
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
 
     public Boolean getLivemode() {
         return livemode;
@@ -111,14 +106,6 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.paid = paid;
     }
 
-    public Boolean getRefunded() {
-        return refunded;
-    }
-
-    public void setRefunded(Boolean refunded) {
-        this.refunded = refunded;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -127,69 +114,12 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.description = description;
     }
 
-    public String getFailureMsg() {
-        return failureMsg;
-    }
-
-    public void setFailureMsg(String failureMsg) {
-        this.failureMsg = failureMsg;
-    }
-
-    public String getFailureCode() {
-        return failureCode;
-    }
-
-    public void setFailureCode(String failureCode) {
-        this.failureCode = failureCode;
-    }
-
-    public Integer getAmountRefunded() {
-        return amountRefunded;
-    }
-
-    public void setAmountRefunded(Integer amountRefunded) {
-        this.amountRefunded = amountRefunded;
-    }
-
-    public Integer getAmountSettle() {
-        return amountSettle;
-    }
-
-    public void setAmountSettle(Integer amountSettle) {
-        this.amountSettle = amountSettle;
-    }
-
-    public String getTransactionNo() {
-        return transactionNo;
-    }
-
-    public void setTransactionNo(String transactionNo) {
-        this.transactionNo = transactionNo;
-    }
-
     public String getObject() {
         return object;
     }
 
     public void setObject(String object) {
         this.object = object;
-    }
-
-    public ChargeRefundCollection getRefunds() {
-        // API versions 2014-05-19 and earlier render charge refunds as an array
-        // instead of an object, meaning there is no sublist URL.
-        if (refunds.getURL() == null) {
-            refunds.setURL(String.format("/v1/charges/%s/refunds", getId()));
-        }
-        return refunds;
-    }
-
-    public Map<String, String> getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(Map<String, String> metadata) {
-        this.metadata = metadata;
     }
 
     public String getChannel() {
@@ -208,19 +138,6 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.app = app;
     }
 
-    public String getCredential() {
-        Map<String, Object> credParams = new HashMap<String, Object>();
-        if (!credential.isEmpty()) {
-            credParams.put("object", "credential");
-            credParams.put(channel, credential.get(channel));
-        }
-        return PRETTY_PRINT_GSON.toJson(credParams);
-    }
-
-    public void setCredential(Map<String, Object> credential) {
-        this.credential = credential;
-    }
-
     public Map<String, String> getExtra() {
         return extra;
     }
@@ -237,13 +154,6 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.orderNo = orderNo;
     }
 
-    public String getClientIp() {
-        return clientIp;
-    }
-
-    public void setClientIp(String clientIp) {
-        this.clientIp = clientIp;
-    }
 
     public String getSubject() {
         return subject;
@@ -261,85 +171,63 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.body = body;
     }
 
-    public Long getTimePaid() {
-        return timePaid;
-    }
 
-    public void setTimePaid(Long timePaid) {
-        this.timePaid = timePaid;
-    }
 
-    public Long getTimeExpire() {
-        return timeExpire;
-    }
-
-    public void setTimeExpire(Long timeExpire) {
-        this.timeExpire = timeExpire;
-    }
-
-    public Long getTimeSettle() {
-        return timeSettle;
-    }
-
-    public void setTimeSettle(Long timeSettle) {
-        this.timeSettle = timeSettle;
-    }
-
-    public static Charge create(Map<String, Object> params)
+    public static RedEnvelope create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
         return create(params, null);
     }
 
-    public static Charge retrieve(String id) throws AuthenticationException,
+    public static RedEnvelope retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException {
         return retrieve(id, null, null);
     }
 
-    public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
+    public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException {
         return retrieve(id, params, null);
     }
 
-    public Charge update(Map<String, Object> params)
+    public RedEnvelope update(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
         return update(params, null);
     }
 
-    public static ChargeCollection all(Map<String, Object> params)
+    public static RedEnvelopeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
         return all(params, null);
     }
 
-    public static Charge create(Map<String, Object> params, String apiKey)
+    public static RedEnvelope create(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
-        return request(RequestMethod.POST, classURL(Charge.class), params,
-                Charge.class, apiKey);
+        return request(RequestMethod.POST, classURL(RedEnvelope.class), params,
+                RedEnvelope.class, apiKey);
     }
 
-    public static Charge retrieve(String id, Map<String, Object> params, String apiKey)
+    public static RedEnvelope retrieve(String id, Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), params,
-                Charge.class, apiKey);
+        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params,
+                RedEnvelope.class, apiKey);
     }
 
-    public Charge update(Map<String, Object> params, String apiKey)
+    public RedEnvelope update(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
-        return request(RequestMethod.POST, instanceURL(Charge.class, id), params,
-                Charge.class, apiKey);
+        return request(RequestMethod.POST, instanceURL(RedEnvelope.class, id), params,
+                RedEnvelope.class, apiKey);
     }
 
-    public static ChargeCollection all(Map<String, Object> params, String apiKey)
+    public static RedEnvelopeCollection all(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException {
-        return request(RequestMethod.GET, classURL(Charge.class), params,
-                ChargeCollection.class, apiKey);
+        return request(RequestMethod.GET, classURL(RedEnvelope.class), params,
+        		RedEnvelopeCollection.class, apiKey);
     }
 }

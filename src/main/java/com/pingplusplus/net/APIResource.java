@@ -41,8 +41,8 @@ public abstract class APIResource extends PingppObject {
 
 		// TODO: Delurk this, with invoiceitem being a valid url, we can't get too
 		// fancy yet.
-		if (className.equals("applicationfee")) {
-			return "application_fee";
+		if (className.equals("redenvelope")) {
+			return "red_envelope";
 		} else {
 			return className;
 		}
