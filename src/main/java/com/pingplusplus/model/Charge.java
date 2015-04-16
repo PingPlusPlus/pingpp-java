@@ -211,6 +211,10 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     public void setCredential(Map<String, Object> credential) {
         this.credential = credential;
     }
+    
+    public Object getCredential() {
+    	return credential;
+    }
 
     public Map<String, String> getExtra() {
         return extra;
