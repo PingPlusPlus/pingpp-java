@@ -208,15 +208,6 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.app = app;
     }
 
-    public String getCredential() {
-        Map<String, Object> credParams = new HashMap<String, Object>();
-        if (!credential.isEmpty()) {
-            credParams.put("object", "credential");
-            credParams.put(channel, credential.get(channel));
-        }
-        return PRETTY_PRINT_GSON.toJson(credParams);
-    }
-
     public void setCredential(Map<String, Object> credential) {
         this.credential = credential;
     }
