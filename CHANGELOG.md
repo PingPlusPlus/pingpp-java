@@ -1,6 +1,6 @@
  
 ## 2.0.3
-* 增加 apple pay ，删除 getcredential 方法。
+* 增加 apple pay ，重写 getcredential 方法。
 
 ## 2.0.2
 * 增加微信红包
