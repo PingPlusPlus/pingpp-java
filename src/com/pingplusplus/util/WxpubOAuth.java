@@ -1,6 +1,11 @@
 package com.pingplusplus.util;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.pingplusplus.Pingpp;
+import com.pingplusplus.exception.PingppException;
+import com.pingplusplus.model.Charge;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +15,9 @@ import java.lang.String;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +54,7 @@ public class WxpubOAuth {
      *                    步骤为：登陆微信公众号平台 => 开发者中心 => 网页授权获取用户基本信息 => 修改
      * @param moreInfo    FALSE 不弹出授权页面,直接跳转,这个只能拿到用户openid
      *                    TRUE 弹出授权页面,这个可以通过 openid 拿到昵称、性别、所在地，
-     * @return            用于获取授权code的URL地址
+     * @return 用于获取授权code的URL地址
      */
     public static String createOauthUrlForCode(String appId, String redirectUrl, boolean moreInfo)
             throws UnsupportedEncodingException {
@@ -67,10 +75,10 @@ public class WxpubOAuth {
      * @param appId     微信公众号应用唯一标识
      * @param appSecret 微信公众号应用密钥（注意保密）
      * @param code      授权code, 通过调用WxpubOAuth.createOauthUrlForCode来获取
-     * @return          获取openid的URL地址
+     * @return 获取openid的URL地址
      */
     private static String createOauthUrlForOpenid(String appId, String appSecret, String code)
-            throws UnsupportedEncodingException  {
+            throws UnsupportedEncodingException {
         Map<String, String> data = new HashMap<String, String>();
         data.put("appid", appId);
         data.put("secret", appSecret);
@@ -83,8 +91,8 @@ public class WxpubOAuth {
 
     private static String httpBuildQuery(Map<String, String> queryString) throws UnsupportedEncodingException {
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<String, String> e : queryString.entrySet()){
-            if(sb.length() > 0){
+        for (Map.Entry<String, String> e : queryString.entrySet()) {
+            if (sb.length() > 0) {
                 sb.append('&');
             }
             sb.append(URLEncoder.encode(e.getKey(), "UTF-8")).append('=').append(URLEncoder.encode(e.getValue(), "UTF-8"));
@@ -93,6 +101,11 @@ public class WxpubOAuth {
         return sb.toString();
     }
 
+    /**
+     * Http Get 请求
+     * @param urlString
+     * @return
+     */
     private static String httpGet(String urlString) {
         String result = "";
         try {
@@ -110,6 +123,90 @@ public class WxpubOAuth {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return result;
+    }
+
+    /**
+     * 获取微信公众号 jsapi_ticket
+     * @param appId
+     * @param appSecret
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String getJsapiTicket(String appId, String appSecret) throws UnsupportedEncodingException {
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("appid", appId);
+        data.put("secret", appSecret);
+        data.put("grant_type", "client_credential");
+        String queryString = WxpubOAuth.httpBuildQuery(data);
+        String accessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?" + queryString;
+        String resp = httpGet(accessTokenUrl);
+        JsonParser jp = new JsonParser();
+        JsonObject respJson = jp.parse(resp).getAsJsonObject();
+        if (respJson.has("errcode")) {
+            return respJson.toString();
+        }
+
+        data.clear();
+        data.put("access_token", respJson.get("access_token").getAsString());
+        data.put("type", "jsapi");
+        queryString = WxpubOAuth.httpBuildQuery(data);
+        String jsapiTicketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?" + queryString;
+        resp = httpGet(jsapiTicketUrl);
+        JsonObject ticket = jp.parse(resp).getAsJsonObject();
+        return ticket.get("ticket").getAsString();
+    }
+
+    /**
+     * 生成微信公众号 js sdk signature
+     * @param charge
+     * @param jsapiTicket
+     * @param url
+     * @return
+     */
+    public static String getSignature(String charge, String jsapiTicket, String url) {
+        if (null == charge || null == jsapiTicket || charge.isEmpty() || jsapiTicket.isEmpty())
+            return null;
+        JsonParser jp = new JsonParser();
+        JsonObject chargeJson = jp.parse(charge).getAsJsonObject();
+        if (!chargeJson.has("credential")) {
+            return null;
+        }
+        JsonObject credential = chargeJson.get("credential").getAsJsonObject();
+        if (!credential.has("wx_pub")) {
+            return null;
+        }
+
+        JsonObject wx_pub = credential.get("wx_pub").getAsJsonObject();
+
+        String signature = "";
+        //注意这里参数名必须全部小写，且必须有序
+        String string1 = "jsapi_ticket=" + jsapiTicket +
+                "&noncestr=" + wx_pub.get("nonceStr").getAsString() +
+                "&timestamp=" + wx_pub.get("timeStamp").getAsString() +
+                "&url=" + url;
+        try {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(string1.getBytes("UTF-8"));
+            signature = byteToHex(crypt.digest());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return signature;
+
+
+    }
+
+    private static String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
         return result;
     }
 
@@ -140,5 +237,4 @@ public class WxpubOAuth {
             return scope;
         }
     }
-
 }

@@ -1,74 +1,33 @@
-Pingpp Java SDK 
-=================
+ping++ java SDK
+============
+
+###简介
+ 1. docs 目录下为ping++ Java sdk 的使用文档。
+ 1. example 目录下面为一个eclipse IDE 的示例工程。
+ 1. libs 为ping++ Java sdk 的jar包和ping++ Java sdk 所依赖的Gson 包。
+ 1. src  为ping++ Java sdk 的源代码，可以关联到ping-java.jar文件。 或者直接把源代码引入到工程之中。
 
 
-## 简介
+###版本要求
 
-src/main/java/com/pingplusplus 文件夹下是 Java SDK 文件，<br>
-lib 文件夹下是此 SDK 所依赖的 gson 包， <br>
-example 文件夹里面是简单的接入示例，该示例仅供参考。
+Java SDK 要求JDK版本1.6及以上
+  
+###安装
 
-## 版本要求
+将libs/下面的jar包导入工程
 
-Java SDK 要求 JDK 1.6 及以上版本
+###初始化
 
-##安装
-```
-将 src 文件夹下所有文件导入到工程里
-```
+    Pingpp.apiKey = "YOUR-KEY"; 
+    
+####使用示例
+    
+    参考example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的demo。
+    
+    
+####2.0.2版本
 
-## 接入方法
+    更改sdk目录格式，修复wx_pub渠道timeStamp 类型问题。
 
-### 初始化
-```java
-Pingpp.apiKey = "YOUR-KEY";	
-```
-
-### 支付
-```java
-Charge.create(paramsMap);
-```
-
-### 查询
-```java
-Charge.retrieve({CHARGE_ID});
-```
-
-```java
-Charge.all(Map options);
-```
-
-### 退款
-``` java
-Map params = new HashMap();
-Charge ch = Charge.retrieve({CHARGE_ID});
-Refund re = ch.getRefunds().create(params);
-```
-
-### 退款查询
-``` java
-Charge ch = Charge.retrieve({CHARGE_ID});
-Refund re = ch.refunds->retrieve({REFUND_ID});
-```
-``` java
-Charge.retrieve({CHARGE_ID}).getRefunds().all();
-```
-
-### 微信红包
-``` java
-RedEnvelope.create();
-```
-
-### 查询
-```java
-RedEnvelope.retrieve({CHARGE_ID});
-```
-
-```java
-RedEnvelope.all(Map options);
-```
-
-
-**详细信息请参考 [API 文档](https://pingxx.com/document/api?java)。**
 
 
