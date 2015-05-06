@@ -25,7 +25,7 @@ Java SDK 要求JDK版本1.6及以上
     参考example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的demo。
     
     
-####2.0.2版本
+####2.0.4版本
 
     更改sdk目录格式，修复wx_pub渠道timeStamp 类型问题。
 
