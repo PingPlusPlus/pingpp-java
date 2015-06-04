@@ -1,21 +1,12 @@
 package com.pingplusplus.model;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-import com.google.gson.LongSerializationPolicy;
+
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Charge extends APIResource implements MetadataStore<Charge> {

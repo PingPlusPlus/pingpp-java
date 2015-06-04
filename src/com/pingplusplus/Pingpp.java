@@ -22,6 +22,8 @@ public abstract class Pingpp
      */
 	public static volatile String apiVersion = "2015-04-16";
 
+	public static String AcceptLanguage="zh-CN";
+
 	private static volatile boolean verifySSL = true;
 	private static volatile String apiBase = LIVE_API_BASE;
 

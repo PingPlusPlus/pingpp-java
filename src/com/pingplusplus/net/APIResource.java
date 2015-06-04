@@ -38,6 +38,7 @@ public abstract class APIResource extends PingppObject {
     public static final Gson GSON = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .registerTypeAdapter(Charge.class, new ChargeDeserializer())
+            .registerTypeAdapter(RedEnvelope.class,new RedEnvelopeDeserializer())
             .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
             .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
             .create();
@@ -163,6 +164,7 @@ public abstract class APIResource extends PingppObject {
         }
 
         headers.put("Authorization", String.format("Bearer %s", apiKey));
+        headers.put("Accept-Language",Pingpp.AcceptLanguage);
 
         // debug headers
         String[] propertyNames = {"os.name", "os.version", "os.arch",

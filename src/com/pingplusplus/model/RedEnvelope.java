@@ -15,7 +15,6 @@ import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 public class RedEnvelope extends APIResource  {

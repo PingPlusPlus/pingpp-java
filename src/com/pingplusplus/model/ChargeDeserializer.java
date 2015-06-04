@@ -26,9 +26,16 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
             }
 
         }
+
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
                 .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer()).create();
+        JsonElement appElement = chargeJson.get("app");
         Charge charge = gson.fromJson(jsonElement, Charge.class);
+
+        if(null != appElement && appElement.isJsonObject()){
+            App app = gson.fromJson(appElement,App.class);
+            charge.setApp(app);
+        }
         return charge;
     }
 }
