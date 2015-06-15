@@ -83,7 +83,7 @@ public class ChargeExample {
             //Expand app
             Charge charge = Charge.retrieve(id, param);
             if (charge.getApp() instanceof App) {
-                App app = (App) charge.getApp();
+                //App app = (App) charge.getApp();
                 // System.out.println("App Object ,appId = " + app.getId());
             } else {
                 // System.out.println("String ,appId = " + charge.getApp());
