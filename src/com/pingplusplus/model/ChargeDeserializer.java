@@ -19,10 +19,14 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
                 JsonObject wx = credentialJson.getAsJsonObject("wx");
                 Long timeStamp = wx.get("timeStamp").getAsLong();
                 wx.addProperty("timeStamp", "" + timeStamp);
-            }else if(null != credentialJson.getAsJsonObject("wx_pub")){
+            } else if (null != credentialJson.getAsJsonObject("wx_pub")) {
                 JsonObject wx = credentialJson.getAsJsonObject("wx_pub");
                 Long timeStamp = wx.get("timeStamp").getAsLong();
                 wx.addProperty("timeStamp", "" + timeStamp);
+            } else if (null != credentialJson.getAsJsonObject("bfb")) {
+                JsonObject bfb = credentialJson.getAsJsonObject("bfb");
+                Long total_amount = bfb.get("total_amount").getAsLong();
+                bfb.addProperty("total_amount", total_amount + "");
             }
 
         }
@@ -32,8 +36,8 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
         JsonElement appElement = chargeJson.get("app");
         Charge charge = gson.fromJson(jsonElement, Charge.class);
 
-        if(null != appElement && appElement.isJsonObject()){
-            App app = gson.fromJson(appElement,App.class);
+        if (null != appElement && appElement.isJsonObject()) {
+            App app = gson.fromJson(appElement, App.class);
             charge.setApp(app);
         }
         return charge;
