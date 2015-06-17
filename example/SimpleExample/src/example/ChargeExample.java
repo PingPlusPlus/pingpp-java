@@ -27,7 +27,7 @@ public class ChargeExample {
 	 */
 	public static String apiKey = "YOUR-KEY";
 	/**
-	 * pingpp 管理平台对应的应用I
+	 * pingpp 管理平台对应的应用ID
 	 */
 	public static String appId = "YOUR-APPID";
 	
