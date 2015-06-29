@@ -1,4 +1,10 @@
- 
+### 2.0.5版本
+    增加event sdk     
+    
+### 2.0.4版本
+
+    更改sdk目录格式，修复wx_pub渠道timeStamp 类型问题。
+     
 ## 2.0.3
 * 增加 apple pay ，重写 getcredential 方法。
 
