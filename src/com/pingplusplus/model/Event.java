@@ -7,7 +7,6 @@ import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by sunkai on 15/5/11.
