@@ -218,7 +218,7 @@ all(Map<String, Object> params)
         Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("limit", 3);
         try {
-            redEnvelopeCollection = RedEnvelopeCollection.all(chargeParams);
+            redEnvelopeCollection = RedEnvelope.all(chargeParams);
             System.out.println(redEnvelopeCollection);
         } catch (AuthenticationException e) {
             e.printStackTrace();

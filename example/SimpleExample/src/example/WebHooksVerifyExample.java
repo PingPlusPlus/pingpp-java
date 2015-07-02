@@ -19,12 +19,24 @@ public class WebHooksVerifyExample {
 	private static String eventPath = "src/charge";
 	private static String signPath = "src/sign";
 
+	/**
+	 * 验证webhooks 签名，仅供参考
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 
 		boolean result = verifyData(getByteFromFile(eventPath, false), getByteFromFile(signPath, true), getPubKey());
 		System.out.println("验签结果："+result);
 	}
 
+	/**
+	 * 读取文件,部署web程序的时候，签名和验签内容需要从request中获得
+	 * @param file
+	 * @param base64
+	 * @return
+	 * @throws Exception
+	 */
 	public static byte[] getByteFromFile(String file, boolean base64) throws Exception {
 		FileInputStream in = new FileInputStream(file);
 		byte[] fileBytes = new byte[in.available()];
@@ -37,6 +49,11 @@ public class WebHooksVerifyExample {
 		return fileBytes;
 	}
 
+	/**
+	 * 获得公钥
+	 * @return
+	 * @throws Exception
+	 */
 	public static PublicKey getPubKey() throws Exception {
 		// read key bytes
 		FileInputStream in = new FileInputStream(filePath);
@@ -56,6 +73,16 @@ public class WebHooksVerifyExample {
 		return publicKey;
 	}
 
+	/**
+	 * 验证签名
+	 * @param data
+	 * @param sigBytes
+	 * @param publicKey
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeyException
+	 * @throws SignatureException
+	 */
 	public static boolean verifyData(byte[] data, byte[] sigBytes, PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
 		Signature signature = Signature.getInstance("SHA256withRSA");
 		signature.initVerify(publicKey);

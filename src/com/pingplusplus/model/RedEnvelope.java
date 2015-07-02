@@ -22,10 +22,11 @@ public class RedEnvelope extends APIResource  {
     String object;
     Long created;
     Boolean livemode;
-    Boolean paid;
+    String status;
     Object app;
     String channel;
     String orderNo;
+    String transactionNo;
     Integer amount;
     String currency;
     String recipient;
@@ -48,6 +49,22 @@ public class RedEnvelope extends APIResource  {
                 }
             }).
             create();
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTransactionNo() {
+        return transactionNo;
+    }
+
+    public void setTransactionNo(String transactionNo) {
+        this.transactionNo = transactionNo;
+    }
 
     public String getId() {
         return id;
@@ -95,14 +112,6 @@ public class RedEnvelope extends APIResource  {
 
     public void setLivemode(Boolean livemode) {
         this.livemode = livemode;
-    }
-
-    public Boolean getPaid() {
-        return paid;
-    }
-
-    public void setPaid(Boolean paid) {
-        this.paid = paid;
     }
 
     public String getDescription() {

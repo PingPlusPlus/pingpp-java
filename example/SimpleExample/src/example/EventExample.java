@@ -44,6 +44,10 @@ public class EventExample {
     }
 
 
+    /**
+     * 根据 ID 查询 Evnet
+     * @param id
+     */
     public void retrieve(String id) {
         try {
             Event event = Event.retrieve(id);
@@ -69,6 +73,9 @@ public class EventExample {
 
     }
 
+    /**
+     * 批量查询
+     */
     public void all() {
         Map<String, Object> params = new HashMap<String, Object>();
         //params.put("limit", 3);

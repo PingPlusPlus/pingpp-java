@@ -27,8 +27,12 @@ import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.*;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+
 /**
- *  extends the abstract class when you need requset anything from ping++
+ * extends the abstract class when you need requset anything from ping++
  */
 public abstract class APIResource extends PingppObject {
 
@@ -38,13 +42,13 @@ public abstract class APIResource extends PingppObject {
     public static final Gson GSON = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .registerTypeAdapter(Charge.class, new ChargeDeserializer())
-            .registerTypeAdapter(RedEnvelope.class,new RedEnvelopeDeserializer())
+            .registerTypeAdapter(RedEnvelope.class, new RedEnvelopeDeserializer())
+            .registerTypeAdapter(Transfer.class,new TransferDeserializer())
             .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
             .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
             .create();
 
     /**
-     *
      * @param clazz
      * @return
      */
@@ -61,7 +65,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param clazz
      * @return
      */
@@ -70,7 +73,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param clazz
      * @return
      */
@@ -79,7 +81,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param clazz
      * @param id
      * @return
@@ -121,7 +122,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param str
      * @return
      * @throws UnsupportedEncodingException
@@ -137,7 +137,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param k
      * @param v
      * @return
@@ -149,7 +148,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param apiKey
      * @return
      */
@@ -164,7 +162,7 @@ public abstract class APIResource extends PingppObject {
         }
 
         headers.put("Authorization", String.format("Bearer %s", apiKey));
-        headers.put("Accept-Language",Pingpp.AcceptLanguage);
+        headers.put("Accept-Language", Pingpp.AcceptLanguage);
 
         // debug headers
         String[] propertyNames = {"os.name", "os.version", "os.arch",
@@ -185,7 +183,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param url
      * @param apiKey
      * @return
@@ -223,7 +220,17 @@ public abstract class APIResource extends PingppObject {
         } else {
             pingppURL = new URL(url);
         }
-        java.net.HttpURLConnection conn = (java.net.HttpURLConnection) pingppURL.openConnection();
+        //java.net.HttpURLConnection conn = (java.net.HttpURLConnection) pingppURL.openConnection();
+        HttpsURLConnection conn = (HttpsURLConnection) pingppURL.openConnection();
+//        conn.setHostnameVerifier(new HostnameVerifier() {
+//            @Override
+//            public boolean verify(String s, SSLSession sslSession) {
+//                System.out.println("Warning: URL Host: " + s + " vs. "
+//                        + sslSession.getPeerHost());
+//
+//                return true;
+//            }
+//        });
         conn.setConnectTimeout(30 * 1000);
         conn.setReadTimeout(80 * 1000);
         conn.setUseCaches(false);
@@ -235,7 +242,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @throws APIConnectionException
      */
     private static void throwInvalidCertificateException() throws APIConnectionException {
@@ -243,7 +249,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param hconn
      * @throws IOException
      * @throws APIConnectionException
@@ -279,7 +284,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param url
      * @param query
      * @return
@@ -295,7 +299,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param url
      * @param query
      * @param apiKey
@@ -316,7 +319,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param url
      * @param query
      * @param apiKey
@@ -349,7 +351,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param url
      * @param query
      * @param apiKey
@@ -370,7 +371,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param params
      * @return
      * @throws UnsupportedEncodingException
@@ -391,7 +391,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param params
      * @return
      * @throws InvalidRequestException
@@ -457,7 +456,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param responseStream
      * @return
      * @throws IOException
@@ -475,7 +473,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param method
      * @param url
      * @param query
@@ -535,7 +532,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param method
      * @param url
      * @param params
@@ -582,7 +578,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param method
      * @param url
      * @param params
@@ -647,7 +642,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     *
      * @param rBody
      * @param rCode
      * @throws InvalidRequestException
