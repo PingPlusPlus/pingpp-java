@@ -14,7 +14,45 @@ Java SDK 要求JDK版本1.6及以上
   
 ### 安装
 
+##### 手动安装
 将libs/下面的jar包导入工程
+
+##### maven 安装 
+
+maven 远程仓库
+
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+
+安装 ping++ sdk
+
+     <dependency>
+            <groupId>Pingplusplus</groupId>
+            <artifactId>pingpp-java</artifactId>
+            <version>2.0.7</version>
+            <type>jar</type>
+        </dependency>
+##### gradle 安装
+
+gradle 远程仓库
+
+    repositories {
+        maven {
+            url  "http://jcenter.bintray.com" 
+        }
+    }
+
+安装 ping++ sdk
+
+    compile 'Pingplusplus:pingpp-java:2.0.7'
+
+    
 
 ### 初始化
 
