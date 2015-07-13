@@ -11,6 +11,7 @@ import com.google.gson.LongSerializationPolicy;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
@@ -183,58 +184,58 @@ public class RedEnvelope extends APIResource  {
 
     public static RedEnvelope create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return create(params, null);
     }
 
     public static RedEnvelope retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, null, null);
     }
 
     public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, params, null);
     }
 
     public RedEnvelope update(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return update(params, null);
     }
 
     public static RedEnvelopeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return all(params, null);
     }
 
     public static RedEnvelope create(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.POST, classURL(RedEnvelope.class), params,
                 RedEnvelope.class, apiKey);
     }
 
     public static RedEnvelope retrieve(String id, Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params,
                 RedEnvelope.class, apiKey);
     }
 
     public RedEnvelope update(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.POST, instanceURL(RedEnvelope.class, id), params,
                 RedEnvelope.class, apiKey);
     }
 
     public static RedEnvelopeCollection all(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.GET, classURL(RedEnvelope.class), params,
         		RedEnvelopeCollection.class, apiKey);
     }

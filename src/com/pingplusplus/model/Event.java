@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
@@ -88,32 +89,32 @@ public class Event extends APIResource{
 
     public static Event retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, null, null);
     }
 
     public static Event retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, params, null);
     }
 
     public static EventCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return all(params, null);
     }
 
     public static Event retrieve(String id, Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params,
                 Event.class, apiKey);
     }
 
     public static EventCollection all(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(APIResource.RequestMethod.GET, classURL(Event.class), params,
                 EventCollection.class, apiKey);
     }

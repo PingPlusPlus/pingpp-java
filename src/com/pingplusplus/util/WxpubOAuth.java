@@ -3,15 +3,11 @@ package com.pingplusplus.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.PingppException;
-import com.pingplusplus.model.Charge;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.String;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -51,7 +47,7 @@ public class WxpubOAuth {
      * @param appId       微信公众号应用唯一标识
      * @param redirectUrl 授权后重定向的回调链接地址，重定向后此地址将带有授权code参数，
      *                    该地址的域名需在微信公众号平台上进行设置，
-     *                    步骤为：登陆微信公众号平台 => 开发者中心 => 网页授权获取用户基本信息 => 修改
+     *                    步骤为：登陆微信公众号平台  开发者中心  网页授权获取用户基本信息 修改
      * @param moreInfo    FALSE 不弹出授权页面,直接跳转,这个只能拿到用户openid
      *                    TRUE 弹出授权页面,这个可以通过 openid 拿到昵称、性别、所在地，
      * @return 用于获取授权code的URL地址

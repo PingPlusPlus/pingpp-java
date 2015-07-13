@@ -4,6 +4,7 @@ import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.model.ChargeRefundCollection;
@@ -49,7 +50,10 @@ public class RefundsExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
        //退款的时候注意，已经退完款无法继续推
        // System.out.println("---------创建refund");
@@ -87,7 +91,10 @@ public class RefundsExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return refund;
     }
 
@@ -113,7 +120,10 @@ public class RefundsExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -138,6 +148,9 @@ public class RefundsExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

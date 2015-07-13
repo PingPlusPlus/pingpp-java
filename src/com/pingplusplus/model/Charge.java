@@ -4,6 +4,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
@@ -186,7 +187,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     public void setCredential(Map<String, Object> credential) {
         this.credential = credential;
     }
-    
+
     public Map<String, Object> getCredential() {
     	return credential;
     }
@@ -257,58 +258,58 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
 
     public static Charge create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return create(params, null);
     }
 
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, null, null);
     }
 
     public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         return retrieve(id, params, null);
     }
 
     public Charge update(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return update(params, null);
     }
 
     public static ChargeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return all(params, null);
     }
 
     public static Charge create(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.POST, classURL(Charge.class), params,
                 Charge.class, apiKey);
     }
 
     public static Charge retrieve(String id, Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.GET, instanceURL(Charge.class, id), params,
                 Charge.class, apiKey);
     }
 
     public Charge update(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.POST, instanceURL(Charge.class, id), params,
                 Charge.class, apiKey);
     }
 
     public static ChargeCollection all(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
+            APIConnectionException, APIException, ChannelException {
         return request(RequestMethod.GET, classURL(Charge.class), params,
                 ChargeCollection.class, apiKey);
     }

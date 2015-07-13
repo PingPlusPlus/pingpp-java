@@ -1,5 +1,26 @@
 package com.pingplusplus.net;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pingplusplus.Pingpp;
+import com.pingplusplus.exception.APIConnectionException;
+import com.pingplusplus.exception.APIException;
+import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
+import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.model.Charge;
+import com.pingplusplus.model.ChargeDeserializer;
+import com.pingplusplus.model.ChargeRefundCollection;
+import com.pingplusplus.model.ChargeRefundCollectionDeserializer;
+import com.pingplusplus.model.PingppObject;
+import com.pingplusplus.model.PingppRawJsonObject;
+import com.pingplusplus.model.PingppRawJsonObjectDeserializer;
+import com.pingplusplus.model.RedEnvelope;
+import com.pingplusplus.model.RedEnvelopeDeserializer;
+import com.pingplusplus.model.Transfer;
+import com.pingplusplus.model.TransferDeserializer;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,21 +36,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.InvalidRequestException;
-import com.pingplusplus.model.*;
-
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
 /**
  * extends the abstract class when you need requset anything from ping++
@@ -548,7 +562,7 @@ public abstract class APIResource extends PingppObject {
                                    String url, Map<String, Object> params, Class<T> clazz,
                                    String apiKey) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         String originalDNSCacheTTL = null;
         Boolean allowedToSetTTL = true;
         try {
@@ -594,7 +608,7 @@ public abstract class APIResource extends PingppObject {
                                     String url, Map<String, Object> params, Class<T> clazz,
                                     String apiKey) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException {
+            APIException, ChannelException {
         if ((Pingpp.apiKey == null || Pingpp.apiKey.length() == 0)
                 && (apiKey == null || apiKey.length() == 0)) {
             throw new AuthenticationException(
@@ -650,7 +664,7 @@ public abstract class APIResource extends PingppObject {
      */
     private static void handleAPIError(String rBody, int rCode)
             throws InvalidRequestException, AuthenticationException,
-            APIException {
+            APIException, ChannelException {
         APIResource.Error error = GSON.fromJson(rBody,
                 APIResource.ErrorContainer.class).error;
         switch (rCode) {
@@ -658,6 +672,8 @@ public abstract class APIResource extends PingppObject {
                 throw new InvalidRequestException(error.message, error.param, null);
             case 404:
                 throw new InvalidRequestException(error.message, error.param, null);
+            case 402:
+                throw new ChannelException(error.message,error.param,null);
             case 401:
                 throw new AuthenticationException(error.message);
             default:

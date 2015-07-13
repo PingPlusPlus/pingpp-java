@@ -6,6 +6,7 @@ import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.App;
 import com.pingplusplus.model.Transfer;
@@ -95,7 +96,10 @@ public class TransferExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return transfer;
     }
 
@@ -130,7 +134,10 @@ public class TransferExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 
@@ -157,6 +164,9 @@ public class TransferExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

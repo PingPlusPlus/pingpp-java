@@ -9,6 +9,7 @@ import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.App;
@@ -142,7 +143,10 @@ public class ChargeExample {
             e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
-        }
+        } catch (ChannelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return chargeCollection;
     }
 }
