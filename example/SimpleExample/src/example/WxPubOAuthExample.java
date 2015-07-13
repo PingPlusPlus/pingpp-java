@@ -13,6 +13,14 @@ import com.pingplusplus.util.WxpubOAuth;
  * 微信公共账号，付款签名示例
  * @author sunkai
  *
+ * 开发者需要填写 apiKey 、appId 、url 和 openId 。 apiKey 可以在 ping++ 管理平台【应用信息里面查看】
+ * 
+ * apiKey 有 TestKey 和 LiveKey 两种。 
+ * 
+ * TestKey 模式下不会产生真实的交易。
+ * 
+ * openId 是发送红包的对象在公共平台下的openId ,获得 openId 的方法可以参考微信文档：http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
+ * 
  */
 public class WxPubOAuthExample {
 
@@ -64,6 +72,9 @@ public class WxPubOAuthExample {
 
 	/**
 	 * 创建Charge
+	 * 
+     * 创建 Charge 用户需要组装一个 map 对象作为参数传递给 Charge.create();
+     * map 里面参数的具体说明请参考：https://pingxx.com/document/api#api-c-new
 	 * @return
 	 */
 	public static Charge charge() {

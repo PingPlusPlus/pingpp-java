@@ -18,6 +18,17 @@ import com.pingplusplus.model.Webhooks;
 
 /**
  * Created by sunkai on 15/5/14.
+ * 
+ * Event 事件参考文档：https://pingxx.com/document/api#api-event
+ * 
+ * 该实例演示如何查询 Event 
+ * 
+ * 开发者需要填写 apiKey 和 appId , apiKey 可以在 ping++ 管理平台【应用信息里面查看】
+ * 
+ * apiKey 有 TestKey 和 LiveKey 两种。 
+ * 
+ * TestKey 模式下不会产生真实的交易。
+ * 
  */
 public class EventExample {
 	/**
@@ -46,6 +57,9 @@ public class EventExample {
 
     /**
      * 根据 ID 查询 Evnet
+     * 
+     * 传递 Event 的 Id 查询 Event。
+     * 参考文档：https://pingxx.com/document/api#api-event-inquiry
      * @param id
      */
     public void retrieve(String id) {
@@ -75,6 +89,10 @@ public class EventExample {
 
     /**
      * 批量查询
+     *      
+     * 该接口为批量查询接口，默认一次查询10条。
+     * 用户可以通过添加 limit 参数自行设置查询数目，最多一次不能超过 100 条。
+     * 
      */
     public void all() {
         Map<String, Object> params = new HashMap<String, Object>();

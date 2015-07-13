@@ -15,6 +15,14 @@ import java.util.Map;
 /**
  * 退款相关示例
  * Created by sunkai on 15/4/22.
+ * 
+ * 该实例程序演示了如何从 ping++ 服务器进行退款操作。
+ * 
+ * 开发者需要填写 apiKey 和 chargeId , apiKey 可以在 ping++ 管理平台【应用信息里面查看】
+ * 
+ * apiKey 有 TestKey 和 LiveKey 两种。 
+ * 
+ * TestKey 模式下不会产生真实的交易。
  */
 public class RefundsExample {
 	
@@ -54,6 +62,12 @@ public class RefundsExample {
 
     /**
      * 退款
+     * 
+     * 创建退款，需要先获得 charge ,然后调用 charge.getRefunds().create();
+     * 参数具体说明参考：https://pingxx.com/document/api#api-r-new
+     * 
+     * 可以一次退款，也可以分批退款。
+     * 
      * @param charge
      * @return
      */
@@ -79,6 +93,10 @@ public class RefundsExample {
 
     /**
      * 查询退款
+     * 
+     * 根据 Id 查询退款记录。需要传递 charge。
+     * 参考文档：https://pingxx.com/document/api#api-r-inquiry
+     * 
      * @param id
      * @param charge
      */
@@ -100,6 +118,10 @@ public class RefundsExample {
 
     /**
      * 分页查询退款
+     * 
+     * 批量查询退款。默认一次 10 条，用户可以通过 limit 自定义查询数目，但是最多不超过 100 条。
+     * 参考文档：https://pingxx.com/document/api#api-r-list
+     * 
      * @param charge
      */
     public void all(Charge charge) {

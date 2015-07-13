@@ -13,6 +13,15 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  * Created by sunkai on 15/5/19. webhooks 验证签名示例
+ * 
+ * 该实例演示如何对 ping++ webhooks 通知进行验证。
+ * 验证是为了让开发者确认该通知来自 ping++ ，防止恶意伪造通知。用户如果有别的验证机制，可以不进行验证签名。
+ * 
+ * 验证签名需要 签名、公钥、验证信息，该实例采用文件存储方式进行演示。
+ * 实际项目中，需要用户从异步通知的 HTTP header 中读取签名，从 HTTP body 中读取验证信息。公钥的存储方式也需要用户自行设定。
+ * 
+ *  该实例仅供演示如何验证签名，请务必不要直接 copy 到实际项目中使用。
+ * 
  */
 public class WebHooksVerifyExample {
 	private static String filePath = "src/my-server.pub";
