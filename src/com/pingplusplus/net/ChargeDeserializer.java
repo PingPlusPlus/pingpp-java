@@ -1,4 +1,4 @@
-package com.pingplusplus.model;
+package com.pingplusplus.net;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -8,6 +8,9 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.pingplusplus.model.App;
+import com.pingplusplus.model.Charge;
+import com.pingplusplus.model.ChargeRefundCollection;
 
 import java.lang.reflect.Type;
 
@@ -38,8 +41,9 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
 
         }
 
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
-                .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer()).create();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
+                registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+                .create();
         JsonElement appElement = chargeJson.get("app");
         Charge charge = gson.fromJson(jsonElement, Charge.class);
 

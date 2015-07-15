@@ -20,12 +20,12 @@ public class Notify {
             return null;
         }
 
-        if(innerObject == null || innerObject.object == null || innerObject.object.isEmpty())
+        if (innerObject == null || innerObject.object == null || innerObject.object.isEmpty())
             return null;
 
-        if(innerObject.object.equals("charge")) {
+        if (innerObject.object.equals("charge")) {
             return APIResource.GSON.fromJson(notifyJson, Charge.class);
-        } else if(innerObject.object.equals("refund")) {
+        } else if (innerObject.object.equals("refund")) {
             return new GsonBuilder()
                     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .create()

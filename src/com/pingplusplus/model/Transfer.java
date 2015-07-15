@@ -163,48 +163,69 @@ public class Transfer extends APIResource {
     }
 
 
+    /**
+     * 创建 Transfer
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Transfer create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return create(params, null);
+        return request(RequestMethod.POST, classURL(Transfer.class), params, Transfer.class);
     }
 
+    /**
+     * 查询 Transfer
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Transfer retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, null, null);
+        return request(RequestMethod.GET, instanceURL(Transfer.class, id), null, Transfer.class);
     }
 
+    /**
+     * 查询 Transfer
+     * @param id
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Transfer retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, params, null);
+        return request(RequestMethod.GET, instanceURL(Transfer.class, id), params, Transfer.class);
     }
 
+    /**
+     * 查询 Transfer
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static TransferCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return all(params, null);
+        return request(RequestMethod.GET, classURL(Transfer.class), params, TransferCollection.class);
     }
 
-    public static Transfer create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.POST, classURL(Transfer.class), params,
-                Transfer.class, apiKey);
-    }
-
-    public static Transfer retrieve(String id, Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.GET, instanceURL(Transfer.class, id), params,
-                Transfer.class, apiKey);
-    }
-
-    public static TransferCollection all(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.GET, classURL(Transfer.class), params,
-                TransferCollection.class, apiKey);
-    }
 }

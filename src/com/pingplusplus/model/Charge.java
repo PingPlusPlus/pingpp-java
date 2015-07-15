@@ -10,7 +10,7 @@ import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
 
-public class Charge extends APIResource implements MetadataStore<Charge> {
+public class Charge extends APIResource {
     String id;
     String object;
     Long created;
@@ -189,7 +189,7 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
     }
 
     public Map<String, Object> getCredential() {
-    	return credential;
+        return credential;
     }
 
     public Map<String, String> getExtra() {
@@ -256,61 +256,74 @@ public class Charge extends APIResource implements MetadataStore<Charge> {
         this.timeSettle = timeSettle;
     }
 
+
+    /**
+     * 创建 charge
+     *
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Charge create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return create(params, null);
+        return request(RequestMethod.POST, classURL(Charge.class), params, Charge.class);
     }
 
+    /**
+     * 查询 charge
+     *
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, null, null);
+        return request(RequestMethod.GET, instanceURL(Charge.class, id), null, Charge.class);
     }
 
+    /**
+     * 查询 charge
+     *
+     * @param id
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, params, null);
+        return request(RequestMethod.GET, instanceURL(Charge.class, id), params, Charge.class);
     }
 
-    public Charge update(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return update(params, null);
-    }
-
+    /**
+     * 查询 charge
+     *
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static ChargeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return all(params, null);
+        return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
     }
 
-    public static Charge create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.POST, classURL(Charge.class), params,
-                Charge.class, apiKey);
-    }
-
-    public static Charge retrieve(String id, Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), params,
-                Charge.class, apiKey);
-    }
-
-    public Charge update(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.POST, instanceURL(Charge.class, id), params,
-                Charge.class, apiKey);
-    }
-
-    public static ChargeCollection all(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.GET, classURL(Charge.class), params,
-                ChargeCollection.class, apiKey);
-    }
 }

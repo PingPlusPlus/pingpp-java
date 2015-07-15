@@ -12,12 +12,12 @@ import java.util.Map;
 /**
  * Created by sunkai on 15/5/11.
  */
-public class Event extends APIResource{
+public class Event extends APIResource {
     private String id;
     private String object;
     private Boolean livemode;
     private Long created;
-    private Map<String,Object>  data;
+    private Map<String, Object> data;
     private Integer pendingWebhooks;
     private String type;
     private String request;
@@ -87,35 +87,56 @@ public class Event extends APIResource{
     }
 
 
+    /**
+     * 查询 Event
+     *
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Event retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, null, null);
+        return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), null, Event.class);
     }
 
+    /**
+     * 查询 Event
+     *
+     * @param id
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static Event retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return retrieve(id, params, null);
+        return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params, Event.class);
     }
 
+    /**
+     * 查询 Event
+     *
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
     public static EventCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return all(params, null);
+        return request(APIResource.RequestMethod.GET, classURL(Event.class), params, EventCollection.class);
     }
 
-    public static Event retrieve(String id, Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params,
-                Event.class, apiKey);
-    }
-
-    public static EventCollection all(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        return request(APIResource.RequestMethod.GET, classURL(Event.class), params,
-                EventCollection.class, apiKey);
-    }
 }

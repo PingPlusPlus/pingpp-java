@@ -32,7 +32,7 @@ public class Refund extends APIResource /*implements MetadataStore<Charge>*/ {
     public Refund update(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return request(RequestMethod.POST, this.getInstanceURL(), params, Refund.class, apiKey);
+        return request(RequestMethod.POST, this.getInstanceURL(), params, Refund.class);
     }
 
     public String getInstanceURL() {
