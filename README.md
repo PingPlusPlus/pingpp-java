@@ -35,7 +35,7 @@ maven 远程仓库
      <dependency>
             <groupId>Pingplusplus</groupId>
             <artifactId>pingpp-java</artifactId>
-            <version>2.0.7</version>
+            <version>2.0.9</version>
             <type>jar</type>
         </dependency>
 ##### gradle 安装
@@ -50,7 +50,7 @@ gradle 远程仓库
 
 安装 ping++ sdk
 
-    compile 'Pingplusplus:pingpp-java:2.0.7'
+    compile 'Pingplusplus:pingpp-java:2.0.9'
 
     
 
