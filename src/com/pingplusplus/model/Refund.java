@@ -16,6 +16,20 @@ public class Refund extends APIResource /*implements MetadataStore<Charge>*/ {
     Integer amount;
     Long created;
     Boolean succeed;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    String status;
     Long timeSucceed;
     String description;
     String failureCode;

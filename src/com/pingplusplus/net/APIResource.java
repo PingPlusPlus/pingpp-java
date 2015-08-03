@@ -104,9 +104,7 @@ public abstract class APIResource extends PingppObject {
         try {
             return String.format("%s/%s", classURL(clazz), urlEncode(id));
         } catch (UnsupportedEncodingException e) {
-            throw new InvalidRequestException("Unable to encode parameters to "
-                    + CHARSET
-                    + ". Please contact support@pingxx.com for assistance.", null, e);
+            throw new InvalidRequestException("Unable to encode parameters to " + CHARSET, null, e);
         }
     }
 
@@ -117,8 +115,6 @@ public abstract class APIResource extends PingppObject {
      * @throws UnsupportedEncodingException
      */
     private static String urlEncode(String str) throws UnsupportedEncodingException {
-        // Preserve original behavior that passing null for an object id will lead
-        // to us actually making a request to /v1/foo/null
         if (str == null) {
             return null;
         } else {
@@ -184,16 +180,6 @@ public abstract class APIResource extends PingppObject {
         pingppURL = new URL(url);
 
         HttpsURLConnection conn = (HttpsURLConnection) pingppURL.openConnection();
-//        conn.setHostnameVerifier(new HostnameVerifier() {
-//            @Override
-//            public boolean verify(String s, SSLSession sslSession) {
-//                System.out.println("Warning: URL Host: " + s + " vs. "
-//                        + sslSession.getPeerHost());
-//
-//                return true;
-//            }
-//        });
-
 
         conn.setConnectTimeout(30 * 1000);
         conn.setReadTimeout(80 * 1000);
@@ -209,7 +195,7 @@ public abstract class APIResource extends PingppObject {
      * @throws APIConnectionException
      */
     private static void throwInvalidCertificateException() throws APIConnectionException {
-        throw new APIConnectionException("Invalid server certificate. You tried to connect to a server that has a revoked SSL certificate, which means we cannot securely send data to that server. Please email support@pingxx.com if you need help connecting to the correct API server.");
+        throw new APIConnectionException("Invalid server certificate. You tried to connect to a server that has a revoked SSL certificate, which means we cannot securely send data to that server. ");
     }
 
     /**
@@ -222,7 +208,7 @@ public abstract class APIResource extends PingppObject {
             return;
         }
 
-        if(true){
+        if (true) {
             return;
         }
         javax.net.ssl.HttpsURLConnection conn = (javax.net.ssl.HttpsURLConnection) hconn;
@@ -456,11 +442,7 @@ public abstract class APIResource extends PingppObject {
                     break;
                 default:
                     throw new APIConnectionException(
-                            String.format(
-                                    "Unrecognized HTTP method %s. "
-                                            + "This indicates a bug in the Pingpp bindings. Please contact "
-                                            + "support@pingxx.com for assistance.",
-                                    method));
+                            String.format("Unrecognized HTTP method %s. ", method));
             }
             // trigger the request
             int rCode = conn.getResponseCode();
@@ -509,7 +491,7 @@ public abstract class APIResource extends PingppObject {
             throw new AuthenticationException(
                     "No API key provided. (HINT: set your API key using 'Pingpp.apiKey = <API-KEY>'. "
                             + "You can generate API keys from the Pingpp web interface. "
-                            + "See https://pingxx.com for details or email support@pingxx.com if you have questions.");
+                            + "See https://pingxx.com for details.");
         }
 
         String query;
@@ -517,10 +499,7 @@ public abstract class APIResource extends PingppObject {
         try {
             query = createQuery(params);
         } catch (UnsupportedEncodingException e) {
-            throw new InvalidRequestException("Unable to encode parameters to "
-                    + CHARSET
-                    + ". Please contact support@pingxx.com for assistance.",
-                    null, e);
+            throw new InvalidRequestException("Unable to encode parameters to " + CHARSET, null, e);
         }
 
         PingppResponse response;
@@ -532,6 +511,7 @@ public abstract class APIResource extends PingppObject {
         }
         int rCode = response.getResponseCode();
         String rBody = response.getResponseBody();
+
         if (rCode < 200 || rCode >= 300) {
             handleAPIError(rBody, rCode);
         }
