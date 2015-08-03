@@ -1,4 +1,5 @@
- 
+### 2.0.10
+    增 Refund 对象 status 字段  
 ### 2.0.8版本
     增加 ChannelException  
 ### 2.0.6版本
