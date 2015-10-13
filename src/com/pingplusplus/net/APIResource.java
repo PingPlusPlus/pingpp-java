@@ -32,9 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
 /**
  * extends the abstract class when you need requset anything from ping++
@@ -50,7 +48,7 @@ public abstract class APIResource extends PingppObject {
      * Http requset method
      */
     protected enum RequestMethod {
-        GET, POST
+        GET, POST, DELETE
     }
 
     /**
@@ -73,6 +71,9 @@ public abstract class APIResource extends PingppObject {
 
         if (className.equals("redenvelope")) {
             return "red_envelope";
+        }
+        if (className.equals("smscode")) {
+            return "sms_code";
         } else {
             return className;
         }
@@ -208,9 +209,6 @@ public abstract class APIResource extends PingppObject {
             return;
         }
 
-        if (true) {
-            return;
-        }
         javax.net.ssl.HttpsURLConnection conn = (javax.net.ssl.HttpsURLConnection) hconn;
         conn.connect();
 
@@ -265,6 +263,18 @@ public abstract class APIResource extends PingppObject {
         java.net.HttpURLConnection conn = createPingppConnection(getURL,
                 apiKey);
         conn.setRequestMethod("GET");
+
+        checkSSLCert(conn);
+
+        return conn;
+    }
+
+    private static java.net.HttpURLConnection createDeleteConnection(
+            String url, String query, String apiKey) throws IOException, APIConnectionException {
+        String getURL = formatURL(url, query);
+        java.net.HttpURLConnection conn = createPingppConnection(getURL,
+                apiKey);
+        conn.setRequestMethod("DELETE");
 
         checkSSLCert(conn);
 
@@ -440,6 +450,9 @@ public abstract class APIResource extends PingppObject {
                 case POST:
                     conn = createPostConnection(url, query, apiKey);
                     break;
+                case DELETE:
+                    conn = createDeleteConnection(url, query, apiKey);
+                    break;
                 default:
                     throw new APIConnectionException(
                             String.format("Unrecognized HTTP method %s. ", method));
@@ -511,7 +524,6 @@ public abstract class APIResource extends PingppObject {
         }
         int rCode = response.getResponseCode();
         String rBody = response.getResponseBody();
-
         if (rCode < 200 || rCode >= 300) {
             handleAPIError(rBody, rCode);
         }

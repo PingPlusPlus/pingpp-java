@@ -2,15 +2,15 @@ ping++ java SDK
 ============
 
 ### 简介
- 1. docs 目录下为ping++ Java sdk 的使用文档。
- 1. example 目录下面为一个eclipse IDE 的示例工程。
- 1. libs 为ping++ Java sdk 的jar包和ping++ Java sdk 所依赖的Gson 包。
- 1. src  为ping++ Java sdk 的源代码，可以关联到ping-java.jar文件。 或者直接把源代码引入到工程之中。
+ 1. docs 目录下为 Ping++ Java SDK 的使用文档。
+ 2. example 目录下面为一个 Eclipse IDE 的示例工程。
+ 3. libs 为 Ping++ Java SDK 的 jar 包和 Ping++ Java SDK 所依赖的Gson 包。
+ 4. src 为 Ping++ Java SDK 的源代码，可以关联到 pingpp-java-x.x.x.jar 文件。或者直接把源代码引入到工程之中。
 
 
 ### 版本要求
 
-Java SDK 要求JDK版本1.6及以上
+Java SDK 要求 JDK 版本 1.6 及以上
   
 ### 安装
 
@@ -21,23 +21,24 @@ Java SDK 要求JDK版本1.6及以上
 
 maven 远程仓库
 
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>bintray</name>
-            <url>http://jcenter.bintray.com</url>
-        </repository>
+    <repository>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>bintray</name>
+        <url>http://jcenter.bintray.com</url>
+    </repository>
 
-安装 ping++ sdk
+安装 Ping++ SDK
 
-     <dependency>
-            <groupId>Pingplusplus</groupId>
-            <artifactId>pingpp-java</artifactId>
-            <version>2.0.10</version>
-            <type>jar</type>
-        </dependency>
+    <dependency>
+        <groupId>Pingplusplus</groupId>
+        <artifactId>pingpp-java</artifactId>
+        <version>2.1.0</version>
+        <type>jar</type>
+    </dependency>
+
 ##### gradle 安装
 
 gradle 远程仓库
@@ -48,11 +49,9 @@ gradle 远程仓库
         }
     }
 
-安装 ping++ sdk
+安装 Ping++ SDK
 
-    compile 'Pingplusplus:pingpp-java:2.0.10'
-
-    
+    compile 'Pingplusplus:pingpp-java:2.1.0'
 
 ### 初始化
 
@@ -60,9 +59,4 @@ gradle 远程仓库
     
 #### 使用示例
     
-    参考example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的demo。
-    
-
-
-
-
+    参考 example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的 demo。

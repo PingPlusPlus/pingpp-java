@@ -1,17 +1,21 @@
-### 2.0.10
-    增 Refund 对象 status 字段  
-### 2.0.8版本
-    增加 ChannelException  
-### 2.0.6版本
-    增加企业转账、修改红包接口
+## 2.1.0
+* 添加应用内快捷支付对应接口
 
-### 2.0.5版本
-    增加event sdk     
+## 2.0.10
+* 增加 Refund 对象 status 字段
+
+## 2.0.8
+* 增加 ChannelException
+
+## 2.0.6
+* 增加企业转账、修改红包接口
+
+## 2.0.5
+* 增加 event sdk
     
-### 2.0.4版本
+## 2.0.4
+* 更改 sdk 目录格式，修复wx_pub渠道timeStamp 类型问题。
 
-    更改sdk目录格式，修复wx_pub渠道timeStamp 类型问题。
-     
 ## 2.0.3
 * 增加 apple pay ，重写 getcredential 方法。
 
@@ -19,13 +23,13 @@
 * 增加微信红包
 
 ## 2.0.1
-* 更改：<br>
+* 更改：  
 修改 wx credential 里的 timeStamp 类型为字符串，防止变成科学计数法
 
 ## 2.0.0
-* 更改：<br>
+* 更改：  
 添加新渠道支持：百付宝、百付宝WAP、微信公众平台
 
 ## 1.0.4
-* 更改：<br>
+* 更改：  
 添加 `Expanding` 机制
