@@ -5,7 +5,7 @@
 #####apiKey 和 appId
 
     sdk需要ping++提供的APIKey 和 AppId作为凭证获取移动端支付所需的charge对象。
-    其中，APIKey 可以在ping++ 管理平台的【公司信息】中得到。
+    其中，APIKey 可以在ping++ 管理平台的【基本信息】中得到。
     AppId 可以在ping++ 管理平台【应用名称】->【应用信息】中得得到。
 
 
