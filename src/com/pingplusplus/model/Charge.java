@@ -36,7 +36,7 @@ public class Charge extends APIResource {
     String failureMsg;
     Map<String, String> metadata;
     Map<String, Object> credential;
-    Map<String, String> extra;
+    Map<String, Object> extra;
     String description;
 
     public String getId() {
@@ -192,11 +192,11 @@ public class Charge extends APIResource {
         return credential;
     }
 
-    public Map<String, String> getExtra() {
+    public Map<String, Object> getExtra() {
         return extra;
     }
 
-    public void setExtra(Map<String, String> extra) {
+    public void setExtra(Map<String, Object> extra) {
         this.extra = extra;
     }
 
