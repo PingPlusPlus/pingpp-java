@@ -9,7 +9,7 @@ import com.pingplusplus.exception.InvalidRequestException;
 
 import java.util.Map;
 
-public class ChargeRefundCollection extends PingppColllectionAPIResource<Refund> {
+public class ChargeRefundCollection extends PingppCollectionAPIResource<Refund> {
 
     public ChargeRefundCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,

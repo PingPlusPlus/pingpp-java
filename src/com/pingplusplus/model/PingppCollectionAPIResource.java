@@ -4,7 +4,7 @@ import com.pingplusplus.net.APIResource;
 
 import java.util.List;
 
-public abstract class PingppColllectionAPIResource<T> extends APIResource {
+public abstract class PingppCollectionAPIResource<T> extends APIResource {
     String object;
     String url;
     Boolean hasMore;

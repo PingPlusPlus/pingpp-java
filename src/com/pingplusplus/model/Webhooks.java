@@ -18,12 +18,23 @@ public class Webhooks {
     }
 
     /**
-     * 解析event 中的object
+     * 解析 event 中的 object
      *
      * @param eventStr
      * @return
      */
+    @Deprecated
     public static Object parseEvnet(String eventStr) {
+        return getObject(eventStr);
+    }
+
+    /**
+     * 解析 event 中的 object
+     *
+     * @param eventStr
+     * @return
+     */
+    public static Object getObject(String eventStr) {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();

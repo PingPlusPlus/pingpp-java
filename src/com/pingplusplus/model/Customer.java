@@ -6,7 +6,6 @@ import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
-import com.pingplusplus.net.DeleteResult;
 
 import java.util.Map;
 
@@ -19,12 +18,13 @@ public class Customer extends APIResource {
     private Long created;
     private Boolean livemode;
     private Object app;
+    private String name;
     private String email;
     private String currency;
     private String description;
     private Map<String, String> metadata;
-    private CardCollection source;
-    private Object defaultSource;
+    private CardCollection sources;
+    private String defaultSource;
 
     public String getId() {
         return id;
@@ -98,46 +98,53 @@ public class Customer extends APIResource {
         this.metadata = metadata;
     }
 
-    public CardCollection getSource() {
-        return source;
+    public CardCollection getSources() {
+        return sources;
     }
 
-    public void setSource(CardCollection source) {
-        this.source = source;
+    public void setSources(CardCollection sources) {
+        this.sources = sources;
     }
 
-    public Object getDefaultSource() {
+    public String getDefaultSource() {
         return defaultSource;
     }
 
-    public void setDefaultSource(Object defaultSource) {
+    public void setDefaultSource(String defaultSource) {
         this.defaultSource = defaultSource;
     }
 
     public static Customer create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return request(APIResource.RequestMethod.POST, classURL(Customer.class), params, Customer.class);
+        return request(RequestMethod.POST, classURL(Customer.class), params, Customer.class);
     }
 
-    public static Customer update(String id, Map<String, Object> params) throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
-        return request(APIResource.RequestMethod.POST, instanceURL(Customer.class, id), params, Customer.class);
+    public Customer update(Map<String, Object> params) throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+        return request(RequestMethod.PUT, instanceURL(Customer.class, this.id), params, Customer.class);
     }
 
-    //TODO
-    public static DeleteResult delete(String id) throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
-        return request(RequestMethod.DELETE, instanceURL(Customer.class, id), null, DeleteResult.class);
+    public DeletedCustomer delete() throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+        return request(RequestMethod.DELETE, instanceURL(Customer.class, this.id), null, DeletedCustomer.class);
     }
 
     public static Customer retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Customer.class, id), null, Customer.class);
+        return request(RequestMethod.GET, instanceURL(Customer.class, id), null, Customer.class);
     }
 
     public static CustomerCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException {
-        return request(APIResource.RequestMethod.GET, classURL(Customer.class), params, CustomerCollection.class);
+        return request(RequestMethod.GET, classURL(Customer.class), params, CustomerCollection.class);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

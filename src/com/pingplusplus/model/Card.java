@@ -1,13 +1,11 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
-import com.pingplusplus.net.DeleteResult;
 
 import java.util.Map;
 
@@ -17,7 +15,7 @@ import java.util.Map;
 public class Card extends APIResource {
     private String id;
     private String object;
-    private Long timestamp;
+    private Long created;
     private String last4;
     private String funding;
     private String brand;
@@ -40,12 +38,12 @@ public class Card extends APIResource {
         this.object = object;
     }
 
-    public Long getTimestamp() {
-        return timestamp;
+    public Long getCreated() {
+        return created;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public void setCreated(Long created) {
+        this.created = created;
     }
 
     public String getLast4() {
@@ -88,17 +86,8 @@ public class Card extends APIResource {
         this.customer = customer;
     }
 
-
-    public static Card create(String customerId, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        String url = instanceURL(Customer.class, customerId) + "/sources";
-        return request(APIResource.RequestMethod.POST, url, params, Card.class);
-    }
-
-    public static DeleteResult delete(String customerId, String id) throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
-        String url = instanceURL(Customer.class, customerId) + "/sources/" + id;
-        return request(RequestMethod.DELETE, url, null, DeleteResult.class);
+    public DeletedCard delete() throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+        return request(RequestMethod.DELETE, this.getInstanceURL(), null, DeletedCard.class);
     }
 
     public static Card retrieve(String customerId, String id) throws AuthenticationException,
@@ -108,10 +97,11 @@ public class Card extends APIResource {
         return request(APIResource.RequestMethod.GET, url, null, Card.class);
     }
 
-    public static CardCollection all(String customerId, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
-        String url = instanceURL(Customer.class, customerId) + "/sources";
-        return request(APIResource.RequestMethod.GET, url, params, CardCollection.class);
+    public String getInstanceURL() {
+        if (this.getCustomer() != null) {
+            return String.format("%s/%s/sources/%s", classURL(Customer.class), this.getCustomer(), this.getId());
+        } else {
+            return null;
+        }
     }
 }

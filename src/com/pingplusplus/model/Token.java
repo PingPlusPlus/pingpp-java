@@ -22,6 +22,7 @@ public class Token extends APIResource {
     private String type;
     private Card card;
     private SMSCode smsCode;
+    private Boolean attachable;
 
     public String getId() {
         return id;
@@ -105,5 +106,13 @@ public class Token extends APIResource {
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException {
         return request(RequestMethod.GET, instanceURL(Token.class, id), null, Token.class);
+    }
+
+    public Boolean getAttachable() {
+        return attachable;
+    }
+
+    public void setAttachable(Boolean attachable) {
+        this.attachable = attachable;
     }
 }
