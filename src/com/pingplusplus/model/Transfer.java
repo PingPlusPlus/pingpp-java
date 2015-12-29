@@ -17,22 +17,23 @@ import java.util.Map;
  * 微信企业付款
  */
 public class Transfer extends APIResource {
-    private String id;
-    private String object;
-    private String type;
-    private Long created;
-    private Long timeTransferred;
-    private Boolean livemode;
-    private String status;
-    private Object app;
-    private String channel;
-    private String orderNo;
-    private Integer amount;
-    private String currency;
-    private String recipient;
-    private String description;
-    private String transaction_no;
-    private Map extra;
+    String id;
+    String object;
+    String type;
+    Long created;
+    Long timeTransferred;
+    Boolean livemode;
+    String status;
+    Object app;
+    String channel;
+    String orderNo;
+    Integer amount;
+    String currency;
+    String recipient;
+    String description;
+    String transaction_no;
+    Map extra;
+    Map<String, String> metadata;
 
     public String getId() {
         return id;
@@ -160,6 +161,14 @@ public class Transfer extends APIResource {
 
     public void setExtra(Map extra) {
         this.extra = extra;
+    }
+
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
     }
 
 

@@ -35,6 +35,8 @@ public class RedEnvelope extends APIResource {
     String body;
     String description;
     Map<String, String> extra;
+    Map<String, String> metadata;
+
     public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
             setPrettyPrinting().
             serializeNulls().
@@ -178,6 +180,14 @@ public class RedEnvelope extends APIResource {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
     }
 
 
