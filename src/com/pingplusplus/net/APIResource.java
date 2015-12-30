@@ -9,11 +9,7 @@ import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
-import com.pingplusplus.model.Charge;
-import com.pingplusplus.model.ChargeRefundCollection;
-import com.pingplusplus.model.PingppObject;
-import com.pingplusplus.model.RedEnvelope;
-import com.pingplusplus.model.Transfer;
+import com.pingplusplus.model.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,6 +51,8 @@ public abstract class APIResource extends PingppObject {
             .registerTypeAdapter(RedEnvelope.class, new RedEnvelopeDeserializer())
             .registerTypeAdapter(Transfer.class, new TransferDeserializer())
             .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+            .registerTypeAdapter(EventData.class, new EventDataDeserializer())
+            .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
             .create();
 
     /**

@@ -17,7 +17,7 @@ public class Event extends APIResource {
     private String object;
     private Boolean livemode;
     private Long created;
-    private Map<String, Object> data;
+    private EventData data;
     private Integer pendingWebhooks;
     private String type;
     private String request;
@@ -54,11 +54,11 @@ public class Event extends APIResource {
         this.created = created;
     }
 
-    public Map<String, Object> getData() {
+    public EventData getData() {
         return data;
     }
 
-    public void setData(Map<String, Object> data) {
+    public void setData(EventData data) {
         this.data = data;
     }
 

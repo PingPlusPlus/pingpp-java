@@ -35,28 +35,7 @@ public class Webhooks {
      * @return
      */
     public static Object getObject(String eventStr) {
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
-        InnerObject innerObject = gson.fromJson(eventStr, InnerObject.class);
-        if (null == innerObject) {
-            return null;
-        }
-        JsonParser jsonParser = new JsonParser();
-        JsonObject jsonObject = jsonParser.parse(eventStr).getAsJsonObject();
-        String eventData = jsonObject.get("data").getAsJsonObject().get("object").getAsJsonObject().toString();
-        if ("summary.daily.available".equals(innerObject.type)) {
-            return gson.fromJson(eventData, Summary.class);
-        } else if ("summary.weekly.available".equals(innerObject.type)) {
-            return gson.fromJson(eventData, Summary.class);
-        } else if ("summary.monthly.available".equals(innerObject.type)) {
-            return gson.fromJson(eventData, Summary.class);
-        } else if ("charge.succeeded".equals(innerObject.type)) {
-            return APIResource.GSON.fromJson(eventData, Charge.class);
-        } else if ("refund.succeeded".equals(innerObject.type)) {
-            return gson.fromJson(eventData, Refund.class);
-        }
-        return null;
+        return eventParse(eventStr).getData().getObject();
     }
 
     /**
@@ -66,15 +45,6 @@ public class Webhooks {
      * @return
      */
     public static Event eventParse(String eventStr) {
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
-        InnerObject innerObject = gson.fromJson(eventStr, InnerObject.class);
-
-        if (innerObject == null || innerObject.type == null || innerObject.type.isEmpty()) {
-            return null;
-        }
-
-        return gson.fromJson(eventStr, Event.class);
+        return APIResource.GSON.fromJson(eventStr, Event.class);
     }
 }
