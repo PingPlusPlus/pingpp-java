@@ -1,10 +1,5 @@
 package com.pingplusplus.model;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.pingplusplus.net.APIResource;
 
 
@@ -13,15 +8,11 @@ import com.pingplusplus.net.APIResource;
  */
 public class Webhooks {
 
-    class InnerObject {
-        String type;
-    }
-
     /**
      * 解析 event 中的 object
      *
      * @param eventStr
-     * @return
+     * @return Object
      */
     @Deprecated
     public static Object parseEvnet(String eventStr) {
@@ -32,7 +23,7 @@ public class Webhooks {
      * 解析 event 中的 object
      *
      * @param eventStr
-     * @return
+     * @return Object
      */
     public static Object getObject(String eventStr) {
         return eventParse(eventStr).getData().getObject();
@@ -42,7 +33,7 @@ public class Webhooks {
      * 解析event，返回Event对象
      *
      * @param eventStr
-     * @return
+     * @return Event
      */
     public static Event eventParse(String eventStr) {
         return APIResource.GSON.fromJson(eventStr, Event.class);

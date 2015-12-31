@@ -26,6 +26,9 @@ public abstract class Pingpp {
     private static volatile boolean verifySSL = true;
     private static volatile String apiBase = LIVE_API_BASE;
 
+    public static volatile String privateKey;
+    public static volatile String privateKeyPath;
+
     public static Boolean DEBUG = false;
 
     /**

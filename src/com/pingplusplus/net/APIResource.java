@@ -10,13 +10,16 @@ import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.*;
+import org.apache.commons.codec.binary.Base64;
+import sun.security.util.DerInputStream;
+import sun.security.util.DerValue;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.*;
+import java.security.spec.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -252,6 +255,10 @@ public abstract class APIResource extends PingppObject {
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", String.format(
                 "application/x-www-form-urlencoded;charset=%s", CHARSET));
+        String signature = generateSign(query);
+        if (signature != null) {
+            conn.setRequestProperty("Pingplusplus-Signature", signature);
+        }
 
         OutputStream output = null;
         try {
@@ -282,6 +289,10 @@ public abstract class APIResource extends PingppObject {
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", String.format(
                 "application/x-www-form-urlencoded;charset=%s", CHARSET));
+        String signature = generateSign(query);
+        if (signature != null) {
+            conn.setRequestProperty("Pingplusplus-Signature", signature);
+        }
 
         OutputStream output = null;
         try {
@@ -541,5 +552,69 @@ public abstract class APIResource extends PingppObject {
             default:
                 throw new APIException(error.toString(), null);
         }
+    }
+
+    /**
+     * 生成请求签名
+     *
+     * @param data
+     */
+
+    private static String generateSign(String data)
+            throws IOException {
+        if (Pingpp.privateKey == null) {
+            if (Pingpp.privateKeyPath == null) {
+                return null;
+            }
+            FileInputStream inputStream = new FileInputStream(Pingpp.privateKeyPath);
+            byte[] keyBytes = new byte[inputStream.available()];
+            inputStream.read(keyBytes);
+            inputStream.close();
+            String keyString = new String(keyBytes, "UTF-8");
+            Pingpp.privateKey = keyString.replaceAll("(-+BEGIN (RSA )?PRIVATE KEY-+\\r?\\n|-+END (RSA )?PRIVATE KEY-+\\r?\\n?)", "");
+        }
+
+        System.out.println(Pingpp.privateKey);
+        byte[] privateKeyBytes = Base64.decodeBase64(Pingpp.privateKey);
+
+        DerInputStream derReader = new DerInputStream(privateKeyBytes);
+        DerValue[] seq = derReader.getSequence(0);
+
+        if (seq.length < 9) {
+            System.out.println("Could not parse a PKCS1 private key.");
+            return null;
+        }
+
+        // skip version seq[0];
+        BigInteger modulus = seq[1].getBigInteger();
+        BigInteger publicExp = seq[2].getBigInteger();
+        BigInteger privateExp = seq[3].getBigInteger();
+        BigInteger prime1 = seq[4].getBigInteger();
+        BigInteger prime2 = seq[5].getBigInteger();
+        BigInteger exp1 = seq[6].getBigInteger();
+        BigInteger exp2 = seq[7].getBigInteger();
+        BigInteger crtCoef = seq[8].getBigInteger();
+        RSAPrivateCrtKeySpec spec = new RSAPrivateCrtKeySpec(modulus, publicExp, privateExp, prime1, prime2, exp1, exp2, crtCoef);
+
+        try {
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            PrivateKey privateKey = keyFactory.generatePrivate(spec);
+
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(privateKey);
+            signature.update(data.getBytes());
+            byte[] signBytes = signature.sign();
+            return Base64.encodeBase64String(signBytes);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (SignatureException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
