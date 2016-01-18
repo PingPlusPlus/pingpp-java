@@ -574,7 +574,6 @@ public abstract class APIResource extends PingppObject {
             Pingpp.privateKey = keyString.replaceAll("(-+BEGIN (RSA )?PRIVATE KEY-+\\r?\\n|-+END (RSA )?PRIVATE KEY-+\\r?\\n?)", "");
         }
 
-        System.out.println(Pingpp.privateKey);
         byte[] privateKeyBytes = Base64.decodeBase64(Pingpp.privateKey);
 
         DerInputStream derReader = new DerInputStream(privateKeyBytes);

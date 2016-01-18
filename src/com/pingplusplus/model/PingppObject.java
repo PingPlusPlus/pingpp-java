@@ -12,6 +12,7 @@ public abstract class PingppObject {
             setPrettyPrinting().
             serializeNulls().
             setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
+            disableHtmlEscaping().
             create();
 
     @Override
