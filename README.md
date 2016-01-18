@@ -15,7 +15,7 @@ Java SDK 要求 JDK 版本 1.6 及以上
 ### 安装
 
 ##### 手动安装
-将libs/下面的jar包导入工程
+将 libs/ 下面的 jar 包导入工程
 
 ##### maven 安装 
 
@@ -35,7 +35,7 @@ maven 远程仓库
     <dependency>
         <groupId>Pingplusplus</groupId>
         <artifactId>pingpp-java</artifactId>
-        <version>2.1.1</version>
+        <version>2.1.2</version>
         <type>jar</type>
     </dependency>
 
@@ -51,7 +51,7 @@ gradle 远程仓库
 
 安装 Ping++ SDK
 
-    compile 'Pingplusplus:pingpp-java:2.1.1'
+    compile 'Pingplusplus:pingpp-java:2.1.2'
 
 ### 初始化
 
