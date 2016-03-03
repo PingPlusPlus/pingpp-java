@@ -30,15 +30,16 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
                 Long timeStamp = wx.get("timeStamp").getAsLong();
                 wx.addProperty("timeStamp", "" + timeStamp);
             } else if (null != credentialJson.getAsJsonObject("wx_pub")) {
-                JsonObject wx = credentialJson.getAsJsonObject("wx_pub");
-                Long timeStamp = wx.get("timeStamp").getAsLong();
-                wx.addProperty("timeStamp", "" + timeStamp);
+                JsonObject wxPub = credentialJson.getAsJsonObject("wx_pub");
+                if (null == wxPub.get("signed_data") && wxPub.get("timeStamp") != null) {
+                    Long timeStamp = wxPub.get("timeStamp").getAsLong();
+                    wxPub.addProperty("timeStamp", "" + timeStamp);
+                }
             } else if (null != credentialJson.getAsJsonObject("bfb")) {
                 JsonObject bfb = credentialJson.getAsJsonObject("bfb");
                 Long total_amount = bfb.get("total_amount").getAsLong();
                 bfb.addProperty("total_amount", total_amount + "");
             }
-
         }
 
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
