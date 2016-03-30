@@ -254,7 +254,7 @@ public abstract class APIResource extends PingppObject {
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", String.format(
-                "application/x-www-form-urlencoded;charset=%s", CHARSET));
+                "application/json;charset=%s", CHARSET));
         String signature = generateSign(query);
         if (signature != null) {
             conn.setRequestProperty("Pingplusplus-Signature", signature);
@@ -288,7 +288,7 @@ public abstract class APIResource extends PingppObject {
         conn.setDoOutput(true);
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", String.format(
-                "application/x-www-form-urlencoded;charset=%s", CHARSET));
+                "application/json;charset=%s", CHARSET));
         String signature = generateSign(query);
         if (signature != null) {
             conn.setRequestProperty("Pingplusplus-Signature", signature);
@@ -324,6 +324,15 @@ public abstract class APIResource extends PingppObject {
                     entry.getValue()));
         }
         return queryStringBuffer.toString();
+    }
+
+    /**
+     * @param params
+     * @return
+     */
+    private static String createJSONString(Map<String, Object> params) {
+        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+        return gson.toJson(params);
     }
 
     /**
@@ -503,12 +512,21 @@ public abstract class APIResource extends PingppObject {
                             + "See https://pingxx.com for details.");
         }
 
-        String query;
+        String query = null;
 
-        try {
-            query = createQuery(params);
-        } catch (UnsupportedEncodingException e) {
-            throw new InvalidRequestException("Unable to encode parameters to " + CHARSET, null, e);
+        switch (method) {
+            case GET:
+            case DELETE:
+                try {
+                    query = createQuery(params);
+                } catch (UnsupportedEncodingException e) {
+                    throw new InvalidRequestException("Unable to encode parameters to " + CHARSET, null, e);
+                }
+                break;
+            case POST:
+            case PUT:
+                query = createJSONString(params);
+                break;
         }
 
         PingppResponse response;
@@ -603,7 +621,8 @@ public abstract class APIResource extends PingppObject {
             signature.initSign(privateKey);
             signature.update(data.getBytes());
             byte[] signBytes = signature.sign();
-            return Base64.encodeBase64String(signBytes);
+
+            return Base64.encodeBase64String(signBytes).replaceAll("\n|\r", "");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeySpecException e) {

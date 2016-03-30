@@ -11,7 +11,7 @@ public abstract class Pingpp {
     /**
      * version
      */
-    public static final String VERSION = "2.1.3";
+    public static final String VERSION = "2.1.4";
     /**
      * api key
      */
@@ -19,7 +19,7 @@ public abstract class Pingpp {
     /**
      * api version
      */
-    public static volatile String apiVersion = "2015-10-10";
+    public static volatile String apiVersion = "2016-03-24";
 
     public static String AcceptLanguage = "zh-CN";
 

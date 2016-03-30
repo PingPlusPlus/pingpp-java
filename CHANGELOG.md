@@ -1,3 +1,7 @@
+## 2.1.4
+* 修改：  
+更改 content-type 为 application/json
+
 ## 2.1.3
 * 兼容两种微信公众号接入方式
 
