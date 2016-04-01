@@ -43,7 +43,7 @@ public class ChargeExample {
         Pingpp.apiKey = apiKey;
         ChargeExample ce = new ChargeExample();
         System.out.println("---------创建 charge");
-        Charge charge = ce.charge();
+        Charge charge = ce.createCharge();
         System.out.println("---------查询 charge");
         ce.retrieve(charge.getId());
         System.out.println("---------查询 charge列表");
@@ -57,7 +57,7 @@ public class ChargeExample {
      * map 里面参数的具体说明请参考：https://pingxx.com/document/api#api-c-new
      * @return
      */
-    public Charge charge() {
+    public Charge createCharge() {
         Charge charge = null;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         chargeMap.put("amount", 100);
@@ -73,7 +73,9 @@ public class ChargeExample {
         try {
             //发起交易请求
             charge = Charge.create(chargeMap);
-            System.out.println(charge);
+            // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
+            String chargeString = charge.toString();
+            System.out.println(chargeString);
         } catch (PingppException e) {
             e.printStackTrace();
         }

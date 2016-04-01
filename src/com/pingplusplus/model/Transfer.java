@@ -31,6 +31,7 @@ public class Transfer extends APIResource {
     String currency;
     String recipient;
     String description;
+    String failureMsg;
     String transaction_no;
     Map extra;
     Map<String, String> metadata;
@@ -137,6 +138,14 @@ public class Transfer extends APIResource {
 
     public void setRecipient(String recipient) {
         this.recipient = recipient;
+    }
+
+    public String getFailureMsg() {
+        return failureMsg;
+    }
+
+    public void setFailureMsg(String failureMsg) {
+        this.failureMsg = failureMsg;
     }
 
     public String getDescription() {

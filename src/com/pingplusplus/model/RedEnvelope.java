@@ -22,6 +22,7 @@ public class RedEnvelope extends APIResource {
     String id;
     String object;
     Long created;
+    Long received;
     Boolean livemode;
     String status;
     Object app;
@@ -34,6 +35,7 @@ public class RedEnvelope extends APIResource {
     String subject;
     String body;
     String description;
+    String failureMsg;
     Map<String, String> extra;
     Map<String, String> metadata;
 
@@ -93,6 +95,14 @@ public class RedEnvelope extends APIResource {
         this.created = created;
     }
 
+    public Long getReceived() {
+        return received;
+    }
+
+    public void setReceived(Long received) {
+        this.received = received;
+    }
+
     public String getCurrency() {
         return currency;
     }
@@ -123,6 +133,14 @@ public class RedEnvelope extends APIResource {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getFailureMsg() {
+        return failureMsg;
+    }
+
+    public void setFailureMsg(String failureMsg) {
+        this.failureMsg = failureMsg;
     }
 
     public String getObject() {

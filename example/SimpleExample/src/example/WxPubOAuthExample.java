@@ -27,28 +27,28 @@ public class WxPubOAuthExample {
 	/**
 	 * pingpp 管理平台对应的API key
 	 */
-	public static String apiKey = "YOUR-KEY";
+	public static String apiKey = "YOUR_KEY";
 	/**
 	 * pingpp 管理平台对应的应用I
 	 */
-	public static String appId = "YOUR-APPID";
+	public static String appId = "YOUR_APPID";
 	/**
 	 * 微信用户在微信公共号的openId
 	 */
-	public static String openId="YOUR-OPENID";
+	public static String openId="YOUR_OPENID";
 	/**
 	 * 微信公共号里面引导用户付款的网页url地址
 	 * 该URL为付款当前网页地址
 	 */
-	public static String url = "YOUR-URL";
+	public static String url = "YOUR_URL";
 	/**
 	 * 微信公共号的appId
 	 */
-	public static String wx_app_id="YOUR-WX_APPID";
+	public static String wx_app_id="YOUR_WX_APPID";
 	/**
 	 * 微信公共号的secret
 	 */
-	public static String wx_app_secret ="YOUR-WX_SECRET";
+	public static String wx_app_secret ="YOUR_WX_SECRET";
 	/**
 	 * @param args
 	 */
@@ -60,9 +60,9 @@ public class WxPubOAuthExample {
 			System.out.println("ticket " + ticket);
 			// 创建Charge
 			Pingpp.apiKey = apiKey;
-			Charge charge = charge();
+			String chargeString = createCharge();
 			//获得签名
-			String signature = WxpubOAuth.getSignature(charge.toString(), ticket, url);
+			String signature = WxpubOAuth.getSignature(chargeString, ticket, url);
 			System.out.println("signature " + signature);
 
 		} catch (UnsupportedEncodingException e) {
@@ -77,7 +77,7 @@ public class WxPubOAuthExample {
      * map 里面参数的具体说明请参考：https://pingxx.com/document/api#api-c-new
 	 * @return
 	 */
-	public static Charge charge() {
+	public static String createCharge() {
 		Charge charge = null;
 		Map<String, Object> chargeMap = new HashMap<String, Object>();
 		chargeMap.put("amount", 100);
@@ -97,10 +97,11 @@ public class WxPubOAuthExample {
 		try {
 			// 发起交易请求
 			charge = Charge.create(chargeMap);
-			System.out.println(charge);
+			// 传到客户端请先转成字符串 .toString()
+			System.out.println(charge.toString());
 		} catch (PingppException e) {
 			e.printStackTrace();
 		}
-		return charge;
+		return charge.toString();
 	}
 }

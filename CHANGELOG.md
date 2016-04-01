@@ -1,3 +1,7 @@
+## 2.1.5
+* 修改：  
+补充 RedEnvelope、Transfer 缺少字段
+
 ## 2.1.4
 * 修改：  
 更改 content-type 为 application/json
