@@ -23,6 +23,12 @@ import java.util.Map;
  * 详细内容可参考http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
  */
 public class WxpubOAuth {
+
+    /**
+     * URLEncoder charset
+     */
+    public static final String CHARSET = "UTF-8";
+
     /**
      * 获取微信公众号授权用户唯一标识
      *
@@ -91,7 +97,7 @@ public class WxpubOAuth {
             if (sb.length() > 0) {
                 sb.append('&');
             }
-            sb.append(URLEncoder.encode(e.getKey(), "UTF-8")).append('=').append(URLEncoder.encode(e.getValue(), "UTF-8"));
+            sb.append(URLEncoder.encode(e.getKey(), CHARSET)).append('=').append(URLEncoder.encode(e.getValue(), CHARSET));
         }
 
         return sb.toString();
@@ -184,7 +190,7 @@ public class WxpubOAuth {
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();
-            crypt.update(string1.getBytes("UTF-8"));
+            crypt.update(string1.getBytes(CHARSET));
             signature = byteToHex(crypt.digest());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

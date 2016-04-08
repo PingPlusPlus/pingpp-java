@@ -588,7 +588,7 @@ public abstract class APIResource extends PingppObject {
             byte[] keyBytes = new byte[inputStream.available()];
             inputStream.read(keyBytes);
             inputStream.close();
-            String keyString = new String(keyBytes, "UTF-8");
+            String keyString = new String(keyBytes, CHARSET);
             Pingpp.privateKey = keyString.replaceAll("(-+BEGIN (RSA )?PRIVATE KEY-+\\r?\\n|-+END (RSA )?PRIVATE KEY-+\\r?\\n?)", "");
         }
 
@@ -619,7 +619,7 @@ public abstract class APIResource extends PingppObject {
 
             Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initSign(privateKey);
-            signature.update(data.getBytes());
+            signature.update(data.getBytes(CHARSET));
             byte[] signBytes = signature.sign();
 
             return Base64.encodeBase64String(signBytes).replaceAll("\n|\r", "");
