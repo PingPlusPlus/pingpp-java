@@ -28,6 +28,7 @@ public class Transfer extends APIResource {
     String channel;
     String orderNo;
     Integer amount;
+    Integer amountSettle;
     String currency;
     String recipient;
     String description;
@@ -114,6 +115,14 @@ public class Transfer extends APIResource {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public Integer getAmountSettle() {
+        return amountSettle;
+    }
+
+    public void setAmountSettle(Integer amountSettle) {
+        this.amountSettle = amountSettle;
     }
 
     public Integer getAmount() {

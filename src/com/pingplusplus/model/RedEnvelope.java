@@ -23,6 +23,7 @@ public class RedEnvelope extends APIResource {
     String object;
     Long created;
     Long received;
+    Long refunded;
     Boolean livemode;
     String status;
     Object app;
@@ -30,6 +31,7 @@ public class RedEnvelope extends APIResource {
     String orderNo;
     String transactionNo;
     Integer amount;
+    Integer amountSettle;
     String currency;
     String recipient;
     String subject;
@@ -87,6 +89,14 @@ public class RedEnvelope extends APIResource {
         this.amount = amount;
     }
 
+    public Integer getAmountSettle() {
+        return amountSettle;
+    }
+
+    public void setAmountSettle(Integer amountSettle) {
+        this.amountSettle = amountSettle;
+    }
+
     public Long getCreated() {
         return created;
     }
@@ -101,6 +111,14 @@ public class RedEnvelope extends APIResource {
 
     public void setReceived(Long received) {
         this.received = received;
+    }
+
+    public Long getRefunded() {
+        return refunded;
+    }
+
+    public void setRefunded(Long refunded) {
+        this.refunded = refunded;
     }
 
     public String getCurrency() {
