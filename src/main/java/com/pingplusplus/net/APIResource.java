@@ -480,8 +480,7 @@ public abstract class APIResource extends PingppObject {
                     String.format(
                             "IOException during API request to Pingpp (%s): %s "
                                     + "Please check your internet connection and try again. If this problem persists,"
-                                    + "you should check Pingpp's service status at https://pingxx.com,"
-                                    + " or let us know at support@pingxx.com.",
+                                    + "you should check Pingpp's service status at https://pingxx.com/status.",
                             Pingpp.getApiBase(), e.getMessage()), e);
         } finally {
             if (conn != null) {

@@ -5,13 +5,13 @@ package com.pingplusplus;
  */
 public abstract class Pingpp {
     /**
-     * ping++ api url
+     * Ping++ API BASE URL
      */
     public static final String LIVE_API_BASE = "https://api.pingxx.com";
     /**
      * version
      */
-    public static final String VERSION = "2.1.6";
+    public static final String VERSION = "2.1.7";
     /**
      * api key
      */

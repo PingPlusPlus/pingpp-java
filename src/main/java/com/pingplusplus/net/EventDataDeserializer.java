@@ -78,15 +78,17 @@ public class EventDataDeserializer implements JsonDeserializer<EventData> {
     public EventData deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         EventData eventData = new EventData();
-        JsonObject jsonObject = json.getAsJsonObject();
-        for(Map.Entry<String, JsonElement> entry: jsonObject.entrySet()) {
-            String key = entry.getKey();
-            JsonElement element = entry.getValue();
-            if ("object".equals(key)) {
-                String type = element.getAsJsonObject().get("object").getAsString();
-                Class<PingppObject> cl = objectMap.get(type);
-                PingppObject object = APIResource.GSON.fromJson(entry.getValue(), cl != null ? cl : PingppRawJsonObject.class);
-                eventData.setObject(object);
+        if (json.isJsonObject()) {
+            JsonObject jsonObject = json.getAsJsonObject();
+            for(Map.Entry<String, JsonElement> entry: jsonObject.entrySet()) {
+                String key = entry.getKey();
+                JsonElement element = entry.getValue();
+                if ("object".equals(key)) {
+                    String type = element.getAsJsonObject().get("object").getAsString();
+                    Class<PingppObject> cl = objectMap.get(type);
+                    PingppObject object = APIResource.GSON.fromJson(entry.getValue(), cl != null ? cl : PingppRawJsonObject.class);
+                    eventData.setObject(object);
+                }
             }
         }
         return eventData;

@@ -1,8 +1,6 @@
 package com.pingplusplus.util;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +40,9 @@ public class WxpubOAuth {
         String url = WxpubOAuth.createOauthUrlForOpenid(appId, appSecret, code);
 
         String ret = WxpubOAuth.httpGet(url);
-        OAuthResult oAuthResult = new Gson().fromJson(ret, OAuthResult.class);
+        OAuthResult oAuthResult = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create().fromJson(ret, OAuthResult.class);
 
         return oAuthResult.getOpenid();
     }
@@ -60,15 +60,16 @@ public class WxpubOAuth {
      */
     public static String createOauthUrlForCode(String appId, String redirectUrl, boolean moreInfo)
             throws UnsupportedEncodingException {
-        Map<String, String> data = new HashMap<String, String>();
-        data.put("appid", appId);
-        data.put("redirect_uri", redirectUrl);
-        data.put("response_type", "code");
-        data.put("scope", moreInfo ? "snsapi_userinfo" : "snsapi_base");
-        data.put("state", "STATE#wechat_redirect");
-        String queryString = WxpubOAuth.httpBuildQuery(data);
+        StringBuilder sb = new StringBuilder();
+        sb.append("https://open.weixin.qq.com/connect/oauth2/authorize?");
+        sb.append("appid=").append(appId);
+        sb.append("&redirect_uri=").append(URLEncoder.encode(redirectUrl, CHARSET));
+        sb.append("&response_type=code");
+        sb.append("&scope=").append(moreInfo ? "snsapi_userinfo" : "snsapi_base");
+        sb.append("&state=pingpp");
+        sb.append("#wechat_redirect");
 
-        return "https://open.weixin.qq.com/connect/oauth2/authorize?" + queryString;
+        return sb.toString();
     }
 
     /**
@@ -197,9 +198,8 @@ public class WxpubOAuth {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
         return signature;
-
-
     }
 
     private static String byteToHex(final byte[] hash) {
@@ -213,22 +213,22 @@ public class WxpubOAuth {
     }
 
     class OAuthResult {
-        String access_token;
-        int expires_in;
-        String refresh_token;
+        String accessToken;
+        int expiresIn;
+        String refreshToken;
         String openid;
         String scope;
 
-        public String getAccess_token() {
-            return access_token;
+        public String getAccessToken() {
+            return accessToken;
         }
 
-        public int getExpires_in() {
-            return expires_in;
+        public int getExpiresIn() {
+            return expiresIn;
         }
 
-        public String getRefresh_token() {
-            return refresh_token;
+        public String getRefreshToken() {
+            return refreshToken;
         }
 
         public String getOpenid() {
