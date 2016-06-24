@@ -1,3 +1,10 @@
+/* *
+ * Ping++ Server SDK
+ * 说明：
+ * 以下代码只是为了方便商户测试而提供的样例代码，商户可根据自己网站需求按照技术文档编写, 并非一定要使用该代码。
+ * 接入企业付款流程参考开发者中心：https://www.pingxx.com/docs/server/transfer ，文档可筛选后端语言和接入渠道。
+ * 该代码仅供学习和研究 Ping++ SDK 使用，仅供参考。
+*/
 package com.pingxx.example;
 
 import com.pingplusplus.exception.APIConnectionException;
@@ -17,13 +24,13 @@ import java.util.Map;
  *
  * 该实例演示如何使用 Ping++ 进行企业转账。
  *
- * 开发者需要填写 apiKey ，openid 和 appId , apiKey 可以在 Ping++ 管理平台【应用信息里面查看】
+ * 开发者需要填写 apiKey ，openid 和 appId ,
  *
  * apiKey 有 TestKey 和 LiveKey 两种。
  *
  * TestKey 模式下不会产生真实的交易。
  *
- * openid 是发送红包的对象在公共平台下的openid ,获得 openid 的方法可以参考微信文档：http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
+ * openid 是发送红包的对象在公共平台下的 openid ,获得 openid 的方法可以参考微信文档：http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
  *
  */
 public class TransferExample {
@@ -33,7 +40,7 @@ public class TransferExample {
 	/**
 	 * 接收者的 openid
 	 */
-	public static String openid ="USER_OPENID";
+	public static String openid ="USER_OPENID";// 用户在商户微信公众号下的唯一标识，获取方式可参考 WxPubOAuthExample.java
 
     public static void runDemos(String appId) {
 
@@ -63,12 +70,12 @@ public class TransferExample {
         Transfer transfer = null;
         String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()) + Main.randomString(7);
         Map<String, Object> transferMap = new HashMap<String, Object>();
-        transferMap.put("channel", "wx_pub");
-        transferMap.put("order_no", orderNo);
-        transferMap.put("amount", "200");
-        transferMap.put("type", "b2c");
+        transferMap.put("channel", "wx_pub");// 目前支持 wx(新渠道)、 wx_pub
+        transferMap.put("order_no", orderNo);// 企业转账使用的商户内部订单号。wx(新渠道)、wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合
+        transferMap.put("amount", "200");// 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100,企业付款最小发送金额为 1 元）
+        transferMap.put("type", "b2c");// 付款类型，当前仅支持 b2c 企业付款
         transferMap.put("currency", "cny");
-        transferMap.put("recipient", openid);
+        transferMap.put("recipient", openid);// 接收者 id， 为用户在 wx(新渠道)、wx_pub 下的 open_id
         transferMap.put("description", "your description");
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);

@@ -1,3 +1,10 @@
+/* *
+ * Ping++ Server SDK
+ * 说明：
+ * 以下代码只是为了方便商户测试而提供的样例代码，商户可根据自己网站需求按照技术文档编写, 并非一定要使用该代码。
+ * 接入红包流程参考开发者中心：https://www.pingxx.com/docs/server/red-envelope ，文档可筛选后端语言和接入渠道。
+ * 该代码仅供学习和研究 Ping++ SDK 使用，仅供参考。
+*/
 package com.pingxx.example;
 
 import com.pingplusplus.exception.APIConnectionException;
@@ -17,7 +24,7 @@ import java.util.Map;
  *
  * 该实例演示如何操作微信红包
  *
- * 开发者需要填写 apiKey 、appId 和 openid 。 apiKey 可以在 Ping++ 管理平台【应用信息里面查看】
+ * 开发者需要填写 apiKey 、appId 和 openid ,
  *
  * apiKey 有 TestKey 和 LiveKey 两种。
  *
@@ -32,7 +39,7 @@ public class RedEnvelopeExample {
 	/**
 	 * 微信用户在微信公共号的 openid
 	 */
-	public static String openid = "USER_OPENID";
+	public static String openid = "USER_OPENID";// 用户在商户微信公众号下的唯一标识，获取方式可参考 WxPubOAuthExample.java
 
 	RedEnvelopeExample(String appId) {
 		this.appId = appId;
@@ -58,21 +65,20 @@ public class RedEnvelopeExample {
 	 */
 	public RedEnvelope create() {
 		Map<String, Object> redenvelope = new HashMap<String, Object>();
-		redenvelope.put("amount", 100);
+		redenvelope.put("amount", 100);// 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100，金额限制在 100 ~ 20000 之间，即 1 ~ 200 元）
 		redenvelope.put("currency", "cny");
 		redenvelope.put("subject", "Your Subject");
 		redenvelope.put("body", "Your Body");
 		String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		redenvelope.put("order_no", orderNo);
-		redenvelope.put("channel", "wx_pub");
-		redenvelope.put("recipient", openid);
+		redenvelope.put("order_no", orderNo);// 红包使用的商户订单号。wx(新渠道)、wx_pub 规定为 1 ~ 28 位不能重复的数字
+		redenvelope.put("channel", "wx_pub");// 目前支持 wx(新渠道)、 wx_pub
+		redenvelope.put("recipient", openid);// 接收者 id， 为用户在 wx(新渠道)、wx_pub 下的 open_id
 		redenvelope.put("description", "Your Description");
 		Map<String, String> app = new HashMap<String, String>();
 		app.put("id", appId);
 		redenvelope.put("app", app);
 		Map<String, String> extra = new HashMap<String, String>();
-		extra.put("nick_name", "Nick Name");
-		extra.put("send_name", "Send Name");
+		extra.put("send_name", "Send Name");// 商户名称，最多 32 个字节
 		redenvelope.put("extra", extra);
 		RedEnvelope red = null;
 		try {

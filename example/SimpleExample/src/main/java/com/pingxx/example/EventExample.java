@@ -22,8 +22,6 @@ import com.pingplusplus.model.Webhooks;
  *
  * 该实例演示如何查询 Event
  *
- * 开发者需要填写 apiKey 和 appId , apiKey 可以在 Ping++ 管理平台【应用信息里面查看】
- *
  * apiKey 有 TestKey 和 LiveKey 两种。
  *
  * TestKey 模式下不会产生真实的交易。

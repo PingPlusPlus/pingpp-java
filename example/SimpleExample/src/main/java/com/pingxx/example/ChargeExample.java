@@ -1,3 +1,10 @@
+/**
+ * Ping++ Server SDK
+ * 说明：
+ * 以下代码只是为了方便商户测试而提供的样例代码，商户可根据自己网站需求按照技术文档编写, 并非一定要使用该代码。
+ * 接入支付流程参考开发者中心：https://www.pingxx.com/docs/server/charge ，文档可筛选后端语言和接入渠道。
+ * 该代码仅供学习和研究 Ping++ SDK 使用，仅供参考。
+ */
 package com.pingxx.example;
 
 import java.util.*;
@@ -16,7 +23,7 @@ import com.pingplusplus.model.ChargeCollection;
  *
  * 该实例程序演示了如何从 Ping++ 服务器获得 charge ，查询 charge。
  *
- * 开发者需要填写 apiKey 和 appId , apiKey 可以在 Ping++ 管理平台【应用信息里面查看】
+ * 开发者需要填写 apiKey 和 appId ，
  *
  * apiKey 有 TestKey 和 LiveKey 两种。
  *
@@ -51,14 +58,14 @@ public class ChargeExample {
     public Charge createCharge() {
         Charge charge = null;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", 100);
+        chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         chargeMap.put("currency", "cny");
         chargeMap.put("subject", "Your Subject");
         chargeMap.put("body", "Your Body");
         String orderNo = new Date().getTime() + Main.randomString(7);
-        chargeMap.put("order_no", orderNo);
-        chargeMap.put("channel", "alipay");
-        chargeMap.put("client_ip", "127.0.0.1"); // 客户端 ip 地址(ipv4)
+        chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
+        chargeMap.put("channel", "alipay");// 支付使用的第三方支付渠道取值，请参考：https://www.pingxx.com/api#api-c-new
+        chargeMap.put("client_ip", "127.0.0.1"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
         chargeMap.put("app", app);
@@ -88,20 +95,20 @@ public class ChargeExample {
     public Charge createChargeWithOpenid(String openid) {
         Charge charge = null;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", 100);
+        chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         chargeMap.put("currency", "cny");
         chargeMap.put("subject", "Your Subject");
         chargeMap.put("body", "Your Body");
         String orderNo = new Date().getTime() + Main.randomString(7);
-        chargeMap.put("order_no", orderNo);
-        chargeMap.put("channel", "wx_pub");
-        chargeMap.put("client_ip", "127.0.0.1"); // 客户端 ip 地址(ipv4)
+        chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
+        chargeMap.put("channel", "wx_pub");// 支付使用的第三方支付渠道取值，请参考：https://www.pingxx.com/api#api-c-new
+        chargeMap.put("client_ip", "127.0.0.1"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
         chargeMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
-        extra.put("open_id", openid);
+        extra.put("open_id", openid);// 用户在商户微信公众号下的唯一标识，获取方式可参考 WxPubOAuthExample.java
         chargeMap.put("extra", extra);
         try {
             //发起交易请求
