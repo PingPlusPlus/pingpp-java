@@ -14,6 +14,7 @@ build.xml
 output/
 project.properties
 
+target/
 .gradle
 build/
 .idea/
