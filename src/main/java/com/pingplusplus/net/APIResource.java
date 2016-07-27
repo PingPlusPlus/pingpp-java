@@ -16,6 +16,7 @@ import sun.security.util.DerValue;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.*;
@@ -176,7 +177,9 @@ public abstract class APIResource extends PingppObject {
         URL pingppURL = null;
         pingppURL = new URL(url);
 
-        HttpsURLConnection conn = (HttpsURLConnection) pingppURL.openConnection();
+        HttpURLConnection conn = verifySslDisabledForDev()
+            ? (HttpURLConnection) pingppURL.openConnection()
+            : (HttpsURLConnection) pingppURL.openConnection();
 
         conn.setConnectTimeout(30 * 1000);
         conn.setReadTimeout(80 * 1000);
@@ -186,6 +189,10 @@ public abstract class APIResource extends PingppObject {
         }
 
         return conn;
+    }
+
+    private static boolean verifySslDisabledForDev() {
+        return !Pingpp.getVerifySSL() && !Pingpp.LIVE_API_BASE.equals(Pingpp.getApiBase());
     }
 
     /**
