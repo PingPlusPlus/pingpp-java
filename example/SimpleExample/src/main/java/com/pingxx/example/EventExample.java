@@ -69,8 +69,8 @@ public class EventExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
     }
 
@@ -99,8 +99,8 @@ public class EventExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
 
 }

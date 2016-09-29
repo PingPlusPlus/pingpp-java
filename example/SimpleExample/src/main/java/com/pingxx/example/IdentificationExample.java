@@ -5,11 +5,9 @@ import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Event;
 import com.pingplusplus.model.EventCollection;
 import com.pingplusplus.model.Identification;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  *
@@ -66,9 +64,8 @@ public class IdentificationExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
-
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -103,8 +100,7 @@ public class IdentificationExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
-
 }

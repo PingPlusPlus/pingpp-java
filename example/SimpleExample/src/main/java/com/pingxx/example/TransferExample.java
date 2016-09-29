@@ -35,12 +35,12 @@ import java.util.Map;
  */
 public class TransferExample {
 
-	private String appId;
+    private String appId;
 
-	/**
-	 * 接收者的 openid
-	 */
-	public static String openid ="USER_OPENID";// 用户在商户微信公众号下的唯一标识，获取方式可参考 WxPubOAuthExample.java
+    /**
+     * 接收者的 openid
+     */
+    public static String openid ="USER_OPENID";// 用户在商户微信公众号下的唯一标识，获取方式可参考 WxPubOAuthExample.java
 
     public static void runDemos(String appId) {
 
@@ -93,8 +93,8 @@ public class TransferExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
         return transfer;
     }
 
@@ -119,8 +119,8 @@ public class TransferExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
     }
 
@@ -145,7 +145,7 @@ public class TransferExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
 }

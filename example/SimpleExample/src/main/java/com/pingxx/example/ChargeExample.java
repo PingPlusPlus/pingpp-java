@@ -31,7 +31,7 @@ import com.pingplusplus.model.ChargeCollection;
  */
 public class ChargeExample {
 
-	private String appId;
+    private String appId;
 
     ChargeExample(String appId) {
         this.appId = appId;
@@ -177,8 +177,8 @@ public class ChargeExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
         return chargeCollection;
     }

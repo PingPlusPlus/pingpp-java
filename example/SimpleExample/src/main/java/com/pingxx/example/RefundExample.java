@@ -95,9 +95,9 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return refund;
     }
 
@@ -125,8 +125,8 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -154,7 +154,7 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
 }

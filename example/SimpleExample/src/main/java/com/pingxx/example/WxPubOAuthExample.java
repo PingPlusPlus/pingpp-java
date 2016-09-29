@@ -23,23 +23,23 @@ import com.pingplusplus.util.WxpubOAuth;
  */
 public class WxPubOAuthExample {
 
-	/**
-	 * Ping++ 管理平台对应的应用 ID，app_id 获取方式：登录 [Dashboard](https://dashboard.pingxx.com)->点击你创建的应用->应用首页->应用 ID(App ID)
-	 */
-	private static String appId;
+    /**
+     * Ping++ 管理平台对应的应用 ID，app_id 获取方式：登录 [Dashboard](https://dashboard.pingxx.com)->点击你创建的应用->应用首页->应用 ID(App ID)
+     */
+    private static String appId;
 
-	/**
-	 * 微信公共号里面获取 openid 时的回跳 URL
-	 */
-	public static String redirectUrl = "YOUR_URL";
-	/**
-	 * 微信公共号的 appId，通常为 `wx` 开头的字符串
-	 */
-	public static String wxAppId="YOUR_WX_APP_ID";
-	/**
-	 * 微信公共号的 secret
-	 */
-	public static String wxAppSecret ="YOUR_WX_APP_SECRET";
+    /**
+     * 微信公共号里面获取 openid 时的回跳 URL
+     */
+    public static String redirectUrl = "YOUR_URL";
+    /**
+     * 微信公共号的 appId，通常为 `wx` 开头的字符串
+     */
+    public static String wxAppId="YOUR_WX_APP_ID";
+    /**
+     * 微信公共号的 secret
+     */
+    public static String wxAppSecret ="YOUR_WX_APP_SECRET";
 
     public static void runDemos(String appId) throws UnsupportedEncodingException {
         WxPubOAuthExample.appId = appId;
@@ -50,7 +50,7 @@ public class WxPubOAuthExample {
         jsapiSignatureDemo();
     }
 
-	public static void getOpenid() throws UnsupportedEncodingException {
+    public static void getOpenid() throws UnsupportedEncodingException {
         System.out.println("1. 你需要有一个处理回跳的 URL");
         redirectUrl = "http://用于处理回跳的URL";
 
