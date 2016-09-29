@@ -5,6 +5,7 @@
 - Refund
 - RedEnvelope
 - Webhooks
+- Identification
 
 #### Charge
 ##### 创建 Charge
@@ -204,4 +205,28 @@ eventParse(String eventStr)
 示例：
 ``` java
 Event eventobj = Webhooks.eventParse(eventString);
+```
+
+#### Identification
+##### 身份证银行卡信息认证接口
+``` java
+identify(Map<String, Object> params)
+```
+方法名：identify  
+类型：静态方法  
+参数：Map  
+返回：Identification 结果  
+示例：
+``` java
+Map<String, Object> params = new HashMap<String, Object>();
+params.put("app", APP_ID);
+params.put("type", "bank_card");
+Map<String, String> data = new HashMap<String, String>();
+data.put("id_name", "张三");
+data.put("id_number", "320291198811110000");
+data.put("card_number", "6201111122223333");
+params.put("data", data);
+Identification result = Identification.identify(params);
+System.out.println(result.getResultCode());
+System.out.println(result.getMessage());
 ```

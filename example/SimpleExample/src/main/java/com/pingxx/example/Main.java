@@ -66,6 +66,9 @@ public class Main {
 
         // 微信公众号 openid 相关示例
         WxPubOAuthExample.runDemos(appId);
+
+        // 身份证银行卡信息认证接口
+        IdentificationExample.runDemos(appId);
     }
 
     private static SecureRandom random = new SecureRandom();

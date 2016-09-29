@@ -1,3 +1,7 @@
+## 2.1.8
+* 新增：  
+Identification 身份证银行卡接口
+
 ## 2.1.7
 * 修正：  
 RedEnvelope、Transfer 添加字段

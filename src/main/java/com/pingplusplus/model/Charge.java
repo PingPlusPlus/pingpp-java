@@ -1,6 +1,5 @@
 package com.pingplusplus.model;
 
-
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
