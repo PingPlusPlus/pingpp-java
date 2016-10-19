@@ -7,11 +7,7 @@
 */
 package com.pingxx.example;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.model.RedEnvelope;
 import com.pingplusplus.model.RedEnvelopeCollection;
 
@@ -94,6 +90,8 @@ public class RedEnvelopeExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
         return red;
 
@@ -120,6 +118,8 @@ public class RedEnvelopeExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
     }
 
@@ -144,6 +144,8 @@ public class RedEnvelopeExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
 

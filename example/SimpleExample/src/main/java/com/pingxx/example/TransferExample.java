@@ -7,11 +7,7 @@
 */
 package com.pingxx.example;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Transfer;
 import com.pingplusplus.model.TransferCollection;
 
@@ -94,6 +90,8 @@ public class TransferExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
         return transfer;
     }
@@ -120,6 +118,8 @@ public class TransferExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
 
     }
@@ -145,6 +145,8 @@ public class TransferExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
     }

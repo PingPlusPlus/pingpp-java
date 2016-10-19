@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 /**
@@ -68,7 +64,7 @@ public class SMSCode extends APIResource {
 
     public static SMSCode retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, instanceURL(SMSCode.class, id), null, SMSCode.class);
     }
 }

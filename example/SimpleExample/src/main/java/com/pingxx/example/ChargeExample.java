@@ -14,6 +14,7 @@ import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.RateLimitException;
 import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.model.ChargeCollection;
@@ -79,7 +80,17 @@ public class ChargeExample {
             // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
             String chargeString = charge.toString();
             System.out.println(chargeString);
-        } catch (PingppException e) {
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
             e.printStackTrace();
         }
         return charge;
@@ -177,6 +188,8 @@ public class ChargeExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
 

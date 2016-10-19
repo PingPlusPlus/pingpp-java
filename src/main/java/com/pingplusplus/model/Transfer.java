@@ -4,11 +4,7 @@ package com.pingplusplus.model;
  * Created by sunkai on 15/5/11.
  */
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -202,7 +198,7 @@ public class Transfer extends APIResource {
      */
     public static Transfer create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, classURL(Transfer.class), params, Transfer.class);
     }
 
@@ -218,7 +214,7 @@ public class Transfer extends APIResource {
      */
     public static Transfer retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Transfer.class, id), null, Transfer.class);
     }
 
@@ -235,7 +231,7 @@ public class Transfer extends APIResource {
      */
     public static Transfer retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Transfer.class, id), params, Transfer.class);
     }
 
@@ -251,7 +247,7 @@ public class Transfer extends APIResource {
      */
     public static TransferCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Transfer.class), params, TransferCollection.class);
     }
 

@@ -65,6 +65,8 @@ public class IdentificationExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
     }
 
@@ -100,6 +102,8 @@ public class IdentificationExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
     }

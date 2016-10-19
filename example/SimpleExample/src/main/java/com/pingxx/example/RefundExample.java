@@ -7,11 +7,7 @@
  */
 package com.pingxx.example;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.model.ChargeRefundCollection;
 import com.pingplusplus.model.Refund;
@@ -46,6 +42,8 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
     }
@@ -97,6 +95,8 @@ public class RefundExample {
         } catch (ChannelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
         return refund;
     }
@@ -126,6 +126,8 @@ public class RefundExample {
             e.printStackTrace();
         } catch (ChannelException e) {
             e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
         }
     }
 
@@ -154,6 +156,8 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
             e.printStackTrace();
         }
     }

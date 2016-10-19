@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -116,27 +112,31 @@ public class Customer extends APIResource {
 
     public static Customer create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, classURL(Customer.class), params, Customer.class);
     }
 
-    public Customer update(Map<String, Object> params) throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+    public Customer update(Map<String, Object> params) throws ChannelException,
+            APIException, AuthenticationException, InvalidRequestException,
+            APIConnectionException, RateLimitException {
         return request(RequestMethod.PUT, instanceURL(Customer.class, this.id), params, Customer.class);
     }
 
-    public DeletedCustomer delete() throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+    public DeletedCustomer delete() throws ChannelException, APIException,
+            AuthenticationException, InvalidRequestException,
+            APIConnectionException, RateLimitException {
         return request(RequestMethod.DELETE, instanceURL(Customer.class, this.id), null, DeletedCustomer.class);
     }
 
     public static Customer retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Customer.class, id), null, Customer.class);
     }
 
     public static CustomerCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Customer.class), params, CustomerCollection.class);
     }
 

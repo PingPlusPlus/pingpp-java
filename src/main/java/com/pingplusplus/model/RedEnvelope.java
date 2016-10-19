@@ -8,11 +8,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.LongSerializationPolicy;
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.lang.reflect.Type;
@@ -240,7 +236,7 @@ public class RedEnvelope extends APIResource {
      */
     public static RedEnvelope create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, classURL(RedEnvelope.class), params, RedEnvelope.class);
     }
 
@@ -257,7 +253,7 @@ public class RedEnvelope extends APIResource {
      */
     public static RedEnvelope retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), null, RedEnvelope.class);
     }
 
@@ -275,7 +271,7 @@ public class RedEnvelope extends APIResource {
      */
     public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params, RedEnvelope.class);
     }
 
@@ -292,7 +288,7 @@ public class RedEnvelope extends APIResource {
      */
     public static RedEnvelopeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(RedEnvelope.class), params, RedEnvelopeCollection.class);
     }
 

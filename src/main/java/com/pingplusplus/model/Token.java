@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -97,13 +93,13 @@ public class Token extends APIResource {
 
     public static Token create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.POST, classURL(Token.class), params, Token.class);
     }
 
     public static Token retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Token.class, id), null, Token.class);
     }
 }

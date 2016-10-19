@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -100,7 +96,7 @@ public class Event extends APIResource {
      */
     public static Event retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), null, Event.class);
     }
 
@@ -118,7 +114,7 @@ public class Event extends APIResource {
      */
     public static Event retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params, Event.class);
     }
 
@@ -135,7 +131,7 @@ public class Event extends APIResource {
      */
     public static EventCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, classURL(Event.class), params, EventCollection.class);
     }
 

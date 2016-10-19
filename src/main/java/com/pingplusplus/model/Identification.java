@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -78,7 +74,7 @@ public class Identification extends APIResource {
      */
     public static Identification identify(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, singleClassURL(Identification.class), params, Identification.class);
     }
 }

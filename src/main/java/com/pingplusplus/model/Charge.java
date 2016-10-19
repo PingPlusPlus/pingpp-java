@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -269,7 +265,7 @@ public class Charge extends APIResource {
      */
     public static Charge create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, classURL(Charge.class), params, Charge.class);
     }
 
@@ -286,7 +282,7 @@ public class Charge extends APIResource {
      */
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Charge.class, id), null, Charge.class);
     }
 
@@ -304,7 +300,7 @@ public class Charge extends APIResource {
      */
     public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, instanceURL(Charge.class, id), params, Charge.class);
     }
 
@@ -321,7 +317,7 @@ public class Charge extends APIResource {
      */
     public static ChargeCollection all(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException {
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
     }
 

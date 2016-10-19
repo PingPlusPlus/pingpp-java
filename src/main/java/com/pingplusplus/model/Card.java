@@ -1,10 +1,6 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.APIConnectionException;
-import com.pingplusplus.exception.APIException;
-import com.pingplusplus.exception.AuthenticationException;
-import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
@@ -86,13 +82,15 @@ public class Card extends APIResource {
         this.customer = customer;
     }
 
-    public DeletedCard delete() throws ChannelException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+    public DeletedCard delete() throws ChannelException, APIException,
+            AuthenticationException, InvalidRequestException,
+            APIConnectionException, RateLimitException {
         return request(RequestMethod.DELETE, this.getInstanceURL(), null, DeletedCard.class);
     }
 
     public static Card retrieve(String customerId, String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
-            APIException, ChannelException {
+            APIException, ChannelException, RateLimitException {
         String url = instanceURL(Customer.class, customerId) + "/sources/" + id;
         return request(APIResource.RequestMethod.GET, url, null, Card.class);
     }

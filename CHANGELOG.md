@@ -1,3 +1,8 @@
+## 2.1.9
+* 修改：  
+添加 RateLimitException  
+兼容 http 地址，仅为方便测试
+
 ## 2.1.8
 * 新增：  
 Identification 身份证银行卡接口
