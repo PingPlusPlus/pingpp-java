@@ -16,10 +16,7 @@ public abstract class Pingpp {
      * api key
      */
     public static volatile String apiKey;
-    /**
-     * 该 AppID 目前仅对账户系统相关接口有效
-     */
-    public static volatile String appId;
+
     public static volatile String apiVersion;
 
     public static String AcceptLanguage = "zh-CN";
