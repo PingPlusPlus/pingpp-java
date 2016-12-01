@@ -10,6 +10,7 @@ public class Notify {
         String object;
     }
 
+    @Deprecated
     public static Object parseNotify(String notifyJson) {
 
         InnerObject innerObject;

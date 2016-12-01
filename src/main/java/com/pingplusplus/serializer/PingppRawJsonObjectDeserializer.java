@@ -1,4 +1,4 @@
-package com.pingplusplus.net;
+package com.pingplusplus.serializer;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

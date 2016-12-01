@@ -48,9 +48,9 @@ Charge charge = Charge.retrieve(CHARGE_ID);
 
 ##### 查询 Charge 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all  
+方法名：list  
 类型：静态方法  
 参数：Map  
 返回：ChargeCollection  
@@ -61,7 +61,7 @@ app.put("id", APP_ID);
 chargeParams.put("app", app);
 chargeParams.put("limit", 3);
 Map<String, String> app = new HashMap<String, String>();
-ChargeCollection charges = Charge.all(chargeParams);
+ChargeCollection charges = Charge.list(chargeParams);
 System.out.println(charges);
 ```
 
@@ -98,9 +98,9 @@ Refund re = ch.getRefunds().retrieve(REFUND_ID);
 
 ##### 查询 Refund 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all
+方法名：list
 类型：实例方法  
 参数：Map  
 返回：RefundCollection  
@@ -109,7 +109,7 @@ all(Map<String, Object> params)
 Charge ch = Charge.retrieve(CHARGE_ID);
 Map<String, Object> refundParams = new HashMap<String, Object>();
 refundParams.put("limit", 3);
-Refund re = ch.getRefunds().all(refundParams);
+Refund re = ch.getRefunds().list(refundParams);
 ```
 
 #### RedEnvelope
@@ -157,9 +157,9 @@ RedEnvelope redEnvelope = RedEnvelope.retrieve(RED_ID);
 
 ##### 查询 RedEnvelope 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all  
+方法名：list  
 类型：静态方法  
 参数：Map  
 返回：RedEnvelopeCollection  
@@ -168,7 +168,7 @@ all(Map<String, Object> params)
 RedEnvelopeCollection redEnvelopeCollection = null;
 Map<String, Object> chargeParams = new HashMap<String, Object>();
 chargeParams.put("limit", 3);
-RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.all(chargeParams);
+RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.list(chargeParams);
 ```
 
 #### Webhooks

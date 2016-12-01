@@ -49,14 +49,14 @@ public class RedEnvelopeExample {
         System.out.println("------- 查询 RedEnvelope -------");
         redEnvelopeExample.retrieve(redEnvelope.getId());
         System.out.println("------- 查询 RedEnvelope 列表 -------");
-        redEnvelopeExample.all();
+        redEnvelopeExample.list();
     }
 
     /**
      * 创建红包
      *
      * 创建红包需要传递一个 map 到 RedEnvelope.create(redenvelope)
-     * map 里面的具体参数参考：https://pingxx.com/document/api#api-e-new
+     * map 里面的具体参数参考：https://www.pingxx.com/api#api-e-new
      * @return
      */
     public RedEnvelope create() {
@@ -101,7 +101,7 @@ public class RedEnvelopeExample {
      * 查询红包
      *
      * 根据红包的 ID 查询红包。
-     * 参考文档：https://pingxx.com/document/api#api-e-inquiry
+     * 参考文档：https://www.pingxx.com/api#api-e-inquiry
      * @param id
      */
     public void retrieve(String id) {
@@ -128,12 +128,12 @@ public class RedEnvelopeExample {
      *
      * 批量查询接口，默认一次查询 10 条。用户可以通过 limit 自定义查询数目，最多不超过 100 条。
      */
-    public void all() {
+    public void list() {
         RedEnvelopeCollection redEnvelopeCollection = null;
         Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("limit", 3);
         try {
-            redEnvelopeCollection = RedEnvelope.all(chargeParams);
+            redEnvelopeCollection = RedEnvelope.list(chargeParams);
             System.out.println(redEnvelopeCollection);
         } catch (AuthenticationException e) {
             e.printStackTrace();

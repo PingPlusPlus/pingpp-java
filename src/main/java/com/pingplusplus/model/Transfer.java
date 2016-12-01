@@ -7,6 +7,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -237,18 +238,59 @@ public class Transfer extends APIResource {
 
     /**
      * 查询 Transfer
-     * @param params
-     * @return
+     * @param params 分页参数等
+     * @return TransferCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
      */
-    public static TransferCollection all(Map<String, Object> params)
+    public static TransferCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Transfer.class), params, TransferCollection.class);
     }
 
+    @Deprecated
+    public static TransferCollection all(Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return list(params);
+    }
+
+    /**
+     * 更新 Transfer
+     * @param id transfer id
+     * @param params 更新参数
+     * @return TransferCollection
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
+    public static Transfer update(String id, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.PUT, instanceURL(Transfer.class, id), params, Transfer.class);
+    }
+
+    /**
+     * 撤销/取消 Transfer
+     * @param id transfer id
+     * @return TransferCollection
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
+    public static Transfer cancel(String id)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return update(id, params);
+    }
 }

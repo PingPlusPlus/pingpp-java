@@ -5,13 +5,30 @@ import com.pingplusplus.net.APIResource;
 
 import java.util.Map;
 
-public class Refund extends APIResource /*implements MetadataStore<Charge>*/ {
+public class Refund extends APIResource {
     String id;
     String object;
     String orderNo;
     Integer amount;
     Long created;
     Boolean succeed;
+    String status;
+    Long timeSucceed;
+    String description;
+    String failureCode;
+    String failureMsg;
+    Map<String, Object> metadata;
+    String charge;
+    String chargeOrderNo;
+    String transactionNo;
+    String fundingSource;
+
+    public String getInstanceURL() throws InvalidRequestException {
+        if (this.charge != null) {
+            return String.format("%s/%s/refunds/%s", classURL(Charge.class), this.charge, this.getId());
+        }
+        return null;
+    }
 
     public String getStatus() {
         return status;
@@ -24,34 +41,6 @@ public class Refund extends APIResource /*implements MetadataStore<Charge>*/ {
     public void setId(String id) {
         this.id = id;
     }
-
-    String status;
-    Long timeSucceed;
-    String description;
-    String failureCode;
-    String failureMsg;
-    Map<String, String> metadata;
-    String charge;
-
-    public Refund update(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return update(params, null);
-    }
-
-    public Refund update(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, this.getInstanceURL(), params, Refund.class);
-    }
-
-    public String getInstanceURL() {
-        if (this.charge != null) {
-            return String.format("%s/%s/refunds/%s", classURL(Charge.class), this.charge, this.getId());
-        }
-        return null;
-    }
-
     public String getId() {
         return id;
     }
@@ -136,11 +125,95 @@ public class Refund extends APIResource /*implements MetadataStore<Charge>*/ {
         this.object = object;
     }
 
-    public Map<String, String> getMetadata() {
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Map<String, String> metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
+    }
+
+    public String getChargeOrderNo() {
+        return chargeOrderNo;
+    }
+
+    public void setChargeOrderNo(String chargeOrderNo) {
+        this.chargeOrderNo = chargeOrderNo;
+    }
+
+    public String getTransactionNo() {
+        return transactionNo;
+    }
+
+    public void setTransactionNo(String transactionNo) {
+        this.transactionNo = transactionNo;
+    }
+
+    public String getFundingSource() {
+        return fundingSource;
+    }
+
+    public void setFundingSource(String fundingSource) {
+        this.fundingSource = fundingSource;
+    }
+
+    /**
+     * 创建 refund
+     *
+     * @param charge
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Refund create(String charge, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, String.format("%s/refunds", instanceURL(Charge.class, charge)),
+                params, Refund.class);
+    }
+
+    /**
+     * 查询 refund
+     *
+     * @param charge
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Refund retrieve(String charge, String id)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, String.format("%s/refunds/%s", instanceURL(Charge.class, charge), id),
+                null, Refund.class);
+    }
+
+    /**
+     * 查询 refund 列表
+     *
+     * @param charge
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static ChargeRefundCollection list(String charge, Map<String, Object>params)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, String.format("%s/refunds", instanceURL(Charge.class, charge)),
+                params, ChargeRefundCollection.class);
     }
 }

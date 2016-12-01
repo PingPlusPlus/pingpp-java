@@ -28,24 +28,10 @@ import java.util.Map;
  */
 public class RefundExample {
 
-    private Charge charge;
+    private String charge;
 
     RefundExample(String chargeId) {
-        try {
-            this.charge = Charge.retrieve(chargeId);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        }
+        this.charge = chargeId;
     }
 
     public static void runDemos() {
@@ -53,10 +39,10 @@ public class RefundExample {
         String chargeId = "ch_5CWrz5rnz9GS84arXHLiPOqL";
 
         RefundExample refundExample = new RefundExample(chargeId);
-        System.out.println("------- 创建 refund -------");
-        Refund refund = refundExample.refund(1);
-        System.out.println("------- 查询 refund -------");
-        refundExample.retrieve(refund.getId());
+//        System.out.println("------- 创建 refund -------");
+//        Refund refund = refundExample.refund(1);
+//        System.out.println("------- 查询 refund -------");
+//        refundExample.retrieve(refund.getId());
         System.out.println("------- 查询 refund 列表 -------");
         refundExample.all();
     }
@@ -65,7 +51,7 @@ public class RefundExample {
      * 退款
      *
      * 创建退款，需要先获得 charge ,然后调用 charge.getRefunds().create();
-     * 参数具体说明参考：https://pingxx.com/document/api#api-r-new
+     * 参数具体说明参考：https://www.pingxx.com/api#api-r-new
      *
      * 可以一次退款，也可以分批退款。
      *
@@ -82,7 +68,7 @@ public class RefundExample {
         params.put("amount", amount);// 退款的金额, 单位为对应币种的最小货币单位，例如：人民币为分（如退款金额为 1 元，此处请填 100）。必须小于等于可退款金额，默认为全额退款
 
         try {
-            refund = charge.getRefunds().create(params);
+            refund = Refund.create(this.charge, params);
             System.out.println(refund);
         } catch (AuthenticationException e) {
             e.printStackTrace();
@@ -93,7 +79,6 @@ public class RefundExample {
         } catch (APIException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (RateLimitException e) {
             e.printStackTrace();
@@ -105,7 +90,7 @@ public class RefundExample {
      * 查询退款
      *
      * 根据 Id 查询退款记录。需要传递 charge。
-     * 参考文档：https://pingxx.com/document/api#api-r-inquiry
+     * 参考文档：https://www.pingxx.com/api#api-r-inquiry
      *
      * @param id
      */
@@ -114,7 +99,7 @@ public class RefundExample {
             return;
         }
         try {
-            Refund refund = charge.getRefunds().retrieve(id);
+            Refund refund = Refund.retrieve(this.charge, id);
             System.out.println(refund);
         } catch (AuthenticationException e) {
             e.printStackTrace();
@@ -135,7 +120,7 @@ public class RefundExample {
      * 分页查询退款
      *
      * 批量查询退款。默认一次 10 条，用户可以通过 limit 自定义查询数目，但是最多不超过 100 条。
-     * 参考文档：https://pingxx.com/document/api#api-r-list
+     * 参考文档：https://www.pingxx.com/api#api-r-list
      *
      */
     public void all() {
@@ -145,7 +130,7 @@ public class RefundExample {
         Map<String, Object> refundParams = new HashMap<String, Object>();
         refundParams.put("limit", 3);
         try {
-            ChargeRefundCollection refunds = charge.getRefunds().all(refundParams);
+            ChargeRefundCollection refunds = Refund.list(this.charge, refundParams);
             System.out.println(refunds);
         } catch (AuthenticationException e) {
             e.printStackTrace();

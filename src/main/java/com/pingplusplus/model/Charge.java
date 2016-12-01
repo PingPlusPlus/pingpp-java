@@ -29,7 +29,7 @@ public class Charge extends APIResource {
     Integer amountRefunded;
     String failureCode;
     String failureMsg;
-    Map<String, String> metadata;
+    Map<String, Object> metadata;
     Map<String, Object> credential;
     Map<String, Object> extra;
     String description;
@@ -147,19 +147,14 @@ public class Charge extends APIResource {
     }
 
     public ChargeRefundCollection getRefunds() {
-        // API versions 2014-05-19 and earlier render charge refunds as an array
-        // instead of an object, meaning there is no sublist URL.
-        if (refunds.getURL() == null) {
-            refunds.setURL(String.format("/v1/charges/%s/refunds", getId()));
-        }
         return refunds;
     }
 
-    public Map<String, String> getMetadata() {
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Map<String, String> metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
 
@@ -262,6 +257,7 @@ public class Charge extends APIResource {
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
+     * @throws RateLimitException
      */
     public static Charge create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
@@ -279,6 +275,7 @@ public class Charge extends APIResource {
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
+     * @throws RateLimitException
      */
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
@@ -297,6 +294,7 @@ public class Charge extends APIResource {
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
+     * @throws RateLimitException
      */
     public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
@@ -305,7 +303,7 @@ public class Charge extends APIResource {
     }
 
     /**
-     * 查询 charge
+     * 查询 charge 列表
      *
      * @param params
      * @return
@@ -314,11 +312,19 @@ public class Charge extends APIResource {
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
+     * @throws RateLimitException
      */
-    public static ChargeCollection all(Map<String, Object> params)
+    public static ChargeCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
+    }
+
+    @Deprecated
+    public static ChargeCollection all(Map<String, Object> params)
+            throws RateLimitException, APIException, ChannelException,
+            InvalidRequestException, APIConnectionException, AuthenticationException {
+        return list(params);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.pingplusplus.net;
+package com.pingplusplus.serializer;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -10,27 +10,28 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.pingplusplus.model.App;
 import com.pingplusplus.model.ChargeRefundCollection;
-import com.pingplusplus.model.RedEnvelope;
+import com.pingplusplus.model.Transfer;
 
 import java.lang.reflect.Type;
 
 /**
  * Created by sunkai on 15/5/14.
  */
-public class RedEnvelopeDeserializer implements JsonDeserializer<RedEnvelope> {
+public class TransferDeserializer implements JsonDeserializer<Transfer> {
     @Override
-    public RedEnvelope deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Transfer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+
         JsonObject transFerJson = json.getAsJsonObject();
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
-                registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
                 .create();
         JsonElement appElement = transFerJson.get("app");
-        RedEnvelope redEnvelope = gson.fromJson(json, RedEnvelope.class);
+        Transfer transfer = gson.fromJson(json, Transfer.class);
 
         if (null != appElement && appElement.isJsonObject()) {
             App app = gson.fromJson(appElement, App.class);
-            redEnvelope.setApp(app);
+            transfer.setApp(app);
         }
-        return redEnvelope;
+        return transfer;
     }
 }

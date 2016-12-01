@@ -46,7 +46,7 @@ public class TransferExample {
         System.out.println("------- 查询 Transfer -------");
         transferExample.retrieve(transfer.getId());
         System.out.println("------- 查询 Transfer 列表 -------");
-        transferExample.all();
+        transferExample.list();
 
     }
 
@@ -58,7 +58,7 @@ public class TransferExample {
      * 创建企业转账
      *
      * 创建企业转账需要传递一个 map 给 Transfer.create();
-     * map 填写的具体介绍可以参考：https://pingxx.com/document/api#api-t-new
+     * map 填写的具体介绍可以参考：https://www.pingxx.com/api#api-t-new
      *
      * @return
      */
@@ -100,7 +100,7 @@ public class TransferExample {
      * 根据 ID 查询
      *
      * 根据 ID 查询企业转账记录。
-     * 参考文档：https://pingxx.com/document/api#api-t-inquiry
+     * 参考文档：https://www.pingxx.com/api#api-t-inquiry
      * @param id
      */
     public void retrieve(String id) {
@@ -129,12 +129,12 @@ public class TransferExample {
      *
      * 批量查询企业转账记录，默认一次查询 10 条，用户可以使用 limit 自定义查询数目，但是最多不超过 100 条。
      */
-    public void all() {
+    public void list() {
         Map<String, Object> parm = new HashMap<String, Object>();
         parm.put("limit", 3);
 
         try {
-            TransferCollection transferCollection = Transfer.all(parm);
+            TransferCollection transferCollection = Transfer.list(parm);
             System.out.println(transferCollection);
         } catch (AuthenticationException e) {
             e.printStackTrace();

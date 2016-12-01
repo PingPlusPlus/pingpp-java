@@ -11,15 +11,16 @@ public abstract class Pingpp {
     /**
      * version
      */
-    public static final String VERSION = "2.1.9";
+    public static final String VERSION = "2.2.0";
     /**
      * api key
      */
     public static volatile String apiKey;
     /**
-     * api version
+     * 该 AppID 目前仅对账户系统相关接口有效
      */
-    public static volatile String apiVersion = "2016-10-10";
+    public static volatile String appId;
+    public static volatile String apiVersion;
 
     public static String AcceptLanguage = "zh-CN";
 

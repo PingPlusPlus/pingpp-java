@@ -1,4 +1,4 @@
-package com.pingplusplus.net;
+package com.pingplusplus.serializer;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

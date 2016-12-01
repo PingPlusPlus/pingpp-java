@@ -7,6 +7,7 @@ import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.*;
+import com.pingplusplus.serializer.*;
 import org.apache.commons.codec.binary.Base64;
 import sun.security.util.DerInputStream;
 import sun.security.util.DerValue;
@@ -18,11 +19,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.*;
 import java.security.spec.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -35,6 +32,10 @@ public abstract class APIResource extends PingppObject {
      */
     public static final String CHARSET = "UTF-8";
 
+    private static final String REQUEST_TIME_KEY = "Pingplusplus-Request-Timestamp";
+
+    public static int CONNECT_TIMEOUT = 30;
+    public static int READ_TIMEOUT = 80;
 
     /**
      * Http requset method
@@ -60,14 +61,17 @@ public abstract class APIResource extends PingppObject {
      * @param clazz
      * @return
      */
-    private static String className(Class<?> clazz) {
+    protected static String className(Class<?> clazz) {
         String className = clazz.getSimpleName().toLowerCase().replace("$", " ");
 
         if (className.equals("redenvelope")) {
             return "red_envelope";
-        }
-        if (className.equals("smscode")) {
-            return "sms_code";
+        } else if (className.equals("batchrefund")) {
+            return "batch_refund";
+        } else if (className.equals("batchtransfer")) {
+            return "batch_transfer";
+        } else if (className.equals("customs")) {
+            return "custom";
         } else {
             return className;
         }
@@ -77,7 +81,7 @@ public abstract class APIResource extends PingppObject {
      * @param clazz
      * @return
      */
-    protected static String singleClassURL(Class<?> clazz) {
+    protected static String singleClassURL(Class<?> clazz) throws InvalidRequestException {
         return String.format("%s/v1/%s", Pingpp.getApiBase(), className(clazz));
     }
 
@@ -85,7 +89,7 @@ public abstract class APIResource extends PingppObject {
      * @param clazz
      * @return
      */
-    protected static String classURL(Class<?> clazz) {
+    protected static String classURL(Class<?> clazz) throws InvalidRequestException {
         return String.format("%ss", singleClassURL(clazz));
     }
 
@@ -103,13 +107,16 @@ public abstract class APIResource extends PingppObject {
         }
     }
 
+    protected static String apiBasePrefixedURL(String url) {
+        return String.format("%s%s", Pingpp.getApiBase(), url);
+    }
 
     /**
      * @param str
      * @return
      * @throws UnsupportedEncodingException
      */
-    private static String urlEncode(String str) throws UnsupportedEncodingException {
+    protected static String urlEncode(String str) throws UnsupportedEncodingException {
         if (str == null) {
             return null;
         } else {
@@ -171,8 +178,7 @@ public abstract class APIResource extends PingppObject {
      */
     private static java.net.HttpURLConnection createPingppConnection(
             String url, String apiKey) throws IOException {
-        URL pingppURL = null;
-        pingppURL = new URL(url);
+        URL pingppURL = new URL(url);
         HttpURLConnection conn;
         if (pingppURL.getProtocol().equals("https")) {
             conn = (HttpsURLConnection) pingppURL.openConnection();
@@ -180,8 +186,8 @@ public abstract class APIResource extends PingppObject {
             conn = (HttpURLConnection) pingppURL.openConnection();
         }
 
-        conn.setConnectTimeout(30 * 1000);
-        conn.setReadTimeout(80 * 1000);
+        conn.setConnectTimeout(CONNECT_TIMEOUT * 1000);
+        conn.setReadTimeout(READ_TIMEOUT * 1000);
         conn.setUseCaches(false);
         for (Map.Entry<String, String> header : getHeaders(apiKey).entrySet()) {
             conn.setRequestProperty(header.getKey(), header.getValue());
@@ -227,6 +233,14 @@ public abstract class APIResource extends PingppObject {
                 apiKey);
         conn.setRequestMethod("GET");
 
+        String requestTime = currentTimeString();
+        String stringToBeSigned = getRequestURIFromURL(conn.getURL()) + requestTime;
+        conn.setRequestProperty(REQUEST_TIME_KEY, requestTime);
+        String signature = generateSign(stringToBeSigned);
+        if (signature != null) {
+            conn.setRequestProperty("Pingplusplus-Signature", signature);
+        }
+
         return conn;
     }
 
@@ -236,6 +250,14 @@ public abstract class APIResource extends PingppObject {
         java.net.HttpURLConnection conn = createPingppConnection(getURL,
                 apiKey);
         conn.setRequestMethod("DELETE");
+
+        String requestTime = currentTimeString();
+        String stringToBeSigned = getRequestURIFromURL(conn.getURL()) + requestTime;
+        conn.setRequestProperty(REQUEST_TIME_KEY, requestTime);
+        String signature = generateSign(stringToBeSigned);
+        if (signature != null) {
+            conn.setRequestProperty("Pingplusplus-Signature", signature);
+        }
 
         return conn;
     }
@@ -257,10 +279,17 @@ public abstract class APIResource extends PingppObject {
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", String.format(
                 "application/json;charset=%s", CHARSET));
-        String signature = generateSign(query);
+
+        String stringToBeSigned = query;
+        stringToBeSigned += getRequestURIFromURL(conn.getURL());
+        String requestTime = currentTimeString();
+        stringToBeSigned += requestTime;
+
+        String signature = generateSign(stringToBeSigned);
         if (signature != null) {
             conn.setRequestProperty("Pingplusplus-Signature", signature);
         }
+        conn.setRequestProperty(REQUEST_TIME_KEY, requestTime);
 
         OutputStream output = null;
         try {
@@ -291,10 +320,17 @@ public abstract class APIResource extends PingppObject {
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", String.format(
                 "application/json;charset=%s", CHARSET));
-        String signature = generateSign(query);
+
+        String stringToBeSigned = query;
+        stringToBeSigned += getRequestURIFromURL(conn.getURL());
+        String requestTime = currentTimeString();
+        stringToBeSigned += requestTime;
+
+        String signature = generateSign(stringToBeSigned);
         if (signature != null) {
             conn.setRequestProperty("Pingplusplus-Signature", signature);
         }
+        conn.setRequestProperty(REQUEST_TIME_KEY, requestTime);
 
         OutputStream output = null;
         try {
@@ -514,7 +550,6 @@ public abstract class APIResource extends PingppObject {
         }
 
         String query = null;
-
         switch (method) {
             case GET:
             case DELETE:
@@ -639,5 +674,19 @@ public abstract class APIResource extends PingppObject {
         }
 
         return null;
+    }
+
+    private static String currentTimeString() {
+        Integer requestTime = (int) (System.currentTimeMillis() / 1000);
+        return requestTime.toString();
+    }
+
+    private static String getRequestURIFromURL(URL url) {
+        String path = url.getPath();
+        String query = url.getQuery();
+        if (query == null) {
+            return path;
+        }
+        return path + "?" + query;
     }
 }

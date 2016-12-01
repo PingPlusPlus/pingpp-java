@@ -1,7 +1,8 @@
-package com.pingplusplus.net;
+package com.pingplusplus.serializer;
 
 import com.google.gson.*;
 import com.pingplusplus.model.*;
+import com.pingplusplus.net.APIResource;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

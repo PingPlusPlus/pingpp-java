@@ -14,7 +14,7 @@ import com.pingplusplus.model.Webhooks;
 
 /**
  *
- * Event 事件参考文档：https://pingxx.com/document/api#api-event
+ * Event 事件参考文档：https://www.pingxx.com/api#api-event
  *
  * 该实例演示如何查询 Event
  *
@@ -31,15 +31,13 @@ public class EventExample {
 
         String eventId = "evt_vTmGHwcHc842hWLRWNS4bwFM";
         eventExample.retrieve(eventId);
-        System.out.println("------- 查询 event 列表 -------");
-        eventExample.all();
     }
 
     /**
      * 根据 ID 查询 Evnet
      *
      * 传递 Event 的 Id 查询 Event。
-     * 参考文档：https://pingxx.com/document/api#api-event-inquiry
+     * 参考文档：https://www.pingxx.com/api#api-event-inquiry
      * @param id
      */
     public void retrieve(String id) {
@@ -71,36 +69,4 @@ public class EventExample {
         }
 
     }
-
-    /**
-     * 批量查询
-     *
-     * 该接口为批量查询接口，默认一次查询10条。
-     * 用户可以通过添加 limit 参数自行设置查询数目，最多一次不能超过 100 条。
-     *
-     */
-    public void all() {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("limit", 3);
-//        params.put("type", "charge.succeeded");
-//        params.put("type", "refund.succeeded");
-//        ...
-        try {
-            EventCollection eventCollection = Event.all(params);
-            System.out.println(eventCollection);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

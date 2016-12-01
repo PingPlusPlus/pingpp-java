@@ -46,14 +46,14 @@ public class ChargeExample {
         System.out.println("------- 查询 charge -------");
         chargeExample.retrieve(charge.getId());
         System.out.println("------- 查询 charge 列表 -------");
-        chargeExample.all();
+        chargeExample.list();
     }
 
     /**
      * 创建 Charge
      *
      * 创建 Charge 用户需要组装一个 map 对象作为参数传递给 Charge.create();
-     * map 里面参数的具体说明请参考：https://pingxx.com/document/api#api-c-new
+     * map 里面参数的具体说明请参考：https://www.pingxx.com/api#api-c-new
      * @return Charge
      */
     public Charge createCharge() {
@@ -100,7 +100,7 @@ public class ChargeExample {
      * 创建 Charge (微信公众号)
      *
      * 创建 Charge 用户需要组装一个 map 对象作为参数传递给 Charge.create();
-     * map 里面参数的具体说明请参考：https://pingxx.com/document/api#api-c-new
+     * map 里面参数的具体说明请参考：https://www.pingxx.com/api#api-c-new
      * @return Charge
      */
     public Charge createChargeWithOpenid(String openid) {
@@ -137,10 +137,10 @@ public class ChargeExample {
      * 查询 Charge
      *
      * 该接口根据 charge Id 查询对应的 charge 。
-     * 参考文档：https://pingxx.com/document/api#api-c-inquiry
+     * 参考文档：https://www.pingxx.com/api#api-c-inquiry
      *
      * 该接口可以传递一个 expand ， 返回的 charge 中的 app 会变成 app 对象。
-     * 参考文档： https://pingxx.com/document/api#api-expanding
+     * 参考文档： https://www.pingxx.com/api#api-expanding
      * @param id
      */
     public Charge retrieve(String id) {
@@ -168,7 +168,7 @@ public class ChargeExample {
      * 该接口同样可以使用 expand 参数。
      * @return chargeCollection
      */
-    public ChargeCollection all() {
+    public ChargeCollection list() {
         ChargeCollection chargeCollection = null;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("limit", 3);
@@ -177,7 +177,7 @@ public class ChargeExample {
         params.put("app", app);
 
         try {
-            chargeCollection = Charge.all(params);
+            chargeCollection = Charge.list(params);
             System.out.println(chargeCollection);
         } catch (AuthenticationException e) {
             e.printStackTrace();

@@ -1,8 +1,8 @@
 package com.pingxx.example;
 
 import com.pingplusplus.Pingpp;
+import com.pingplusplus.model.Customs;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -46,6 +46,7 @@ public class Main {
          "-----END RSA PRIVATE KEY-----\n";
          */
 
+
         // Charge 示例
         ChargeExample.runDemos(appId);
 
@@ -69,6 +70,12 @@ public class Main {
 
         // 身份证银行卡信息认证接口
         IdentificationExample.runDemos(appId);
+
+        // 批量付款示例
+        BatchTransferExample.runDemos(appId);
+
+        // 报关
+        CustomsExample.runDemos(appId);
     }
 
     private static SecureRandom random = new SecureRandom();
@@ -76,5 +83,9 @@ public class Main {
     public static String randomString(int length) {
         String str = new BigInteger(130, random).toString(32);
         return str.substring(0, length);
+    }
+
+    public static int currentTimeSeconds() {
+        return (int)(System.currentTimeMillis() / 1000);
     }
 }

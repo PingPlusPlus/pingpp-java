@@ -117,22 +117,4 @@ public class Event extends APIResource {
             APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params, Event.class);
     }
-
-    /**
-     * 查询 Event
-     *
-     * @param params
-     * @return
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     */
-    public static EventCollection all(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(Event.class), params, EventCollection.class);
-    }
-
 }

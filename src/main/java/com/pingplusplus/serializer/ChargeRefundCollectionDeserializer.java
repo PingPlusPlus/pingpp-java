@@ -1,4 +1,4 @@
-package com.pingplusplus.net;
+package com.pingplusplus.serializer;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -21,18 +21,6 @@ public class ChargeRefundCollectionDeserializer implements JsonDeserializer<Char
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
-
-        // API versions 2014-05-19 and earlier render charge refunds as an array instead of an object
-        if (json.isJsonArray()) {
-            Type refundListType = new TypeToken<List<Refund>>() {
-            }.getType();
-            List<Refund> refunds = gson.fromJson(json, refundListType);
-            ChargeRefundCollection collection = new ChargeRefundCollection();
-            collection.setData(refunds);
-            collection.setHasMore(false);
-            //collection.setTotalCount(refunds.size());
-            return collection;
-        }
 
         return gson.fromJson(json, typeOfT);
     }

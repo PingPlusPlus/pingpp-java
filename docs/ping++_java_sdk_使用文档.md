@@ -12,7 +12,7 @@
 #### 依赖包
 
     gons-2.6.2.jar 或更高版本
-    pingpp-java-2.1.9.jar  或更高版本
+    pingpp-java-2.2.0.jar  或更高版本
 
 #### 设置 apiKey
 
