@@ -7,6 +7,8 @@
 #### 修改
 - 签名生成规则变更
 - 列表查询接口换成 `list` 方法，代替 `all` 方法
+- 退款接口调用方式变更，直接使用 Refund 对象
+- Refund 对象添加 charge_order_no, transaction_no 属性
 
 ## 2.1.9
 #### 修改
