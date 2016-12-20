@@ -317,7 +317,12 @@ public class Charge extends APIResource {
     public static ChargeCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
+        if (params != null
+                && ((params.containsKey("app") && (params.get("app") instanceof Map) && ((Map) params.get("app")).containsKey("id"))
+                    || (params.containsKey("app[id]") && (params.get("app[id]") instanceof String)))) {
+            return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
+        }
+        throw new InvalidRequestException("Please pass app[id] as parameter.", "app[id]", null);
     }
 
     @Deprecated

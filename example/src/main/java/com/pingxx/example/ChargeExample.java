@@ -147,9 +147,6 @@ public class ChargeExample {
         Charge charge = null;
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-//            List<String> expand = new ArrayList<String>();
-//            expand.add("app");
-//            params.put("expand", expand);
             charge = Charge.retrieve(id, params);
             System.out.println(charge);
         } catch (PingppException e) {

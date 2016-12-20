@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'commons-codec:commons-codec:1.10'
+
+    testCompile 'junit:junit:4.12'
+}

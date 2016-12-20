@@ -23,9 +23,9 @@ public class Webhooks {
      * 解析 event 中的 object
      *
      * @param eventStr
-     * @return Object
+     * @return PingppObject
      */
-    public static Object getObject(String eventStr) {
+    public static PingppObject getObject(String eventStr) {
         return eventParse(eventStr).getData().getObject();
     }
 

@@ -29,7 +29,7 @@ public class Main {
    */
 
     // 你生成的私钥路径
-    private final static String privateKeyFilePath = "res/your_rsa_private_key.pem";
+    private final static String privateKeyFilePath = "res/your_rsa_private_key_pkcs8.pem";
 
     public static void main(String[] args) throws Exception {
 
