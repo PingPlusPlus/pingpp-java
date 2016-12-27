@@ -263,7 +263,7 @@ public class Transfer extends APIResource {
      * 更新 Transfer
      * @param id transfer id
      * @param params 更新参数
-     * @return TransferCollection
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -279,7 +279,7 @@ public class Transfer extends APIResource {
     /**
      * 撤销/取消 Transfer
      * @param id transfer id
-     * @return TransferCollection
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

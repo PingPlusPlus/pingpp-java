@@ -36,6 +36,6 @@ public class Webhooks {
      * @return Event
      */
     public static Event eventParse(String eventStr) {
-        return APIResource.GSON.fromJson(eventStr, Event.class);
+        return APIResource.getGson().fromJson(eventStr, Event.class);
     }
 }

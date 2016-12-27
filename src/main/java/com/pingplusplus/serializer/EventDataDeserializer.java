@@ -90,7 +90,7 @@ public class EventDataDeserializer implements JsonDeserializer<EventData> {
                 if ("object".equals(key)) {
                     String type = element.getAsJsonObject().get("object").getAsString();
                     Class<PingppObject> cl = objectMap.get(type);
-                    PingppObject object = APIResource.GSON.fromJson(entry.getValue(), cl != null ? cl : PingppRawJsonObject.class);
+                    PingppObject object = APIResource.getGson().fromJson(entry.getValue(), cl != null ? cl : PingppRawJsonObject.class);
                     eventData.setObject(object);
                 }
             }

@@ -19,6 +19,8 @@ public abstract class Pingpp {
 
     public static volatile String apiVersion;
 
+    public static volatile String appId;
+
     public static String AcceptLanguage = "zh-CN";
 
     private static volatile boolean verifySSL = true;

@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -230,5 +231,40 @@ public class BatchTransfer extends APIResource {
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(BatchTransfer.class), params, BatchTransferCollection.class);
+    }
+
+    /**
+     * 更新 BatchTransfer
+     * @param id batch_transfer ID
+     * @param params 更新参数
+     * @return BatchTransfer
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
+    public static BatchTransfer update(String id, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.PUT, instanceURL(BatchTransfer.class, id), params, BatchTransfer.class);
+    }
+
+    /**
+     * 撤销/取消 BatchTransfer
+     * @param id batch_transfer ID
+     * @return BatchTransfer
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     */
+    public static BatchTransfer cancel(String id)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return update(id, params);
     }
 }

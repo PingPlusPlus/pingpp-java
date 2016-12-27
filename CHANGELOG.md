@@ -1,14 +1,15 @@
 # ChangeLog
 
-## 2.2.1
-2016-12-20
+## 2.2.1 (2016-12-20)
 #### 新增
 - 添加 gradle 相关文件
 - 添加部分测试文件
+- batch_transfer 更新/取消接口
 
 #### 修改
 - 更改签名私钥获取方式
 - Charge.list app[id] 参数改为必传
+- 红包去除多余的参数
 
 #### 修正
 - Webhooks 解析对象 batch_refund、batch_transfer、csutoms 对应事件错误

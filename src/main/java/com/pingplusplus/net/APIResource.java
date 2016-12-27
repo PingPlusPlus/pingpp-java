@@ -11,6 +11,7 @@ import com.pingplusplus.serializer.*;
 import com.pingplusplus.util.PingppSignature;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -51,6 +52,21 @@ public abstract class APIResource extends PingppObject {
             .registerTypeAdapter(EventData.class, new EventDataDeserializer())
             .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
             .create();
+
+    public static Gson getGson() {
+        try {
+            Class<?> klass = Class.forName("com.pingplusplus.net.AppBasedResource");
+            Field field = klass.getField("GSON");
+            return (Gson) field.get(klass);
+        } catch (ClassNotFoundException e) {
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        return GSON;
+    }
 
     /**
      * @param clazz
@@ -158,7 +174,7 @@ public abstract class APIResource extends PingppObject {
         propertyMap.put("bindings.version", Pingpp.VERSION);
         propertyMap.put("lang", "Java");
         propertyMap.put("publisher", "Pingpp");
-        headers.put("X-Pingpp-Client-User-Agent", GSON.toJson(propertyMap));
+        headers.put("X-Pingpp-Client-User-Agent", getGson().toJson(propertyMap));
         if (Pingpp.apiVersion != null) {
             headers.put("Pingplusplus-Version", Pingpp.apiVersion);
         }
@@ -224,6 +240,7 @@ public abstract class APIResource extends PingppObject {
     private static java.net.HttpURLConnection createGetConnection(
             String url, String query, String apiKey) throws IOException, APIConnectionException {
         String getURL = formatURL(url, query);
+
         java.net.HttpURLConnection conn = createPingppConnection(getURL,
                 apiKey);
         conn.setRequestMethod("GET");
@@ -564,6 +581,9 @@ public abstract class APIResource extends PingppObject {
         try {
             // HTTPSURLConnection verifies SSL cert by default
             response = makeURLConnectionRequest(method, url, query, Pingpp.apiKey);
+            if (Pingpp.DEBUG) {
+                System.out.println(getGson().toJson(response));
+            }
         } catch (ClassCastException ce) {
             throw ce;
         }
@@ -572,7 +592,7 @@ public abstract class APIResource extends PingppObject {
         if (rCode < 200 || rCode >= 300) {
             handleAPIError(rBody, rCode);
         }
-        return GSON.fromJson(rBody, clazz);
+        return getGson().fromJson(rBody, clazz);
     }
 
     /**
@@ -587,7 +607,7 @@ public abstract class APIResource extends PingppObject {
     private static void handleAPIError(String rBody, int rCode)
             throws InvalidRequestException, AuthenticationException,
             APIException, ChannelException, RateLimitException {
-        APIResource.Error error = GSON.fromJson(rBody,
+        APIResource.Error error = getGson().fromJson(rBody,
                 APIResource.ErrorContainer.class).error;
         switch (rCode) {
             case 400:

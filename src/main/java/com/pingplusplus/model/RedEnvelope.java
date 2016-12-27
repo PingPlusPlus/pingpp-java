@@ -37,22 +37,6 @@ public class RedEnvelope extends APIResource {
     Map<String, String> extra;
     Map<String, String> metadata;
 
-    public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
-            setPrettyPrinting().
-            serializeNulls().
-            disableHtmlEscaping().
-            setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
-            setLongSerializationPolicy(LongSerializationPolicy.STRING).
-            registerTypeAdapter(Double.class, new JsonSerializer<Double>() {
-                @Override
-                public JsonElement serialize(Double src, Type typeOfSrc, JsonSerializationContext context) {
-                    if (src == src.longValue())
-                        return new JsonPrimitive(src.longValue());
-                    return new JsonPrimitive(src);
-                }
-            }).
-            create();
-
     public String getStatus() {
         return status;
     }

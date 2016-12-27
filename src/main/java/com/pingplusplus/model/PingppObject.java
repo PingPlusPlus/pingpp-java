@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pingplusplus.serializer.BatchTransferRecipientSerializer;
 
+import java.lang.reflect.Field;
+
 public abstract class PingppObject {
 
     public static final Gson PRETTY_PRINT_GSON = new GsonBuilder()
@@ -15,8 +17,23 @@ public abstract class PingppObject {
             .registerTypeAdapter(BatchTransferRecipientSerializer.class, new BatchTransferRecipientSerializer())
             .create();
 
+    public static Gson getPrettyPrintGson() {
+        try {
+            Class<?> klass = Class.forName("com.pingplusplus.net.AppBasedResource");
+            Field field = klass.getField("PRETTY_PRINT_GSON");
+            return (Gson) field.get(klass);
+        } catch (ClassNotFoundException e) {
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        return PRETTY_PRINT_GSON;
+    }
+
     @Override
     public String toString() {
-        return PRETTY_PRINT_GSON.toJson(this);
+        return getPrettyPrintGson().toJson(this);
     }
 }
