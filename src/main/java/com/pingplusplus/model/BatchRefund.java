@@ -18,6 +18,8 @@ public class BatchRefund extends APIResource {
     List<BatchRefundCharges> charges;
     ChargeRefundCollection refunds;
     String refundUrl;
+    String status;
+    Long timeSucceeded;
 
     public String getId() {
         return id;
@@ -105,6 +107,22 @@ public class BatchRefund extends APIResource {
 
     public void setRefundUrl(String refundUrl) {
         this.refundUrl = refundUrl;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Long getTimeSucceeded() {
+        return timeSucceeded;
+    }
+
+    public void setTimeSucceeded(Long timeSucceeded) {
+        this.timeSucceeded = timeSucceeded;
     }
 
     /**

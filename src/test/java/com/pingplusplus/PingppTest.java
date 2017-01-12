@@ -126,7 +126,6 @@ public class PingppTest {
             params.put("sign", false);
             BatchRefundCollection objs = BatchRefund.list(params);
 
-            System.out.println(objs);
             assertEquals("object should be list", "list", objs.getObject());
             assertEquals("data count should be same with per_page", limit.intValue(), objs.getData().size());
         } catch (AuthenticationException e) {
