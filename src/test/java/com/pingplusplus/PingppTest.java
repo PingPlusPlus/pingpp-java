@@ -117,4 +117,30 @@ public class PingppTest {
             e.printStackTrace();
         }
     }
+
+    @Test public void testGetBatchRefundList() {
+        try {
+            Integer limit = 3;
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("per_page", limit);
+            params.put("sign", false);
+            BatchRefundCollection objs = BatchRefund.list(params);
+
+            System.out.println(objs);
+            assertEquals("object should be list", "list", objs.getObject());
+            assertEquals("data count should be same with per_page", limit.intValue(), objs.getData().size());
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        }
+    }
 }

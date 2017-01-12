@@ -10,6 +10,7 @@
 - 更改签名私钥获取方式
 - Charge.list app[id] 参数改为必传
 - 红包去除多余的参数
+- batch_refund charges 字段格式修改
 
 #### 修正
 - Webhooks 解析对象 batch_refund、batch_transfer、csutoms 对应事件错误

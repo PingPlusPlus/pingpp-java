@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pingplusplus.serializer.BatchRefundChargesSerializer;
 import com.pingplusplus.serializer.BatchTransferRecipientSerializer;
 
 import java.lang.reflect.Field;
@@ -15,6 +16,7 @@ public abstract class PingppObject {
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .disableHtmlEscaping()
             .registerTypeAdapter(BatchTransferRecipientSerializer.class, new BatchTransferRecipientSerializer())
+            .registerTypeAdapter(BatchRefundCharges.class, new BatchRefundChargesSerializer())
             .create();
 
     public static Gson getPrettyPrintGson() {
