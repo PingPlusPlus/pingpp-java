@@ -13,7 +13,7 @@
 - batch_refund charges 字段格式修改
 
 #### 修正
-- Webhooks 解析对象 batch_refund、batch_transfer、csutoms 对应事件错误
+- Webhooks 解析对象 batch_refund、batch_transfer、customs 对应事件错误
 
 ## 2.2.0
 #### 新增
