@@ -60,8 +60,8 @@ public class BatchTransferExample {
         String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()) + Main.randomString(7);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("app", appId);
-        params.put("channel", "alipay"); // 目前支持 wx(新渠道)、 wx_pub
-        params.put("batch_no", orderNo); // 企业转账使用的商户内部订单号。wx(新渠道)、wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合
+        params.put("channel", "alipay"); // 目前支持 alipay、 unionpay
+        params.put("batch_no", orderNo); // 企业转账使用的商户内部订单号。
         params.put("amount", 2000); // 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100,企业付款最小发送金额为 1 元）
         params.put("type", "b2c"); // 付款类型，当前仅支持 b2c 企业付款
         params.put("currency", "cny");

@@ -66,9 +66,9 @@ public class RedEnvelopeExample {
         redenvelope.put("subject", "Your Subject");
         redenvelope.put("body", "Your Body");
         String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        redenvelope.put("order_no", orderNo);// 红包使用的商户订单号。wx(新渠道)、wx_pub 规定为 1 ~ 28 位不能重复的数字
-        redenvelope.put("channel", "wx_pub");// 目前支持 wx(新渠道)、 wx_pub
-        redenvelope.put("recipient", openid);// 接收者 id， 为用户在 wx(新渠道)、wx_pub 下的 open_id
+        redenvelope.put("order_no", orderNo);// 红包使用的商户订单号。wx_pub 规定为 1 ~ 28 位不能重复的数字
+        redenvelope.put("channel", "wx_pub");// 目前支持 wx_pub
+        redenvelope.put("recipient", openid);// 接收者 id， 为用户在 wx_pub 下的 open_id
         redenvelope.put("description", "Your Description");
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);

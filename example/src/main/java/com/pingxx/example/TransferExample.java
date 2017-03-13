@@ -66,12 +66,12 @@ public class TransferExample {
         Transfer transfer = null;
         String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()) + Main.randomString(7);
         Map<String, Object> transferMap = new HashMap<String, Object>();
-        transferMap.put("channel", "wx_pub");// 目前支持 wx(新渠道)、 wx_pub
-        transferMap.put("order_no", orderNo);// 企业转账使用的商户内部订单号。wx(新渠道)、wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合
+        transferMap.put("channel", "wx_pub");// 目前支持 wx_pub
+        transferMap.put("order_no", orderNo);// 企业转账使用的商户内部订单号。wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合
         transferMap.put("amount", "200");// 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100,企业付款最小发送金额为 1 元）
         transferMap.put("type", "b2c");// 付款类型，当前仅支持 b2c 企业付款
         transferMap.put("currency", "cny");
-        transferMap.put("recipient", openid);// 接收者 id， 为用户在 wx(新渠道)、wx_pub 下的 open_id
+        transferMap.put("recipient", openid);// 接收者 id， 为用户在 wx_pub 下的 open_id
         transferMap.put("description", "your description");
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
