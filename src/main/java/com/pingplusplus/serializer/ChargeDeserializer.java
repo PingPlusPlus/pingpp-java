@@ -25,6 +25,7 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
         JsonObject chargeJson = jsonElement.getAsJsonObject();
         if (null != chargeJson.getAsJsonObject("credential")) {
             JsonObject credentialJson = chargeJson.getAsJsonObject("credential");
+            JsonObject channelCredential;
             if (null != credentialJson.getAsJsonObject("wx")) {
                 JsonObject wx = credentialJson.getAsJsonObject("wx");
                 Long timeStamp = wx.get("timeStamp").getAsLong();
@@ -39,6 +40,13 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
                 JsonObject bfb = credentialJson.getAsJsonObject("bfb");
                 Long total_amount = bfb.get("total_amount").getAsLong();
                 bfb.addProperty("total_amount", total_amount + "");
+            } else if ((channelCredential = credentialJson.getAsJsonObject("alipay")) != null
+                    || (channelCredential = credentialJson.getAsJsonObject("alipay_wap")) != null
+                    || (channelCredential = credentialJson.getAsJsonObject("alipay_pc_direct")) != null) {
+                if (channelCredential.has("payment_type")) {
+                    Long paymentType = channelCredential.get("payment_type").getAsLong();
+                    channelCredential.addProperty("payment_type", Long.toString(paymentType));
+                }
             }
         }
 

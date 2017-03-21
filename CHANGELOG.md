@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 2.2.2 (2017-03-21)
+#### 修正
+- alipay_pc_direct/alipay_wap 渠道 credential 字段类型的修正
+
 ## 2.2.1 (2017-01-13)
 #### 新增
 - 添加 gradle 相关文件
