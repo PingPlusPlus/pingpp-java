@@ -26,20 +26,22 @@ public class ChargeDeserializer implements JsonDeserializer<Charge> {
         if (null != chargeJson.getAsJsonObject("credential")) {
             JsonObject credentialJson = chargeJson.getAsJsonObject("credential");
             JsonObject channelCredential;
-            if (null != credentialJson.getAsJsonObject("wx")) {
+            if (credentialJson.getAsJsonObject("wx") != null) {
                 JsonObject wx = credentialJson.getAsJsonObject("wx");
                 Long timeStamp = wx.get("timeStamp").getAsLong();
-                wx.addProperty("timeStamp", "" + timeStamp);
-            } else if (null != credentialJson.getAsJsonObject("wx_pub")) {
+                wx.addProperty("timeStamp", Long.toString(timeStamp));
+            } else if (credentialJson.getAsJsonObject("wx_pub") != null) {
                 JsonObject wxPub = credentialJson.getAsJsonObject("wx_pub");
                 if (null == wxPub.get("signed_data") && wxPub.get("timeStamp") != null) {
                     Long timeStamp = wxPub.get("timeStamp").getAsLong();
-                    wxPub.addProperty("timeStamp", "" + timeStamp);
+                    wxPub.addProperty("timeStamp", Long.toString(timeStamp));
                 }
-            } else if (null != credentialJson.getAsJsonObject("bfb")) {
-                JsonObject bfb = credentialJson.getAsJsonObject("bfb");
-                Long total_amount = bfb.get("total_amount").getAsLong();
-                bfb.addProperty("total_amount", total_amount + "");
+            } else if ((channelCredential = credentialJson.getAsJsonObject("bfb")) != null
+                    || (channelCredential = credentialJson.getAsJsonObject("bfb_wap")) != null) {
+                if (channelCredential.has("total_amount")) {
+                    Long total_amount = channelCredential.get("total_amount").getAsLong();
+                    channelCredential.addProperty("total_amount", Long.toString(total_amount));
+                }
             } else if ((channelCredential = credentialJson.getAsJsonObject("alipay")) != null
                     || (channelCredential = credentialJson.getAsJsonObject("alipay_wap")) != null
                     || (channelCredential = credentialJson.getAsJsonObject("alipay_pc_direct")) != null) {

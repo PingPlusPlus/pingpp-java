@@ -4,6 +4,11 @@ package com.pingplusplus;
  * Created by Afon on 2016/12/20.
  */
 public class PingppTestData {
+
+    public static String getApiBase() {
+        return "https://api.pingxx.com";
+    }
+
     public static String getApiKey() {
         return "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC";
     }

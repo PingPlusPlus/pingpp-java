@@ -5,9 +5,7 @@ import com.pingplusplus.model.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +18,10 @@ import static org.junit.Assert.*;
 public class PingppTest {
 
     @BeforeClass public static void initApiKey() {
+        Pingpp.overrideApiBase(PingppTestData.getApiBase());
         Pingpp.apiKey = PingppTestData.getApiKey();
+        // 建议使用 PKCS8 编码的私钥，可以用 openssl 将 PKCS1 转成 PKCS8
+        Pingpp.privateKey = PingppTestData.getPKCS8PrivateKey();
         Pingpp.DEBUG = true;
     }
 
@@ -30,9 +31,6 @@ public class PingppTest {
 
     @Test public void testCreateCharge() {
         String appId = PingppTestData.getAppID();
-
-        // 建议使用 PKCS8 编码的私钥，可以用 openssl 将 PKCS1 转成 PKCS8
-        Pingpp.privateKey = PingppTestData.getPKCS8PrivateKey();
 
         Charge charge = null;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
@@ -49,6 +47,7 @@ public class PingppTest {
         chargeMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
+//        extra.put("success_url", "http://127.0.0.1/succeeded");
         chargeMap.put("extra", extra);
         try {
             // 发起 charge 创建请求
@@ -140,6 +139,96 @@ public class PingppTest {
             e.printStackTrace();
         } catch (RateLimitException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test public void testCreateTransfer() {
+        try {
+            String orderNo = "2017" + new Date().getTime();
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("amount", 1010);
+            params.put("currency", "cny");
+            params.put("type",  "b2c");
+            params.put("order_no",  orderNo);
+            params.put("channel",  "wx_pub");
+            params.put("recipient", "openid-kaoshrbgafsnrxxcsds");
+
+//            params.put("channel",  "unionpay");
+//            Map<String, String> extra = new HashMap<String, String>();
+//            extra.put("open_bank_code", "0105");
+//            extra.put("card_number", "6222001022020034");
+//            extra.put("user_name", "USER NAME");
+//            params.put("extra", extra);
+
+            params.put("description", "Your description.");
+            Map<String, String> app = new HashMap<String, String>();
+            app.put("id", PingppTestData.getAppID());
+            params.put("app", app);
+            Transfer obj = Transfer.create(params);
+
+            assertEquals("object should be transfer", "transfer", obj.getObject());
+            assertEquals("amount should be same", params.get("amount"), obj.getAmount());
+            assertEquals("order_no should be same", params.get("order_no"), obj.getOrderNo());
+            assertEquals("description should be same", params.get("description"), obj.getDescription());
+            assertEquals("channel should be same", params.get("channel"), obj.getChannel());
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test public void testCreateBatchTransfer() throws
+            RateLimitException, APIException, ChannelException, InvalidRequestException,
+            APIConnectionException, AuthenticationException {
+
+        String batchNo = "2017" + new Date().getTime();
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("app", PingppTestData.getAppID());
+        params.put("amount", 1000);
+        params.put("currency", "cny");
+        params.put("type",  "b2c");
+        params.put("batch_no",  batchNo);
+        params.put("channel",  "alipay");
+        params.put("description", "Batch transfer description.");
+
+        List<Map<String, Object>> recipients = new ArrayList<>();
+        params.put("recipients", recipients);
+
+        Map<String, Object> recipient1 = new HashMap<String, Object>();
+        recipient1.put("account", "user001@gmail.com");
+        recipient1.put("name", "user001");
+        recipient1.put("amount", 600);
+        recipient1.put("description", "Recipient 1 description.");
+        recipients.add(recipient1);
+
+        Map<String, Object> recipient2 = new HashMap<String, Object>();
+        recipient2.put("account", "user002@gmail.com");
+        recipient2.put("name", "user002");
+        recipient2.put("amount", 400);
+        recipient2.put("description", "Recipient 2 description.");
+        recipients.add(recipient2);
+
+        BatchTransfer obj = BatchTransfer.create(params);
+
+        assertEquals("object should be batch_transfer", "batch_transfer", obj.getObject());
+        assertEquals("amount should be same", params.get("amount"), obj.getAmount());
+        assertEquals("batch_no should be same", params.get("batch_no"), obj.getBatchNo());
+        assertEquals("description should be same", params.get("description"), obj.getDescription());
+        assertEquals("channel should be same", params.get("channel"), obj.getChannel());
+        for (int i = 0; i < obj.getRecipients().size(); i++) {
+            assertNotNull("order_no should not be null", obj.getRecipients().get(i).getOrderNo());
+            assertNull("failure_msg should be null", obj.getRecipients().get(i).getFailureMsg());
+            assertNull("transaction_no should be null", obj.getRecipients().get(i).getTransactionNo());
+            assertTrue("fee should be greater than or equal to 0", obj.getRecipients().get(i).getFee() >= 0);
         }
     }
 }

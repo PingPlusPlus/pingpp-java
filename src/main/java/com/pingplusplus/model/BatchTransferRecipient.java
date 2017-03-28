@@ -12,6 +12,10 @@ public class BatchTransferRecipient extends PingppObject {
     String status;
     String openBankCode;
     String openBank;
+    Integer fee;
+    String failureMsg;
+    String orderNo;
+    String transactionNo;
 
     public String getAccount() {
         return account;
@@ -75,5 +79,37 @@ public class BatchTransferRecipient extends PingppObject {
 
     public void setOpenBank(String openBank) {
         this.openBank = openBankCode;
+    }
+
+    public Integer getFee() {
+        return fee;
+    }
+
+    public void setFee(Integer fee) {
+        this.fee = fee;
+    }
+
+    public String getFailureMsg() {
+        return failureMsg;
+    }
+
+    public void setFailureMsg(String failureMsg) {
+        this.failureMsg = failureMsg;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public String getTransactionNo() {
+        return transactionNo;
+    }
+
+    public void setTransactionNo(String transactionNo) {
+        this.transactionNo = transactionNo;
     }
 }

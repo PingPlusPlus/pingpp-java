@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 2.2.3 (2017-03-27)
+#### 修改
+- BatchTransfer 增加字段
+
 ## 2.2.2 (2017-03-21)
 #### 修正
 - alipay_pc_direct/alipay_wap 渠道 credential 字段类型的修正
