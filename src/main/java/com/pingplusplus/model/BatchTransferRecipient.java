@@ -16,6 +16,9 @@ public class BatchTransferRecipient extends PingppObject {
     String failureMsg;
     String orderNo;
     String transactionNo;
+    String accountType;
+    String businessCode;
+    String cardType;
 
     public String getAccount() {
         return account;
@@ -111,5 +114,29 @@ public class BatchTransferRecipient extends PingppObject {
 
     public void setTransactionNo(String transactionNo) {
         this.transactionNo = transactionNo;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getBusinessCode() {
+        return businessCode;
+    }
+
+    public void setBusinessCode(String businessCode) {
+        this.businessCode = businessCode;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
     }
 }
