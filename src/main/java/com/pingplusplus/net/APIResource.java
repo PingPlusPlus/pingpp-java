@@ -12,6 +12,8 @@ import com.pingplusplus.util.PingppSignature;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -68,6 +70,15 @@ public abstract class APIResource extends PingppObject {
         return GSON;
     }
 
+    public static Class<?> getSelfClass() {
+        try {
+            return Class.forName("com.pingplusplus.net.AccountAPIResource");
+        } catch (ClassNotFoundException ignored) {
+        }
+
+        return APIResource.class;
+    }
+
     /**
      * @param clazz
      * @return
@@ -93,7 +104,26 @@ public abstract class APIResource extends PingppObject {
      * @return
      */
     protected static String singleClassURL(Class<?> clazz) throws InvalidRequestException {
-        return String.format("%s/v1/%s", Pingpp.getApiBase(), className(clazz));
+        String className = null;
+        Class<?> klass = getSelfClass();
+        if (!klass.getSimpleName().equalsIgnoreCase("APIResource")) {
+            try {
+                Method method = klass.getMethod("className", Class.class);
+                className = (String)method.invoke(klass, clazz);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (className == null) {
+            className = className(clazz);
+        }
+
+        return String.format("%s/v1/%s", Pingpp.getApiBase(), className);
     }
 
     /**
