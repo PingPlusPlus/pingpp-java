@@ -62,5 +62,5 @@ Pingpp.apiKey = "YOUR_API_KEY";
 
 ### 使用示例
 ```
-参考 example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的 demo。
+参考 example/SimpleExample 示例项目工程。该工程提供了付款、退款、微信公共号付款相关的 demo。
 ```
