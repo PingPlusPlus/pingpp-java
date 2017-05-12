@@ -1,11 +1,6 @@
 package com.pingxx.example;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.util.WxpubOAuth;
 
@@ -67,9 +62,9 @@ public class WxPubOAuthExample {
         String code = "os823ndskelcncfyfms";
         String openid = WxpubOAuth.getOpenId(wxAppId, wxAppSecret, code);
         System.out.println("4. 得到 openid 用于创建 charge");
-        ChargeExample chargeExample = new ChargeExample(appId);
-        openid = "USER_OPENID";
-        chargeExample.createChargeWithOpenid(openid);
+//        ChargeExample chargeExample = new ChargeExample(appId);
+//        openid = "USER_OPENID";
+//        chargeExample.createCharge();
     }
 
     public static void jsapiSignatureDemo() throws UnsupportedEncodingException {
@@ -78,7 +73,7 @@ public class WxPubOAuthExample {
         System.out.println("ticket " + ticket);
         // 创建 Charge
         ChargeExample chargeExample = new ChargeExample(appId);
-        Charge charge = chargeExample.createChargeWithOpenid("USER_OPENID");
+        Charge charge = chargeExample.createCharge(); // wx_pub
         // 获得签名
         String signature = WxpubOAuth.getSignature(charge.toString(), ticket, redirectUrl);
         System.out.println("------- JSAPI 签名 -------");
