@@ -64,7 +64,7 @@ public class BatchTransferExample {
         params.put("app", appId);
         params.put("channel", channel); // 目前支持 alipay、 unionpay、wx_pub、allinpay、jdpay
         params.put("batch_no", batchNo); // 企业转账使用的商户内部订单号。
-        params.put("amount", 5000); // 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100,企业付款最小发送金额为 1 元）
+        params.put("amount", 5000); // 订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         params.put("type", "b2c"); // 付款类型，wx_pub 仅支持 b2c，alipay、 unionpay、allinpay、jdpay 支持 b2b
         params.put("currency", "cny");
         params.put("description", "your description");
