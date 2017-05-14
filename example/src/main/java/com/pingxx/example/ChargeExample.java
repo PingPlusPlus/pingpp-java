@@ -354,7 +354,7 @@ public class ChargeExample {
         extra.put("result_url", "https://example.com/success");
 
         // 必须，是否需要登录百度钱包来进行支付。
-        // extra.put("bfb_login", true);
+        extra.put("bfb_login", true);
 
         return extra;
     }
@@ -422,7 +422,7 @@ public class ChargeExample {
         extra.put("terminal_type", 2);
 
         // 必须，终端 ID。
-        extra.put("terminal_IR", "TERMINAL_ID");
+        extra.put("terminal_id", "TERMINAL_ID");
 
         // 必须，用户使用的移动终端的 UserAgent 信息。
         extra.put("user_ua", "USER_UA");
@@ -460,13 +460,13 @@ public class ChargeExample {
          */
 
         // 必须，客户协议号，不超过 30 位的纯数字字符串。
-        extra.put("p_no", "P_NO");
+        extra.put("p_no", "201700100001");
 
         // 必须，协议开通请求流水号，不超过 20 位的纯数字字符串，请保证系统内唯一。
-        extra.put("seq", "SEQ");
+        extra.put("seq", "201700200001");
 
         // 必须，协议用户 ID，不超过 20 位的纯数字字符串。
-        extra.put("m_uid", "UID");
+        extra.put("m_uid", "201700300001");
 
         // 必须，协议手机号，11 位数字。
         extra.put("mobile", "13523456789");
