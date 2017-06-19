@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Charge extends APIResource {
@@ -12,6 +13,7 @@ public class Charge extends APIResource {
     Boolean livemode;
     Boolean paid;
     Boolean refunded;
+    Boolean reversed;
     Object app;
     String channel;
     String orderNo;
@@ -88,6 +90,14 @@ public class Charge extends APIResource {
 
     public void setRefunded(Boolean refunded) {
         this.refunded = refunded;
+    }
+
+    public Boolean getReversed() {
+        return reversed;
+    }
+
+    public void setReversed(Boolean reversed) {
+        this.reversed = reversed;
     }
 
     public String getDescription() {
@@ -323,6 +333,47 @@ public class Charge extends APIResource {
             return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
         }
         throw new InvalidRequestException("Please pass app[id] as parameter.", "app[id]", null);
+    }
+
+    /**
+     * 撤销 charge
+     *
+     * @param id
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge reverse(String id, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        String reverseUrl = String.format("%s/reverse", instanceURL(Charge.class, id));
+        if (params == null) {
+            params = new HashMap<String, Object>();
+        }
+        return request(RequestMethod.POST, reverseUrl, params, Charge.class);
+    }
+
+    /**
+     * 撤销 charge
+     *
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge reverse(String id) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return reverse(id, null);
     }
 
     @Deprecated

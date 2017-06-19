@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 2.2.4 (2017-06-19)
+#### 修改
+- Charge 增加字段 reversed，表示是否已撤销
+- 针对渠道 isv_scan, isv_qr_isv_wap 增加撤销方法，`Charge.reverse(CHARGE_ID)`
+
 ## 2.2.3 (2017-03-27)
 #### 修改
 - BatchTransfer 增加字段

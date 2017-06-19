@@ -231,4 +231,32 @@ public class PingppTest {
             assertTrue("fee should be greater than or equal to 0", obj.getRecipients().get(i).getFee() >= 0);
         }
     }
+
+    @Test public void testReverseCharge() {
+        String appId = PingppTestData.getAppID();
+
+        String chargeId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
+
+        Charge charge = null;
+        try {
+            // 发起 charge 撤销请求
+            charge = Charge.reverse(chargeId);
+            System.out.println(charge);
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("charge object should be charge", "charge", charge.getObject());
+        assertNotNull("charge reversed not null", charge.getReversed());
+    }
 }

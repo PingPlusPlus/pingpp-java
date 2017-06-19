@@ -65,6 +65,19 @@ ChargeCollection charges = Charge.list(chargeParams);
 System.out.println(charges);
 ```
 
+##### 撤销 Charge
+``` java
+reverse(String id)
+```
+方法名：reverse
+类型：静态方法
+参数：String 类型的 Charge ID
+返回：Charge
+示例：
+``` java
+Charge charge = Charge.reverse(CHARGE_ID);
+```
+
 #### Refund
 ##### 创建 Refund
 ``` java

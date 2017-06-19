@@ -222,6 +222,15 @@ public class ChargeExample {
             case "cp_b2b":
                 extra = cpB2bExtra();
                 break;
+            case "isv_scan":
+                extra = isvScanExtra();
+                break;
+            case "isv_qr":
+                extra = isvQrExtra();
+                break;
+            case "isv_wap":
+                extra = isvWapExtra();
+                break;
         }
 
         return extra;
@@ -478,5 +487,69 @@ public class ChargeExample {
         Map<String, Object> extra = new HashMap<>();
 
         return extra;
+    }
+
+    private Map<String, Object> isvScanExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必须，终端号，1~8 位英文或数字，要求不同终端此号码不一样，会显示在对账单中。
+        extra.put("terminal_id", "A0000007");
+
+        // 必须，客户端软件中展示的条码值，扫码设备扫描获取。1~32 位字符串。
+        extra.put("scan_code", "280614577834623988");
+
+        // 可选，商品列表，上送格式参照下面示例。序列化后总字符串长度不超过 8000。
+        List<Object> goodsList = goodsListForIsv();
+        extra.put("goods_list", goodsList);
+
+        return extra;
+    }
+
+    private Map<String, Object> isvQrExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必须，终端号，1~8 位英文或数字，要求不同终端此号码不一样，会显示在对账单中。
+        extra.put("terminal_id", "A0000007");
+
+        // 必须，具体支付渠道，目前支持：alipay、wx、bfb。
+        extra.put("pay_channel", "alipay");
+
+        // 可选，商品列表，上送格式参照下面示例。序列化后总字符串长度不超过 8000。
+        List<Object> goodsList = goodsListForIsv();
+        extra.put("goods_list", goodsList);
+
+        return extra;
+    }
+
+    private Map<String, Object> isvWapExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必须，终端号，1~8 位英文或数字，要求不同终端此号码不一样，会显示在对账单中。
+        extra.put("terminal_id", "A0000007");
+
+        // 必须，具体支付渠道，目前支持：alipay、wx、bfb。
+        extra.put("pay_channel", "wx");
+
+        // 必须，前台通知地址，支付成功或失败后，跳转到的 URL。
+        extra.put("result_url", "https://www.example.com/payment-result");
+
+        // 可选，商品列表，上送格式参照下面示例。
+        List<Object> goodsList = goodsListForIsv();
+        extra.put("goods_list", goodsList);
+
+        return extra;
+    }
+
+    private List<Object> goodsListForIsv() {
+        List<Object> goodsList = new ArrayList<>();
+        Map<String, Object> goods = new HashMap<>();
+        goods.put("goods_id", "iphone6s16G"); // 商户定义商品编号（一般为商品条码）。
+        goods.put("unified_goods_id", "1001"); // 统一商品编号，可选。
+        goods.put("goods_name", "iPhone 6s 16G"); // 商品名称。
+        goods.put("goods_num", 1); // 商品数量。
+        goods.put("price", 528800); // 商品价格，单位为分。
+        goods.put("goods_category", "smartphone"); // 商品类目，可选。
+        goods.put("body", "苹果手机 iPhone 6s 16G"); // 商品描述信息，可选。
+        goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
+        goodsList.add(goods);
+
+        return goodsList;
     }
 }
