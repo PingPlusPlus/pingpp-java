@@ -47,6 +47,8 @@ public class ChargeExample {
         chargeExample.retrieve(charge.getId());
         System.out.println("------- 查询 charge 列表 -------");
         chargeExample.list();
+        System.out.println("------- 撤销 charge（仅支持线下渠道） -------");
+        chargeExample.reverse(charge.getId());
     }
 
     /**
@@ -104,7 +106,6 @@ public class ChargeExample {
      * 该接口根据 charge Id 查询对应的 charge 。
      * 参考文档：https://www.pingxx.com/api#api-c-inquiry
      *
-     * 该接口可以传递一个 expand ， 返回的 charge 中的 app 会变成 app 对象。
      * 参考文档： https://www.pingxx.com/api#api-expanding
      * @param id
      */
@@ -113,6 +114,24 @@ public class ChargeExample {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
             charge = Charge.retrieve(id, params);
+            System.out.println(charge);
+        } catch (PingppException e) {
+            e.printStackTrace();
+        }
+
+        return charge;
+    }
+
+    /**
+     * 撤销 Charge
+     *
+     * @param id
+     */
+    public Charge reverse(String id) {
+        Charge charge = null;
+        try {
+            Map<String, Object> params = new HashMap<String, Object>();
+            charge = Charge.reverse(id);
             System.out.println(charge);
         } catch (PingppException e) {
             e.printStackTrace();
