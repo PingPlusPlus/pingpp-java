@@ -259,4 +259,30 @@ public class PingppTest {
         assertEquals("charge object should be charge", "charge", charge.getObject());
         assertNotNull("charge reversed not null", charge.getReversed());
     }
+
+    @Test public void testRetrieveRefund() {
+        String chargeId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
+        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+
+        Refund refund = null;
+        try {
+            refund = Refund.retrieve(chargeId, refundId);
+            System.out.println(refund);
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("refund object should be charge", "refund", refund.getObject());
+        assertNotNull("refund extra not null", refund.getExtra());
+    }
 }

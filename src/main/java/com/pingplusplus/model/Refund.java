@@ -22,6 +22,7 @@ public class Refund extends APIResource {
     String chargeOrderNo;
     String transactionNo;
     String fundingSource;
+    Map<String, Object> extra;
 
     public String getInstanceURL() throws InvalidRequestException {
         if (this.charge != null) {
@@ -155,6 +156,14 @@ public class Refund extends APIResource {
 
     public void setFundingSource(String fundingSource) {
         this.fundingSource = fundingSource;
+    }
+
+    public Map<String, Object> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, Object> extra) {
+        this.extra = extra;
     }
 
     /**
