@@ -130,7 +130,6 @@ public class ChargeExample {
     public Charge reverse(String id) {
         Charge charge = null;
         try {
-            Map<String, Object> params = new HashMap<String, Object>();
             charge = Charge.reverse(id);
             System.out.println(charge);
         } catch (PingppException e) {
