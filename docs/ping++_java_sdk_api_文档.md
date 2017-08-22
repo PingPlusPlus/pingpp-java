@@ -5,6 +5,7 @@
 - Refund
 - RedEnvelope
 - Webhooks
+- Identification
 
 #### Charge
 ##### 创建 Charge
@@ -47,9 +48,9 @@ Charge charge = Charge.retrieve(CHARGE_ID);
 
 ##### 查询 Charge 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all  
+方法名：list  
 类型：静态方法  
 参数：Map  
 返回：ChargeCollection  
@@ -60,8 +61,21 @@ app.put("id", APP_ID);
 chargeParams.put("app", app);
 chargeParams.put("limit", 3);
 Map<String, String> app = new HashMap<String, String>();
-ChargeCollection charges = Charge.all(chargeParams);
+ChargeCollection charges = Charge.list(chargeParams);
 System.out.println(charges);
+```
+
+##### 撤销 Charge
+``` java
+reverse(String id)
+```
+方法名：reverse
+类型：静态方法
+参数：String 类型的 Charge ID
+返回：Charge
+示例：
+``` java
+Charge charge = Charge.reverse(CHARGE_ID);
 ```
 
 #### Refund
@@ -97,9 +111,9 @@ Refund re = ch.getRefunds().retrieve(REFUND_ID);
 
 ##### 查询 Refund 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all
+方法名：list
 类型：实例方法  
 参数：Map  
 返回：RefundCollection  
@@ -108,7 +122,7 @@ all(Map<String, Object> params)
 Charge ch = Charge.retrieve(CHARGE_ID);
 Map<String, Object> refundParams = new HashMap<String, Object>();
 refundParams.put("limit", 3);
-Refund re = ch.getRefunds().all(refundParams);
+Refund re = ch.getRefunds().list(refundParams);
 ```
 
 #### RedEnvelope
@@ -156,9 +170,9 @@ RedEnvelope redEnvelope = RedEnvelope.retrieve(RED_ID);
 
 ##### 查询 RedEnvelope 列表
 ``` java
-all(Map<String, Object> params)
+list(Map<String, Object> params)
 ```
-方法名：all  
+方法名：list  
 类型：静态方法  
 参数：Map  
 返回：RedEnvelopeCollection  
@@ -167,7 +181,7 @@ all(Map<String, Object> params)
 RedEnvelopeCollection redEnvelopeCollection = null;
 Map<String, Object> chargeParams = new HashMap<String, Object>();
 chargeParams.put("limit", 3);
-RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.all(chargeParams);
+RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.list(chargeParams);
 ```
 
 #### Webhooks
@@ -204,4 +218,28 @@ eventParse(String eventStr)
 示例：
 ``` java
 Event eventobj = Webhooks.eventParse(eventString);
+```
+
+#### Identification
+##### 身份证银行卡信息认证接口
+``` java
+identify(Map<String, Object> params)
+```
+方法名：identify  
+类型：静态方法  
+参数：Map  
+返回：Identification 结果  
+示例：
+``` java
+Map<String, Object> params = new HashMap<String, Object>();
+params.put("app", APP_ID);
+params.put("type", "bank_card");
+Map<String, String> data = new HashMap<String, String>();
+data.put("id_name", "张三");
+data.put("id_number", "320291198811110000");
+data.put("card_number", "6201111122223333");
+params.put("data", data);
+Identification result = Identification.identify(params);
+System.out.println(result.getResultCode());
+System.out.println(result.getMessage());
 ```

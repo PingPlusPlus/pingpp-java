@@ -10,12 +10,12 @@ Ping++ Java SDK
 ### 版本要求
 
 Java SDK 要求 JDK 版本 1.7 及以上
-  
+
 ### 安装
 ##### 手动安装
 将 libs/ 下面的 jar 包导入工程
 
-##### maven 安装 
+##### maven 安装
 
 maven 远程仓库
 ``` xml
@@ -34,7 +34,7 @@ maven 远程仓库
 <dependency>
     <groupId>Pingplusplus</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.1.6</version>
+    <version>2.2.4</version>
     <type>jar</type>
 </dependency>
 ```
@@ -52,15 +52,15 @@ repositories {
 
 安装 Ping++ SDK
 ```
-compile 'Pingplusplus:pingpp-java:2.1.6'
+compile 'Pingplusplus:pingpp-java:2.2.4'
 ```
 
 ### 初始化
 ```
-Pingpp.apiKey = "YOUR-KEY";
+Pingpp.apiKey = "YOUR_API_KEY";
 ```
 
 ### 使用示例
 ```
-参考 example/SimpleExample 示例项目工程。改工程提供了付款、退款、微信公共号付款相关的 demo。
+参考 example/SimpleExample 示例项目工程。该工程提供了付款、退款、微信公共号付款相关的 demo。
 ```
