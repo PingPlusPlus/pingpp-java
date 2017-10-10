@@ -14,6 +14,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -34,6 +35,7 @@ public abstract class APIResource extends PingppObject {
 
     public static int CONNECT_TIMEOUT = 30;
     public static int READ_TIMEOUT = 80;
+    public static int RETRY_MAX = 1;
 
     /**
      * Http requset method
@@ -608,21 +610,31 @@ public abstract class APIResource extends PingppObject {
         }
 
         PingppResponse response;
-        try {
-            // HTTPSURLConnection verifies SSL cert by default
-            response = makeURLConnectionRequest(method, url, query, Pingpp.apiKey);
-            if (Pingpp.DEBUG) {
-                System.out.println(getGson().toJson(response));
+        int retryCount = 0;
+        while(true) {
+            try {
+                // HTTPSURLConnection verifies SSL cert by default
+                response = makeURLConnectionRequest(method, url, query, Pingpp.apiKey);
+                if (Pingpp.DEBUG) {
+                    System.out.println(getGson().toJson(response));
+                }
+
+                int rCode = response.getResponseCode();
+                String rBody = response.getResponseBody();
+                if (rCode < 200 || rCode >= 300) {
+                    handleAPIError(rBody, rCode);
+                }
+                return getGson().fromJson(rBody, clazz);
+            } catch (ClassCastException ce) {
+                throw ce;
+            } catch (ConnectException e) {
+                if(retryCount < RETRY_MAX) {
+                    retryCount++;
+                } else {
+                    throw new APIConnectionException(e.getMessage(), e);
+                }
             }
-        } catch (ClassCastException ce) {
-            throw ce;
         }
-        int rCode = response.getResponseCode();
-        String rBody = response.getResponseBody();
-        if (rCode < 200 || rCode >= 300) {
-            handleAPIError(rBody, rCode);
-        }
-        return getGson().fromJson(rBody, clazz);
     }
 
     /**
@@ -636,7 +648,7 @@ public abstract class APIResource extends PingppObject {
      */
     private static void handleAPIError(String rBody, int rCode)
             throws InvalidRequestException, AuthenticationException,
-            APIException, ChannelException, RateLimitException {
+            APIException, ChannelException, RateLimitException, ConnectException {
         APIResource.Error error = getGson().fromJson(rBody,
                 APIResource.ErrorContainer.class).error;
         switch (rCode) {
@@ -650,6 +662,8 @@ public abstract class APIResource extends PingppObject {
                 throw new ChannelException(error.toString(), error.param, null);
             case 401:
                 throw new AuthenticationException(error.toString());
+            case 502:
+                throw new ConnectException(error.toString());
             default:
                 throw new APIException(error.toString(), null);
         }
