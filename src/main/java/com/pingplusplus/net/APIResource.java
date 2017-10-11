@@ -3,6 +3,7 @@ package com.pingplusplus.net;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.exception.InvalidRequestException;
@@ -649,8 +650,15 @@ public abstract class APIResource extends PingppObject {
     private static void handleAPIError(String rBody, int rCode)
             throws InvalidRequestException, AuthenticationException,
             APIException, ChannelException, RateLimitException, ConnectException {
-        APIResource.Error error = getGson().fromJson(rBody,
-                APIResource.ErrorContainer.class).error;
+        Error error = null;
+        try {
+            error = getGson().fromJson(rBody,
+                    ErrorContainer.class).error;
+        } catch (JsonSyntaxException e) {
+            error = new Error();
+            error.message = rBody;
+            error.code = String.valueOf(rCode);
+        }
         switch (rCode) {
             case 400:
                 throw new InvalidRequestException(error.toString(), error.param, null);
