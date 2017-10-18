@@ -182,8 +182,28 @@ public class Refund extends APIResource {
     public static Refund create(String charge, Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
+        return create(charge, null, params);
+    }
+
+    /**
+     * 创建 refund
+     *
+     * @param charge
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Refund create(String charge, String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.POST, String.format("%s/refunds", instanceURL(Charge.class, charge)),
-                params, Refund.class);
+                apiKey, params, Refund.class);
     }
 
     /**
@@ -202,8 +222,28 @@ public class Refund extends APIResource {
     public static Refund retrieve(String charge, String id)
             throws AuthenticationException, InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
+        return retrieve(charge, id, null);
+    }
+
+    /**
+     * 查询 refund
+     *
+     * @param charge
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Refund retrieve(String charge, String id, String apiKey)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, String.format("%s/refunds/%s", instanceURL(Charge.class, charge), id),
-                null, Refund.class);
+                apiKey, null, Refund.class);
     }
 
     /**
@@ -222,7 +262,27 @@ public class Refund extends APIResource {
     public static ChargeRefundCollection list(String charge, Map<String, Object>params)
             throws AuthenticationException, InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
+        return list(charge, null, params);
+    }
+
+    /**
+     * 查询 refund 列表
+     *
+     * @param charge
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static ChargeRefundCollection list(String charge, String apiKey, Map<String, Object>params)
+            throws AuthenticationException, InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, String.format("%s/refunds", instanceURL(Charge.class, charge)),
-                params, ChargeRefundCollection.class);
+                apiKey, params, ChargeRefundCollection.class);
     }
 }

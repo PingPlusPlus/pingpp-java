@@ -587,7 +587,29 @@ public abstract class APIResource extends PingppObject {
     protected static <T> T request(APIResource.RequestMethod method, String url, Map<String, Object> params, Class<T> clazz) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        if ((Pingpp.apiKey == null || Pingpp.apiKey.length() == 0)) {
+        return request(method, url, null, params, clazz);
+    }
+
+    /**
+     * @param method
+     * @param url
+     * @param apiKey
+     * @param params
+     * @param clazz
+     * @param <T>
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    protected static <T> T request(APIResource.RequestMethod method, String url, String apiKey, Map<String, Object> params, Class<T> clazz) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        apiKey = apiKey != null ? apiKey : Pingpp.apiKey;
+        if ((apiKey == null || apiKey.length() == 0)) {
             throw new AuthenticationException(
                     "No API key provided. (HINT: set your API key using 'Pingpp.apiKey = <API-KEY>'. "
                             + "You can generate API keys from the Pingpp web interface. "
@@ -615,7 +637,7 @@ public abstract class APIResource extends PingppObject {
         while(true) {
             try {
                 // HTTPSURLConnection verifies SSL cert by default
-                response = makeURLConnectionRequest(method, url, query, Pingpp.apiKey);
+                response = makeURLConnectionRequest(method, url, query, apiKey);
                 if (Pingpp.DEBUG) {
                     System.out.println(getGson().toJson(response));
                 }

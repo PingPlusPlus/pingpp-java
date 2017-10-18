@@ -272,7 +272,26 @@ public class Charge extends APIResource {
     public static Charge create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Charge.class), params, Charge.class);
+        return create(null, params);
+    }
+
+    /**
+     * 创建 charge
+     *
+     * @param params
+     * @param apiKey Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge create(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, classURL(Charge.class), apiKey, params, Charge.class);
     }
 
     /**
@@ -290,7 +309,25 @@ public class Charge extends APIResource {
     public static Charge retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), null, Charge.class);
+        return retrieve(id, null, null);
+    }
+
+    /**
+     * 查询 charge
+     *
+     * @param id
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge retrieve(String id, String apiKey) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return retrieve(id, apiKey, null);
     }
 
     /**
@@ -309,7 +346,26 @@ public class Charge extends APIResource {
     public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), params, Charge.class);
+        return retrieve(id, null, params);
+    }
+
+    /**
+     * 查询 charge
+     *
+     * @param id
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, instanceURL(Charge.class, id), apiKey, params, Charge.class);
     }
 
     /**
@@ -327,12 +383,54 @@ public class Charge extends APIResource {
     public static ChargeCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
+        return list(null, params);
+    }
+
+    /**
+     * 查询 charge 列表
+     *
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static ChargeCollection list(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
         if (params != null
                 && ((params.containsKey("app") && (params.get("app") instanceof Map) && ((Map) params.get("app")).containsKey("id"))
-                    || (params.containsKey("app[id]") && (params.get("app[id]") instanceof String)))) {
-            return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class);
+                || (params.containsKey("app[id]") && (params.get("app[id]") instanceof String)))) {
+            return request(RequestMethod.GET, classURL(Charge.class), apiKey, params, ChargeCollection.class);
         }
         throw new InvalidRequestException("Please pass app[id] as parameter.", "app[id]", null);
+    }
+
+    /**
+     * 撤销 charge
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge reverse(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        String reverseUrl = String.format("%s/reverse", instanceURL(Charge.class, id));
+        if (params == null) {
+            params = new HashMap<String, Object>();
+        }
+        return request(RequestMethod.POST, reverseUrl, apiKey, params, Charge.class);
     }
 
     /**
@@ -351,11 +449,7 @@ public class Charge extends APIResource {
     public static Charge reverse(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        String reverseUrl = String.format("%s/reverse", instanceURL(Charge.class, id));
-        if (params == null) {
-            params = new HashMap<String, Object>();
-        }
-        return request(RequestMethod.POST, reverseUrl, params, Charge.class);
+        return reverse(id, null, params);
     }
 
     /**
@@ -373,7 +467,26 @@ public class Charge extends APIResource {
     public static Charge reverse(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return reverse(id, null);
+        return reverse(id, null, null);
+    }
+
+    /**
+     * 撤销 charge
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Charge reverse(String id, String apiKey) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return reverse(id, apiKey, null);
     }
 
     @Deprecated

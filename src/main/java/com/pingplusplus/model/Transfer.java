@@ -200,7 +200,26 @@ public class Transfer extends APIResource {
     public static Transfer create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Transfer.class), params, Transfer.class);
+        return create(null, params);
+    }
+
+    /**
+     * 创建 Transfer
+     *
+     * @param apiKey  Ping++ APiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Transfer create(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, classURL(Transfer.class), apiKey, params, Transfer.class);
     }
 
     /**
@@ -216,7 +235,26 @@ public class Transfer extends APIResource {
     public static Transfer retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Transfer.class, id), null, Transfer.class);
+        return retrieve(id, null, null);
+    }
+
+    /**
+     * 查询 Transfer
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Transfer retrieve(String id, String apiKey) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return retrieve(id, apiKey, null);
     }
 
     /**
@@ -233,7 +271,27 @@ public class Transfer extends APIResource {
     public static Transfer retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Transfer.class, id), params, Transfer.class);
+        return retrieve(id, null, params);
+    }
+
+    /**
+     * 查询 Transfer
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Transfer retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, instanceURL(Transfer.class, id), apiKey, params, Transfer.class);
     }
 
     /**
@@ -249,7 +307,26 @@ public class Transfer extends APIResource {
     public static TransferCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Transfer.class), params, TransferCollection.class);
+        return list(null, params);
+    }
+
+    /**
+     * 查询 Transfer
+     *
+     * @param apiKey Ping++ APiKey
+     * @param params 分页参数等
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static TransferCollection list(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, classURL(Transfer.class), apiKey, params, TransferCollection.class);
     }
 
     @Deprecated
@@ -273,7 +350,27 @@ public class Transfer extends APIResource {
     public static Transfer update(String id, Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.PUT, instanceURL(Transfer.class, id), params, Transfer.class);
+        return update(id, null, params);
+    }
+
+    /**
+     * 更新 Transfer
+     *
+     * @param id transfer id
+     * @param apiKey Ping++ ApiKey
+     * @param params 更新参数
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Transfer update(String id, String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.PUT, instanceURL(Transfer.class, id), apiKey, params, Transfer.class);
     }
 
     /**
@@ -292,5 +389,26 @@ public class Transfer extends APIResource {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled");
         return update(id, params);
+    }
+
+    /**
+     * 撤销/取消 Transfer
+     *
+     * @param id transfer id
+     * @param apiKey Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Transfer cancel(String id, String apiKey)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return update(id, apiKey, params);
     }
 }

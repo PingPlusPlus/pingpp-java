@@ -75,6 +75,25 @@ public class Identification extends APIResource {
     public static Identification identify(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, singleClassURL(Identification.class), params, Identification.class);
+        return identify(null, params);
+    }
+
+    /**
+     * 请求认证
+     *
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Identification identify(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, singleClassURL(Identification.class), apiKey, params, Identification.class);
     }
 }

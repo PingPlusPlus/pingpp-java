@@ -221,7 +221,26 @@ public class RedEnvelope extends APIResource {
     public static RedEnvelope create(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(RedEnvelope.class), params, RedEnvelope.class);
+        return create(null, params);
+    }
+
+    /**
+     * 创建 RedEnvelope
+     *
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static RedEnvelope create(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, classURL(RedEnvelope.class), apiKey, params, RedEnvelope.class);
     }
 
     /**
@@ -238,7 +257,26 @@ public class RedEnvelope extends APIResource {
     public static RedEnvelope retrieve(String id) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), null, RedEnvelope.class);
+        return retrieve(id, null, null);
+    }
+
+    /**
+     * 查询 RedEnvelope
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static RedEnvelope retrieve(String id, String apiKey) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return retrieve(id, apiKey, null);
     }
 
     /**
@@ -256,7 +294,27 @@ public class RedEnvelope extends APIResource {
     public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
             InvalidRequestException, APIConnectionException,
             APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params, RedEnvelope.class);
+        return retrieve(id, null, params);
+    }
+
+    /**
+     * 查询 RedEnvelope
+     *
+     * @param id
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static RedEnvelope retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), apiKey, params, RedEnvelope.class);
     }
 
     /**
@@ -273,7 +331,26 @@ public class RedEnvelope extends APIResource {
     public static RedEnvelopeCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(RedEnvelope.class), params, RedEnvelopeCollection.class);
+        return list(null, params);
+    }
+
+    /**
+     * 查询 RedEnvelope
+     *
+     * @param apiKey  Ping++ ApiKey
+     * @param params
+     * @return
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static RedEnvelopeCollection list(String apiKey, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.GET, classURL(RedEnvelope.class), apiKey, params, RedEnvelopeCollection.class);
     }
 
     @Deprecated
