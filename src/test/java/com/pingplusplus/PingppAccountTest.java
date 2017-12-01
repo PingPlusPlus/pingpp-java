@@ -17,7 +17,7 @@ public class PingppAccountTest extends PingppAccountTestBase {
     }
 
     @Test public void testVerifyVersions() {
-        assertEquals("Pingpp.VERSION should match", "2.2.5", Pingpp.VERSION);
+        assertEquals("Pingpp.VERSION should match", "2.3.0", Pingpp.VERSION);
         assertEquals("PingppAccount.VERSION should match", "1.2.3", PingppAccount.VERSION);
     }
 }
