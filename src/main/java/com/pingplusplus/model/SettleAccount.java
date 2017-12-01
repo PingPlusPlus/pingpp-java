@@ -65,7 +65,7 @@ public class SettleAccount extends UserBasedResource {
     /**
      * 创建 settle_account
      *
-     * @params userId
+     * @param userId
      * @param params
      * @return
      * @throws AuthenticationException

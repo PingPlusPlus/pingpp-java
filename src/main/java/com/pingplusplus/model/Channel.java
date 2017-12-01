@@ -74,7 +74,7 @@ public class Channel extends SubAppBasedResource {
     /**
      * 创建渠道参数
      *
-     * @params subAppId
+     * @param subAppId
      * @param params
      * @return
      * @throws AuthenticationException

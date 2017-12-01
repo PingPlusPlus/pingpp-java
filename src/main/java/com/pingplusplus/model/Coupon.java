@@ -146,7 +146,7 @@ public class Coupon extends UserBasedResource {
     /**
      * 创建 coupon
      *
-     * @params userId
+     * @param userId
      * @param params
      * @return
      * @throws AuthenticationException

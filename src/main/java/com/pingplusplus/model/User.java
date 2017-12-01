@@ -267,7 +267,7 @@ public class User extends AppBasedResource {
     /**
      * 创建 balance transfer
      *
-     * @params userId
+     * @param userId
      * @param params
      * @return
      * @throws AuthenticationException

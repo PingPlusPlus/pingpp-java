@@ -332,7 +332,7 @@ public class Withdrawal extends AppBasedResource {
     /**
      * 创建 withdrawal
      *
-     * @params userId
+     * @param userId
      * @param params
      * @return
      * @throws AuthenticationException
