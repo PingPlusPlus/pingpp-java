@@ -6,6 +6,7 @@
 - RedEnvelope
 - Webhooks
 - Identification
+- 账户系统相关接口请查看 [Ping++ API 文档](https://www.pingxx.com/api) 或参考[测试示例](/src/test/java/com/pingplusplus)
 
 #### Charge
 ##### 创建 Charge
