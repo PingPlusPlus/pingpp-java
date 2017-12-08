@@ -35,17 +35,22 @@ public class AccountEventDataDeserializer extends EventDataDeserializer {
 
         objectMap.put("order", Order.class);
         objectMap.put("order_refund", OrderRefund.class);
+        objectMap.put("user", User.class);
+        objectMap.put("settle_account", SettleAccount.class);
         objectMap.put("withdrawal", Withdrawal.class);
         objectMap.put("batch_withdrawal", BatchWithdrawal.class);
+        objectMap.put("balance_bonus", BalanceBonus.class);
+        objectMap.put("balance_transfer", BalanceTransfer.class);
+        objectMap.put("recharge", Recharge.class);
+        objectMap.put("balance_transaction", BalanceTransaction.class);
+
         objectMap.put("coupon", Coupon.class);
         objectMap.put("coupon_template", CouponTemplate.class);
-        objectMap.put("balance_transaction", BalanceTransaction.class);
-        objectMap.put("user", User.class);
 
         objectMap.put("royalty", Royalty.class);
         objectMap.put("royalty_settlement", RoyaltySettlement.class);
         objectMap.put("royalty_transaction", RoyaltyTransaction.class);
-        objectMap.put("settle_account", SettleAccount.class);
+
         objectMap.put("sub_app", SubApp.class);
         objectMap.put("channel", Channel.class);
     }
