@@ -146,7 +146,7 @@ public class BalanceBonus extends AppBasedResource {
     /**
      * 创建 balance_bonus
      *
-     * @param params
+     * @param params 请求参数
      * @return
      * @throws AuthenticationException
      * @throws InvalidRequestException

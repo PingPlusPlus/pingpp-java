@@ -34,6 +34,7 @@ public class WxpubOAuth {
      * @param appSecret 微信公众号应用密钥（注意保密）
      * @param code      授权code, 通过调用WxpubOAuth.createOauthUrlForCode来获取
      * @return openid   微信公众号授权用户唯一标识, 可用于微信网页内支付
+     * @throws UnsupportedEncodingException
      */
     public static String getOpenId(String appId, String appSecret, String code)
             throws UnsupportedEncodingException {
@@ -57,6 +58,7 @@ public class WxpubOAuth {
      * @param moreInfo    FALSE 不弹出授权页面,直接跳转,这个只能拿到用户openid
      *                    TRUE 弹出授权页面,这个可以通过 openid 拿到昵称、性别、所在地，
      * @return 用于获取授权code的URL地址
+     * @throws UnsupportedEncodingException
      */
     public static String createOauthUrlForCode(String appId, String redirectUrl, boolean moreInfo)
             throws UnsupportedEncodingException {
@@ -79,6 +81,7 @@ public class WxpubOAuth {
      * @param appSecret 微信公众号应用密钥（注意保密）
      * @param code      授权code, 通过调用WxpubOAuth.createOauthUrlForCode来获取
      * @return 获取openid的URL地址
+     * @throws UnsupportedEncodingException
      */
     private static String createOauthUrlForOpenid(String appId, String appSecret, String code)
             throws UnsupportedEncodingException {

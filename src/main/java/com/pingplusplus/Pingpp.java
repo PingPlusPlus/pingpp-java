@@ -35,6 +35,7 @@ public abstract class Pingpp {
      * (FOR TESTING ONLY)
      * If you'd like your API requests to hit your own (mocked) server,
      * you can set this up here by overriding the base api URL.
+     * @param overriddenApiBase API 地址
      */
     public static void overrideApiBase(final String overriddenApiBase) {
         apiBase = overriddenApiBase;
@@ -44,6 +45,7 @@ public abstract class Pingpp {
      * (FOR TESTING ONLY)
      * Only disable SSL verification if you're using your own (mocked) server.
      * Disabling verification on pingxx.com is not supported
+     * @param verify 是否验证 ssl
      */
     public static void setVerifySSL(boolean verify) {
         verifySSL = verify;
@@ -70,7 +72,7 @@ public abstract class Pingpp {
     /**
      * set api url
      *
-     * @param apiBase
+     * @param apiBase apiBase API 地址
      */
     public static void setApiBase(String apiBase) {
         Pingpp.apiBase = apiBase;
