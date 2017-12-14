@@ -27,6 +27,12 @@ openssl pkcs8 -topk8 -inform PEM -in pkcs1.pem -outform PEM -nocrypt -out pkcs8.
 Pingpp.privateKey = "<PRIVATE-KEY-CONTENT>";
 ```
 
+#### 设置 App ID
+当你使用账户系统的接口时，需要设置 App ID。比如，充值（recharge）、提现（withdrawal）等。
+```java
+Pingpp.appId = "<APP_ID>";
+```
+
 #### 创建 Charge
 ```java
 Map<String, Object> chargeMap = new HashMap<String, Object>();
