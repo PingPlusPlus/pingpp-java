@@ -1,11 +1,26 @@
-apply plugin: 'java'
-
-repositories {
-    jcenter()
+buildscript {
+    repositories {
+        jcenter()
+    }
 }
 
+plugins {
+    id "com.jfrog.bintray" version "1.8.0"
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'java'
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'commons-codec:commons-codec:1.10'
 
@@ -20,4 +35,51 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'Pingplusplus'
+            artifactId 'pingpp-java'
+            version releaseVersion
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('name', 'pingpp-java')
+                root.appendNode('url', 'https://github.com/PingPlusPlus/pingpp-java')
+            }
+        }
+    }
+}
+
+bintray {
+    user = bintrayUser
+    key = bintrayApiKey
+    publications = ['mavenJava']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'pingplusplus'
+        licenses = ['MIT']
+        labels = ['Ping++', 'pingxx', 'payment']
+        vcsUrl = 'https://github.com/PingPlusPlus/pingpp-java.git'
+        version {
+            name = releaseVersion
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("pom.xml")
+    }
 }

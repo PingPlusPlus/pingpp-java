@@ -52,3 +52,5 @@ bin/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+
+gradle.properties
