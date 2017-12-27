@@ -249,6 +249,27 @@ public class ChargeExample {
             case "isv_wap":
                 extra = isvWapExtra();
                 break;
+            case "alipay_scan":
+                extra = alipayScanExtra();
+                break;
+            case "wx_pub_scan":
+                extra = wxPubScanExtra();
+                break;
+            case "cb_alipay":
+                extra = cbAlipayExtra();
+                break;
+            case "cb_wx":
+                extra = cbWxExtra();
+                break;
+            case "cb_wx_pub":
+                extra = cbWxPubExtra();
+                break;
+            case "cb_wx_pub_qr":
+                extra = cbWxPubQrExtra();
+                break;
+            case "cb_wx_pub_scan":
+                extra = cbWxPubScanExtra();
+                break;
         }
 
         return extra;
@@ -555,6 +576,102 @@ public class ChargeExample {
         return extra;
     }
 
+    private Map<String, Object> alipayScanExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必填，客户端软件中展示的条码值，扫码设备扫描获取。
+        extra.put("scan_code", "286801346868493272");
+        // 必填，终端号，要求不同终端此号码不一样，会显示在对账单中，如A01、SH008等。
+        extra.put("terminal_id", "SH008");
+        // 可选，商户操作员编号(可包含字母、数字、下划线、中划线)
+        extra.put("operator_id", "yx_001");
+        // 可选，商户门店编号(可包含字母、数字、下划线、中划线)
+        extra.put("store_id", "SH_001");
+        // 可选，系统商编号
+        extra.put("sys_service_provider_id", "2088511833207846");
+
+        // 可选，商品列表，上送格式参照下面示例。
+        List<Object> goodsList = goodsListForAlipayScan();
+        extra.put("goods_list", goodsList);
+        return extra;
+    }
+
+    private Map<String, Object> wxPubScanExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必填，客户端软件中展示的条码值，扫码设备扫描获取。
+        extra.put("scan_code", "286801346868493272");
+        // 可选，终端号，要求不同终端此号码不一样，会显示在对账单中，如A01、SH008等。
+        extra.put("terminal_id", "SH008");
+        // 可选，指定支付方式，指定不能使用信用卡支付可设置为 no_credit 。
+        extra.put("limit_pay", "no_credit");
+        // 可选，商品标记，代金券或立减优惠功能的参数。
+        // extra.put("goods_tag", "your goods_tag");
+        return extra;
+    }
+
+    private Map<String, Object> cbAlipayExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 可选，支付类型。默认值为：1（商品购买）。
+        extra.put("payment_type", 1);
+
+        // 可选，分账列表。
+        List<Object> list = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("account", "2088866088886666"); // 接受分账资金的支付宝账户ID。
+        map.put("amount", 1);  // 分账的金额。
+        map.put("desc", "split_desc desc");  // 分账描述信息。
+        extra.put("split_fund_info", list);
+        return extra;
+    }
+
+    private Map<String, Object> cbWxExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 可选，指定支付方式，指定不能使用信用卡支付可设置为 no_credit 。
+        extra.put("limit_pay", "no_credit");
+
+        // 必填，商品列表
+        List<Object> goodsList = goodsListForCbWx();
+        extra.put("goods_list", goodsList);
+        return extra;
+    }
+
+    private Map<String, Object> cbWxPubExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 可选，指定支付方式，指定不能使用信用卡支付可设置为 no_credit 。
+        extra.put("limit_pay", "no_credit");
+        // // 必填，用户在商户 appid 下的唯一标识。
+        extra.put("open_id", "openidxxxxxxxxxxxx");
+        // 必填，商品列表
+        List<Object> goodsList = goodsListForCbWx();
+        extra.put("goods_list", goodsList);
+        return extra;
+    }
+
+    private Map<String, Object> cbWxPubQrExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 可选，指定支付方式，指定不能使用信用卡支付可设置为 no_credit
+        extra.put("limit_pay", "no_credit");
+        // 必填，商品 ID，1-32 位字符串。此 id 为二维码中包含的商品 ID，商户可自定义。
+        extra.put("product_id", "286801346868493272");
+        // 必填，商品列表
+        List<Object> goodsList = goodsListForCbWx();
+        extra.put("goods_list", goodsList);
+        return extra;
+    }
+
+    private Map<String, Object> cbWxPubScanExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必填，客户端软件中展示的条码值，扫码设备扫描获取。
+        extra.put("scan_code", "286801346868493272");
+        // 可选，指定支付方式，指定不能使用信用卡支付可设置为 no_credit 。
+        extra.put("limit_pay", "no_credit");
+        // 可选，终端号，要求不同终端此号码不一样，会显示在对账单中，如A01、SH008等。
+        extra.put("terminal_id", "SH008");
+        // 必填，商品列表
+        List<Object> goodsList = goodsListForCbWx();
+        extra.put("goods_list", goodsList);
+        return extra;
+    }
+
     private List<Object> goodsListForIsv() {
         List<Object> goodsList = new ArrayList<>();
         Map<String, Object> goods = new HashMap<>();
@@ -568,6 +685,30 @@ public class ChargeExample {
         goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
         goodsList.add(goods);
 
+        return goodsList;
+    }
+
+    private List<Object> goodsListForAlipayScan() {
+        List<Object> goodsList = new ArrayList<>();
+        Map<String, Object> goods = new HashMap<>();
+        goods.put("goods_id", "iphone"); // 商户定义商品编号（一般为商品条码）。
+        goods.put("goods_name", "iPhone"); // 商品名称
+        goods.put("quantity", 1); // 商品数量。
+        goods.put("price", "528800"); // 商品价格，单位为分。
+        goods.put("goods_category", "123456"); // 商品类目，可选。
+        goods.put("body", "苹果手机"); // 商品描述信息，可选。
+        goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
+        goodsList.add(goods);
+
+        return goodsList;
+    }
+
+    private List<Object> goodsListForCbWx() {
+        List<Object> goodsList = new ArrayList<>();
+        Map<String, Object> goods = new HashMap<>();
+        goods.put("goods_name", "iPhone"); // 商品名称
+        goods.put("goods_num", "1"); // 数量
+        goodsList.add(goods);
         return goodsList;
     }
 }
