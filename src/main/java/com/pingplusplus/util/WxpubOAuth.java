@@ -110,7 +110,7 @@ public class WxpubOAuth {
     /**
      * Http Get 请求
      * @param urlString
-     * @return
+     * @return responseString
      */
     private static String httpGet(String urlString) {
         String result = "";
@@ -136,7 +136,7 @@ public class WxpubOAuth {
      * 获取微信公众号 jsapi_ticket
      * @param appId
      * @param appSecret
-     * @return
+     * @return JsapiTicket
      * @throws UnsupportedEncodingException
      */
     public static String getJsapiTicket(String appId, String appSecret) throws UnsupportedEncodingException {
@@ -165,10 +165,10 @@ public class WxpubOAuth {
 
     /**
      * 生成微信公众号 js sdk signature
-     * @param charge
+     * @param charge charge 对象JSON字符串
      * @param jsapiTicket
      * @param url
-     * @return
+     * @return 签名
      */
     public static String getSignature(String charge, String jsapiTicket, String url) {
         if (null == charge || null == jsapiTicket || charge.isEmpty() || jsapiTicket.isEmpty())

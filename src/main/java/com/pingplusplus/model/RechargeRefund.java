@@ -12,7 +12,7 @@ public class RechargeRefund extends AppBasedResource {
      *
      * @param rechargeId
      * @param params
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -32,7 +32,7 @@ public class RechargeRefund extends AppBasedResource {
      *
      * @param rechargeId
      * @param refundId
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -52,7 +52,7 @@ public class RechargeRefund extends AppBasedResource {
      *
      * @param rechargeId
      * @param params
-     * @return
+     * @return RechargeRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -71,7 +71,7 @@ public class RechargeRefund extends AppBasedResource {
      * 查询 recharge_refund 列表
      *
      * @param rechargeId
-     * @return
+     * @return RechargeRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

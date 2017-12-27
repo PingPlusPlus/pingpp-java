@@ -192,7 +192,7 @@ public class RoyaltySettlement extends AccountAPIResource {
      * 创建 royalty_settlement
      *
      * @param params
-     * @return
+     * @return RoyaltySettlement
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -210,7 +210,7 @@ public class RoyaltySettlement extends AccountAPIResource {
      * 查询 royalty_settlement
      *
      * @param id
-     * @return
+     * @return RoyaltySettlement
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -228,7 +228,7 @@ public class RoyaltySettlement extends AccountAPIResource {
      * 查询 royalty_settlement 列表
      *
      * @param params
-     * @return
+     * @return RoyaltySettlement
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -247,7 +247,7 @@ public class RoyaltySettlement extends AccountAPIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return RoyaltySettlement
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

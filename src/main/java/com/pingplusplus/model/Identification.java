@@ -65,7 +65,7 @@ public class Identification extends APIResource {
      * 请求认证
      *
      * @param params
-     * @return
+     * @return Identification
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -83,7 +83,7 @@ public class Identification extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Identification
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

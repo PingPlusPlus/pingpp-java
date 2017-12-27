@@ -76,7 +76,7 @@ public class Channel extends SubAppBasedResource {
      *
      * @param subAppId
      * @param params
-     * @return
+     * @return Channel
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -95,7 +95,7 @@ public class Channel extends SubAppBasedResource {
      *
      * @param subAppId
      * @param channel
-     * @return
+     * @return Channel
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -115,7 +115,7 @@ public class Channel extends SubAppBasedResource {
      * @param subAppId
      * @param channel
      * @param params
-     * @return
+     * @return Channel
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -134,7 +134,7 @@ public class Channel extends SubAppBasedResource {
      *
      * @param subAppId
      * @param channel
-     * @return
+     * @return DeletedChannel
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

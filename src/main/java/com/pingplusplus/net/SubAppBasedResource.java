@@ -10,7 +10,7 @@ public abstract class SubAppBasedResource extends AppBasedResource {
     /**
      * @param clazz
      * @param subAppId
-     * @return
+     * @return singleClassURL
      * @throws InvalidRequestException
      */
     protected static String singleClassURL(Class<?> clazz, String subAppId) throws InvalidRequestException {
@@ -23,7 +23,7 @@ public abstract class SubAppBasedResource extends AppBasedResource {
     /**
      * @param clazz
      * @param subAppId
-     * @return
+     * @return classURL
      * @throws InvalidRequestException
      */
     protected static String classURL(Class<?> clazz, String subAppId) throws InvalidRequestException {
@@ -34,7 +34,7 @@ public abstract class SubAppBasedResource extends AppBasedResource {
      * @param clazz
      * @param id
      * @param subAppId
-     * @return
+     * @return instanceURL
      * @throws InvalidRequestException
      */
     protected static String instanceURL(Class<?> clazz, String subAppId, String id) throws InvalidRequestException {

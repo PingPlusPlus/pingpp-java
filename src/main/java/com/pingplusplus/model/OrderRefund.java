@@ -12,7 +12,7 @@ public class OrderRefund extends APIResource {
      *
      * @param order
      * @param params
-     * @return
+     * @return OrderRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -32,7 +32,7 @@ public class OrderRefund extends APIResource {
      *
      * @param order
      * @param refund
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -52,7 +52,7 @@ public class OrderRefund extends APIResource {
      *
      * @param order
      * @param params
-     * @return
+     * @return OrderRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -71,7 +71,7 @@ public class OrderRefund extends APIResource {
      * 查询 order_refund 列表
      *
      * @param order
-     * @return
+     * @return OrderRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

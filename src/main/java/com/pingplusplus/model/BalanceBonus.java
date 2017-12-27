@@ -147,7 +147,7 @@ public class BalanceBonus extends AppBasedResource {
      * 创建 balance_bonus
      *
      * @param params 请求参数
-     * @return
+     * @return BalanceBonus
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -165,7 +165,7 @@ public class BalanceBonus extends AppBasedResource {
      * 查询 balance_bonus
      *
      * @param id
-     * @return
+     * @return BalanceBonus
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -183,7 +183,7 @@ public class BalanceBonus extends AppBasedResource {
      * 查询 balance_bonus 列表
      *
      * @param params
-     * @return
+     * @return BalanceBonusCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

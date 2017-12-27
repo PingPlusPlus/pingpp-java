@@ -148,7 +148,7 @@ public class Coupon extends UserBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return Coupon
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -168,7 +168,7 @@ public class Coupon extends UserBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return Coupon
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -188,7 +188,7 @@ public class Coupon extends UserBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return CouponCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -208,7 +208,7 @@ public class Coupon extends UserBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return Coupon
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -228,7 +228,7 @@ public class Coupon extends UserBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return DeletedCoupon
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

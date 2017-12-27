@@ -113,7 +113,7 @@ public class SubApp extends AppBasedResource {
      * 创建 sub_app
      *
      * @param params
-     * @return
+     * @return SubApp
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -131,7 +131,7 @@ public class SubApp extends AppBasedResource {
      * 查询 sub_app
      *
      * @param id
-     * @return
+     * @return SubApp
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -149,7 +149,7 @@ public class SubApp extends AppBasedResource {
      * 查询 sub_app 列表
      *
      * @param params
-     * @return
+     * @return SubApp
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -168,7 +168,7 @@ public class SubApp extends AppBasedResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return SubApp
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -186,7 +186,7 @@ public class SubApp extends AppBasedResource {
      * 删除 sub_app
      *
      * @param id
-     * @return
+     * @return DeletedSubApp
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

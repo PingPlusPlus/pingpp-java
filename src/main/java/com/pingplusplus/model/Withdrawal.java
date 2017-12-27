@@ -220,7 +220,7 @@ public class Withdrawal extends AppBasedResource {
      * 创建 withdrawal
      *
      * @param params
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -238,7 +238,7 @@ public class Withdrawal extends AppBasedResource {
      * 查询 withdrawal
      *
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -256,7 +256,7 @@ public class Withdrawal extends AppBasedResource {
      * 查询 withdrawal 列表
      *
      * @param params
-     * @return
+     * @return WithdrawalCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -275,7 +275,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -293,7 +293,7 @@ public class Withdrawal extends AppBasedResource {
      * 取消 withdrawal
      *
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -313,7 +313,7 @@ public class Withdrawal extends AppBasedResource {
      * 确认 withdrawal
      *
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -334,7 +334,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -357,7 +357,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -378,7 +378,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return WithdrawalCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -403,7 +403,7 @@ public class Withdrawal extends AppBasedResource {
      * @param userId
      * @param id
      * @param params
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -424,7 +424,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -446,7 +446,7 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return Withdrawal
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

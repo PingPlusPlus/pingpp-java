@@ -173,7 +173,7 @@ public class Customs extends APIResource {
      * 创建 customs
      *
      * @param params
-     * @return
+     * @return Customs
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -192,7 +192,7 @@ public class Customs extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Customs
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -210,7 +210,7 @@ public class Customs extends APIResource {
      * 查询 customs
      *
      * @param id
-     * @return
+     * @return Customs
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -229,7 +229,7 @@ public class Customs extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return Customs
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -247,7 +247,7 @@ public class Customs extends APIResource {
      * 查询 customs 列表
      *
      * @param params
-     * @return
+     * @return CustomsCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -266,7 +266,7 @@ public class Customs extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return CustomsCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

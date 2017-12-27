@@ -183,7 +183,7 @@ public class Royalty extends AccountAPIResource {
      * 查询 royalty
      *
      * @param id
-     * @return
+     * @return Royalty
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -201,7 +201,7 @@ public class Royalty extends AccountAPIResource {
      * 查询 royalty 列表
      *
      * @param params
-     * @return
+     * @return RoyaltyCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -219,7 +219,7 @@ public class Royalty extends AccountAPIResource {
      * 批量更新 royalty
      *
      * @param params
-     * @return
+     * @return RoyaltyCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

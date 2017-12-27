@@ -127,7 +127,7 @@ public class BatchRefund extends APIResource {
 
     /**
      * @param clazz
-     * @return
+     * @return String
      */
     protected static String classURL(Class<?> clazz) {
         return apiBasePrefixedURL("/v1/batch_refunds");
@@ -137,7 +137,7 @@ public class BatchRefund extends APIResource {
      * 创建 batch_refund
      *
      * @param params
-     * @return
+     * @return BatchRefund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -156,7 +156,7 @@ public class BatchRefund extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return BatchRefund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -174,7 +174,7 @@ public class BatchRefund extends APIResource {
      * 查询 batch_refund
      *
      * @param id
-     * @return
+     * @return BatchRefund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -193,7 +193,7 @@ public class BatchRefund extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return BatchRefund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -211,7 +211,7 @@ public class BatchRefund extends APIResource {
      * 查询 batch_refund 列表
      *
      * @param params
-     * @return
+     * @return BatchRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -230,7 +230,7 @@ public class BatchRefund extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return BatchRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

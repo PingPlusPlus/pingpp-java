@@ -173,7 +173,7 @@ public class BatchTransfer extends APIResource {
 
     /**
      * @param clazz
-     * @return
+     * @return String
      */
     protected static String classURL(Class<?> clazz) {
         return apiBasePrefixedURL("/v1/batch_transfers");
@@ -183,7 +183,7 @@ public class BatchTransfer extends APIResource {
      * 创建 batch_transfer
      *
      * @param params
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -202,7 +202,7 @@ public class BatchTransfer extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -220,7 +220,7 @@ public class BatchTransfer extends APIResource {
      * 查询 batch_transfer
      *
      * @param id
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -239,7 +239,7 @@ public class BatchTransfer extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -257,7 +257,7 @@ public class BatchTransfer extends APIResource {
      * 查询 batch_transfer 列表
      *
      * @param params
-     * @return
+     * @return BatchTransferCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -276,7 +276,7 @@ public class BatchTransfer extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return BatchTransferCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -313,7 +313,7 @@ public class BatchTransfer extends APIResource {
      * @param id
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -350,7 +350,7 @@ public class BatchTransfer extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ Apikey
-     * @return
+     * @return BatchTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

@@ -67,7 +67,7 @@ public class SettleAccount extends UserBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return SettleAccount
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -87,7 +87,7 @@ public class SettleAccount extends UserBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return SettleAccount
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -107,7 +107,7 @@ public class SettleAccount extends UserBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return SettleAccountCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -127,7 +127,7 @@ public class SettleAccount extends UserBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return DeletedSettleAccount
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

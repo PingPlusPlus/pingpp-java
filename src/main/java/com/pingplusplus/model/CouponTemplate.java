@@ -165,7 +165,7 @@ public class CouponTemplate extends AppBasedResource {
      * 创建 coupon_template
      *
      * @param params
-     * @return
+     * @return CouponTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -183,7 +183,7 @@ public class CouponTemplate extends AppBasedResource {
      * 查询 coupon_template
      *
      * @param id
-     * @return
+     * @return CouponTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -201,7 +201,7 @@ public class CouponTemplate extends AppBasedResource {
      * 查询 coupon_template 列表
      *
      * @param params
-     * @return
+     * @return CouponTemplateCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -219,7 +219,7 @@ public class CouponTemplate extends AppBasedResource {
      * 更新 coupon_template
      *
      * @param params
-     * @return
+     * @return CouponTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -237,7 +237,7 @@ public class CouponTemplate extends AppBasedResource {
      * 删除 coupon_template
      *
      * @param id
-     * @return
+     * @return DeletedCouponTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -260,7 +260,7 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return CouponCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -279,7 +279,7 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return CouponCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

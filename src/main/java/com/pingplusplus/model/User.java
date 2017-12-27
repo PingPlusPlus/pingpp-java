@@ -193,7 +193,7 @@ public class User extends AppBasedResource {
      * 创建 user
      *
      * @param params
-     * @return
+     * @return User
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -211,7 +211,7 @@ public class User extends AppBasedResource {
      * 查询 user
      *
      * @param id
-     * @return
+     * @return User
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -230,7 +230,7 @@ public class User extends AppBasedResource {
      * 查询 user 列表
      *
      * @param params
-     * @return
+     * @return UserCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -249,7 +249,7 @@ public class User extends AppBasedResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return User
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -269,7 +269,7 @@ public class User extends AppBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return BalanceTransaction
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

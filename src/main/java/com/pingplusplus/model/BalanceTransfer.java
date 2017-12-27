@@ -147,7 +147,7 @@ public class BalanceTransfer extends AppBasedResource {
      * 创建 balance_transfer
      *
      * @param params
-     * @return
+     * @return BalanceTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -165,7 +165,7 @@ public class BalanceTransfer extends AppBasedResource {
      * 查询 balance_transfer
      *
      * @param id
-     * @return
+     * @return BalanceTransfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -183,7 +183,7 @@ public class BalanceTransfer extends AppBasedResource {
      * 查询 balance_transfer 列表
      *
      * @param params
-     * @return
+     * @return BalanceTransferCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

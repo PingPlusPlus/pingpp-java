@@ -35,7 +35,7 @@ public class PingppResponse {
 
     /**
      * get http responseCode
-     * @return
+     * @return responseCode
      */
     public int getResponseCode() {
         return responseCode;
@@ -51,7 +51,7 @@ public class PingppResponse {
 
     /**
      *
-     * @return
+     * @return responseBody
      */
     public String getResponseBody() {
         return responseBody;
@@ -67,7 +67,7 @@ public class PingppResponse {
 
     /**
      *
-     * @return
+     * @return responseHeaders
      */
     public Map<String, List<String>> getResponseHeaders() {
         return responseHeaders;

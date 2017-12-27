@@ -261,7 +261,7 @@ public class Charge extends APIResource {
      * 创建 charge
      *
      * @param params
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -280,7 +280,7 @@ public class Charge extends APIResource {
      *
      * @param params
      * @param apiKey Ping++ ApiKey
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -298,7 +298,7 @@ public class Charge extends APIResource {
      * 查询 charge
      *
      * @param id
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -316,7 +316,7 @@ public class Charge extends APIResource {
      * 查询 charge
      *
      * @param id
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -335,7 +335,7 @@ public class Charge extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -354,7 +354,7 @@ public class Charge extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -372,7 +372,7 @@ public class Charge extends APIResource {
      * 查询 charge 列表
      *
      * @param params
-     * @return
+     * @return ChargeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -390,7 +390,7 @@ public class Charge extends APIResource {
      * 查询 charge 列表
      *
      * @param params
-     * @return
+     * @return ChargeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -415,7 +415,7 @@ public class Charge extends APIResource {
      * @param id
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -438,7 +438,7 @@ public class Charge extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -456,7 +456,7 @@ public class Charge extends APIResource {
      * 撤销 charge
      *
      * @param id
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -475,7 +475,7 @@ public class Charge extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

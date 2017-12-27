@@ -84,7 +84,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param clazz
-     * @return
+     * @return className
      */
     protected static String className(Class<?> clazz) {
         String className = clazz.getSimpleName().toLowerCase().replace("$", " ");
@@ -104,7 +104,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param clazz
-     * @return
+     * @return singleClassURL
      */
     protected static String singleClassURL(Class<?> clazz) throws InvalidRequestException {
         String className = null;
@@ -131,7 +131,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param clazz
-     * @return
+     * @return classURL
      */
     protected static String classURL(Class<?> clazz) throws InvalidRequestException {
         return String.format("%ss", singleClassURL(clazz));
@@ -140,7 +140,7 @@ public abstract class APIResource extends PingppObject {
     /**
      * @param clazz
      * @param id
-     * @return
+     * @return instanceURL
      * @throws InvalidRequestException
      */
     protected static String instanceURL(Class<?> clazz, String id) throws InvalidRequestException {
@@ -157,7 +157,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param str
-     * @return
+     * @return urlEncodedString
      * @throws UnsupportedEncodingException
      */
     protected static String urlEncode(String str) throws UnsupportedEncodingException {
@@ -171,7 +171,7 @@ public abstract class APIResource extends PingppObject {
     /**
      * @param k
      * @param v
-     * @return
+     * @return urlEncodedString
      * @throws UnsupportedEncodingException
      */
     private static String urlEncodePair(String k, String v)
@@ -181,7 +181,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param apiKey
-     * @return
+     * @return headers
      */
     static Map<String, String> getHeaders(String apiKey) {
         Map<String, String> headers = new HashMap<String, String>();
@@ -217,7 +217,7 @@ public abstract class APIResource extends PingppObject {
     /**
      * @param url
      * @param apiKey
-     * @return
+     * @return HttpURLConnection
      * @throws IOException
      */
     private static java.net.HttpURLConnection createPingppConnection(
@@ -250,7 +250,7 @@ public abstract class APIResource extends PingppObject {
     /**
      * @param url
      * @param query
-     * @return
+     * @return formatedURL
      */
     private static String formatURL(String url, String query) {
         if (query == null || query.isEmpty()) {
@@ -266,7 +266,7 @@ public abstract class APIResource extends PingppObject {
      * @param url
      * @param query
      * @param apiKey
-     * @return
+     * @return HttpURLConnection
      * @throws IOException
      * @throws APIConnectionException
      */
@@ -311,7 +311,7 @@ public abstract class APIResource extends PingppObject {
      * @param url
      * @param query
      * @param apiKey
-     * @return
+     * @return HttpURLConnection
      * @throws IOException
      * @throws APIConnectionException
      */
@@ -352,7 +352,7 @@ public abstract class APIResource extends PingppObject {
      * @param url
      * @param query
      * @param apiKey
-     * @return
+     * @return HttpURLConnection
      * @throws IOException
      * @throws APIConnectionException
      */
@@ -391,7 +391,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param params
-     * @return
+     * @return queryString
      * @throws UnsupportedEncodingException
      * @throws InvalidRequestException
      */
@@ -411,7 +411,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param params
-     * @return
+     * @return JSONString
      */
     private static String createJSONString(Map<String, Object> params) {
         Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
@@ -420,7 +420,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param params
-     * @return
+     * @return flattenParams
      * @throws InvalidRequestException
      */
     private static Map<String, String> flattenParams(Map<String, Object> params)
@@ -501,7 +501,7 @@ public abstract class APIResource extends PingppObject {
 
     /**
      * @param responseStream
-     * @return
+     * @return responseString
      * @throws IOException
      */
     private static String getResponseBody(InputStream responseStream)
@@ -520,7 +520,7 @@ public abstract class APIResource extends PingppObject {
      * @param url
      * @param query
      * @param apiKey
-     * @return
+     * @return PingppResponse
      * @throws APIConnectionException
      */
     private static PingppResponse makeURLConnectionRequest(
@@ -578,7 +578,7 @@ public abstract class APIResource extends PingppObject {
      * @param params
      * @param clazz
      * @param <T>
-     * @return
+     * @return <T>
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -597,7 +597,7 @@ public abstract class APIResource extends PingppObject {
      * @param params
      * @param clazz
      * @param <T>
-     * @return
+     * @return <T>
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

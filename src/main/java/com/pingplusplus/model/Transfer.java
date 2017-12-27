@@ -190,7 +190,7 @@ public class Transfer extends APIResource {
     /**
      * 创建 Transfer
      * @param params
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -208,7 +208,7 @@ public class Transfer extends APIResource {
      *
      * @param apiKey  Ping++ APiKey
      * @param params
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -225,7 +225,7 @@ public class Transfer extends APIResource {
     /**
      * 查询 Transfer
      * @param id
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -243,7 +243,7 @@ public class Transfer extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -261,7 +261,7 @@ public class Transfer extends APIResource {
      * 查询 Transfer
      * @param id
      * @param params
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -280,7 +280,7 @@ public class Transfer extends APIResource {
      * @param id
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -315,7 +315,7 @@ public class Transfer extends APIResource {
      *
      * @param apiKey Ping++ APiKey
      * @param params 分页参数等
-     * @return
+     * @return TransferCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -359,7 +359,7 @@ public class Transfer extends APIResource {
      * @param id transfer id
      * @param apiKey Ping++ ApiKey
      * @param params 更新参数
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -396,7 +396,7 @@ public class Transfer extends APIResource {
      *
      * @param id transfer id
      * @param apiKey Ping++ ApiKey
-     * @return
+     * @return Transfer
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

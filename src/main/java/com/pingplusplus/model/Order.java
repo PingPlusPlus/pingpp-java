@@ -301,7 +301,7 @@ public class Order extends APIResource {
      * 创建 order
      *
      * @param params
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -319,7 +319,7 @@ public class Order extends APIResource {
      * 查询 order
      *
      * @param id
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -337,7 +337,7 @@ public class Order extends APIResource {
      * 查询 order 列表
      *
      * @param params
-     * @return
+     * @return OrderCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -355,7 +355,7 @@ public class Order extends APIResource {
      * 更新 order
      *
      * @param params
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -372,7 +372,7 @@ public class Order extends APIResource {
     /**
      * 取消 order
      *
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -392,7 +392,7 @@ public class Order extends APIResource {
      * 取消 order
      *
      * @param id
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -412,7 +412,7 @@ public class Order extends APIResource {
      * 支付 order
      *
      * @param params
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -432,7 +432,7 @@ public class Order extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Order
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -452,7 +452,7 @@ public class Order extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return ChargeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -472,7 +472,7 @@ public class Order extends APIResource {
      *
      * @param orderId
      * @param chargeId
-     * @return
+     * @return Charge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

@@ -87,7 +87,7 @@ public class Event extends APIResource {
      * 查询 Event
      *
      * @param id
-     * @return
+     * @return Event
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -105,7 +105,7 @@ public class Event extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return Event
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -124,7 +124,7 @@ public class Event extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return Event
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -143,7 +143,7 @@ public class Event extends APIResource {
      * @param id
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Event
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

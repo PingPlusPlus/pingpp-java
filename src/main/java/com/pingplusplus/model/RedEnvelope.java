@@ -211,7 +211,7 @@ public class RedEnvelope extends APIResource {
      * 创建 RedEnvelope
      *
      * @param params
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -229,7 +229,7 @@ public class RedEnvelope extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -247,7 +247,7 @@ public class RedEnvelope extends APIResource {
      * 查询 RedEnvelope
      *
      * @param id
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -265,7 +265,7 @@ public class RedEnvelope extends APIResource {
      *
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -284,7 +284,7 @@ public class RedEnvelope extends APIResource {
      *
      * @param id
      * @param params
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -303,7 +303,7 @@ public class RedEnvelope extends APIResource {
      * @param id
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return RedEnvelope
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -321,7 +321,7 @@ public class RedEnvelope extends APIResource {
      * 查询 RedEnvelope
      *
      * @param params
-     * @return
+     * @return RedEnvelopeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -339,7 +339,7 @@ public class RedEnvelope extends APIResource {
      *
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return RedEnvelopeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

@@ -165,7 +165,7 @@ public class Recharge extends AppBasedResource {
      * 创建 recharge
      *
      * @param params
-     * @return
+     * @return Recharge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -183,7 +183,7 @@ public class Recharge extends AppBasedResource {
      * 查询 recharge
      *
      * @param id
-     * @return
+     * @return Recharge
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -201,7 +201,7 @@ public class Recharge extends AppBasedResource {
      * 查询 recharge 列表
      *
      * @param params
-     * @return
+     * @return RechargeCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

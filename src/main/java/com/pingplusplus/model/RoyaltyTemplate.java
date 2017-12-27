@@ -84,7 +84,7 @@ public class RoyaltyTemplate extends AccountAPIResource {
      * 创建 royalty_template
      *
      * @param params
-     * @return
+     * @return RoyaltyTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -102,7 +102,7 @@ public class RoyaltyTemplate extends AccountAPIResource {
      * 查询 royalty_template
      *
      * @param id
-     * @return
+     * @return RoyaltyTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -120,7 +120,7 @@ public class RoyaltyTemplate extends AccountAPIResource {
      * 查询 royalty_template 列表
      *
      * @param params
-     * @return
+     * @return RoyaltyTemplateCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -138,7 +138,7 @@ public class RoyaltyTemplate extends AccountAPIResource {
      * 删除 royalty_template
      *
      * @param id
-     * @return
+     * @return DeleteRoyaltyTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -156,7 +156,7 @@ public class RoyaltyTemplate extends AccountAPIResource {
      *  更新 royalty_template
      *
      * @param id
-     * @return
+     * @return RoyaltyTemplate
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

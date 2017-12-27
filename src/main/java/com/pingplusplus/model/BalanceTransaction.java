@@ -111,7 +111,7 @@ public class BalanceTransaction extends AppBasedResource {
      * 查询 balance_transaction
      *
      * @param id
-     * @return
+     * @return BalanceTransaction
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -129,7 +129,7 @@ public class BalanceTransaction extends AppBasedResource {
      * 查询 balance_transaction 列表
      *
      * @param params
-     * @return
+     * @return BalanceTransactionCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -148,7 +148,7 @@ public class BalanceTransaction extends AppBasedResource {
      *
      * @param userId
      * @param id
-     * @return
+     * @return BalanceTransaction
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -168,7 +168,7 @@ public class BalanceTransaction extends AppBasedResource {
      *
      * @param userId
      * @param params
-     * @return
+     * @return BalanceTransactionCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

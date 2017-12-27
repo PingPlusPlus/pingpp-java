@@ -171,7 +171,7 @@ public class Refund extends APIResource {
      *
      * @param charge
      * @param params
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -191,7 +191,7 @@ public class Refund extends APIResource {
      * @param charge
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -211,7 +211,7 @@ public class Refund extends APIResource {
      *
      * @param charge
      * @param id
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -231,7 +231,7 @@ public class Refund extends APIResource {
      * @param charge
      * @param id
      * @param apiKey  Ping++ ApiKey
-     * @return
+     * @return Refund
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -251,7 +251,7 @@ public class Refund extends APIResource {
      *
      * @param charge
      * @param params
-     * @return
+     * @return ChargeRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -271,7 +271,7 @@ public class Refund extends APIResource {
      * @param charge
      * @param apiKey  Ping++ ApiKey
      * @param params
-     * @return
+     * @return ChargeRefundCollection
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

@@ -10,7 +10,7 @@ public abstract class UserBasedResource extends AppBasedResource {
     /**
      * @param clazz
      * @param userId
-     * @return
+     * @return singleClassURL
      * @throws InvalidRequestException
      */
     protected static String singleClassURL(Class<?> clazz, String userId) throws InvalidRequestException {
@@ -23,7 +23,7 @@ public abstract class UserBasedResource extends AppBasedResource {
     /**
      * @param clazz
      * @param userId
-     * @return
+     * @return classURL
      * @throws InvalidRequestException
      */
     protected static String classURL(Class<?> clazz, String userId) throws InvalidRequestException {
@@ -34,7 +34,7 @@ public abstract class UserBasedResource extends AppBasedResource {
      * @param clazz
      * @param id
      * @param userId
-     * @return
+     * @return instanceURL
      * @throws InvalidRequestException
      */
     protected static String instanceURL(Class<?> clazz, String userId, String id) throws InvalidRequestException {

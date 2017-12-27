@@ -72,7 +72,7 @@ public abstract class AppBasedResource extends APIResource {
 
     /**
      * @param clazz
-     * @return
+     * @return singleClassURL
      * @throws InvalidRequestException
      */
     protected static String singleClassURL(Class<?> clazz) throws InvalidRequestException {
@@ -84,7 +84,7 @@ public abstract class AppBasedResource extends APIResource {
 
     /**
      * @param clazz
-     * @return
+     * @return classURL
      * @throws InvalidRequestException
      */
     protected static String classURL(Class<?> clazz) throws InvalidRequestException {
@@ -94,7 +94,7 @@ public abstract class AppBasedResource extends APIResource {
     /**
      * @param clazz
      * @param id
-     * @return
+     * @return instanceURL
      * @throws InvalidRequestException
      */
     protected static String instanceURL(Class<?> clazz, String id) throws InvalidRequestException {
@@ -107,7 +107,7 @@ public abstract class AppBasedResource extends APIResource {
 
     /**
      * @param objectName
-     * @return
+     * @return customURL
      * @throws InvalidRequestException
      */
     protected static String customURL(String objectName) throws InvalidRequestException {
