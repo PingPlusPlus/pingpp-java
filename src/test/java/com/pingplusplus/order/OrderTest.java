@@ -53,7 +53,6 @@ public class OrderTest extends PingppAccountTestBase {
         Map<String, Object> params = new HashMap<>();
         params.put("channel", "alipay_wap");
         params.put("charge_amount", 100);
-        params.put("balance_amount", 0);
         Map<String, Object> extra = new HashMap<>(); // extra: 根据各个渠道传入相应的参数
         extra.put("success_url", "http://www.pingxx.com");
         params.put("extra", extra);

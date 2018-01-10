@@ -7,18 +7,6 @@ import com.pingplusplus.net.APIResource;
  * Created by sunkai on 15/5/11.
  */
 public class Webhooks {
-
-    /**
-     * 解析 event 中的 object
-     *
-     * @param eventStr
-     * @return Object
-     */
-    @Deprecated
-    public static Object parseEvnet(String eventStr) {
-        return getObject(eventStr);
-    }
-
     /**
      * 解析 event 中的 object
      *

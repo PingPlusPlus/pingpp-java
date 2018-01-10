@@ -352,11 +352,4 @@ public class RedEnvelope extends APIResource {
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(RedEnvelope.class), apiKey, params, RedEnvelopeCollection.class);
     }
-
-    @Deprecated
-    public static RedEnvelopeCollection all(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(params);
-    }
 }

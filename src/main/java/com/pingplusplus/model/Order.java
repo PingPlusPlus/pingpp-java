@@ -36,7 +36,6 @@ public class Order extends APIResource {
     Map<String, Object> metadata;
     ChargeEssentials chargeEssentials;
     Long availableBalance;
-    String userFrom;
     String receiptApp;
     String serviceApp;
     List<String> availableMethods;
@@ -255,14 +254,6 @@ public class Order extends APIResource {
 
     public void setAvailableBalance(Long availableBalance) {
         this.availableBalance = availableBalance;
-    }
-
-    public String getUserFrom() {
-        return userFrom;
-    }
-
-    public void setUserFrom(String userFrom) {
-        this.userFrom = userFrom;
     }
 
     public String getReceiptApp() {

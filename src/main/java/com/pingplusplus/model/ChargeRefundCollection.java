@@ -22,13 +22,6 @@ public class ChargeRefundCollection extends PingppCollectionAPIResource<Refund> 
         return request(RequestMethod.GET, url, apiKey, params, ChargeRefundCollection.class);
     }
 
-    @Deprecated
-    public ChargeRefundCollection all(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(params);
-    }
-
     public Refund retrieve(String id)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {

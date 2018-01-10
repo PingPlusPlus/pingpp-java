@@ -326,43 +326,4 @@ public class BatchTransfer extends APIResource {
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.PUT, instanceURL(BatchTransfer.class, id), apiKey, params, BatchTransfer.class);
     }
-
-    /**
-     * 撤销/取消 BatchTransfer
-     * @param id batch_transfer ID
-     * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     */
-    public static BatchTransfer cancel(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("status", "canceled");
-        return update(id, params);
-    }
-
-    /**
-     * 撤销/取消 BatchTransfer
-     *
-     * @param id
-     * @param apiKey  Ping++ Apikey
-     * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
-     */
-    public static BatchTransfer cancel(String id, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("status", "canceled");
-        return update(id, apiKey, params);
-    }
 }

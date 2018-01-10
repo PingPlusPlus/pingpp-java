@@ -142,47 +142,4 @@ public class BalanceTransaction extends AppBasedResource {
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.GET, classURL(BalanceTransaction.class), params, BalanceTransactionCollection.class);
     }
-
-    /**
-     * 查询 balance_transaction
-     *
-     * @param userId
-     * @param id
-     * @return BalanceTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
-     */
-    @Deprecated
-    public static BalanceTransaction retrieve(String userId, String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceTransaction.class, id), null, BalanceTransaction.class);
-    }
-
-    /**
-     * 查询 balance_transaction 列表
-     *
-     * @param userId
-     * @param params
-     * @return BalanceTransactionCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
-     */
-    @Deprecated
-    public static BalanceTransactionCollection list(String userId, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        if (params != null) {
-            params.put("user", userId);
-        }
-        return request(APIResource.RequestMethod.GET, classURL(BalanceTransaction.class), params, BalanceTransactionCollection.class);
-    }
 }

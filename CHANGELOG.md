@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 2.3.4 (2018-01-10)
+#### 修改
+- 移除已废弃接口
+- 移除 transfer、batch_transfer 取消接口
+- 更新示例
+- 移除 order user_from 字段
+- settle_account 字段更新
+
 ## 2.3.3 (2017-12-27)
 #### 修正
 - 修正 javadoc

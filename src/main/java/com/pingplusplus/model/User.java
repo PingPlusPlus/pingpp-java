@@ -264,27 +264,6 @@ public class User extends AppBasedResource {
         return request(APIResource.RequestMethod.PUT, instanceURL(User.class, id), params, User.class);
     }
 
-    /**
-     * 创建 balance transfer
-     *
-     * @param userId
-     * @param params
-     * @return BalanceTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
-     */
-    @Deprecated
-    public static BalanceTransaction createBalanceTranfer(String userId, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        User.checkUserId(userId);
-        return request(APIResource.RequestMethod.POST, String.format("%s/transfers", instanceURL(User.class, userId)), params, BalanceTransaction.class);
-    }
-
     public static void checkUserId(String userId) throws InvalidRequestException {
         if (userId == null || userId.trim().length() == 0) {
             throw new InvalidRequestException("ID should not be null or empty.", "user_id", null);

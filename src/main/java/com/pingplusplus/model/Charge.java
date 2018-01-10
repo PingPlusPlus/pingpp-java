@@ -488,12 +488,4 @@ public class Charge extends APIResource {
             APIException, ChannelException, RateLimitException {
         return reverse(id, apiKey, null);
     }
-
-    @Deprecated
-    public static ChargeCollection all(Map<String, Object> params)
-            throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
-        return list(params);
-    }
-
 }
