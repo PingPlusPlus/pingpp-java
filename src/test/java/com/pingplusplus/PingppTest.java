@@ -122,7 +122,6 @@ public class PingppTest {
             Integer limit = 3;
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("per_page", limit);
-            params.put("sign", false);
             BatchRefundCollection objs = BatchRefund.list(params);
 
             assertEquals("object should be list", "list", objs.getObject());
