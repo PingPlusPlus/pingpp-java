@@ -11,7 +11,7 @@ public class BatchTransfer extends APIResource {
     String id;
     String object;
     String app;
-    Integer amount;
+    Long amount;
     String batchNo;
     String channel;
     String currency;
@@ -51,11 +51,11 @@ public class BatchTransfer extends APIResource {
         this.app = app;
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

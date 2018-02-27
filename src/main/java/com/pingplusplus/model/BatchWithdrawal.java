@@ -12,10 +12,10 @@ public class BatchWithdrawal extends AppBasedResource {
     String app;
     Long created;
     Boolean livemode;
-    Integer amount;
-    Integer amountSucceeded;
-    Integer amountFailed;
-    Integer amountCanceled;
+    Long amount;
+    Long amountSucceeded;
+    Long amountFailed;
+    Long amountCanceled;
     Integer count;
     Integer countSucceeded;
     Integer countFailed;
@@ -69,35 +69,35 @@ public class BatchWithdrawal extends AppBasedResource {
         this.livemode = livemode;
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
-    public Integer getAmountSucceeded() {
+    public Long getAmountSucceeded() {
         return amountSucceeded;
     }
 
-    public void setAmountSucceeded(Integer amountSucceeded) {
+    public void setAmountSucceeded(Long amountSucceeded) {
         this.amountSucceeded = amountSucceeded;
     }
 
-    public Integer getAmountFailed() {
+    public Long getAmountFailed() {
         return amountFailed;
     }
 
-    public void setAmountFailed(Integer amountFailed) {
+    public void setAmountFailed(Long amountFailed) {
         this.amountFailed = amountFailed;
     }
 
-    public Integer getAmountCanceled() {
+    public Long getAmountCanceled() {
         return amountCanceled;
     }
 
-    public void setAmountCanceled(Integer amountCanceled) {
+    public void setAmountCanceled(Long amountCanceled) {
         this.amountCanceled = amountCanceled;
     }
 

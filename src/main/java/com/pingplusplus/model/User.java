@@ -12,7 +12,7 @@ public class User extends AppBasedResource {
     String object;
     String app;
     String address;
-    Integer availableBalance;
+    Long availableBalance;
     Integer availableCoupons;
     String avatar;
     Long created;
@@ -27,7 +27,7 @@ public class User extends AppBasedResource {
     String relatedApp;
     List<SettleAccount> settleAccounts;
     String type;
-    Integer withdrawableBalance;
+    Long withdrawableBalance;
 
     public String getId() {
         return id;
@@ -77,11 +77,11 @@ public class User extends AppBasedResource {
         this.avatar = avatar;
     }
 
-    public Integer getAvailableBalance() {
+    public Long getAvailableBalance() {
         return availableBalance;
     }
 
-    public void setAvailableBalance(Integer availableBalance) {
+    public void setAvailableBalance(Long availableBalance) {
         this.availableBalance = availableBalance;
     }
 
@@ -157,11 +157,11 @@ public class User extends AppBasedResource {
         this.metadata = metadata;
     }
 
-    public Integer getWithdrawableBalance() {
+    public Long getWithdrawableBalance() {
         return withdrawableBalance;
     }
 
-    public void setWithdrawableBalance(Integer withdrawableBalance) {
+    public void setWithdrawableBalance(Long withdrawableBalance) {
         this.withdrawableBalance = withdrawableBalance;
     }
 
