@@ -1,6 +1,6 @@
 package com.pingplusplus.recharge;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.*;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RechargeTest extends PingppAccountTestBase {
+public class RechargeTest extends PingppTestBase {
     /**
      * 创建 recharge
      */

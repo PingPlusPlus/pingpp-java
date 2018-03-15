@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 2.3.6 (2018-03-15)
+#### 新增
+- BalanceSettlement 接口
+- CardBin 接口
+
 ## 2.3.5 (2018-02-27)
 #### 修正
 - 部分对象字段从 Integer 改成 Long

@@ -1,7 +1,7 @@
 package com.pingplusplus.order;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.DeleteRoyaltyTemplate;
 import com.pingplusplus.model.RoyaltyTemplate;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RoyaltyTemplateTest extends PingppAccountTestBase {
+public class RoyaltyTemplateTest extends PingppTestBase {
     /**
      * 创建 royalty_template
      */
@@ -24,7 +24,7 @@ public class RoyaltyTemplateTest extends PingppAccountTestBase {
             APIException, ChannelException, InvalidRequestException,
             APIConnectionException, AuthenticationException {
         Map<String, Object> params = new HashMap<>();
-        params.put("app", PingppAccountTestData.getAppID()); // App ID, 必传
+        params.put("app", PingppTestData.getAppID()); // App ID, 必传
         params.put("name", "royalty_templates name"); // 模板名称，允许中英文等常用字符, 可选
 
         Map<String, Object> rule = new HashMap<>();

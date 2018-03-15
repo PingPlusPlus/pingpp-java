@@ -1,6 +1,6 @@
 package com.pingplusplus.coupon;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Coupon;
 import com.pingplusplus.model.CouponCollection;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class CouponTest extends PingppAccountTestBase {
+public class CouponTest extends PingppTestBase {
     /**
      * 创建单个优惠券 Coupon
      */

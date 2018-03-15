@@ -1,6 +1,6 @@
 package com.pingplusplus.settle_account;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.DeletedSettleAccount;
 import com.pingplusplus.model.SettleAccount;
@@ -13,7 +13,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class SettleAccountTest extends PingppAccountTestBase {
+public class SettleAccountTest extends PingppTestBase {
     /**
      * 创建结算账户 SettleAccount
      */

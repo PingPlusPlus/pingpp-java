@@ -1,6 +1,6 @@
 package com.pingplusplus.sub_app;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Channel;
 import com.pingplusplus.model.DeletedChannel;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class SubAppChannelTest extends PingppAccountTestBase {
+public class SubAppChannelTest extends PingppTestBase {
     /**
      * 配置子商户 app 渠道参数
      */

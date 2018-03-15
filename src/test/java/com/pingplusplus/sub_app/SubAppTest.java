@@ -1,7 +1,7 @@
 package com.pingplusplus.sub_app;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.DeletedSubApp;
 import com.pingplusplus.model.SubApp;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class SubAppTest extends PingppAccountTestBase {
+public class SubAppTest extends PingppTestBase {
     /**
      * 创建子商户 app
      */
@@ -27,7 +27,7 @@ public class SubAppTest extends PingppAccountTestBase {
         Map<String, Object> params = new HashMap<>();
         params.put("user", userId);
         params.put("display_name", displayName);
-        params.put("parent_app", PingppAccountTestData.getAppID()); //父商户应用 ID，必须为平台或者平台下其他的子商户，默认值为平台
+        params.put("parent_app", PingppTestData.getAppID()); //父商户应用 ID，必须为平台或者平台下其他的子商户，默认值为平台
 
         // 创建子商户 app 方法
         // 参数: params

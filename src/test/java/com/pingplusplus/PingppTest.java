@@ -29,6 +29,10 @@ public class PingppTest {
         assertEquals("apiKey should be set", "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC", Pingpp.apiKey);
     }
 
+    @Test public void testVerifyVersions() {
+        assertEquals("Pingpp.VERSION should match", "2.3.6", Pingpp.VERSION);
+    }
+
     @Test public void testCreateCharge() {
         String appId = PingppTestData.getAppID();
 

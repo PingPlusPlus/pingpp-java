@@ -8,13 +8,13 @@ import org.junit.BeforeClass;
  *
  * @author Afon, @date 16-12-16 上午10:33
  */
-public class PingppAccountTestBase {
+public class PingppTestBase {
 
     @BeforeClass public static void initApiKey() {
-        Pingpp.overrideApiBase(PingppAccountTestData.getApiBase());
-        Pingpp.apiKey = PingppAccountTestData.getApiKey();
-        Pingpp.appId = PingppAccountTestData.getAppID();
-        Pingpp.privateKey = PingppAccountTestData.getPKCS8PrivateKey();
+        Pingpp.overrideApiBase(PingppTestData.getApiBase());
+        Pingpp.apiKey = PingppTestData.getApiKey();
+        Pingpp.appId = PingppTestData.getAppID();
+        Pingpp.privateKey = PingppTestData.getPKCS8PrivateKey();
 
         Pingpp.DEBUG = true;
     }

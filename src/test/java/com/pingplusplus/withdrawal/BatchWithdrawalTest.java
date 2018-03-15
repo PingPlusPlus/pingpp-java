@@ -1,7 +1,7 @@
 package com.pingplusplus.withdrawal;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.BatchWithdrawal;
 import com.pingplusplus.model.BatchWithdrawalCollection;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class BatchWithdrawalTest extends PingppAccountTestBase {
+public class BatchWithdrawalTest extends PingppTestBase {
     /**
      * 批量提现确认
      */
@@ -31,7 +31,7 @@ public class BatchWithdrawalTest extends PingppAccountTestBase {
 
         assertEquals("object should be batch_withdrawal", "batch_withdrawal", obj.getObject());
         assertNotNull("id should not be null", obj.getId());
-        assertEquals("app", PingppAccountTestData.getAppID(), obj.getApp());
+        assertEquals("app", PingppTestData.getAppID(), obj.getApp());
         assertNotNull("amount should not be null", obj.getAmount());
         assertTrue("created should be greater than 0", obj.getCreated() > 0);
         assertNotNull("status should not be null", obj.getStatus());

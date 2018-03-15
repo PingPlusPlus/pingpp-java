@@ -1,6 +1,6 @@
 package com.pingplusplus.order;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Royalty;
 import com.pingplusplus.model.RoyaltyCollection;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RoyaltyTest extends PingppAccountTestBase {
+public class RoyaltyTest extends PingppTestBase {
     /**
      * 批量更新 royalty
      */

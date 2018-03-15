@@ -1,7 +1,7 @@
 package com.pingplusplus.user;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.User;
 import com.pingplusplus.model.UserCollection;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 /*
  * @author Afon, @date 17-03-28
  */
-public class UserTest extends PingppAccountTestBase {
+public class UserTest extends PingppTestBase {
 
     /**
      * 创建用户 (User)
@@ -38,7 +38,7 @@ public class UserTest extends PingppAccountTestBase {
 
         assertEquals("object should be user", "user", obj.getObject());
         assertEquals("id", params.get("id"), obj.getId());
-        assertEquals("app", PingppAccountTestData.getAppID(), obj.getApp());
+        assertEquals("app", PingppTestData.getAppID(), obj.getApp());
         assertEquals("address", params.get("address"), obj.getAddress());
         assertEquals("avatar", params.get("avatar"), obj.getAvatar());
         assertEquals("email", params.get("email"), obj.getEmail());
@@ -61,7 +61,7 @@ public class UserTest extends PingppAccountTestBase {
 
         assertEquals("object should be user", "user", obj.getObject());
         assertEquals("id", userId, obj.getId());
-        assertEquals("app", PingppAccountTestData.getAppID(), obj.getApp());
+        assertEquals("app", PingppTestData.getAppID(), obj.getApp());
     }
 
     /**
@@ -97,7 +97,7 @@ public class UserTest extends PingppAccountTestBase {
 
         assertEquals("object should be user", "user", obj.getObject());
         assertEquals("id", userId, obj.getId());
-        assertEquals("app", PingppAccountTestData.getAppID(), obj.getApp());
+        assertEquals("app", PingppTestData.getAppID(), obj.getApp());
         assertEquals("address", params.get("address"), obj.getAddress());
         assertEquals("avatar", params.get("avatar"), obj.getAvatar());
         assertEquals("email", params.get("email"), obj.getEmail());

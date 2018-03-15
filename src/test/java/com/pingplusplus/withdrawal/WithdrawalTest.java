@@ -1,6 +1,6 @@
 package com.pingplusplus.withdrawal;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Withdrawal;
 import com.pingplusplus.model.WithdrawalCollection;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class WithdrawalTest extends PingppAccountTestBase {
+public class WithdrawalTest extends PingppTestBase {
     /**
      * 创建提现申请
      */

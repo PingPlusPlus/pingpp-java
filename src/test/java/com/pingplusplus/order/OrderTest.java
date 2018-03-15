@@ -1,7 +1,7 @@
 package com.pingplusplus.order;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.*;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 /*
  * @author Afon, @date 17-03-28
  */
-public class OrderTest extends PingppAccountTestBase {
+public class OrderTest extends PingppTestBase {
 
     /**
      * 创建 order
@@ -25,7 +25,7 @@ public class OrderTest extends PingppAccountTestBase {
             APIConnectionException, AuthenticationException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", "test_user_001"); // 用户在当前 app 下的 User ID, 可选
-        params.put("app", PingppAccountTestData.getAppID()); // App ID, 必传
+        params.put("app", PingppTestData.getAppID()); // App ID, 必传
         params.put("merchant_order_no", "2017" + System.currentTimeMillis()); // 商户订单号, 必传
         params.put("subject", "ORDER_SUBJECT"); // 商品的标题, 必传
         params.put("body", "ORDER_BODY"); // 商品的描述信息, 必传
@@ -94,7 +94,7 @@ public class OrderTest extends PingppAccountTestBase {
         params.put("page", 1);
         params.put("per_page", 3);
         params.put("paid", false);
-        params.put("app", PingppAccountTestData.getAppID());
+        params.put("app", PingppTestData.getAppID());
         params.put("refunded", false);
 
         OrderCollection objs = Order.list(params); //查询 order 列表方法

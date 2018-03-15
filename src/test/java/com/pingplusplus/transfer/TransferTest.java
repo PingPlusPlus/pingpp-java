@@ -1,7 +1,7 @@
 package com.pingplusplus.transfer;
 
-import com.pingplusplus.PingppAccountTestBase;
-import com.pingplusplus.PingppAccountTestData;
+import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Transfer;
 import com.pingplusplus.model.TransferCollection;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Transfers 企业付款 示例
  */
-public class TransferTest extends PingppAccountTestBase {
+public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- alipay 渠道
      */
@@ -38,7 +38,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("description", "alipay transfer description");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Map<String, Object> extra = new HashMap<>();
@@ -71,7 +71,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("description", "allinpay transfer description");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Map<String, Object> extra = new HashMap<>();
@@ -110,7 +110,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("description", "jdpay transfer description");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Map<String, Object> extra = new HashMap<>();
@@ -145,7 +145,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("description", "unionpay transfer description");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Map<String, Object> extra = new HashMap<>();
@@ -193,7 +193,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("recipient", "o9zPms1OLVHU1r701mOHP0s-uK9c");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Map<String, Object> extra = new HashMap<>();
@@ -227,7 +227,7 @@ public class TransferTest extends PingppAccountTestBase {
         params.put("recipient", "user_test_02");
 
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         Transfer obj = Transfer.create(params);
@@ -252,7 +252,7 @@ public class TransferTest extends PingppAccountTestBase {
         Map<String, Object> params = new HashMap<>();
         params.put("limit", 5);
         Map<String, Object> app = new HashMap<>();
-        app.put("id", PingppAccountTestData.getAppID());
+        app.put("id", PingppTestData.getAppID());
         params.put("app", app);
 
         TransferCollection objs = Transfer.list(params);

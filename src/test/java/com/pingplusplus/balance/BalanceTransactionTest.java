@@ -1,6 +1,6 @@
 package com.pingplusplus.balance;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.BalanceTransaction;
 import com.pingplusplus.model.BalanceTransactionCollection;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class BalanceTransactionTest extends PingppAccountTestBase {
+public class BalanceTransactionTest extends PingppTestBase {
     /**
      * 查询单个余额明细 (balance_transaction)
      */

@@ -1,6 +1,6 @@
 package com.pingplusplus.order;
 
-import com.pingplusplus.PingppAccountTestBase;
+import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.RoyaltyTransaction;
 import com.pingplusplus.model.RoyaltyTransactionCollection;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RoyaltyTransactionTest extends PingppAccountTestBase {
+public class RoyaltyTransactionTest extends PingppTestBase {
     /**
      * 查询单个 royalty_transaction
      */

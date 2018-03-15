@@ -11,12 +11,12 @@ import static org.junit.Assert.assertTrue;
 /*
  * @author Afon, @date 17-03-28
  */
-public class WebhookTest extends PingppAccountTestBase {
+public class WebhookTest extends PingppTestBase {
     /**
      * 解析 webhooks 消息 (withdrawal)
      */
     @Test public void testWebhooksParseWithdrawal() {
-        String webhookData = PingppAccountTestData.getWithdrawalWebhooksData();
+        String webhookData = PingppTestData.getWithdrawalWebhooksData();
 
         PingppObject obj = Webhooks.getObject(webhookData);
 
