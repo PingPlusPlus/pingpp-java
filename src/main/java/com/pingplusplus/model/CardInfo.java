@@ -6,7 +6,7 @@ import com.pingplusplus.net.APIResource;
 import java.util.List;
 import java.util.Map;
 
-public class CardBin extends APIResource {
+public class CardInfo extends APIResource {
     String app;
     String cardBin;
     Integer cardType;
@@ -66,14 +66,14 @@ public class CardBin extends APIResource {
      * 银行卡信息查询
      *
      * @param params 卡号等信息
-     * @return CardBin
+     * @return CardInfo
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
      * @throws APIException
      * @throws ChannelException
      */
-    public static CardBin query(Map<String, Object> params)
+    public static CardInfo query(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return query(params, null);
@@ -84,7 +84,7 @@ public class CardBin extends APIResource {
      *
      * @param params 卡号等信息
      * @param apiKey  Ping++ ApiKey
-     * @return CardBin
+     * @return CardInfo
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -92,9 +92,9 @@ public class CardBin extends APIResource {
      * @throws ChannelException
      * @throws RateLimitException
      */
-    public static CardBin query(Map<String, Object> params, String apiKey)
+    public static CardInfo query(Map<String, Object> params, String apiKey)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, singleClassURL(CardBin.class), apiKey, params, CardBin.class);
+        return request(RequestMethod.POST, singleClassURL(CardInfo.class), apiKey, params, CardInfo.class);
     }
 }
