@@ -97,7 +97,7 @@ public abstract class APIResource extends PingppObject {
             return "batch_transfer";
         } else if (className.equals("customs")) {
             return "custom";
-        } else if (className.equals("cardbin")) {
+        } else if (className.equals("cardinfo")) {
             return "card_info";
         } else {
             return className;
