@@ -2,11 +2,10 @@ package com.pingplusplus.model;
 
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
-import com.pingplusplus.net.AccountAPIResource;
 
 import java.util.Map;
 
-public class RoyaltyTransaction extends AccountAPIResource {
+public class RoyaltyTransaction extends APIResource {
     String id;
     String object;
     Integer amount;

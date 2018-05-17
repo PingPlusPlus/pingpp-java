@@ -35,7 +35,7 @@ public class RedEnvelope extends APIResource {
     String description;
     String failureMsg;
     Map<String, String> extra;
-    Map<String, String> metadata;
+    Map<String, Object> metadata;
 
     public String getStatus() {
         return status;
@@ -198,11 +198,11 @@ public class RedEnvelope extends APIResource {
         this.body = body;
     }
 
-    public Map<String, String> getMetadata() {
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Map<String, String> metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
 

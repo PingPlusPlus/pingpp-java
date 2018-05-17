@@ -3,9 +3,7 @@ package com.pingplusplus.model;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pingplusplus.serializer.BatchRefundChargesSerializer;
-import com.pingplusplus.serializer.BatchTransferRecipientSerializer;
-import com.pingplusplus.serializer.DoubleTypeSerializer;
+import com.pingplusplus.serializer.*;
 
 import java.lang.reflect.Field;
 
@@ -19,6 +17,9 @@ public abstract class PingppObject {
             .registerTypeAdapter(BatchTransferRecipientSerializer.class, new BatchTransferRecipientSerializer())
             .registerTypeAdapter(BatchRefundCharges.class, new BatchRefundChargesSerializer())
             .registerTypeAdapter(Double.class, new DoubleTypeSerializer())
+            .registerTypeAdapter(ChargeEssentials.class, new ChargeEssentialsSerializer())
+            .registerTypeAdapter(CouponTemplateExpiration.class, new CouponTemplateExpirationSerializer())
+            .registerTypeAdapter(SettleAccountRecipient.class, new SettleAccountRecipientSerializer())
             .create();
 
     public static Gson getPrettyPrintGson() {

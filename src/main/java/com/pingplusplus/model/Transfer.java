@@ -32,7 +32,7 @@ public class Transfer extends APIResource {
     String failureMsg;
     String transaction_no;
     Map extra;
-    Map<String, String> metadata;
+    Map<String, Object> metadata;
 
     public String getId() {
         return id;
@@ -178,11 +178,11 @@ public class Transfer extends APIResource {
         this.extra = extra;
     }
 
-    public Map<String, String> getMetadata() {
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Map<String, String> metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
 

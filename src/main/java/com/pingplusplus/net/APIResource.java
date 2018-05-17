@@ -46,7 +46,7 @@ public abstract class APIResource extends PingppObject {
     }
 
     /**
-     * Gson object use to transform json string to Charge object
+     * Gson object use to transform json string to resource object
      */
     public static final Gson GSON = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -74,11 +74,6 @@ public abstract class APIResource extends PingppObject {
     }
 
     public static Class<?> getSelfClass() {
-        try {
-            return Class.forName("com.pingplusplus.net.AccountAPIResource");
-        } catch (ClassNotFoundException ignored) {
-        }
-
         return APIResource.class;
     }
 
@@ -89,18 +84,45 @@ public abstract class APIResource extends PingppObject {
     protected static String className(Class<?> clazz) {
         String className = clazz.getSimpleName().toLowerCase().replace("$", " ");
 
-        if (className.equals("redenvelope")) {
-            return "red_envelope";
-        } else if (className.equals("batchrefund")) {
-            return "batch_refund";
-        } else if (className.equals("batchtransfer")) {
-            return "batch_transfer";
-        } else if (className.equals("customs")) {
-            return "custom";
-        } else if (className.equals("cardinfo")) {
-            return "card_info";
-        } else {
-            return className;
+        switch (className) {
+            case "redenvelope":
+                return "red_envelope";
+            case "batchrefund":
+                return "batch_refund";
+            case "batchtransfer":
+                return "batch_transfer";
+            case "customs":
+                return "custom";
+            case "cardinfo":
+                return "card_info";
+            case "assettransaction":
+                return "asset_transaction";
+            case "balancebonus":
+                return "balance_bonuse";
+            case "balancetransfer":
+                return "balance_transfer";
+            case "balancetransaction":
+                return "balance_transaction";
+            case "coupontemplate":
+                return "coupon_template";
+            case "batchwithdrawal":
+                return "batch_withdrawal";
+            case "transactionstatistics":
+                return "transaction_statistics";
+            case "settleaccount":
+                return "settle_account";
+            case "subapp":
+                return "sub_app";
+            case "royalty":
+                return "royaltie";
+            case "royaltysettlement":
+                return "royalty_settlement";
+            case "royaltytransaction":
+                return "royalty_transaction";
+            case "royaltytemplate":
+                return "royalty_template";
+            default:
+                return className;
         }
     }
 

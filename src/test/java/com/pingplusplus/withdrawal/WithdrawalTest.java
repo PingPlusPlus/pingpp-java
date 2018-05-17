@@ -34,7 +34,7 @@ public class WithdrawalTest extends PingppTestBase {
 
         Withdrawal withdrawal = Withdrawal.create(params); // 创建 Withdrawal 对象
 
-        assertEquals("object should be list", "withdrawal", withdrawal.getObject());
+        assertEquals("object should be withdrawal", "withdrawal", withdrawal.getObject());
         assertEquals("user should be same as the value in params", params.get("user"), withdrawal.getUser());
         assertEquals("amount should be same as the value in params", params.get("amount"), withdrawal.getAmount());
         assertEquals("description should be same as the value in params", params.get("description"), withdrawal.getDescription());

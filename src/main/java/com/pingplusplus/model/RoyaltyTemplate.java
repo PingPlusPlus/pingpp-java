@@ -2,11 +2,10 @@ package com.pingplusplus.model;
 
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
-import com.pingplusplus.net.AccountAPIResource;
 
 import java.util.Map;
 
-public class RoyaltyTemplate extends AccountAPIResource {
+public class RoyaltyTemplate extends APIResource {
     String id;
     String object;
     Boolean livemode;
