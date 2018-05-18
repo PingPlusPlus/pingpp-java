@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.net.APIResource;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -260,5 +261,44 @@ public class Agreement extends APIResource {
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(RequestMethod.GET, classURL(Agreement.class), apiKey, params, AgreementCollection.class);
+    }
+
+    /**
+     * 解除签约(agreement)
+     *
+     * @param id  id
+     * @return Agreement
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Agreement cancel(String id) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return cancel(id, null);
+    }
+
+    /**
+     * 解除签约(agreement)
+     *
+     * @param id  id
+     * @param apiKey  Ping++ ApiKey
+     * @return Agreement
+     * @throws AuthenticationException
+     * @throws InvalidRequestException
+     * @throws APIConnectionException
+     * @throws APIException
+     * @throws ChannelException
+     * @throws RateLimitException
+     */
+    public static Agreement cancel(String id, String apiKey) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return request(RequestMethod.PUT, instanceURL(Agreement.class, id), apiKey, params, Agreement.class);
     }
 }

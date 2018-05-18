@@ -62,4 +62,25 @@ public class AgreenmentTest extends PingppTestBase {
 
         assertEquals("object should be list", "list", objs.getObject());
     }
+
+    @Test
+    public void testCancel() throws RateLimitException,
+            APIException, ChannelException,
+            APIConnectionException, AuthenticationException {
+        String id = "agr_19EEE7QdgGMCoY";
+
+        Agreement agreement;
+
+        try {
+            agreement = Agreement.cancel(id);
+
+            assertEquals("object should be agreement", "agreement", agreement.getObject());
+            assertEquals("object id should be", id, agreement.getId());
+            assertEquals("object status should be", "canceled", agreement.getStatus());
+        } catch (InvalidRequestException e) {
+            assertTrue("error message should be", e.getMessage().contains("该签约对象不能被更新状态。") && e.getMessage().contains("当前的状态为：canceled。"));
+        }
+
+
+    }
 }
