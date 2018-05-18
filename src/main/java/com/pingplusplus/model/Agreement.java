@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 微信企业付款
+ * 签约
  */
 public class Agreement extends APIResource {
     String id;
