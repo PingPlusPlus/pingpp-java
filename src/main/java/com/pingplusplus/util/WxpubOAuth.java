@@ -1,6 +1,8 @@
 package com.pingplusplus.util;
 
 import com.google.gson.*;
+import com.pingplusplus.exception.ChannelException;
+import com.pingplusplus.model.Channel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import java.util.Map;
 /**
  * 用于微信公众号OAuth2.0鉴权，用户授权后获取授权用户唯一标识openid
  * WxpubOAuth中的方法都是可选的，开发者也可根据实际情况自行开发相关功能，
- * 详细内容可参考http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
+ * 详细内容可参考 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
  */
 public class WxpubOAuth {
 
@@ -37,13 +39,17 @@ public class WxpubOAuth {
      * @throws UnsupportedEncodingException
      */
     public static String getOpenId(String appId, String appSecret, String code)
-            throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException, ChannelException {
         String url = WxpubOAuth.createOauthUrlForOpenid(appId, appSecret, code);
 
         String ret = WxpubOAuth.httpGet(url);
         OAuthResult oAuthResult = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create().fromJson(ret, OAuthResult.class);
+
+        if (oAuthResult.getErrmsg() != null) {
+            throw new ChannelException(oAuthResult.getErrmsg(), oAuthResult.getErrcode().toString(), null);
+        }
 
         return oAuthResult.getOpenid();
     }
@@ -95,7 +101,7 @@ public class WxpubOAuth {
         return "https://api.weixin.qq.com/sns/oauth2/access_token?" + queryString;
     }
 
-    private static String httpBuildQuery(Map<String, String> queryString) throws UnsupportedEncodingException {
+    protected static String httpBuildQuery(Map<String, String> queryString) throws UnsupportedEncodingException {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> e : queryString.entrySet()) {
             if (sb.length() > 0) {
@@ -112,7 +118,7 @@ public class WxpubOAuth {
      * @param urlString
      * @return responseString
      */
-    private static String httpGet(String urlString) {
+    protected static String httpGet(String urlString) {
         String result = "";
         try {
             URL url = new URL(urlString);
@@ -221,6 +227,8 @@ public class WxpubOAuth {
         String refreshToken;
         String openid;
         String scope;
+        Integer errcode;
+        String errmsg;
 
         public String getAccessToken() {
             return accessToken;
@@ -240,6 +248,14 @@ public class WxpubOAuth {
 
         public String getScope() {
             return scope;
+        }
+
+        public Integer getErrcode() {
+            return errcode;
+        }
+
+        public String getErrmsg() {
+            return errmsg;
         }
     }
 }

@@ -1,5 +1,14 @@
 # ChangeLog
 
+## 2.3.8
+#### 新增
+- WxLiteOAuth 接口
+- Agreement 接口
+
+#### 修改
+- 合并部分内部类
+- WxpubOAuth 接口错误时增加异常
+
 ## 2.3.7 (2018-03-16)
 #### 新增
 - BalanceSettlement 接口
