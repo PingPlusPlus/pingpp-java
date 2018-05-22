@@ -80,7 +80,5 @@ public class AgreenmentTest extends PingppTestBase {
         } catch (InvalidRequestException e) {
             assertTrue("error message should be", e.getMessage().contains("该签约对象不能被更新状态。") && e.getMessage().contains("当前的状态为：canceled。"));
         }
-
-
     }
 }
