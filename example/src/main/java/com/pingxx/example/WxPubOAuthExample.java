@@ -1,6 +1,8 @@
 package com.pingxx.example;
 
 import java.io.UnsupportedEncodingException;
+
+import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.util.WxpubOAuth;
 
@@ -60,8 +62,13 @@ public class WxPubOAuthExample {
         System.out.println("3. 微信内置浏览器会带上参数 code 跳转到你传的地址: " + redirectUrl + "?code=os823ndskelcncfyfms");
         // 获取 URL 中的 code 参数
         String code = "os823ndskelcncfyfms";
-        String openid = WxpubOAuth.getOpenId(wxAppId, wxAppSecret, code);
-        System.out.println("4. 得到 openid 用于创建 charge");
+        try {
+            String openid = WxpubOAuth.getOpenId(wxAppId, wxAppSecret, code);
+            System.out.println("4. 得到 openid 用于创建 charge");
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        }
+
 //        ChargeExample chargeExample = new ChargeExample(appId);
 //        openid = "USER_OPENID";
 //        chargeExample.createCharge();

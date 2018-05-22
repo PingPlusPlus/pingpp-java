@@ -2,6 +2,7 @@ package com.pingplusplus;
 
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.util.WxLiteOAuth;
+import com.pingplusplus.util.WxLiteOAuth.AuthResult;
 import com.pingplusplus.util.WxpubOAuth;
 import org.junit.Test;
 
@@ -34,5 +35,15 @@ public class WeixinOpenidTest extends PingppTestBase {
             System.out.println(e.getMessage());
             System.out.println(e.getParam());
         }
+    }
+
+    /**
+     * 通过 appId, secret, code 获取微信小程序 session_key。
+     */
+    @Test
+    public void testWxLiteSession() throws UnsupportedEncodingException {
+        AuthResult result = WxLiteOAuth.getSession("wx283881926260", "piOgk852569gKXpRLjhh38J6O14H7ejb", "vNnPjvqD0BT3snbxVLjY");
+        System.out.println(result.getOpenid());
+        System.out.println(result.getSessionKey());
     }
 }

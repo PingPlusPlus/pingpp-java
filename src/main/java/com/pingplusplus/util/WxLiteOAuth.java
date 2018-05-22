@@ -60,7 +60,7 @@ public class WxLiteOAuth extends WxpubOAuth {
         return authResult;
     }
 
-    class AuthResult {
+    public class AuthResult {
         String sessionKey;
         String openid;
         String unionid;
