@@ -1,6 +1,6 @@
 # ChangeLog
 
-## 2.3.8
+## 2.3.8 (2018-05-22)
 #### 新增
 - WxLiteOAuth 接口
 - Agreement 接口
