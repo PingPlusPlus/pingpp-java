@@ -1,6 +1,6 @@
 package com.pingplusplus.net;
 
-import com.pingplusplus.PingppAccount;
+import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.InvalidRequestException;
 
 import java.io.UnsupportedEncodingException;
@@ -14,10 +14,10 @@ public abstract class UserBasedResource extends AppBasedResource {
      * @throws InvalidRequestException
      */
     protected static String singleClassURL(Class<?> clazz, String userId) throws InvalidRequestException {
-        if (PingppAccount.appId == null) {
-            throw new InvalidRequestException("Please set app_id using PingppAccount.appId = <APP_ID>", "app_id", null);
+        if (Pingpp.appId == null) {
+            throw new InvalidRequestException("Please set app_id using Pingpp.appId = <APP_ID>", "app_id", null);
         }
-        return String.format("%s/v1/apps/%s/users/%s/%s", PingppAccount.getApiBase(), PingppAccount.appId, userId, className(clazz));
+        return String.format("%s/v1/apps/%s/users/%s/%s", Pingpp.getApiBase(), Pingpp.appId, userId, className(clazz));
     }
 
     /**

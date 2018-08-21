@@ -176,7 +176,7 @@ public class BalanceSettlement extends AppBasedResource {
     public static BalanceSettlement retrieve(String id)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceTransaction.class, id), null, BalanceSettlement.class);
+        return request(APIResource.RequestMethod.GET, instanceURL(BalanceSettlement.class, id), null, BalanceSettlement.class);
     }
 
     /**
@@ -194,6 +194,6 @@ public class BalanceSettlement extends AppBasedResource {
     public static BalanceSettlementCollection list(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BalanceTransaction.class), params, BalanceSettlementCollection.class);
+        return request(APIResource.RequestMethod.GET, classURL(BalanceSettlement.class), params, BalanceSettlementCollection.class);
     }
 }

@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 2.3.9 (2018-08-21)
+
+#### 修正
+
+- 修正 `BalanceSettlement` 错误
+
+#### 修改
+
+- 移除 `PingppAccount`
+
 ## 2.3.8 (2018-05-22)
 #### 新增
 - WxLiteOAuth 接口
