@@ -48,7 +48,7 @@ public class PingppSignature {
         PEMEncodedPrivateKey = PEMEncodedPrivateKey
                 .replaceAll("(-+BEGIN (RSA )?PRIVATE KEY-+\\r?\\n|-+END (RSA )?PRIVATE KEY-+\\r?\\n?)", "");
         byte[] privateKeyBytes = Base64.decodeBase64(PEMEncodedPrivateKey);
-
+        
         try {
             return generatePrivateKeyWithPKCS8(privateKeyBytes);
         } catch (InvalidKeySpecException e) {

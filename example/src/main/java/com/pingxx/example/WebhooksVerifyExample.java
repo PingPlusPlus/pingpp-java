@@ -66,7 +66,7 @@ public class WebhooksVerifyExample {
      * @throws Exception
      */
     public static String getStringFromFile(String filePath) throws Exception {
-        FileInputStream in = new FileInputStream(filePath);
+        FileInputStream in = new FileInputStream(Main.projectDir + filePath);
         InputStreamReader inReader = new InputStreamReader(in, "UTF-8");
         BufferedReader bf = new BufferedReader(inReader);
         StringBuilder sb = new StringBuilder();
@@ -92,13 +92,13 @@ public class WebhooksVerifyExample {
     public static PublicKey getPubKey() throws Exception {
         String pubKeyString = getStringFromFile(pubKeyPath);
         pubKeyString = pubKeyString.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", "");
-        byte[] keyBytes = Base64.decodeBase64(pubKeyString);
+        byte[] keyBytes = Base64.decodeBase64(pubKeyString.getBytes("UTF-8"));
 
         // generate public key
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = keyFactory.generatePublic(spec);
-        return publicKey;
+
+        return keyFactory.generatePublic(spec);
     }
 
     /**

@@ -707,12 +707,14 @@ public abstract class APIResource extends PingppObject {
             error.message = rBody;
             error.code = String.valueOf(rCode);
         }
+
         switch (rCode) {
             case 400:
                 throw new InvalidRequestException(error.toString(), error.param, null);
             case 404:
                 throw new InvalidRequestException(error.toString(), error.param, null);
             case 403:
+            case 429:
                 throw new RateLimitException(error.toString(), null);
             case 402:
                 throw new ChannelException(error.toString(), error.param, null);

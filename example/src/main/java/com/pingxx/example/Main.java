@@ -30,10 +30,15 @@ public class Main {
     // 你生成的私钥路径
     private final static String privateKeyFilePath = "res/your_rsa_private_key_pkcs8.pem";
 
+    protected static String projectDir;
+
     public static void main(String[] args) throws Exception {
+        projectDir = System.getProperty("user.dir") + "/example/";
 
         // 设置 API Key
         Pingpp.apiKey = apiKey;
+
+        Pingpp.appId = appId;
 
         // 设置私钥路径，用于请求签名
 //        Pingpp.privateKeyPath = privateKeyFilePath;

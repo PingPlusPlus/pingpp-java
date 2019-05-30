@@ -54,3 +54,7 @@ bin/
 .idea_modules/
 
 gradle.properties
+org.eclipse.buildship.core.prefs
+org.eclipse.jdt.core.prefs
+.project
+example/out

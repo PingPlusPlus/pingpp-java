@@ -15,6 +15,7 @@ public class SettleAccountRecipient extends PingppObject {
     String prov;
     String city;
     String subBank;
+    String subBankCode;
 
     public String getAccount() {
         return account;
@@ -102,5 +103,13 @@ public class SettleAccountRecipient extends PingppObject {
 
     public void setSubBank(String subBank) {
         this.subBank = subBank;
+    }
+
+    public String getSubBankCode() {
+        return subBankCode;
+    }
+
+    public void setSubBankCode(String subBankCode) {
+        this.subBankCode = subBankCode;
     }
 }

@@ -60,7 +60,7 @@ public class ChargeExample {
      */
     public Charge createCharge() {
         Charge charge = null;
-        String channel = "alipay";
+        String channel = "wx_pub";
 
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
