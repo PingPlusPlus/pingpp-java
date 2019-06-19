@@ -57,8 +57,7 @@ repositories {
 安装 Ping++ SDK
 
 ```
-compile 'Pingplusplus:pingpp-java:2.3.11
-'
+compile 'Pingplusplus:pingpp-java:2.3.11'
 ```
 
 ### 初始化
