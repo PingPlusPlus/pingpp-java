@@ -123,6 +123,14 @@ public abstract class APIResource extends PingppObject {
                 return "royalty_template";
             case "balancesettlement":
                 return "balance_settlement";
+            case "subbank":
+                return "sub_bank";
+            case "splitreceiver":
+                return "split_receiver";
+            case "splitprofit":
+                return "split_profit";
+            case "profittransaction":
+                return "profit_transaction";
             default:
                 return className;
         }
@@ -604,7 +612,7 @@ public abstract class APIResource extends PingppObject {
      * @param params
      * @param clazz
      * @param <T>
-     * @return <T>
+     * @return PingppObject
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException
@@ -623,7 +631,7 @@ public abstract class APIResource extends PingppObject {
      * @param params
      * @param clazz
      * @param <T>
-     * @return <T>
+     * @return PingppObject
      * @throws AuthenticationException
      * @throws InvalidRequestException
      * @throws APIConnectionException

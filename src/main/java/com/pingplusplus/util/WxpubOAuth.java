@@ -2,7 +2,6 @@ package com.pingplusplus.util;
 
 import com.google.gson.*;
 import com.pingplusplus.exception.ChannelException;
-import com.pingplusplus.model.Channel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +18,8 @@ import java.util.Map;
 
 /**
  * 用于微信公众号OAuth2.0鉴权，用户授权后获取授权用户唯一标识openid
- * WxpubOAuth中的方法都是可选的，开发者也可根据实际情况自行开发相关功能，
- * 详细内容可参考 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+ * WxpubOAuth中的方法都是可选的，开发者也可根据实际情况自行开发相关功能
+ * 详细内容可参考微信官网文档
  */
 public class WxpubOAuth {
 

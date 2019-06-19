@@ -58,3 +58,5 @@ org.eclipse.buildship.core.prefs
 org.eclipse.jdt.core.prefs
 .project
 example/out
+.vscode
+.classpath

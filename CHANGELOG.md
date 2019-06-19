@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 2.3.11
+
+- 新增：SplitProfit、SplitReceiver、ProfitTransaction、SubBank 相关接口
+
+---
+
 ## 2.3.10 (2019-05-30)
 
 #### 修改
