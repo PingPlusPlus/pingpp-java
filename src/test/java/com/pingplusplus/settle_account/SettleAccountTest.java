@@ -109,4 +109,36 @@ public class SettleAccountTest extends PingppTestBase {
             System.out.println("结算账户列表为空");
         }
     }
+
+    /**
+     * 结算账户更新手机号（存管相关）
+     */
+    @Test public void testSettleAccountUpdateMobile() throws RateLimitException,
+            APIException, ChannelException, InvalidRequestException,
+            APIConnectionException, AuthenticationException {
+        String userId = "U2019053010510001";
+        String id = "320119071220443300000101";
+        Map<String, Object> params = new HashMap<>();
+        params.put("mobile", "13822334557");
+        SettleAccount obj = SettleAccount.updateMobile(userId, id, params);
+
+        assertEquals("object should be settle_account", "settle_account", obj.getObject());
+        assertEquals("mobile should be updated", "138****4557", obj.getRecipient().getMobile());
+    }
+
+    /**
+     * 结算账号打款验证接口（存管相关）
+     */
+    @Test public void testSettleAccountVerify() throws RateLimitException,
+            APIException, ChannelException, InvalidRequestException,
+            APIConnectionException, AuthenticationException {
+        String userId = "U2019053010510001";
+        String id = "320119071220443300000101";
+        Map<String, Object> params = new HashMap<>();
+        params.put("receive_amount", 2);
+        SettleAccount obj = SettleAccount.verify(userId, id, params);
+
+        assertEquals("object should be settle_account", "settle_account", obj.getObject());
+        assertEquals("id", id, obj.getId());
+    }
 }

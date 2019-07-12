@@ -15,11 +15,11 @@ public class SubApp extends AppBasedResource {
     String description;
     String displayName;
     List<String> availableMethods;
-    String user;
+    Object user;
     Integer level;
     String parentApp;
     Map<String, Object> metadata;
-
+    Map<String, Object> extra;
 
     public String getId() {
         return id;
@@ -77,11 +77,11 @@ public class SubApp extends AppBasedResource {
         this.availableMethods = availableMethods;
     }
 
-    public String getUser() {
+    public Object getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(Object user) {
         this.user = user;
     }
 
@@ -107,6 +107,14 @@ public class SubApp extends AppBasedResource {
 
     public void setParentApp(String parentApp) {
         this.parentApp = parentApp;
+    }
+
+    public Map<String, Object> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, Object> extra) {
+        this.extra = extra;
     }
 
     /**
@@ -142,7 +150,26 @@ public class SubApp extends AppBasedResource {
     public static SubApp retrieve(String id)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(SubApp.class, id), null, SubApp.class);
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 sub_app
+     *
+     * @param id SubApp ID
+     * @param params 参数
+     * @return SubApp
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static SubApp retrieve(String id, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(APIResource.RequestMethod.GET, instanceURL(SubApp.class, id), params, SubApp.class);
     }
 
     /**

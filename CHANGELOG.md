@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 2.3.12
+
+- 新增：证件上传、添加联系人、结算账号更新手机号、结算账号验证打款相关接口
+- 修改：结算账号增加字段
+- 修改：**\*SubApp user 字段类型修改 String -> Object，兼容返回 user 对象而不是 ID 的情况**
+- 修改：SubApp 增加 extra 字段
+- 修改：User 增加 identityInfo、extra 等字段
+
+---
+
 ## 2.3.11
 
 - 新增：SplitProfit、SplitReceiver、ProfitTransaction、SubBank 相关接口

@@ -28,6 +28,10 @@ public class User extends AppBasedResource {
     List<SettleAccount> settleAccounts;
     String type;
     Long withdrawableBalance;
+    Map<String, Object> identityInfo;
+    Map<String, Object> extra;
+    Long totalBalance;
+    String parentUserId;
 
     public String getId() {
         return id;
@@ -187,6 +191,38 @@ public class User extends AppBasedResource {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Map<String, Object> getIdentityInfo() {
+        return identityInfo;
+    }
+
+    public void setIdentityInfo(Map<String, Object> identityInfo) {
+        this.identityInfo = identityInfo;
+    }
+
+    public Map<String, Object> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, Object> extra) {
+        this.extra = extra;
+    }
+
+    public Long getTotalBalance() {
+        return totalBalance;
+    }
+
+    public void setTotalBalance(Long totalBalance) {
+        this.totalBalance = totalBalance;
+    }
+
+    public String getParentUserId() {
+        return parentUserId;
+    }
+
+    public void setParentUserId(String parentUserId) {
+        this.parentUserId = parentUserId;
     }
 
     /**

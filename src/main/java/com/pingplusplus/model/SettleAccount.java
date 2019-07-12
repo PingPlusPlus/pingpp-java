@@ -141,4 +141,46 @@ public class SettleAccount extends UserBasedResource {
         User.checkUserId(userId);
         return request(APIResource.RequestMethod.DELETE, instanceURL(SettleAccount.class, userId, id), null, DeletedSettleAccount.class);
     }
+
+    /**
+     * 更新银行手机号
+     *
+     * @param userId 用户 ID
+     * @param id 结算账号 ID
+     * @param params 更新参数
+     * @return SettleAccount
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static SettleAccount updateMobile(String userId, String id, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.PUT, String.format("%s/mobile", instanceURL(SettleAccount.class, userId, id)),
+                params, SettleAccount.class);
+    }
+
+    /**
+     * 打款验证
+     *
+     * @param userId 用户 ID
+     * @param id 结算账号 ID
+     * @param params 参数
+     * @return SettleAccount
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static SettleAccount verify(String userId, String id, Map<String, Object> params) throws AuthenticationException,
+            InvalidRequestException, APIConnectionException,
+            APIException, ChannelException, RateLimitException {
+        return request(RequestMethod.POST, String.format("%s/verify", instanceURL(SettleAccount.class, userId, id)),
+                params, SettleAccount.class);
+    }
 }

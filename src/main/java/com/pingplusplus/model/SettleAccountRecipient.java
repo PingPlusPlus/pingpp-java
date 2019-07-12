@@ -16,6 +16,10 @@ public class SettleAccountRecipient extends PingppObject {
     String city;
     String subBank;
     String subBankCode;
+    String mobile;
+    String useof;
+    String senderCardNumber;
+    String senderSubBankCode;
 
     public String getAccount() {
         return account;
@@ -111,5 +115,37 @@ public class SettleAccountRecipient extends PingppObject {
 
     public void setSubBankCode(String subBankCode) {
         this.subBankCode = subBankCode;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getUseof() {
+        return useof;
+    }
+
+    public void setUseof(String useof) {
+        this.useof = useof;
+    }
+
+    public String getSenderCardNumber() {
+        return senderCardNumber;
+    }
+
+    public void setSenderCardNumber(String senderCardNumber) {
+        this.senderCardNumber = senderCardNumber;
+    }
+
+    public String getSenderSubBankCode() {
+        return senderSubBankCode;
+    }
+
+    public void setSenderSubBankCode(String senderSubBankCode) {
+        this.senderSubBankCode = senderSubBankCode;
     }
 }

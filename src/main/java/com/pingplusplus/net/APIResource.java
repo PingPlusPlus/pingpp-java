@@ -56,6 +56,7 @@ public abstract class APIResource extends PingppObject {
             .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
             .registerTypeAdapter(EventData.class, new EventDataDeserializer())
             .registerTypeAdapter(PingppRawJsonObject.class, new PingppRawJsonObjectDeserializer())
+            .registerTypeAdapter(SubApp.class, new SubAppDeserializer())
             .create();
 
     public static Gson getGson() {
@@ -131,6 +132,10 @@ public abstract class APIResource extends PingppObject {
                 return "split_profit";
             case "profittransaction":
                 return "profit_transaction";
+            case "userpic":
+                return "users/upload_pic";
+            case "contact":
+                return "sub_apps/contact";
             default:
                 return className;
         }
