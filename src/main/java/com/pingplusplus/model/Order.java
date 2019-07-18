@@ -39,6 +39,7 @@ public class Order extends APIResource {
     String receiptApp;
     String serviceApp;
     List<String> availableMethods;
+    Integer discountAmount;
 
     public String getId() {
         return id;
@@ -286,6 +287,14 @@ public class Order extends APIResource {
 
     public void setCharge(String charge) {
         this.charge = charge;
+    }
+
+    public Integer getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Integer discountAmount) {
+        this.discountAmount = discountAmount;
     }
 
     /**
