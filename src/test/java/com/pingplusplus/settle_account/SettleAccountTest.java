@@ -111,6 +111,35 @@ public class SettleAccountTest extends PingppTestBase {
     }
 
     /**
+     * 结算账户更新（存管相关）
+     */
+    @Test public void testSettleAccountUpdate() throws RateLimitException,
+            APIException, ChannelException, InvalidRequestException,
+            APIConnectionException, AuthenticationException {
+        String userId = "U2019053010510001";
+        String id = "320119071220443300000101";
+        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> recipient = new HashMap<>();
+        recipient.put("account", "6214888888888865"); // 银行卡号。
+        recipient.put("name", "张三"); // 接收者姓名。
+        recipient.put("type", "b2c"); // 转账类型。b2c：企业向个人付款，b2b：企业向企业付款。
+        recipient.put("open_bank_code", "0308"); // 开户银行编号
+        recipient.put("open_bank", "工商银行");
+        recipient.put("sub_bank", "招商银行股份有限公司上海陆家嘴支行");
+        recipient.put("sub_bank_code", "308290003773");
+        recipient.put("card_type", 0); // 银行卡号类型，0：银行卡；1：存折。
+        recipient.put("mobile", "13822334557"); // 手机号
+        recipient.put("city", "上海市");
+        recipient.put("prov", "上海市");
+
+        params.put("recipient", recipient);
+        SettleAccount obj = SettleAccount.update(userId, id, params);
+
+        assertEquals("object should be settle_account", "settle_account", obj.getObject());
+        assertEquals("account should be updated", "621488***8865", obj.getRecipient().getAccount());
+    }
+
+    /**
      * 结算账户更新手机号（存管相关）
      */
     @Test public void testSettleAccountUpdateMobile() throws RateLimitException,

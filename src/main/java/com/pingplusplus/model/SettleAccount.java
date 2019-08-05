@@ -143,6 +143,27 @@ public class SettleAccount extends UserBasedResource {
     }
 
     /**
+     * 更新 settle_account
+     *
+     * @param userId 用户 ID
+     * @param id 结算账户 ID
+     * @param params 更新数据
+     * @return SettleAccount
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static SettleAccount update(String userId, String id, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        User.checkUserId(userId);
+        return request(APIResource.RequestMethod.PUT, instanceURL(SettleAccount.class, userId, id), params, SettleAccount.class);
+    }
+
+    /**
      * 更新银行手机号
      *
      * @param userId 用户 ID
