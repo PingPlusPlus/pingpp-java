@@ -30,7 +30,7 @@ public class PingppTest {
     }
 
     @Test public void testVerifyVersions() {
-        assertEquals("Pingpp.VERSION should match", "2.3.13", Pingpp.VERSION);
+        assertEquals("Pingpp.VERSION should match", "2.3.14", Pingpp.VERSION);
     }
 
     @Test public void testCreateCharge() {

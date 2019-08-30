@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 2.3.14
+
+- 新增：settle_account.recipient extra 字段
+
+---
+
 ## 2.3.13
 
 - 新增：结算账户更新接口

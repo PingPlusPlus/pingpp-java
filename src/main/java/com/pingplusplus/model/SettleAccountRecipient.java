@@ -1,5 +1,7 @@
 package com.pingplusplus.model;
 
+import java.util.Map;
+
 /**
  * Created by Afon on 17/03/27.
  */
@@ -20,6 +22,7 @@ public class SettleAccountRecipient extends PingppObject {
     String useof;
     String senderCardNumber;
     String senderSubBankCode;
+    Map<String, Object> extra;
 
     public String getAccount() {
         return account;
@@ -147,5 +150,13 @@ public class SettleAccountRecipient extends PingppObject {
 
     public void setSenderSubBankCode(String senderSubBankCode) {
         this.senderSubBankCode = senderSubBankCode;
+    }
+
+    public Map<String, Object> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, Object> extra) {
+        this.extra = extra;
     }
 }
