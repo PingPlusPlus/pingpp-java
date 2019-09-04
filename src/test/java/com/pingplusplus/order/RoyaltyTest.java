@@ -1,9 +1,11 @@
 package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
+import com.pingplusplus.PingppTestData;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Royalty;
 import com.pingplusplus.model.RoyaltyCollection;
+import com.pingplusplus.model.RoyaltyDataResult;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RoyaltyTest extends PingppTestBase {
     /**
@@ -56,12 +59,36 @@ public class RoyaltyTest extends PingppTestBase {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("per_page", 3);  // 可选
         params.put("page", 1);      // 可选
-        params.put("royalty_settlement", null);  // 可选 关联的分润结算 ID
-        params.put("royalty_transaction", null); // 可选 关联的分润结算明细 ID
+//        params.put("royalty_settlement", null);  // 可选 关联的分润结算 ID
+//        params.put("royalty_transaction", null); // 可选 关联的分润结算明细 ID
         // 查询 royalty list 列表方法
         // 参数: params
         RoyaltyCollection objs = Royalty.list(params);
 
         assertEquals("object should be list", "list", objs.getObject());
+    }
+
+    /**
+     * 创建分润
+     */
+    @Test public void testRoyaltyDataCreate() throws RateLimitException,
+            APIException, ChannelException, InvalidRequestException,
+            APIConnectionException, AuthenticationException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("app", PingppTestData.getAppID()); // 必传
+//        params.put("charge", ""); // 条件可选，对于已经成功的 order 必传该字段
+        List<Map<String, Object>> royaltyUsers = new ArrayList<>();
+        Map<String, Object> user = new HashMap<String, Object>();
+        user.put("user", "U201908030002");
+        user.put("amount", 100);
+        royaltyUsers.add(user);
+        params.put("royalty_users", royaltyUsers); // 可选 分润的用户信息列表，默认为[]，不分润。
+
+        String orderId = "2011909040000002881";
+        RoyaltyDataResult result = Royalty.createData(orderId, params);
+
+        assertTrue("succeeded", result.getSucceeded());
+        assertEquals("app should be the same", PingppTestData.getAppID(), result.getApp());
+        assertEquals("order ID should returned as the same", orderId, result.getOrder());
     }
 }

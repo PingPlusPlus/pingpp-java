@@ -219,16 +219,59 @@ public class Royalty extends APIResource {
      *
      * @param params
      * @return RoyaltyCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
      */
     public static RoyaltyCollection batchUpdate(Map<String, Object> params)
             throws AuthenticationException, InvalidRequestException,
             APIConnectionException, APIException, ChannelException, RateLimitException {
         return request(APIResource.RequestMethod.PUT, classURL(Royalty.class), params, RoyaltyCollection.class);
+    }
+
+    /**
+     * 创建分润
+     *
+     * @param orderId 订单 ID
+     * @param params 分润信息参数
+     * @return RoyaltyDataResult
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static RoyaltyDataResult createData(String orderId, Map<String, Object> params)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return createData(orderId, params, null);
+    }
+
+    /**
+     * 创建分润
+     *
+     * @param orderId 订单 ID
+     * @param params 分润信息参数
+     * @param apiKey API Key
+     * @return RoyaltyDataResult
+     * @throws AuthenticationException 认证异常
+     * @throws InvalidRequestException 错误请求
+     * @throws APIConnectionException 连接异常
+     * @throws APIException 系统异常
+     * @throws ChannelException 渠道异常
+     * @throws RateLimitException 请求超限
+     */
+    public static RoyaltyDataResult createData(String orderId, Map<String, Object> params, String apiKey)
+            throws AuthenticationException, InvalidRequestException,
+            APIConnectionException, APIException, ChannelException, RateLimitException {
+        return request(APIResource.RequestMethod.POST,
+                String.format("%s/royalty_datas", instanceURL(Order.class, orderId)),
+                apiKey,
+                params,
+                RoyaltyDataResult.class);
     }
 }

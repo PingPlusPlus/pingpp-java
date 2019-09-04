@@ -3,6 +3,7 @@
 ## 2.3.14
 
 - 新增：settle_account.recipient extra 字段
+- 新增：Royalty.createData() 方法
 
 ---
 
