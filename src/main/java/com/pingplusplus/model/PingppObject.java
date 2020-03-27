@@ -14,7 +14,7 @@ public abstract class PingppObject {
             .serializeNulls()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .disableHtmlEscaping()
-            .registerTypeAdapter(BatchTransferRecipientSerializer.class, new BatchTransferRecipientSerializer())
+            .registerTypeAdapter(BatchTransferRecipient.class, new BatchTransferRecipientSerializer())
             .registerTypeAdapter(BatchRefundCharges.class, new BatchRefundChargesSerializer())
             .registerTypeAdapter(Double.class, new DoubleTypeSerializer())
             .registerTypeAdapter(ChargeEssentials.class, new ChargeEssentialsSerializer())
