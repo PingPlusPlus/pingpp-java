@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -192,17 +193,22 @@ public class RoyaltySettlement extends APIResource {
      *
      * @param params
      * @return RoyaltySettlement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RoyaltySettlement create(Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(RoyaltySettlement.class), params, RoyaltySettlement.class);
+    public static RoyaltySettlement create(Map<String, Object> params) throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 royalty_settlement
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltySettlement
+     * @throws PingppException
+     */
+    public static RoyaltySettlement create(Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(RoyaltySettlement.class), params, RoyaltySettlement.class, options);
     }
 
     /**
@@ -210,17 +216,22 @@ public class RoyaltySettlement extends APIResource {
      *
      * @param id
      * @return RoyaltySettlement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RoyaltySettlement retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(RoyaltySettlement.class, id), null, RoyaltySettlement.class);
+    public static RoyaltySettlement retrieve(String id) throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 royalty_settlement
+     *
+     * @param id
+     * @param options the specific options
+     * @return RoyaltySettlement
+     * @throws PingppException
+     */
+    public static RoyaltySettlement retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(RoyaltySettlement.class, id), null, RoyaltySettlement.class, options);
     }
 
     /**
@@ -228,17 +239,24 @@ public class RoyaltySettlement extends APIResource {
      *
      * @param params
      * @return RoyaltySettlement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltySettlementCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(RoyaltySettlement.class), params, RoyaltySettlementCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 royalty_settlement 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltySettlement
+     * @throws PingppException
+     */
+    public static RoyaltySettlementCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(RoyaltySettlement.class), params, RoyaltySettlementCollection.class, options);
     }
 
     /**
@@ -247,16 +265,24 @@ public class RoyaltySettlement extends APIResource {
      * @param id
      * @param params
      * @return RoyaltySettlement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltySettlement update(String id, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, instanceURL(RoyaltySettlement.class, id), params, RoyaltySettlement.class);
+            throws PingppException {
+        return update(id, params, null);
+    }
+
+    /**
+     * 更新 royalty_settlement
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return RoyaltySettlement
+     * @throws PingppException
+     */
+    public static RoyaltySettlement update(String id, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(RoyaltySettlement.class, id), params, RoyaltySettlement.class, options);
     }
 }

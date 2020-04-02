@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -115,15 +116,10 @@ public class SplitReceiver extends APIResource {
      *
      * @param params  参数
      * @return SplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static SplitReceiver create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return create(params, null);
     }
 
@@ -131,19 +127,13 @@ public class SplitReceiver extends APIResource {
      * 创建分账接收方
      *
      * @param params  参数
-     * @param apiKey  Ping++ APiKey
+     * @param options the specific options
      * @return SplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitReceiver create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(SplitReceiver.class), apiKey, params, SplitReceiver.class);
+    public static SplitReceiver create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return request(RequestMethod.POST, classURL(SplitReceiver.class), params, SplitReceiver.class, options);
     }
 
     /**
@@ -151,15 +141,9 @@ public class SplitReceiver extends APIResource {
      *
      * @param id  id
      * @return SplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static SplitReceiver retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static SplitReceiver retrieve(String id) throws PingppException {
         return retrieve(id, null);
     }
 
@@ -167,19 +151,12 @@ public class SplitReceiver extends APIResource {
      * 查询分账接收方
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return SplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitReceiver retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(SplitReceiver.class, id), apiKey, null, SplitReceiver.class);
+    public static SplitReceiver retrieve(String id, RequestOptions options) throws PingppException {
+        return request(RequestMethod.GET, instanceURL(SplitReceiver.class, id), null, SplitReceiver.class, options);
     }
 
     /**
@@ -187,35 +164,24 @@ public class SplitReceiver extends APIResource {
      *
      * @param params  分页参数等
      * @return SplitReceiverCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static SplitReceiverCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return list(params, null);
     }
 
     /**
      * 查询分账接收方列表
      *
-     * @param apiKey Ping++ APiKey
      * @param params 分页参数等
+     * @param options the specific options
      * @return SplitReceiverCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitReceiverCollection list(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(SplitReceiver.class), apiKey, params, SplitReceiverCollection.class);
+    public static SplitReceiverCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return request(RequestMethod.GET, classURL(SplitReceiver.class), params, SplitReceiverCollection.class, options);
     }
 
     /**
@@ -223,16 +189,9 @@ public class SplitReceiver extends APIResource {
      *
      * @param id  id
      * @return DeletedSplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static DeletedSplitReceiver delete(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static DeletedSplitReceiver delete(String id) throws PingppException {
         return delete(id, null);
     }
 
@@ -240,18 +199,11 @@ public class SplitReceiver extends APIResource {
      * 删除分账接收方
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return DeletedSplitReceiver
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static DeletedSplitReceiver delete(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.DELETE, instanceURL(SplitReceiver.class, id), apiKey, null, DeletedSplitReceiver.class);
+    public static DeletedSplitReceiver delete(String id, RequestOptions options) throws PingppException {
+        return request(RequestMethod.DELETE, instanceURL(SplitReceiver.class, id), null, DeletedSplitReceiver.class, options);
     }
 }

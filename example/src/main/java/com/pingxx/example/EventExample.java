@@ -54,17 +54,7 @@ public class EventExample {
 //            } else if (obj instanceof Summary) {
 //                System.out.println("webhooks 发送了 Summary");
 //            }
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
 

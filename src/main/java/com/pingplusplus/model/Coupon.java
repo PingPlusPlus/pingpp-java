@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 import com.pingplusplus.net.UserBasedResource;
 
 import java.util.Map;
@@ -149,18 +150,27 @@ public class Coupon extends UserBasedResource {
      * @param userId
      * @param params
      * @return Coupon
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Coupon create(String userId, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(userId);
-        return request(APIResource.RequestMethod.POST, classURL(Coupon.class, userId), params, Coupon.class);
+        return create(userId, params, null);
+    }
+
+    /**
+     * 创建 coupon
+     *
+     * @param userId
+     * @param params
+     * @param options the specific options
+     * @return Coupon
+     * @throws PingppException
+     */
+    public static Coupon create(String userId, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(userId);
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Coupon.class, userId), params, Coupon.class, options);
     }
 
     /**
@@ -169,18 +179,27 @@ public class Coupon extends UserBasedResource {
      * @param userId
      * @param id
      * @return Coupon
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Coupon retrieve(String userId, String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(userId);
-        return request(APIResource.RequestMethod.GET, instanceURL(Coupon.class, userId, id), null, Coupon.class);
+        return retrieve(userId, id, null);
+    }
+
+    /**
+     * 查询 coupon
+     *
+     * @param userId
+     * @param id
+     * @param options the specific options
+     * @return Coupon
+     * @throws PingppException
+     */
+    public static Coupon retrieve(String userId, String id, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(userId);
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Coupon.class, userId, id), null, Coupon.class, options);
     }
 
     /**
@@ -189,38 +208,58 @@ public class Coupon extends UserBasedResource {
      * @param userId
      * @param params
      * @return CouponCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponCollection list(String userId, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(userId);
-        return request(APIResource.RequestMethod.GET, classURL(Coupon.class, userId), params, CouponCollection.class);
+        return list(userId, params, null);
+    }
+
+    /**
+     * 查询 coupon 列表
+     *
+     * @param userId
+     * @param params
+     * @param options the specific options
+     * @return CouponCollection
+     * @throws PingppException
+     */
+    public static CouponCollection list(String userId, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(userId);
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Coupon.class, userId), params, CouponCollection.class, options);
     }
 
     /**
      * 更新 coupon
      *
      * @param userId
+     * @param id
      * @param params
      * @return Coupon
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Coupon update(String userId, String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(userId);
-        return request(APIResource.RequestMethod.PUT, instanceURL(Coupon.class, userId, id), params, Coupon.class);
+        return update(userId, id, params, null);
+    }
+
+    /**
+     * 更新 coupon
+     *
+     * @param userId
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return Coupon
+     * @throws PingppException
+     */
+    public static Coupon update(String userId, String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(userId);
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(Coupon.class, userId, id), params, Coupon.class, options);
     }
 
     /**
@@ -229,17 +268,26 @@ public class Coupon extends UserBasedResource {
      * @param userId
      * @param id
      * @return DeletedCoupon
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static DeletedCoupon delete(String userId, String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(userId);
-        return request(APIResource.RequestMethod.DELETE, instanceURL(Coupon.class, userId, id), null, DeletedCoupon.class);
+        return delete(userId, id, null);
+    }
+
+    /**
+     * 删除 coupon
+     *
+     * @param userId
+     * @param id
+     * @param options the specific options
+     * @return DeletedCoupon
+     * @throws PingppException
+     */
+    public static DeletedCoupon delete(String userId, String id, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(userId);
+        return APIResource.request(APIResource.RequestMethod.DELETE, instanceURL(Coupon.class, userId, id), null, DeletedCoupon.class, options);
     }
 }

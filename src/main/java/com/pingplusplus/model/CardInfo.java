@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -67,15 +68,10 @@ public class CardInfo extends APIResource {
      *
      * @param params 卡号等信息
      * @return CardInfo
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static CardInfo query(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return query(params, null);
     }
 
@@ -83,18 +79,12 @@ public class CardInfo extends APIResource {
      * 银行卡信息查询
      *
      * @param params 卡号等信息
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return CardInfo
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static CardInfo query(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, singleClassURL(CardInfo.class), apiKey, params, CardInfo.class);
+    public static CardInfo query(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, singleClassURL(CardInfo.class), params, CardInfo.class, options);
     }
 }

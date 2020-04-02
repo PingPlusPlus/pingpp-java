@@ -21,14 +21,20 @@ public class WxLiteOAuth extends WxpubOAuth {
      * @param appSecret 微信小程序应用密钥（注意保密）
      * @param code      授权 code, 登录时获取的 code
      * @return openid   微信小程序授权用户唯一标识
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     public static String getOpenId(String appId, String appSecret, String code)
             throws UnsupportedEncodingException, ChannelException {
 
         AuthResult authResult = getSession(appId, appSecret, code);
         if (authResult.getErrmsg() != null) {
-            throw new ChannelException(authResult.getErrmsg(), authResult.getErrcode().toString(), null);
+            throw new ChannelException(
+                    authResult.getErrmsg(),
+                    null,
+                    null,
+                    authResult.getErrcode().toString(),
+                    0,
+                    null);
         }
 
         return authResult.getOpenid();
@@ -41,7 +47,7 @@ public class WxLiteOAuth extends WxpubOAuth {
      * @param appSecret 微信小程序应用密钥（注意保密）
      * @param code      授权 code, 登录时获取的 code
      * @return openid   微信小程序授权用户唯一标识
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     public static AuthResult getSession(String appId, String appSecret, String code)
             throws UnsupportedEncodingException {
@@ -53,14 +59,13 @@ public class WxLiteOAuth extends WxpubOAuth {
         String url = "https://api.weixin.qq.com/sns/jscode2session?" + httpBuildQuery(params);
 
         String ret = httpGet(url);
-        AuthResult authResult = new GsonBuilder()
+
+        return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create().fromJson(ret, AuthResult.class);
-
-        return authResult;
     }
 
-    public class AuthResult {
+    public static class AuthResult {
         String sessionKey;
         String openid;
         String unionid;

@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -57,15 +58,10 @@ public class SubBank extends APIResource {
      *
      * @param params 银行编号和省市信息
      * @return SubBankCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static SubBankCollection query(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return query(params, null);
     }
 
@@ -73,18 +69,12 @@ public class SubBank extends APIResource {
      * 银行支行列表查询
      *
      * @param params 银行编号和省市信息
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return SubBankCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SubBankCollection query(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(SubBank.class), apiKey, params, SubBankCollection.class);
+    public static SubBankCollection query(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(SubBank.class), params, SubBankCollection.class, options);
     }
 }

@@ -35,7 +35,7 @@ public class WxpubOAuth {
      * @param appSecret 微信公众号应用密钥（注意保密）
      * @param code      授权code, 通过调用WxpubOAuth.createOauthUrlForCode来获取
      * @return openid   微信公众号授权用户唯一标识, 可用于微信网页内支付
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     public static String getOpenId(String appId, String appSecret, String code)
             throws UnsupportedEncodingException, ChannelException {
@@ -47,7 +47,13 @@ public class WxpubOAuth {
                 .create().fromJson(ret, OAuthResult.class);
 
         if (oAuthResult.getErrmsg() != null) {
-            throw new ChannelException(oAuthResult.getErrmsg(), oAuthResult.getErrcode().toString(), null);
+            throw new ChannelException(
+                    oAuthResult.getErrmsg(),
+                    null,
+                    null,
+                    oAuthResult.getErrcode().toString(),
+                    0,
+                    null);
         }
 
         return oAuthResult.getOpenid();
@@ -63,7 +69,7 @@ public class WxpubOAuth {
      * @param moreInfo    FALSE 不弹出授权页面,直接跳转,这个只能拿到用户openid
      *                    TRUE 弹出授权页面,这个可以通过 openid 拿到昵称、性别、所在地，
      * @return 用于获取授权code的URL地址
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     public static String createOauthUrlForCode(String appId, String redirectUrl, boolean moreInfo)
             throws UnsupportedEncodingException {
@@ -86,7 +92,7 @@ public class WxpubOAuth {
      * @param appSecret 微信公众号应用密钥（注意保密）
      * @param code      授权code, 通过调用WxpubOAuth.createOauthUrlForCode来获取
      * @return 获取openid的URL地址
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     private static String createOauthUrlForOpenid(String appId, String appSecret, String code)
             throws UnsupportedEncodingException {
@@ -129,11 +135,10 @@ public class WxpubOAuth {
                 result += line;
             }
             rd.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
@@ -142,7 +147,7 @@ public class WxpubOAuth {
      * @param appId
      * @param appSecret
      * @return JsapiTicket
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException if the encoding is not supported
      */
     public static String getJsapiTicket(String appId, String appSecret) throws UnsupportedEncodingException {
         Map<String, String> data = new HashMap<String, String>();

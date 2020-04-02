@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -112,17 +113,24 @@ public class BalanceTransaction extends AppBasedResource {
      *
      * @param id
      * @return BalanceTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceTransaction retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceTransaction.class, id), null, BalanceTransaction.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 balance_transaction
+     *
+     * @param id
+     * @param options the specific options
+     * @return BalanceTransaction
+     * @throws PingppException
+     */
+    public static BalanceTransaction retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BalanceTransaction.class, id), null, BalanceTransaction.class, options);
     }
 
     /**
@@ -130,16 +138,23 @@ public class BalanceTransaction extends AppBasedResource {
      *
      * @param params
      * @return BalanceTransactionCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceTransactionCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BalanceTransaction.class), params, BalanceTransactionCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 balance_transaction 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return BalanceTransactionCollection
+     * @throws PingppException
+     */
+    public static BalanceTransactionCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BalanceTransaction.class), params, BalanceTransactionCollection.class, options);
     }
 }

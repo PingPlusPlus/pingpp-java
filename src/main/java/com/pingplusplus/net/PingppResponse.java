@@ -1,8 +1,5 @@
 package com.pingplusplus.net;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Handler Pingpp response when you request charge from pingxx
  */
@@ -10,11 +7,13 @@ public class PingppResponse {
 
     private int responseCode;
     private String responseBody;
-    private Map<String, List<String>> responseHeaders;
+    private HttpHeaders responseHeaders;
+
+    private int numRetries;
 
     /**
-     * @param responseCode
-     * @param responseBody
+     * @param responseCode the HTTP Status Code
+     * @param responseBody the response body
      */
     public PingppResponse(int responseCode, String responseBody) {
         this.responseCode = responseCode;
@@ -23,11 +22,11 @@ public class PingppResponse {
     }
 
     /**
-     * @param responseCode
-     * @param responseBody
-     * @param responseHeaders
+     * @param responseCode the HTTP Status Code
+     * @param responseBody the response body
+     * @param responseHeaders the response headers
      */
-    public PingppResponse(int responseCode, String responseBody, Map<String, List<String>> responseHeaders) {
+    public PingppResponse(int responseCode, String responseBody, HttpHeaders responseHeaders) {
         this.responseCode = responseCode;
         this.responseBody = responseBody;
         this.responseHeaders = responseHeaders;
@@ -43,7 +42,7 @@ public class PingppResponse {
 
     /**
      *
-     * @param responseCode
+     * @param responseCode the HTTP Status Code
      */
     public void setResponseCode(int responseCode) {
         this.responseCode = responseCode;
@@ -59,7 +58,7 @@ public class PingppResponse {
 
     /**
      *
-     * @param responseBody
+     * @param responseBody the response body
      */
     public void setResponseBody(String responseBody) {
         this.responseBody = responseBody;
@@ -69,7 +68,15 @@ public class PingppResponse {
      *
      * @return responseHeaders
      */
-    public Map<String, List<String>> getResponseHeaders() {
+    public HttpHeaders getResponseHeaders() {
         return responseHeaders;
+    }
+
+    public int getNumRetries() {
+        return numRetries;
+    }
+
+    public void setNumRetries(int numRetries) {
+        this.numRetries = numRetries;
     }
 }

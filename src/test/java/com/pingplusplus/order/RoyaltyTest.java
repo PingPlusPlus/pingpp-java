@@ -2,7 +2,7 @@ package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Royalty;
 import com.pingplusplus.model.RoyaltyCollection;
 import com.pingplusplus.model.RoyaltyDataResult;
@@ -21,9 +21,7 @@ public class RoyaltyTest extends PingppTestBase {
      * 批量更新 royalty
      */
     @Test
-    public void testRoyaltyBatchUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRoyaltyBatchUpdate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         List<String> ids = new ArrayList<>(); // 分润 ID 列表, 必传
         ids.add("170301124238000111");
@@ -40,9 +38,7 @@ public class RoyaltyTest extends PingppTestBase {
     /**
      * 查询 royalty
      */
-    @Test public void testRoyaltyRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyRetrieve() throws PingppException {
         // 查询 royalty 方法
         // 参数: royalty id
         Royalty obj = Royalty.retrieve("421170321093600003");
@@ -53,9 +49,7 @@ public class RoyaltyTest extends PingppTestBase {
     /**
      * 查询 royalty list
      */
-    @Test public void testRoyaltyList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("per_page", 3);  // 可选
         params.put("page", 1);      // 可选
@@ -71,9 +65,7 @@ public class RoyaltyTest extends PingppTestBase {
     /**
      * 创建分润
      */
-    @Test public void testRoyaltyDataCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyDataCreate() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("app", PingppTestData.getAppID()); // 必传
 //        params.put("charge", ""); // 条件可选，对于已经成功的 order 必传该字段

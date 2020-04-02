@@ -2,7 +2,8 @@ package com.pingplusplus.agreement;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Agreement;
 import com.pingplusplus.model.AgreementCollection;
 import org.junit.Test;
@@ -16,9 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class AgreenmentTest extends PingppTestBase {
 
     @Test
-    public void testCreate() throws RateLimitException,
-            APIException, ChannelException,
-            APIConnectionException, AuthenticationException {
+    public void testCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID()); // App ID
         params.put("contract_no", "2018051700001"); // 签约协议号
@@ -40,9 +39,7 @@ public class AgreenmentTest extends PingppTestBase {
     }
 
     @Test
-    public void testRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRetrieve() throws PingppException {
         String id = "agr_19EEE7QdgGMCoY";
         Agreement agreement = Agreement.retrieve(id);
 
@@ -51,9 +48,7 @@ public class AgreenmentTest extends PingppTestBase {
     }
 
     @Test
-    public void testList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("per_page", 3); // 每页数量
         params.put("app", PingppTestData.getAppID()); // App ID 此参数必填
@@ -64,9 +59,7 @@ public class AgreenmentTest extends PingppTestBase {
     }
 
     @Test
-    public void testCancel() throws RateLimitException,
-            APIException, ChannelException,
-            APIConnectionException, AuthenticationException {
+    public void testCancel() throws PingppException {
         String id = "agr_19EEE7QdgGMCoY";
 
         Agreement agreement;

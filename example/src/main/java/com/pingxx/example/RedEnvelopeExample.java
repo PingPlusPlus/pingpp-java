@@ -80,17 +80,7 @@ public class RedEnvelopeExample {
         try {
             red = RedEnvelope.create(redenvelope);
             System.out.println(red);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
         return red;
@@ -108,17 +98,7 @@ public class RedEnvelopeExample {
         try {
             RedEnvelope redEnvelope = RedEnvelope.retrieve(id);
             System.out.println(redEnvelope);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
@@ -135,17 +115,7 @@ public class RedEnvelopeExample {
         try {
             redEnvelopeCollection = RedEnvelope.list(chargeParams);
             System.out.println(redEnvelopeCollection);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
 

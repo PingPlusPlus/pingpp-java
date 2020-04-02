@@ -1,7 +1,7 @@
 package com.pingplusplus.coupon;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.CouponTemplate;
 import com.pingplusplus.model.CouponTemplateCollection;
 import com.pingplusplus.model.DeletedCouponTemplate;
@@ -17,9 +17,7 @@ public class CouponTemplateTest extends PingppTestBase {
      * 创建优惠券模板
      */
     @Test
-    public void testCouponTemplateCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testCouponTemplateCreate() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("name", "25%OFF"); // 优惠券模板名称, 可选
         params.put("type", 2);        // 优惠券模板的类型 1：现金券；2：折扣券, 必传
@@ -50,9 +48,7 @@ public class CouponTemplateTest extends PingppTestBase {
     /**
      * 查询优惠券模板
      */
-    @Test public void testCouponTemplateRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponTemplateRetrieve() throws PingppException {
         String couponTemplateId = "300117082315262900016402";
         // 查询优惠券模板方法
         // 参数: couponTemplateId (优惠券模板 id)
@@ -64,9 +60,7 @@ public class CouponTemplateTest extends PingppTestBase {
     /**
      * 查询优惠券模板列表
      */
-    @Test public void testCouponTemplateList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponTemplateList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);
@@ -80,9 +74,7 @@ public class CouponTemplateTest extends PingppTestBase {
     /**
      * 更新优惠券模板
      */
-    @Test public void testCouponTemplateUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponTemplateUpdate() throws PingppException {
         String couponTemplateId = "300117082315262900016402";
         Map<String, Object> params = new HashMap<>();
         Map<String, Object> metadata = new HashMap<>();
@@ -98,9 +90,7 @@ public class CouponTemplateTest extends PingppTestBase {
     /**
      * 删除优惠券模板
      */
-    @Test public void testCouponTemplateDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponTemplateDelete() throws PingppException {
         String couponTemplateId = "300117082315262900016402";
         // 删除优惠券模板方法
         // 参数: couponTemplateId (优惠券模板 id)

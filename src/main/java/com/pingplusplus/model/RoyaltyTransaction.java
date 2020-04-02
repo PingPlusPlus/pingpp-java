@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -111,17 +112,22 @@ public class RoyaltyTransaction extends APIResource {
      *
      * @param id
      * @return RoyaltyTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RoyaltyTransaction retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(RoyaltyTransaction.class, id), null, RoyaltyTransaction.class);
+    public static RoyaltyTransaction retrieve(String id) throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 royalty_transaction
+     *
+     * @param id
+     * @param options the specific options
+     * @return RoyaltyTransaction
+     * @throws PingppException
+     */
+    public static RoyaltyTransaction retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(RoyaltyTransaction.class, id), null, RoyaltyTransaction.class, options);
     }
 
     /**
@@ -129,16 +135,23 @@ public class RoyaltyTransaction extends APIResource {
      *
      * @param params
      * @return RoyaltyTransactionCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltyTransactionCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(RoyaltyTransaction.class), params, RoyaltyTransactionCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 royalty_transaction 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltyTransactionCollection
+     * @throws PingppException
+     */
+    public static RoyaltyTransactionCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(RoyaltyTransaction.class), params, RoyaltyTransactionCollection.class, options);
     }
 }

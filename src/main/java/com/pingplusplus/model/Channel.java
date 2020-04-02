@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 import com.pingplusplus.net.SubAppBasedResource;
 
 import java.util.Map;
@@ -77,17 +78,25 @@ public class Channel extends SubAppBasedResource {
      * @param subAppId
      * @param params
      * @return Channel
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Channel create(String subAppId, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(Channel.class, subAppId), params, Channel.class);
+            throws PingppException {
+        return create(subAppId, params, null);
+    }
+
+    /**
+     * 创建渠道参数
+     *
+     * @param subAppId
+     * @param params
+     * @param options the specific options
+     * @return Channel
+     * @throws PingppException
+     */
+    public static Channel create(String subAppId, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Channel.class, subAppId), params, Channel.class, options);
     }
 
     /**
@@ -96,17 +105,26 @@ public class Channel extends SubAppBasedResource {
      * @param subAppId
      * @param channel
      * @return Channel
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Channel retrieve(String subAppId, String channel)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Channel.class, subAppId, channel), null, Channel.class);
+            throws PingppException {
+        return retrieve(subAppId, channel, null);
+    }
+
+
+    /**
+     * 查询渠道参数
+     *
+     * @param subAppId
+     * @param channel
+     * @param options the specific options
+     * @return Channel
+     * @throws PingppException
+     */
+    public static Channel retrieve(String subAppId, String channel, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Channel.class, subAppId, channel), null, Channel.class, options);
     }
 
     /**
@@ -116,17 +134,26 @@ public class Channel extends SubAppBasedResource {
      * @param channel
      * @param params
      * @return Channel
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Channel update(String subAppId, String channel, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, instanceURL(Channel.class, subAppId, channel), params, Channel.class);
+            throws PingppException {
+        return update(subAppId, channel, params, null);
+    }
+
+    /**
+     * 更新渠道参数
+     *
+     * @param subAppId
+     * @param channel
+     * @param params
+     * @param options the specific options
+     * @return Channel
+     * @throws PingppException
+     */
+    public static Channel update(String subAppId, String channel, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(Channel.class, subAppId, channel), params, Channel.class, options);
     }
 
     /**
@@ -135,16 +162,24 @@ public class Channel extends SubAppBasedResource {
      * @param subAppId
      * @param channel
      * @return DeletedChannel
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static DeletedChannel delete(String subAppId, String channel)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.DELETE, instanceURL(Channel.class, subAppId, channel), null, DeletedChannel.class);
+            throws PingppException {
+        return delete(subAppId, channel, null);
+    }
+
+    /**
+     * 删除渠道参数
+     *
+     * @param subAppId
+     * @param channel
+     * @param options the specific options
+     * @return DeletedChannel
+     * @throws PingppException
+     */
+    public static DeletedChannel delete(String subAppId, String channel, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.DELETE, instanceURL(Channel.class, subAppId, channel), null, DeletedChannel.class, options);
     }
 }

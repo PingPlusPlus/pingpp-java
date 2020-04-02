@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -66,34 +67,23 @@ public class Identification extends APIResource {
      *
      * @param params
      * @return Identification
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static Identification identify(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return identify(null, params);
+            throws PingppException {
+        return identify(params, null);
     }
 
     /**
      * 请求认证
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return Identification
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Identification identify(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, singleClassURL(Identification.class), apiKey, params, Identification.class);
+    public static Identification identify(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, singleClassURL(Identification.class), params, Identification.class, options);
     }
 }

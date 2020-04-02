@@ -1,7 +1,7 @@
 package com.pingplusplus.settle_account;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.DeletedSettleAccount;
 import com.pingplusplus.model.SettleAccount;
 import com.pingplusplus.model.SettleAccountCollection;
@@ -18,9 +18,7 @@ public class SettleAccountTest extends PingppTestBase {
      * 创建结算账户 SettleAccount
      */
     @Test
-    public void testSettleAccountCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testSettleAccountCreate() throws PingppException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("channel", "bank_account"); // [wx_pub, wx, alipay, bank_account] 其中一种
@@ -51,9 +49,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 查询结算账户
      */
-    @Test public void testSettleAccountRetrieve() throws
-            RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountRetrieve() throws PingppException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -74,9 +70,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 查询结算账户列表
      */
-    @Test public void testSettleAccountList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountList() throws PingppException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -90,9 +84,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 删除结算账户
      */
-    @Test public void testSettleAccountDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountDelete() throws PingppException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -113,9 +105,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 结算账户更新（存管相关）
      */
-    @Test public void testSettleAccountUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountUpdate() throws PingppException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();
@@ -142,9 +132,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 结算账户更新手机号（存管相关）
      */
-    @Test public void testSettleAccountUpdateMobile() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountUpdateMobile() throws PingppException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();
@@ -158,9 +146,7 @@ public class SettleAccountTest extends PingppTestBase {
     /**
      * 结算账号打款验证接口（存管相关）
      */
-    @Test public void testSettleAccountVerify() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSettleAccountVerify() throws PingppException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();

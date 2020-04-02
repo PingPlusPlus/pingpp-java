@@ -1,7 +1,7 @@
 package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.RoyaltyTransaction;
 import com.pingplusplus.model.RoyaltyTransactionCollection;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class RoyaltyTransactionTest extends PingppTestBase {
      * 查询单个 royalty_transaction
      */
     @Test
-    public void testRoyaltyTransactionRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRoyaltyTransactionRetrieve() throws PingppException {
         // 查询单个 royalty_transaction 方法
         // 参数: royalty_transaction id
         RoyaltyTransaction obj = RoyaltyTransaction.retrieve("170302171104000011");
@@ -29,9 +27,7 @@ public class RoyaltyTransactionTest extends PingppTestBase {
     /**
      * 查询 royalty_transaction list
      */
-    @Test public void testRoyaltyTransactionList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyTransactionList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("per_page", 3);
         params.put("page", 1);

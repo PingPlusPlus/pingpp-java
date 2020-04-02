@@ -1,6 +1,6 @@
 package com.pingplusplus;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.CardInfo;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class CardInfoTest extends PingppTestBase {
     /**
      * 通过卡号查询卡信息。
      */
-    @Test public void testCardInfoQuery() throws RateLimitException, APIException, ChannelException, InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testCardInfoQuery() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("app", PingppTestData.getAppID());
         params.put("bank_account", "6222280012469823");

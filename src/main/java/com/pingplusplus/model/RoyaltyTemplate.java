@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -84,17 +85,22 @@ public class RoyaltyTemplate extends APIResource {
      *
      * @param params
      * @return RoyaltyTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RoyaltyTemplate create(Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(RoyaltyTemplate.class), params, RoyaltyTemplate.class);
+    public static RoyaltyTemplate create(Map<String, Object> params) throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 royalty_template
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltyTemplate
+     * @throws PingppException
+     */
+    public static RoyaltyTemplate create(Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(RoyaltyTemplate.class), params, RoyaltyTemplate.class, options);
     }
 
     /**
@@ -102,17 +108,22 @@ public class RoyaltyTemplate extends APIResource {
      *
      * @param id
      * @return RoyaltyTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RoyaltyTemplate retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(RoyaltyTemplate.class, id), null, RoyaltyTemplate.class);
+    public static RoyaltyTemplate retrieve(String id) throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 royalty_template
+     *
+     * @param id
+     * @param options the specific options
+     * @return RoyaltyTemplate
+     * @throws PingppException
+     */
+    public static RoyaltyTemplate retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(RoyaltyTemplate.class, id), null, RoyaltyTemplate.class, options);
     }
 
     /**
@@ -120,17 +131,24 @@ public class RoyaltyTemplate extends APIResource {
      *
      * @param params
      * @return RoyaltyTemplateCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltyTemplateCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(RoyaltyTemplate.class), params, RoyaltyTemplateCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 royalty_template 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltyTemplateCollection
+     * @throws PingppException
+     */
+    public static RoyaltyTemplateCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(RoyaltyTemplate.class), params, RoyaltyTemplateCollection.class, options);
     }
 
     /**
@@ -138,17 +156,24 @@ public class RoyaltyTemplate extends APIResource {
      *
      * @param id
      * @return DeleteRoyaltyTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static DeleteRoyaltyTemplate delete(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.DELETE, instanceURL(RoyaltyTemplate.class, id), null, DeleteRoyaltyTemplate.class);
+            throws PingppException {
+        return delete(id, null);
+    }
+
+    /**
+     * 删除 royalty_template
+     *
+     * @param id
+     * @param options the specific options
+     * @return DeleteRoyaltyTemplate
+     * @throws PingppException
+     */
+    public static DeleteRoyaltyTemplate delete(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.DELETE, instanceURL(RoyaltyTemplate.class, id), null, DeleteRoyaltyTemplate.class, options);
     }
 
     /**
@@ -156,16 +181,23 @@ public class RoyaltyTemplate extends APIResource {
      *
      * @param id
      * @return RoyaltyTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltyTemplate update(String id, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, instanceURL(RoyaltyTemplate.class, id), params, RoyaltyTemplate.class);
+            throws PingppException {
+        return update(id, params, null);
+    }
+
+    /**
+     *  更新 royalty_template
+     *
+     * @param id
+     * @param options the specific options
+     * @return RoyaltyTemplate
+     * @throws PingppException
+     */
+    public static RoyaltyTemplate update(String id, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(RoyaltyTemplate.class, id), params, RoyaltyTemplate.class, options);
     }
 }

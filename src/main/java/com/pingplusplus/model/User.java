@@ -1,8 +1,10 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -230,17 +232,24 @@ public class User extends AppBasedResource {
      *
      * @param params
      * @return User
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static User create(Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(User.class), params, User.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 user
+     *
+     * @param params
+     * @param options the specific options
+     * @return User
+     * @throws PingppException
+     */
+    public static User create(Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(User.class), params, User.class, options);
     }
 
     /**
@@ -248,18 +257,26 @@ public class User extends AppBasedResource {
      *
      * @param id
      * @return User
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static User retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(id);
-        return request(APIResource.RequestMethod.GET, instanceURL(User.class, id), null, User.class);
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 user
+     *
+     * @param id
+     * @param options the specific options
+     * @return User
+     * @throws PingppException
+     */
+    public static User retrieve(String id, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(id);
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(User.class, id), null, User.class, options);
     }
 
     /**
@@ -267,17 +284,24 @@ public class User extends AppBasedResource {
      *
      * @param params
      * @return UserCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static UserCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(User.class), params, UserCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 user 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return UserCollection
+     * @throws PingppException
+     */
+    public static UserCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(User.class), params, UserCollection.class, options);
     }
 
     /**
@@ -286,23 +310,38 @@ public class User extends AppBasedResource {
      * @param id
      * @param params
      * @return User
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static User update(String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         User.checkUserId(id);
-        return request(APIResource.RequestMethod.PUT, instanceURL(User.class, id), params, User.class);
+        return update(id, params, null);
+    }
+
+    /**
+     * 更新 user
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return User
+     * @throws PingppException
+     */
+    public static User update(String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        User.checkUserId(id);
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(User.class, id), params, User.class, options);
     }
 
     public static void checkUserId(String userId) throws InvalidRequestException {
         if (userId == null || userId.trim().length() == 0) {
-            throw new InvalidRequestException("ID should not be null or empty.", "user_id", null);
+            throw new InvalidRequestException(
+                    "ID should not be null or empty.",
+                    "invalid_request_error",
+                    "request_param_error",
+                    "user_id",
+                    0,
+                    null);
         }
     }
 }

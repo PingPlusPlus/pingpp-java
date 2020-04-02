@@ -1,9 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
-
+import com.pingplusplus.net.RequestOptions;
 import java.util.Map;
 
 public class BalanceSettlement extends AppBasedResource {
@@ -166,17 +166,24 @@ public class BalanceSettlement extends AppBasedResource {
      *
      * @param id balance_settlement ID
      * @return BalanceSettlement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceSettlement retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceSettlement.class, id), null, BalanceSettlement.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 balance_settlement
+     *
+     * @param id balance_settlement ID
+     * @param options the specific options
+     * @return BalanceSettlement
+     * @throws PingppException
+     */
+    public static BalanceSettlement retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BalanceSettlement.class, id), null, BalanceSettlement.class, options);
     }
 
     /**
@@ -184,16 +191,23 @@ public class BalanceSettlement extends AppBasedResource {
      *
      * @param params 过滤参数
      * @return BalanceSettlementCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceSettlementCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BalanceSettlement.class), params, BalanceSettlementCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 balance_transaction 列表
+     *
+     * @param params 过滤参数
+     * @param options the specific options
+     * @return BalanceSettlementCollection
+     * @throws PingppException
+     */
+    public static BalanceSettlementCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BalanceSettlement.class), params, BalanceSettlementCollection.class, options);
     }
 }

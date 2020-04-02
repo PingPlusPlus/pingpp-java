@@ -1,8 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
-
+import com.pingplusplus.net.RequestOptions;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -160,15 +160,9 @@ public class Agreement extends APIResource {
      *
      * @param params  签约参数
      * @return Agreement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Agreement create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    public static Agreement create(Map<String, Object> params) throws PingppException {
         return create(params, null);
     }
 
@@ -176,19 +170,13 @@ public class Agreement extends APIResource {
      * 创建签约(agreement)
      *
      * @param params  签约参数
-     * @param apiKey  Ping++ APiKey
-     * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @param options the specific options
+     * @return Agreement
+     * @throws PingppException
      */
-    public static Agreement create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Agreement.class), apiKey, params, Agreement.class);
+    public static Agreement create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(RequestMethod.POST, classURL(Agreement.class), params, Agreement.class, options);
     }
 
     /**
@@ -196,15 +184,9 @@ public class Agreement extends APIResource {
      *
      * @param id  id
      * @return Agreement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Agreement retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Agreement retrieve(String id) throws PingppException {
         return retrieve(id, null);
     }
 
@@ -212,19 +194,12 @@ public class Agreement extends APIResource {
      * 查询签约(agreement)
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return Agreement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Agreement retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Agreement.class, id), apiKey, null, Agreement.class);
+    public static Agreement retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(RequestMethod.GET, instanceURL(Agreement.class, id), null, Agreement.class, options);
     }
 
     /**
@@ -232,35 +207,24 @@ public class Agreement extends APIResource {
      *
      * @param params  分页参数等
      * @return AgreementCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static AgreementCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return list(params, null);
     }
 
     /**
      * 查询签约列表
      *
-     * @param apiKey Ping++ APiKey
      * @param params 分页参数等
+     * @param options the specific options
      * @return AgreementCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static AgreementCollection list(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Agreement.class), apiKey, params, AgreementCollection.class);
+    public static AgreementCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(RequestMethod.GET, classURL(Agreement.class), params, AgreementCollection.class, options);
     }
 
     /**
@@ -268,16 +232,9 @@ public class Agreement extends APIResource {
      *
      * @param id  id
      * @return Agreement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Agreement cancel(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Agreement cancel(String id) throws PingppException {
         return cancel(id, null);
     }
 
@@ -285,20 +242,13 @@ public class Agreement extends APIResource {
      * 解除签约(agreement)
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return Agreement
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Agreement cancel(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Agreement cancel(String id, RequestOptions options) throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled");
-        return request(RequestMethod.PUT, instanceURL(Agreement.class, id), apiKey, params, Agreement.class);
+        return APIResource.request(RequestMethod.PUT, instanceURL(Agreement.class, id), params, Agreement.class, options);
     }
 }

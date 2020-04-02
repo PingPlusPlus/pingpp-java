@@ -7,10 +7,7 @@
  */
 package com.pingxx.example;
 
-import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.*;
-import com.pingplusplus.model.Charge;
-import com.pingplusplus.model.ChargeCollection;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Customs;
 
 import java.util.Date;
@@ -75,19 +72,10 @@ public class CustomsExample {
             //发起交易请求
             obj = Customs.create(params);
             System.out.println(obj);
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
+
         return obj;
     }
 

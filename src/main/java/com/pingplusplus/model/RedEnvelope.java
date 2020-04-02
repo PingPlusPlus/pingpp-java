@@ -8,8 +8,9 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.LongSerializationPolicy;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -206,41 +207,29 @@ public class RedEnvelope extends APIResource {
         this.metadata = metadata;
     }
 
-
     /**
      * 创建 RedEnvelope
      *
      * @param params
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static RedEnvelope create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 RedEnvelope
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RedEnvelope create(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(RedEnvelope.class), apiKey, params, RedEnvelope.class);
+    public static RedEnvelope create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(RedEnvelope.class), params, RedEnvelope.class, options);
     }
 
     /**
@@ -248,15 +237,9 @@ public class RedEnvelope extends APIResource {
      *
      * @param id
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static RedEnvelope retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static RedEnvelope retrieve(String id) throws PingppException {
         return retrieve(id, null, null);
     }
 
@@ -264,19 +247,12 @@ public class RedEnvelope extends APIResource {
      * 查询 RedEnvelope
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RedEnvelope retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, apiKey, null);
+    public static RedEnvelope retrieve(String id, RequestOptions options) throws PingppException {
+        return retrieve(id, null, options);
     }
 
     /**
@@ -285,36 +261,23 @@ public class RedEnvelope extends APIResource {
      * @param id
      * @param params
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, null, params);
+    public static RedEnvelope retrieve(String id, Map<String, Object> params) throws PingppException {
+        return retrieve(id, params, null);
     }
 
     /**
      * 查询 RedEnvelope
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return RedEnvelope
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RedEnvelope retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), apiKey, params, RedEnvelope.class);
+    public static RedEnvelope retrieve(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(RedEnvelope.class, id), params, RedEnvelope.class, options);
     }
 
     /**
@@ -322,34 +285,24 @@ public class RedEnvelope extends APIResource {
      *
      * @param params
      * @return RedEnvelopeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static RedEnvelopeCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 RedEnvelope
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return RedEnvelopeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static RedEnvelopeCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(RedEnvelope.class), apiKey, params, RedEnvelopeCollection.class);
+    public static RedEnvelopeCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(RedEnvelope.class), params, RedEnvelopeCollection.class, options);
     }
+
 }

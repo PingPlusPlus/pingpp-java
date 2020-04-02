@@ -1,6 +1,6 @@
 package com.pingplusplus;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class PingppTest {
     }
 
     @Test public void testVerifyVersions() {
-        assertEquals("Pingpp.VERSION should match", "2.3.14", Pingpp.VERSION);
+        assertEquals("Pingpp.VERSION should match", "2.4.0", Pingpp.VERSION);
     }
 
     @Test public void testCreateCharge() {
@@ -59,20 +59,11 @@ public class PingppTest {
             // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
             String chargeString = charge.toString();
             System.out.println(chargeString);
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
 
+        assertNotNull(charge);
         assertEquals("charge object should be charge", "charge", charge.getObject());
         assertEquals("charge order_no", orderNo, charge.getOrderNo());
     }
@@ -106,17 +97,7 @@ public class PingppTest {
             System.out.println(chs);
             assertEquals("object should be list", "list", chs.getObject());
             assertEquals("data count should be same with limit", limit.intValue(), chs.getData().size());
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
@@ -130,17 +111,7 @@ public class PingppTest {
 
             assertEquals("object should be list", "list", objs.getObject());
             assertEquals("data count should be same with per_page", limit.intValue(), objs.getData().size());
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
@@ -174,24 +145,12 @@ public class PingppTest {
             assertEquals("order_no should be same", params.get("order_no"), obj.getOrderNo());
             assertEquals("description should be same", params.get("description"), obj.getDescription());
             assertEquals("channel should be same", params.get("channel"), obj.getChannel());
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
 
-    @Test public void testCreateBatchTransfer() throws
-            RateLimitException, APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCreateBatchTransfer() throws PingppException {
 
         String batchNo = "2017" + new Date().getTime();
         Map<String, Object> params = new HashMap<String, Object>();
@@ -245,22 +204,12 @@ public class PingppTest {
             // 发起 charge 撤销请求
             charge = Charge.reverse(chargeId);
             System.out.println(charge);
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
+
+            assertEquals("charge object should be charge", "charge", charge.getObject());
+            assertNotNull("charge reversed not null", charge.getReversed());
+        } catch (PingppException e) {
             e.printStackTrace();
         }
-
-        assertEquals("charge object should be charge", "charge", charge.getObject());
-        assertNotNull("charge reversed not null", charge.getReversed());
     }
 
     @Test public void testRetrieveRefund() {
@@ -271,17 +220,7 @@ public class PingppTest {
         try {
             refund = Refund.retrieve(chargeId, refundId);
             System.out.println(refund);
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
-            e.printStackTrace();
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
 

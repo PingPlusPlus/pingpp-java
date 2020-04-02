@@ -1,7 +1,7 @@
 package com.pingplusplus.sub_app;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Contact;
 import org.junit.Test;
 
@@ -18,9 +18,7 @@ public class ContactTest extends PingppTestBase {
     /**
      * 证件上传
      */
-    @Test public void testAddContact() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testAddContact() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("user", "test_user_001"); // 用户 ID
         params.put("acc_no", "2019057929311601000631"); // 壹账通用户编号。此编号可在证件上传接口的返回获得

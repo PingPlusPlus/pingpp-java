@@ -70,17 +70,7 @@ public class RefundExample {
         try {
             refund = Refund.create(this.charge, params);
             System.out.println(refund);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
         return refund;
@@ -101,17 +91,7 @@ public class RefundExample {
         try {
             Refund refund = Refund.retrieve(this.charge, id);
             System.out.println(refund);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
@@ -132,17 +112,7 @@ public class RefundExample {
         try {
             ChargeRefundCollection refunds = Refund.list(this.charge, refundParams);
             System.out.println(refunds);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }

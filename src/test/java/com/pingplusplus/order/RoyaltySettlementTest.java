@@ -2,7 +2,7 @@ package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.RoyaltySettlement;
 import com.pingplusplus.model.RoyaltySettlementCollection;
 import org.junit.Test;
@@ -17,9 +17,7 @@ public class RoyaltySettlementTest extends PingppTestBase {
      * 创建 royalty_settlement
      */
     @Test
-    public void testRoyaltySettlementCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRoyaltySettlementCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("payer_app", PingppTestData.getAppID());  // 分润发起方所在应用的 id, 必传
         params.put("method", "alipay");     // 分润的方式，余额 balance 或渠道名称，例如 alipay, 必传
@@ -35,9 +33,7 @@ public class RoyaltySettlementTest extends PingppTestBase {
     /**
      * 查询单个 royalty_settlement
      */
-    @Test public void testRoyaltySettlementRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltySettlementRetrieve() throws PingppException {
         // 查询单个 royalty_settlement 方法
         // 参数: royalty_settlement id
         RoyaltySettlement obj = RoyaltySettlement.retrieve("170302171104000011");
@@ -48,9 +44,7 @@ public class RoyaltySettlementTest extends PingppTestBase {
     /**
      * 查询 royalty_settlement list
      */
-    @Test public void testRoyaltySettlementList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltySettlementList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("payer_app", PingppTestData.getAppID());
         params.put("per_page", 3);
@@ -65,9 +59,7 @@ public class RoyaltySettlementTest extends PingppTestBase {
     /**
      * 更新 royalty_settlement
      */
-    @Test public void testRoyaltySettlementUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltySettlementUpdate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("status", "canceled"); // 需要更新的状态  [pending, canceled]
         // 更新 royalty_settlement 方法

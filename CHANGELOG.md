@@ -1,5 +1,19 @@
 # ChangeLog
 
+## 2.4.0
+
+> 本次更新有较多与旧版本不兼容的地方。
+
+- 修改: 支持 JDK 8 及以上; 
+- 修改: 异常抛出修改，统一声明为 `PingppException`，实际使用可以再做具体判断;
+- 废弃: 原接口，支持传 `apiKey` 参数的方法，全部删除，可以用 `RequestOptions` 代替;
+- 新增: 每个接口最后一个参数支持 `RequestOptions`;
+- 新增: `PingppException` 增加 `type`、`code`、`statusCode`;
+- 新增: 对象增加 `getLastResponse()` 方法，可以用于获取当前这次请求的 `response` 对象，包含 `HTTP Status Code`、`Headers`、`Response Body` 等;
+- 废弃: 取消对 `PKCS1` 格式私钥的支持，请转成 `PKCS8` 再使用;
+
+---
+
 ## 2.3.14
 
 - 新增：settle_account.recipient extra 字段

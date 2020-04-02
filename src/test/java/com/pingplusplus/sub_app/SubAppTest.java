@@ -2,7 +2,7 @@ package com.pingplusplus.sub_app;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.DeletedSubApp;
 import com.pingplusplus.model.SubApp;
 import com.pingplusplus.model.SubAppCollection;
@@ -18,9 +18,7 @@ public class SubAppTest extends PingppTestBase {
      * 创建子商户 app
      */
     @Test
-    public void testSubAppCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testSubAppCreate() throws PingppException {
         String userId = "sub_app_user_" + System.currentTimeMillis();
         String displayName = "sub_app_" + System.currentTimeMillis();
 
@@ -41,9 +39,7 @@ public class SubAppTest extends PingppTestBase {
     /**
      * 查询子商户 app
      */
-    @Test public void testSubAppRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppRetrieve() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         // 查询子商户 app
         // 参数: SubApp id
@@ -56,9 +52,7 @@ public class SubAppTest extends PingppTestBase {
     /**
      * 查询子商户 app 列表
      */
-    @Test public void testSubAppList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);
@@ -72,9 +66,7 @@ public class SubAppTest extends PingppTestBase {
     /**
      * 更新子商户 app
      */
-    @Test public void testSubAppUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppUpdate() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         Map<String, Object> params = new HashMap<>();
         // 更新子商户 app 方法
@@ -88,9 +80,7 @@ public class SubAppTest extends PingppTestBase {
     /**
      * 删除子商户 app
      */
-    @Test public void testSubAppDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppDelete() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         // 删除子商户 app 方法
         // 参数: SubApp id

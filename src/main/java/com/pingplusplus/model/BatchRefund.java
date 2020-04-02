@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -138,36 +139,24 @@ public class BatchRefund extends APIResource {
      *
      * @param params
      * @return BatchRefund
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchRefund create(Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 batch_refund
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return BatchRefund
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchRefund create(String apiKey, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(BatchRefund.class), apiKey, params, BatchRefund.class);
+    public static BatchRefund create(Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(BatchRefund.class), params, BatchRefund.class, options);
     }
 
     /**
@@ -175,16 +164,10 @@ public class BatchRefund extends APIResource {
      *
      * @param id
      * @return BatchRefund
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchRefund retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return retrieve(id, null);
     }
 
@@ -192,19 +175,13 @@ public class BatchRefund extends APIResource {
      * 查询 batch_refund
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return BatchRefund
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchRefund retrieve(String id, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(BatchRefund.class, id), apiKey, null, BatchRefund.class);
+    public static BatchRefund retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BatchRefund.class, id), null, BatchRefund.class, options);
     }
 
     /**
@@ -212,35 +189,23 @@ public class BatchRefund extends APIResource {
      *
      * @param params
      * @return BatchRefundCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchRefundCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 batch_refund 列表
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return BatchRefundCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchRefundCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(BatchRefund.class), apiKey, params, BatchRefundCollection.class);
+    public static BatchRefundCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BatchRefund.class), params, BatchRefundCollection.class, options);
     }
 }
