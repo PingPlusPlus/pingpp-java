@@ -104,17 +104,7 @@ public class TransferExample {
         try {
             transfer = Transfer.create(transferMap);
             System.out.println(transfer);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
         return transfer;
@@ -132,17 +122,7 @@ public class TransferExample {
         try {
             Transfer transfer = Transfer.retrieve(id, param);
             System.out.println(transfer);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
 
@@ -161,17 +141,7 @@ public class TransferExample {
         try {
             TransferCollection transferCollection = Transfer.list(param);
             System.out.println(transferCollection);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }

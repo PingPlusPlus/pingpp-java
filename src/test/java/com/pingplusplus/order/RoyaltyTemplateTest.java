@@ -2,7 +2,7 @@ package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.DeleteRoyaltyTemplate;
 import com.pingplusplus.model.RoyaltyTemplate;
 import com.pingplusplus.model.RoyaltyTemplateCollection;
@@ -20,9 +20,7 @@ public class RoyaltyTemplateTest extends PingppTestBase {
      * 创建 royalty_template
      */
     @Test
-    public void testRoyaltyTemplateCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRoyaltyTemplateCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID()); // App ID, 必传
         params.put("name", "royalty_templates name"); // 模板名称，允许中英文等常用字符, 可选
@@ -58,9 +56,7 @@ public class RoyaltyTemplateTest extends PingppTestBase {
     /**
      * 查询单个 royalty_template
      */
-    @Test public void testRoyaltyTemplateRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyTemplateRetrieve() throws PingppException {
         String id = "450170822152200001";
         // 查询单个 royalty_template 方法
         // 参数: royalty_template id
@@ -73,9 +69,7 @@ public class RoyaltyTemplateTest extends PingppTestBase {
     /**
      * 查询 royalty_template 列表
      */
-    @Test public void testRoyaltyTemplateList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyTemplateList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("per_page", 3);
         params.put("page", 1);
@@ -89,9 +83,7 @@ public class RoyaltyTemplateTest extends PingppTestBase {
     /**
      * 删除 royalty_template
      */
-    @Test public void testRoyaltyTemplateDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyTemplateDelete() throws PingppException {
         String id = "450170822185800001";
         // 删除 royalty_template 方法
         // 参数: royalty_template id
@@ -103,9 +95,7 @@ public class RoyaltyTemplateTest extends PingppTestBase {
     /**
      *  更新 royalty_template
      */
-    @Test public void testRoyaltyTemplateUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRoyaltyTemplateUpdate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("name", "royalty_templates name new");
 

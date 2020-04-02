@@ -2,7 +2,7 @@ package com.pingplusplus.split;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.ProfitTransaction;
 import com.pingplusplus.model.ProfitTransactionCollection;
 import org.junit.Test;
@@ -14,8 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ProfitTransactionTest extends PingppTestBase {
 
-    @Test public void testListAll() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testListAll() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID());
         params.put("page", 1);
@@ -28,8 +27,7 @@ public class ProfitTransactionTest extends PingppTestBase {
         assertEquals("profit_transaction", obj.getData().get(0).getObject());
     }
 
-    @Test public void testRetrieve() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testRetrieve() throws PingppException {
         ProfitTransaction obj  = ProfitTransaction.retrieve("ptxn_1m3xtoBMRqu2qC");
 
         System.out.println(obj);

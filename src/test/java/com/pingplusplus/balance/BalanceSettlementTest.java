@@ -1,7 +1,7 @@
 package com.pingplusplus.balance;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.BalanceSettlement;
 import com.pingplusplus.model.BalanceSettlementCollection;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class BalanceSettlementTest extends PingppTestBase {
      * 查询单个结算到余额
      */
     @Test
-    public void testRetrieve() throws APIException,
-            RateLimitException, InvalidRequestException,
-            ChannelException, AuthenticationException, APIConnectionException {
+    public void testRetrieve() throws PingppException {
 
         // 查询单个 balance_settlement 方法
         // 参数: balance_settlement id
@@ -31,9 +29,7 @@ public class BalanceSettlementTest extends PingppTestBase {
      * 查询结算到余额列表
      */
     @Test
-    public void testList() throws APIException,
-            RateLimitException, InvalidRequestException,
-            ChannelException, AuthenticationException, APIConnectionException {
+    public void testList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);

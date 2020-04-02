@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -141,15 +142,9 @@ public class ProfitTransaction extends APIResource {
      *
      * @param id  id
      * @return ProfitTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static ProfitTransaction retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static ProfitTransaction retrieve(String id) throws PingppException {
         return retrieve(id, null);
     }
 
@@ -157,19 +152,12 @@ public class ProfitTransaction extends APIResource {
      * 查询分账明细
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return ProfitTransaction
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static ProfitTransaction retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(ProfitTransaction.class, id), apiKey, null, ProfitTransaction.class);
+    public static ProfitTransaction retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(ProfitTransaction.class, id), null, ProfitTransaction.class, options);
     }
 
     /**
@@ -177,34 +165,23 @@ public class ProfitTransaction extends APIResource {
      *
      * @param params  分页参数等
      * @return ProfitTransactionCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static ProfitTransactionCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return list(params, null);
     }
 
     /**
      * 查询分账明细列表
      *
-     * @param apiKey Ping++ APiKey
      * @param params 分页参数等
+     * @param options the specific options
      * @return ProfitTransactionCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static ProfitTransactionCollection list(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(ProfitTransaction.class), apiKey, params, ProfitTransactionCollection.class);
+    public static ProfitTransactionCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(ProfitTransaction.class), params, ProfitTransactionCollection.class, options);
     }
 }

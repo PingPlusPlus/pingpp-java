@@ -1,7 +1,7 @@
 package com.pingplusplus.withdrawal;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Withdrawal;
 import com.pingplusplus.model.WithdrawalCollection;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class WithdrawalTest extends PingppTestBase {
      * 创建提现申请
      */
     @Test
-    public void testCreateWithdrawal() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testCreateWithdrawal() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("user", "test_user_001"); // 用户 ID, 必传
         params.put("channel", "alipay"); // 提现使用渠道。银联：unionpay，支付宝：alipay，微信：wx_pub，通联：allinpay，京东：jdpay, 可选
@@ -52,9 +50,7 @@ public class WithdrawalTest extends PingppTestBase {
     /**
      * 获取提现对象
      */
-    @Test public void testWithdrawalRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testWithdrawalRetrieve() throws PingppException {
 
         // 查询 Withdrawal
         // 参数: withdrawal id
@@ -66,9 +62,7 @@ public class WithdrawalTest extends PingppTestBase {
     /**
      * 获取提现列表
      */
-    @Test public void testGetWithdrawalList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testGetWithdrawalList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
         params.put("per_page", 3);
@@ -83,9 +77,7 @@ public class WithdrawalTest extends PingppTestBase {
     /**
      * 更新提现对象
      */
-    @Test public void testWithdrawalUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testWithdrawalUpdate() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled"); // 更新状态。确认：pending，取消：canceled。
         // 更新 Withdrawal 方法

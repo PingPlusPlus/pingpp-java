@@ -1,9 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
-
+import com.pingplusplus.net.RequestOptions;
 import java.util.Map;
 
 public class BalanceBonus extends AppBasedResource {
@@ -148,17 +148,24 @@ public class BalanceBonus extends AppBasedResource {
      *
      * @param params 请求参数
      * @return BalanceBonus
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceBonus create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(BalanceBonus.class), params, BalanceBonus.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 balance_bonus
+     *
+     * @param params 请求参数
+     * @param options the specific options
+     * @return BalanceBonus
+     * @throws PingppException
+     */
+    public static BalanceBonus create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(BalanceBonus.class), params, BalanceBonus.class, options);
     }
 
     /**
@@ -166,17 +173,24 @@ public class BalanceBonus extends AppBasedResource {
      *
      * @param id
      * @return BalanceBonus
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceBonus retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceBonus.class, id), null, BalanceBonus.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 balance_bonus
+     *
+     * @param id
+     * @param options the specific options
+     * @return BalanceBonus
+     * @throws PingppException
+     */
+    public static BalanceBonus retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BalanceBonus.class, id), null, BalanceBonus.class, options);
     }
 
     /**
@@ -184,16 +198,23 @@ public class BalanceBonus extends AppBasedResource {
      *
      * @param params
      * @return BalanceBonusCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceBonusCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BalanceBonus.class), params, BalanceBonusCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 balance_bonus 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return BalanceBonusCollection
+     * @throws PingppException
+     */
+    public static BalanceBonusCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BalanceBonus.class), params, BalanceBonusCollection.class, options);
     }
 }

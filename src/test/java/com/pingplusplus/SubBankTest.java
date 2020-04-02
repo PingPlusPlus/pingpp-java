@@ -1,6 +1,6 @@
 package com.pingplusplus;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.SubBank;
 import com.pingplusplus.model.SubBankCollection;
 import org.junit.Test;
@@ -14,9 +14,7 @@ public class SubBankTest extends PingppTestBase {
     /**
      * 银行支行列表查询
      */
-    @Test public void testSubBankQuery() throws RateLimitException, APIException,
-            ChannelException, InvalidRequestException, APIConnectionException,
-            AuthenticationException {
+    @Test public void testSubBankQuery() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID());
         params.put("open_bank_code", "0308"); // 银行开户行编号

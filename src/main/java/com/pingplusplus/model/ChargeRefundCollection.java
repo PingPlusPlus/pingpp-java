@@ -1,55 +1,51 @@
 package com.pingplusplus.model;
 
 import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
+import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
 public class ChargeRefundCollection extends PingppCollectionAPIResource<Refund> {
 
     public ChargeRefundCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
 
-        return list(null, params);
+        return list(params, null);
     }
 
-    public ChargeRefundCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    public ChargeRefundCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
 
         String url = String.format("%s%s", Pingpp.getApiBase(), this.getURL());
-        return request(RequestMethod.GET, url, apiKey, params, ChargeRefundCollection.class);
+        return APIResource.request(APIResource.RequestMethod.GET, url, params, ChargeRefundCollection.class, options);
     }
 
     public Refund retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
 
         return retrieve(id, null);
     }
 
-    public Refund retrieve(String id, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    public Refund retrieve(String id, RequestOptions options)
+            throws PingppException {
 
         String url = String.format("%s%s/%s", Pingpp.getApiBase(), this.getURL(), id);
-        return request(RequestMethod.GET, url, apiKey, null, Refund.class);
+        return APIResource.request(APIResource.RequestMethod.GET, url, null, Refund.class, options);
     }
 
     public Refund create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
 
-        return create(null, params);
+        return create(params, null);
     }
 
-    public Refund create(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    public Refund create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
 
         String url = String.format("%s%s", Pingpp.getApiBase(), this.getURL());
-        return request(RequestMethod.POST, url, apiKey, params, Refund.class);
+        return APIResource.request(APIResource.RequestMethod.POST, url, params, Refund.class, options);
     }
 
 }

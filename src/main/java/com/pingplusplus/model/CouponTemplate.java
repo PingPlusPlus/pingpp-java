@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -166,17 +167,24 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param params
      * @return CouponTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponTemplate create(Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(CouponTemplate.class), params, CouponTemplate.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 coupon_template
+     *
+     * @param params
+     * @param options the specific options
+     * @return CouponTemplate
+     * @throws PingppException
+     */
+    public static CouponTemplate create(Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(CouponTemplate.class), params, CouponTemplate.class, options);
     }
 
     /**
@@ -184,17 +192,24 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param id
      * @return CouponTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponTemplate retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(CouponTemplate.class, id), null, CouponTemplate.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 coupon_template
+     *
+     * @param id
+     * @param options the specific options
+     * @return CouponTemplate
+     * @throws PingppException
+     */
+    public static CouponTemplate retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(CouponTemplate.class, id), null, CouponTemplate.class, options);
     }
 
     /**
@@ -202,35 +217,51 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param params
      * @return CouponTemplateCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponTemplateCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(CouponTemplate.class), params, CouponTemplateCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 coupon_template 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return CouponTemplateCollection
+     * @throws PingppException
+     */
+    public static CouponTemplateCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(CouponTemplate.class), params, CouponTemplateCollection.class, options);
     }
 
     /**
      * 更新 coupon_template
      *
+     * @param id
      * @param params
      * @return CouponTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponTemplate update(String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, instanceURL(CouponTemplate.class, id), params, CouponTemplate.class);
+            throws PingppException {
+        return update(id, params, null);
+    }
+
+    /**
+     * 更新 coupon_template
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return CouponTemplate
+     * @throws PingppException
+     */
+    public static CouponTemplate update(String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(CouponTemplate.class, id), params, CouponTemplate.class, options);
     }
 
     /**
@@ -238,20 +269,27 @@ public class CouponTemplate extends AppBasedResource {
      *
      * @param id
      * @return DeletedCouponTemplate
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static DeletedCouponTemplate delete(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.DELETE, instanceURL(CouponTemplate.class, id), null, DeletedCouponTemplate.class);
+            throws PingppException {
+        return delete(id, null);
     }
 
-    public static String couponsURL(String tmplId) throws InvalidRequestException {
+    /**
+     * 删除 coupon_template
+     *
+     * @param id
+     * @param options the specific options
+     * @return DeletedCouponTemplate
+     * @throws PingppException
+     */
+    public static DeletedCouponTemplate delete(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.DELETE, instanceURL(CouponTemplate.class, id), null, DeletedCouponTemplate.class, options);
+    }
+
+    public static String couponsURL(String tmplId) {
         return String.format("%s/coupons", instanceURL(CouponTemplate.class, tmplId));
     }
 
@@ -261,17 +299,25 @@ public class CouponTemplate extends AppBasedResource {
      * @param id
      * @param params
      * @return CouponCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponCollection createCoupons(String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, couponsURL(id), params, CouponCollection.class);
+            throws PingppException {
+        return createCoupons(id, params, null);
+    }
+
+    /**
+     * 批量创建 coupon
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return CouponCollection
+     * @throws PingppException
+     */
+    public static CouponCollection createCoupons(String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, couponsURL(id), params, CouponCollection.class, options);
     }
 
     /**
@@ -280,16 +326,24 @@ public class CouponTemplate extends AppBasedResource {
      * @param id
      * @param params
      * @return CouponCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CouponCollection listCoupons(String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, couponsURL(id), params, CouponCollection.class);
+            throws PingppException {
+        return listCoupons(id, params, null);
+    }
+
+    /**
+     * 查询 coupon 列表
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return CouponCollection
+     * @throws PingppException
+     */
+    public static CouponCollection listCoupons(String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, couponsURL(id), params, CouponCollection.class, options);
     }
 }

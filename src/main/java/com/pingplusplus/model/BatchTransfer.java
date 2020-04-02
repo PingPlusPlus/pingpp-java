@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -183,36 +184,24 @@ public class BatchTransfer extends APIResource {
      *
      * @param params
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchTransfer create(Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 batch_transfer
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchTransfer create(String apiKey, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(BatchTransfer.class), apiKey, params, BatchTransfer.class);
+    public static BatchTransfer create(Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(BatchTransfer.class), params, BatchTransfer.class, options);
     }
 
     /**
@@ -220,16 +209,10 @@ public class BatchTransfer extends APIResource {
      *
      * @param id
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchTransfer retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return retrieve(id, null);
     }
 
@@ -237,19 +220,13 @@ public class BatchTransfer extends APIResource {
      * 查询 batch_transfer
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchTransfer retrieve(String id, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(BatchTransfer.class, id), apiKey, null, BatchTransfer.class);
+    public static BatchTransfer retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BatchTransfer.class, id), null, BatchTransfer.class, options);
     }
 
     /**
@@ -257,36 +234,24 @@ public class BatchTransfer extends APIResource {
      *
      * @param params
      * @return BatchTransferCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchTransferCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 batch_transfer 列表
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return BatchTransferCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchTransferCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(BatchTransfer.class), apiKey, params, BatchTransferCollection.class);
+    public static BatchTransferCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BatchTransfer.class), params, BatchTransferCollection.class, options);
     }
 
     /**
@@ -294,35 +259,24 @@ public class BatchTransfer extends APIResource {
      * @param id batch_transfer ID
      * @param params 更新参数
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static BatchTransfer update(String id, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return update(id, null, params);
+            throws PingppException {
+        return update(id, params, null);
     }
 
     /**
      * 更新 BatchTransfer
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return BatchTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static BatchTransfer update(String id, String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.PUT, instanceURL(BatchTransfer.class, id), apiKey, params, BatchTransfer.class);
+    public static BatchTransfer update(String id, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(BatchTransfer.class, id), params, BatchTransfer.class, options);
     }
 }

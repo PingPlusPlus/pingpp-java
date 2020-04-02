@@ -1,7 +1,7 @@
 package com.pingplusplus.balance;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.BalanceBonus;
 import com.pingplusplus.model.BalanceBonusCollection;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class BalanceBonusTest extends PingppTestBase {
      * 余额赠送 balance-bonus
      */
     @Test
-    public void testBalanceBonusCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testBalanceBonusCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("user", "user_test_02");  // 受赠的用户 ID, 必传
         params.put("amount", 10);            // 支付受赠余额，单位：分, 必传
@@ -34,9 +32,7 @@ public class BalanceBonusTest extends PingppTestBase {
     /**
      * 查询单个 balance-bonus
      */
-    @Test public void testBalanceBonusRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testBalanceBonusRetrieve() throws PingppException {
         // 查询单个 balance-bonus 方法
         // 参数: balance-bonus id
         BalanceBonus obj = BalanceBonus.retrieve("650170821521710018560001");
@@ -47,9 +43,7 @@ public class BalanceBonusTest extends PingppTestBase {
     /**
      * 查询 balance-bonus 列表
      */
-    @Test public void testBalanceBonusList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testBalanceBonusList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 10);

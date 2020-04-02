@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -174,36 +175,24 @@ public class Customs extends APIResource {
      *
      * @param params
      * @return Customs
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Customs create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 customs
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return Customs
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Customs create(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Customs.class), apiKey, params, Customs.class);
+    public static Customs create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Customs.class), params, Customs.class, options);
     }
 
     /**
@@ -211,16 +200,9 @@ public class Customs extends APIResource {
      *
      * @param id
      * @return Customs
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Customs retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Customs retrieve(String id) throws PingppException {
         return retrieve(id, null);
     }
 
@@ -228,19 +210,12 @@ public class Customs extends APIResource {
      * 查询 customs
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return Customs
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Customs retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Customs.class, id), apiKey, null, Customs.class);
+    public static Customs retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Customs.class, id), null, Customs.class, options);
     }
 
     /**
@@ -248,35 +223,23 @@ public class Customs extends APIResource {
      *
      * @param params
      * @return CustomsCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static CustomsCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 customs 列表
      *
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return CustomsCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static CustomsCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Customs.class), apiKey, params, CustomsCollection.class);
+    public static CustomsCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Customs.class), params, CustomsCollection.class, options);
     }
 }

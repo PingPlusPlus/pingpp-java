@@ -1,11 +1,8 @@
 package com.pingxx.example;
 
-import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.*;
-import com.pingplusplus.model.Event;
-import com.pingplusplus.model.EventCollection;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Identification;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,17 +52,7 @@ public class IdentificationExample {
                 System.out.println(result.getMessage());
             }
             System.out.println(result);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }
@@ -93,17 +80,7 @@ public class IdentificationExample {
                 System.out.println(result.getMessage());
             }
             System.out.println(result);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        } catch (APIConnectionException e) {
-            e.printStackTrace();
-        } catch (APIException e) {
-            e.printStackTrace();
-        } catch (ChannelException e) {
-            e.printStackTrace();
-        } catch (RateLimitException e) {
+        } catch (PingppException e) {
             e.printStackTrace();
         }
     }

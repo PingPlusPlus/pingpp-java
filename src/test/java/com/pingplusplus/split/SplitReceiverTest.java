@@ -14,8 +14,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 public class SplitReceiverTest extends PingppTestBase {
-    @Test public void testCreate() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID());
         params.put("type", "MERCHANT_ID"); // 分账接收方类型
@@ -29,8 +28,7 @@ public class SplitReceiverTest extends PingppTestBase {
         assertEquals("split_receiver", obj.getObject());
     }
 
-    @Test public void testListAll() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testListAll() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", PingppTestData.getAppID());
         params.put("page", 1);
@@ -43,8 +41,7 @@ public class SplitReceiverTest extends PingppTestBase {
         assertEquals("split_receiver", obj.getData().get(0).getObject());
     }
 
-    @Test public void testRetrieve() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testRetrieve() throws PingppException {
         SplitReceiver obj  = SplitReceiver.retrieve("recv_1fRc57XpIehmFI");
 
         System.out.println(obj);
@@ -52,8 +49,7 @@ public class SplitReceiverTest extends PingppTestBase {
         assertEquals("split_receiver", obj.getObject());
     }
 
-    @Test public void testDelete() throws RateLimitException, APIException, ChannelException,
-            InvalidRequestException, APIConnectionException, AuthenticationException {
+    @Test public void testDelete() throws PingppException {
         DeletedSplitReceiver obj  = SplitReceiver.delete("recv_1fRc57XpIehmFI");
 
         System.out.println(obj);

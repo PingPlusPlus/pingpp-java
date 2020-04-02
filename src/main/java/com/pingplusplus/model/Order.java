@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -302,17 +303,24 @@ public class Order extends APIResource {
      *
      * @param params
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Order create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Order.class), params, Order.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 order
+     *
+     * @param params
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Order.class), params, Order.class, options);
     }
 
     /**
@@ -320,17 +328,47 @@ public class Order extends APIResource {
      *
      * @param id
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Order retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Order.class, id), null, Order.class);
+    public static Order retrieve(String id) throws PingppException {
+        return retrieve(id, null, null);
+    }
+
+    /**
+     * 查询 order
+     *
+     * @param id
+     * @param params
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order retrieve(String id, Map<String, Object> params) throws PingppException {
+        return retrieve(id, params, null);
+    }
+
+    /**
+     * 查询 order
+     *
+     * @param id
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order retrieve(String id, RequestOptions options) throws PingppException {
+        return retrieve(id, null, options);
+    }
+
+    /**
+     * 查询 order
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order retrieve(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Order.class, id), params, Order.class, options);
     }
 
     /**
@@ -338,54 +376,78 @@ public class Order extends APIResource {
      *
      * @param params
      * @return OrderCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static OrderCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Order.class), params, OrderCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 order 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return OrderCollection
+     * @throws PingppException
+     */
+    public static OrderCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Order.class), params, OrderCollection.class, options);
     }
 
     /**
      * 更新 order
      *
+     * @param id
      * @param params
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Order update(String id, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.PUT, instanceURL(Order.class, id), params, Order.class);
+            throws PingppException {
+        return update(id, params, null);
+    }
+
+    /**
+     * 更新 order
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order update(String id, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(Order.class, id), params, Order.class, options);
     }
 
     /**
      * 取消 order
      *
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public Order cancel()
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled");
-        return update(this.getId(), params);
+        return Order.update(this.getId(), params, null);
+    }
+
+    /**
+     * 取消 order
+     *
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public Order cancel(RequestOptions options)
+            throws PingppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return Order.update(this.getId(), params, options);
     }
 
     /**
@@ -393,38 +455,51 @@ public class Order extends APIResource {
      *
      * @param id
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Order cancel(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled");
         return update(id, params);
     }
 
     /**
+     * 取消 order
+     *
+     * @param id
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order cancel(String id, RequestOptions options)
+            throws PingppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return update(id, params, options);
+    }
+
+    /**
      * 支付 order
      *
      * @param params
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public Order pay(Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, String.format("%s/pay", instanceURL(Order.class, id)),
-                params, Order.class);
+    public Order pay(Map<String, Object> params) throws PingppException {
+        return Order.pay(this.getId(), params, null);
+    }
+
+    /**
+     * 支付 order
+     *
+     * @param params
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public Order pay(Map<String, Object> params, RequestOptions options) throws PingppException {
+        return Order.pay(this.getId(), params, options);
     }
 
     /**
@@ -433,18 +508,24 @@ public class Order extends APIResource {
      * @param id
      * @param params
      * @return Order
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Order pay(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, String.format("%s/pay", instanceURL(Order.class, id)),
-                params, Order.class);
+    public static Order pay(String id, Map<String, Object> params) throws PingppException {
+        return pay(id, params, null);
+    }
+
+    /**
+     * 支付 order
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return Order
+     * @throws PingppException
+     */
+    public static Order pay(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, String.format("%s/pay",
+                instanceURL(Order.class, id)), params, Order.class, options);
     }
 
     /**
@@ -453,18 +534,24 @@ public class Order extends APIResource {
      * @param id
      * @param params
      * @return ChargeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static ChargeCollection chargeList(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, String.format("%s/charges", instanceURL(Order.class, id)),
-                params, ChargeCollection.class);
+    public static ChargeCollection chargeList(String id, Map<String, Object> params) throws PingppException {
+        return chargeList(id, params, null);
+    }
+
+    /**
+     * 查询订单 Charge 列表
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return ChargeCollection
+     * @throws PingppException
+     */
+    public static ChargeCollection chargeList(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/charges", instanceURL(Order.class, id)),
+                params, ChargeCollection.class, options);
     }
 
     /**
@@ -473,17 +560,23 @@ public class Order extends APIResource {
      * @param orderId
      * @param chargeId
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge retrieveCharge(String orderId, String chargeId) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, String.format("%s/charges/%s", instanceURL(Order.class, orderId), chargeId),
-                null, Charge.class);
+    public static Charge retrieveCharge(String orderId, String chargeId) throws PingppException {
+        return retrieveCharge(orderId, chargeId, null);
+    }
+
+    /**
+     * 查询订单 Charge
+     *
+     * @param orderId
+     * @param chargeId
+     * @param options the specific options
+     * @return Charge
+     * @throws PingppException
+     */
+    public static Charge retrieveCharge(String orderId, String chargeId, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/charges/%s", instanceURL(Order.class, orderId), chargeId),
+                null, Charge.class, options);
     }
 }

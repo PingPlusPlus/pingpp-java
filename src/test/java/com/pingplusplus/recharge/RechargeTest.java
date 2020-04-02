@@ -1,7 +1,7 @@
 package com.pingplusplus.recharge;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.*;
 import org.junit.Test;
 
@@ -15,9 +15,7 @@ public class RechargeTest extends PingppTestBase {
      * 创建 recharge
      */
     @Test
-    public void testRechargeCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testRechargeCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
         params.put("user_fee", 10);     // 用户充值收取的手续费，单位分，不得大于 amount，不可和 balance_bonus[amount] 同时传，默认 0。可选
@@ -40,9 +38,7 @@ public class RechargeTest extends PingppTestBase {
     /**
      * 查询单个 recharge
      */
-    @Test public void testRechargeRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRechargeRetrieve() throws PingppException {
         // 查询单个 recharge 方法
         // 参数: rechargeId
         Recharge obj = Recharge.retrieve("220170822678080532480001");
@@ -53,9 +49,7 @@ public class RechargeTest extends PingppTestBase {
     /**
      * 查询 recharge 列表
      */
-    @Test public void testRechargeList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRechargeList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 10);
@@ -71,9 +65,7 @@ public class RechargeTest extends PingppTestBase {
     /**
      * 创建 recharge_refund
      */
-    @Test public void testRechargeRefundCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRechargeRefundCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("description", "Recharge Refund Description"); // 必传
         // 创建 recharge_refund 方法
@@ -87,9 +79,7 @@ public class RechargeTest extends PingppTestBase {
     /**
      * 查询单个 recharge_refund
      */
-    @Test public void testRechargeRefundRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRechargeRefundRetrieve() throws PingppException {
         // 查询单个 recharge_refund 方法
         // 参数一: rechargeId
         // 参数二: refundId
@@ -101,9 +91,7 @@ public class RechargeTest extends PingppTestBase {
     /**
      * 查询 recharge_refund 列表
      */
-    @Test public void testRechargeRefundList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testRechargeRefundList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);

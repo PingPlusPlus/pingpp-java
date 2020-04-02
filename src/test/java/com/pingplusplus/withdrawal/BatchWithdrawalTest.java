@@ -2,7 +2,7 @@ package com.pingplusplus.withdrawal;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.BatchWithdrawal;
 import com.pingplusplus.model.BatchWithdrawalCollection;
 import org.junit.Test;
@@ -18,9 +18,7 @@ public class BatchWithdrawalTest extends PingppTestBase {
      * 批量提现确认
      */
     @Test
-    public void testBatchWithdrawalCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testBatchWithdrawalCreate() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         ArrayList<String> withdrawals = new ArrayList<>(); // withdrawal id 列表
         withdrawals.add("1701708221834035593");
@@ -43,9 +41,7 @@ public class BatchWithdrawalTest extends PingppTestBase {
     /**
      * 查询批量提现对象
      */
-    @Test public void testBatchWithdrawalRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testBatchWithdrawalRetrieve() throws PingppException {
 
         // 查询 BatchWithdrawal 对象方法
         // 参数: batch_withdrawal id
@@ -57,9 +53,7 @@ public class BatchWithdrawalTest extends PingppTestBase {
     /**
      * 查询批量提现列表
      */
-    @Test public void testBatchWithdrawalList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testBatchWithdrawalList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("per_page", 3);
 

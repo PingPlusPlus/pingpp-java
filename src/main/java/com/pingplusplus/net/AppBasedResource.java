@@ -1,60 +1,30 @@
 package com.pingplusplus.net;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.pingplusplus.Pingpp;
-import com.pingplusplus.exception.InvalidRequestException;
-import com.pingplusplus.model.*;
-import com.pingplusplus.serializer.*;
-
-import java.io.UnsupportedEncodingException;
 
 public abstract class AppBasedResource extends APIResource {
     /**
-     * @param clazz
+     * @param clazz the class of object
      * @return singleClassURL
-     * @throws InvalidRequestException
      */
-    protected static String singleClassURL(Class<?> clazz) throws InvalidRequestException {
-        if (Pingpp.appId == null) {
-            throw new InvalidRequestException("Please set app_id using Pingpp.appId = <APP_ID>", "app_id", null);
-        }
-        return String.format("%s/v1/apps/%s/%s", Pingpp.getApiBase(), Pingpp.appId, className(clazz));
+    protected static String singleClassURL(Class<?> clazz) {
+        return String.format("%s/v1/apps/%s/%s", Pingpp.getApiBase(), APIResource.URIAppIdHolder, className(clazz));
     }
 
     /**
-     * @param clazz
+     * @param clazz the class of object
      * @return classURL
-     * @throws InvalidRequestException
      */
-    protected static String classURL(Class<?> clazz) throws InvalidRequestException {
+    protected static String classURL(Class<?> clazz) {
         return String.format("%ss", singleClassURL(clazz));
     }
 
     /**
-     * @param clazz
-     * @param id
+     * @param clazz the class of object
+     * @param id the id of object
      * @return instanceURL
-     * @throws InvalidRequestException
      */
-    protected static String instanceURL(Class<?> clazz, String id) throws InvalidRequestException {
-        try {
-            return String.format("%s/%s", classURL(clazz), urlEncode(id));
-        } catch (UnsupportedEncodingException e) {
-            throw new InvalidRequestException("Unable to encode parameters to " + CHARSET, null, e);
-        }
-    }
-
-    /**
-     * @param objectName
-     * @return customURL
-     * @throws InvalidRequestException
-     */
-    protected static String customURL(String objectName) throws InvalidRequestException {
-        if (Pingpp.appId == null) {
-            throw new InvalidRequestException("Please set app_id using Pingpp.appId = <APP_ID>", "app_id", null);
-        }
-        return String.format("%s/v1/apps/%s/%s", Pingpp.getApiBase(), Pingpp.appId, objectName);
+    protected static String instanceURL(Class<?> clazz, String id) {
+        return String.format("%s/%s", classURL(clazz), urlEncode(id));
     }
 }

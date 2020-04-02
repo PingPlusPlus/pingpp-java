@@ -4,8 +4,9 @@ package com.pingplusplus.model;
  * Created by sunkai on 15/5/11.
  */
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class Transfer extends APIResource {
     String description;
     String failureMsg;
     String transaction_no;
-    Map extra;
+    Map<String, Object> extra;
     Map<String, Object> metadata;
 
     public String getId() {
@@ -170,11 +171,11 @@ public class Transfer extends APIResource {
         this.transaction_no = transaction_no;
     }
 
-    public Map getExtra() {
+    public Map<String, Object> getExtra() {
         return extra;
     }
 
-    public void setExtra(Map extra) {
+    public void setExtra(Map<String, Object> extra) {
         this.extra = extra;
     }
 
@@ -191,50 +192,33 @@ public class Transfer extends APIResource {
      * 创建 Transfer
      * @param params
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static Transfer create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 Transfer
      *
-     * @param apiKey  Ping++ APiKey
      * @param params
+     * @param options the specific options
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Transfer create(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Transfer.class), apiKey, params, Transfer.class);
+    public static Transfer create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Transfer.class), params, Transfer.class, options);
     }
 
     /**
      * 查询 Transfer
      * @param id
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Transfer retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Transfer retrieve(String id) throws PingppException {
         return retrieve(id, null, null);
     }
 
@@ -242,19 +226,12 @@ public class Transfer extends APIResource {
      * 查询 Transfer
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Transfer retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, apiKey, null);
+    public static Transfer retrieve(String id, RequestOptions options) throws PingppException {
+        return retrieve(id, null, options);
     }
 
     /**
@@ -262,70 +239,46 @@ public class Transfer extends APIResource {
      * @param id
      * @param params
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Transfer retrieve(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, null, params);
+    public static Transfer retrieve(String id, Map<String, Object> params) throws PingppException {
+        return retrieve(id, params, null);
     }
 
     /**
      * 查询 Transfer
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return Transfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Transfer retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Transfer.class, id), apiKey, params, Transfer.class);
+    public static Transfer retrieve(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Transfer.class, id), params, Transfer.class, options);
     }
 
     /**
      * 查询 Transfer
      * @param params 分页参数等
      * @return TransferCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static TransferCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 Transfer
      *
-     * @param apiKey Ping++ APiKey
      * @param params 分页参数等
+     * @param options the specific options
      * @return TransferCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static TransferCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(Transfer.class), apiKey, params, TransferCollection.class);
+    public static TransferCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Transfer.class), params, TransferCollection.class, options);
     }
 }

@@ -3,11 +3,12 @@ package com.pingplusplus.model;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pingplusplus.net.PingppResponse;
 import com.pingplusplus.serializer.*;
 
 import java.lang.reflect.Field;
 
-public abstract class PingppObject {
+public abstract class PingppObject implements PingppObjectInterface {
 
     public static final Gson PRETTY_PRINT_GSON = new GsonBuilder()
             .setPrettyPrinting()
@@ -40,5 +41,17 @@ public abstract class PingppObject {
     @Override
     public String toString() {
         return getPrettyPrintGson().toJson(this);
+    }
+
+    private transient PingppResponse lastResponse;
+
+    @Override
+    public PingppResponse getLastResponse() {
+        return lastResponse;
+    }
+
+    @Override
+    public void setLastResponse(PingppResponse response) {
+        this.lastResponse = response;
     }
 }

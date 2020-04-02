@@ -9,15 +9,22 @@
 
 ## 版本要求
 
-Java SDK 要求 JDK 版本 1.7 及以上
+Java 要求 JDK 8 及以上。
 
 ## 安装
 
-#### 手动安装
+### 手动安装
 
-将 libs/ 下面的 jar 包导入工程
+JAR 下载地址: [pingpp-java](https://jcenter.bintray.com/Pingplusplus/pingpp-java/)
 
-#### maven 安装
+请根据版本号下载相应的 JAR 文件并导入至工程。
+
+#### 依赖库
+
+- com.google.code.gson:gson
+- commons-codec:commons-codec
+
+### maven 安装
 
 maven 远程仓库
 
@@ -28,28 +35,29 @@ maven 远程仓库
     </snapshots>
     <id>central</id>
     <name>bintray</name>
-    <url>http://jcenter.bintray.com</url>
+    <url>https://jcenter.bintray.com</url>
 </repository>
 ```
 
 安装 Ping++ SDK
+
 ``` xml
 <dependency>
     <groupId>Pingplusplus</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.3.14</version>
+    <version>2.4.0</version>
     <type>jar</type>
 </dependency>
 ```
 
-#### gradle 安装
+### gradle 安装
 
 gradle 远程仓库
 
 ```
 repositories {
     maven {
-        url  "http://jcenter.bintray.com"
+        url  "https://jcenter.bintray.com"
     }
 }
 ```
@@ -57,16 +65,17 @@ repositories {
 安装 Ping++ SDK
 
 ```
-compile 'Pingplusplus:pingpp-java:2.3.14'
+compile 'Pingplusplus:pingpp-java:2.4.0'
 ```
 
-### 初始化
+## 初始化
 
 ```
 Pingpp.apiKey = "YOUR_API_KEY";
 ```
 
-### 使用示例
+## 使用示例
 
 - 参考 [example](/example) 示例项目工程。该工程提供了付款、退款、微信公共号付款相关的 demo。
 - 以及 [test](/src/test/java/com/pingplusplus) 目录下的示例。
+- 原有旧版本的用户请查看[升级文档](/docs/update/)进行相应调整。

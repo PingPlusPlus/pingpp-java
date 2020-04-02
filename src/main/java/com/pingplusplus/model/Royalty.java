@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -183,17 +184,22 @@ public class Royalty extends APIResource {
      *
      * @param id
      * @return Royalty
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Royalty retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Royalty.class, id), null, Royalty.class);
+    public static Royalty retrieve(String id) throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 royalty
+     *
+     * @param id
+     * @param options the specific options
+     * @return Royalty
+     * @throws PingppException
+     */
+    public static Royalty retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Royalty.class, id), null, Royalty.class, options);
     }
 
     /**
@@ -201,17 +207,24 @@ public class Royalty extends APIResource {
      *
      * @param params
      * @return RoyaltyCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RoyaltyCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(Royalty.class), params, RoyaltyCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 royalty 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltyCollection
+     * @throws PingppException
+     */
+    public static RoyaltyCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Royalty.class), params, RoyaltyCollection.class, options);
     }
 
     /**
@@ -219,17 +232,24 @@ public class Royalty extends APIResource {
      *
      * @param params
      * @return RoyaltyCollection
-     * @throws AuthenticationException 认证异常
-     * @throws InvalidRequestException 错误请求
-     * @throws APIConnectionException 连接异常
-     * @throws APIException 系统异常
-     * @throws ChannelException 渠道异常
-     * @throws RateLimitException 请求超限
+     * @throws PingppException
      */
     public static RoyaltyCollection batchUpdate(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, classURL(Royalty.class), params, RoyaltyCollection.class);
+            throws PingppException {
+        return batchUpdate(params, null);
+    }
+
+    /**
+     * 批量更新 royalty
+     *
+     * @param params
+     * @param options the specific options
+     * @return RoyaltyCollection
+     * @throws PingppException
+     */
+    public static RoyaltyCollection batchUpdate(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, classURL(Royalty.class), params, RoyaltyCollection.class, options);
     }
 
     /**
@@ -238,16 +258,10 @@ public class Royalty extends APIResource {
      * @param orderId 订单 ID
      * @param params 分润信息参数
      * @return RoyaltyDataResult
-     * @throws AuthenticationException 认证异常
-     * @throws InvalidRequestException 错误请求
-     * @throws APIConnectionException 连接异常
-     * @throws APIException 系统异常
-     * @throws ChannelException 渠道异常
-     * @throws RateLimitException 请求超限
+     * @throws PingppException
      */
     public static RoyaltyDataResult createData(String orderId, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return createData(orderId, params, null);
     }
 
@@ -256,22 +270,15 @@ public class Royalty extends APIResource {
      *
      * @param orderId 订单 ID
      * @param params 分润信息参数
-     * @param apiKey API Key
+     * @param options the specific options
      * @return RoyaltyDataResult
-     * @throws AuthenticationException 认证异常
-     * @throws InvalidRequestException 错误请求
-     * @throws APIConnectionException 连接异常
-     * @throws APIException 系统异常
-     * @throws ChannelException 渠道异常
-     * @throws RateLimitException 请求超限
+     * @throws PingppException
      */
-    public static RoyaltyDataResult createData(String orderId, Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST,
+    public static RoyaltyDataResult createData(String orderId, Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST,
                 String.format("%s/royalty_datas", instanceURL(Order.class, orderId)),
-                apiKey,
                 params,
-                RoyaltyDataResult.class);
+                RoyaltyDataResult.class, options);
     }
 }

@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -151,15 +152,10 @@ public class SplitProfit extends APIResource {
      *
      * @param params  参数
      * @return SplitProfit
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static SplitProfit create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return create(params, null);
     }
 
@@ -167,19 +163,13 @@ public class SplitProfit extends APIResource {
      * 创建分账
      *
      * @param params  参数
-     * @param apiKey  Ping++ APiKey
+     * @param options the specific options
      * @return SplitProfit
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitProfit create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(SplitProfit.class), apiKey, params, SplitProfit.class);
+    public static SplitProfit create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(SplitProfit.class), params, SplitProfit.class, options);
     }
 
     /**
@@ -187,15 +177,9 @@ public class SplitProfit extends APIResource {
      *
      * @param id  id
      * @return SplitProfit
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static SplitProfit retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static SplitProfit retrieve(String id) throws PingppException {
         return retrieve(id, null);
     }
 
@@ -203,19 +187,12 @@ public class SplitProfit extends APIResource {
      * 查询分账
      *
      * @param id  id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return SplitProfit
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitProfit retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(SplitProfit.class, id), apiKey, null, SplitProfit.class);
+    public static SplitProfit retrieve(String id, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(SplitProfit.class, id), null, SplitProfit.class, options);
     }
 
     /**
@@ -223,34 +200,23 @@ public class SplitProfit extends APIResource {
      *
      * @param params  分页参数等
      * @return SplitProfitCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
     public static SplitProfitCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         return list(params, null);
     }
 
     /**
      * 查询分账列表
      *
-     * @param apiKey Ping++ APiKey
      * @param params 分页参数等
+     * @param options the specific options
      * @return SplitProfitCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static SplitProfitCollection list(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, classURL(SplitProfit.class), apiKey, params, SplitProfitCollection.class);
+    public static SplitProfitCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(SplitProfit.class), params, SplitProfitCollection.class, options);
     }
 }

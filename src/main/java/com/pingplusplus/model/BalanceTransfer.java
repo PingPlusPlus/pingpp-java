@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -148,17 +149,24 @@ public class BalanceTransfer extends AppBasedResource {
      *
      * @param params
      * @return BalanceTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceTransfer create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(BalanceTransfer.class), params, BalanceTransfer.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 balance_transfer
+     *
+     * @param params
+     * @param options the specific options
+     * @return BalanceTransfer
+     * @throws PingppException
+     */
+    public static BalanceTransfer create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(BalanceTransfer.class), params, BalanceTransfer.class, options);
     }
 
     /**
@@ -166,17 +174,24 @@ public class BalanceTransfer extends AppBasedResource {
      *
      * @param id
      * @return BalanceTransfer
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceTransfer retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BalanceTransfer.class, id), null, BalanceTransfer.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 balance_transfer
+     *
+     * @param id
+     * @param options the specific options
+     * @return BalanceTransfer
+     * @throws PingppException
+     */
+    public static BalanceTransfer retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BalanceTransfer.class, id), null, BalanceTransfer.class, options);
     }
 
     /**
@@ -184,16 +199,23 @@ public class BalanceTransfer extends AppBasedResource {
      *
      * @param params
      * @return BalanceTransferCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BalanceTransferCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BalanceTransfer.class), params, BalanceTransferCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 balance_transfer 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return BalanceTransferCollection
+     * @throws PingppException
+     */
+    public static BalanceTransferCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BalanceTransfer.class), params, BalanceTransferCollection.class, options);
     }
 }

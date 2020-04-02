@@ -2,7 +2,7 @@ package com.pingplusplus.user;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.User;
 import com.pingplusplus.model.UserCollection;
 import org.junit.Test;
@@ -20,9 +20,7 @@ public class UserTest extends PingppTestBase {
     /**
      * 创建用户 (User)
      */
-    @Test public void testUserCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testUserCreate() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", "test_user_" + System.currentTimeMillis()); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
         params.put("address", "Shanghai, China");       // 用户地址, 可选
@@ -53,9 +51,7 @@ public class UserTest extends PingppTestBase {
     /**
      * 查询单个用户 (User)
      */
-    @Test public void testUserRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testUserRetrieve() throws PingppException {
         String userId = "test_user_001";
         User obj = User.retrieve(userId); //查询 User 方法
 
@@ -67,9 +63,7 @@ public class UserTest extends PingppTestBase {
     /**
      * 查询用户列表 (User)
      */
-    @Test public void testUserList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testUserList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         UserCollection objs = User.list(params); //查询 User 列表方法
 
@@ -79,9 +73,7 @@ public class UserTest extends PingppTestBase {
     /**
      * 更新用户信息 (User)
      */
-    @Test public void testUserUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testUserUpdate() throws PingppException {
         String userId = "test_user_001";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("address", "Shanghai, China");

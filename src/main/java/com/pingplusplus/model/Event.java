@@ -1,7 +1,8 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -88,15 +89,9 @@ public class Event extends APIResource {
      *
      * @param id
      * @return Event
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Event retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Event retrieve(String id) throws PingppException {
         return retrieve(id, null, null);
     }
 
@@ -104,19 +99,12 @@ public class Event extends APIResource {
      * 查询 Event
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options  Ping++ ApiKey
      * @return Event
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Event retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, apiKey, null);
+    public static Event retrieve(String id, RequestOptions options) throws PingppException {
+        return retrieve(id, null, options);
     }
 
     /**
@@ -125,35 +113,22 @@ public class Event extends APIResource {
      * @param id
      * @param params
      * @return Event
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
+     * @throws PingppException
      */
-    public static Event retrieve(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, null, params);
+    public static Event retrieve(String id, Map<String, Object> params) throws PingppException {
+        return retrieve(id, params, null);
     }
 
     /**
      * 查询 Event
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return Event
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Event retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), apiKey, params, Event.class);
+    public static Event retrieve(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Event.class, id), params, Event.class, options);
     }
 }

@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -202,17 +203,24 @@ public class BatchWithdrawal extends AppBasedResource {
      *
      * @param params
      * @return BatchWithdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchWithdrawal create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(BatchWithdrawal.class), params, BatchWithdrawal.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 batch_withdrawal
+     *
+     * @param params
+     * @param options the specific options
+     * @return BatchWithdrawal
+     * @throws PingppException
+     */
+    public static BatchWithdrawal create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(BatchWithdrawal.class), params, BatchWithdrawal.class, options);
     }
 
     /**
@@ -220,17 +228,24 @@ public class BatchWithdrawal extends AppBasedResource {
      *
      * @param id
      * @return BatchWithdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchWithdrawal retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(BatchWithdrawal.class, id), null, BatchWithdrawal.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 batch_withdrawal
+     *
+     * @param id
+     * @param options the specific options
+     * @return BatchWithdrawal
+     * @throws PingppException
+     */
+    public static BatchWithdrawal retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(BatchWithdrawal.class, id), null, BatchWithdrawal.class, options);
     }
 
     /**
@@ -238,16 +253,23 @@ public class BatchWithdrawal extends AppBasedResource {
      *
      * @param params
      * @return BatchWithdrawalCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static BatchWithdrawalCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(BatchWithdrawal.class), params, BatchWithdrawalCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 batch_withdrawal 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return BatchWithdrawalCollection
+     * @throws PingppException
+     */
+    public static BatchWithdrawalCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(BatchWithdrawal.class), params, BatchWithdrawalCollection.class, options);
     }
 }

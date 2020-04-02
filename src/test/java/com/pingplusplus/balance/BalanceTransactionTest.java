@@ -1,7 +1,7 @@
 package com.pingplusplus.balance;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.BalanceTransaction;
 import com.pingplusplus.model.BalanceTransactionCollection;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class BalanceTransactionTest extends PingppTestBase {
      * 查询单个余额明细 (balance_transaction)
      */
     @Test
-    public void testBalanceTransactionRetrieve() throws APIException,
-            RateLimitException, InvalidRequestException,
-            ChannelException, AuthenticationException, APIConnectionException {
+    public void testBalanceTransactionRetrieve() throws PingppException {
 
         // 查询单个 balance_transaction 方法
         // 参数: balance_transaction id
@@ -30,9 +28,7 @@ public class BalanceTransactionTest extends PingppTestBase {
     /**
      * 查询余额明细 (balance_transaction) 列表
      */
-    @Test public void testBalanceTransactionList() throws APIException,
-            RateLimitException, InvalidRequestException,
-            ChannelException, AuthenticationException, APIConnectionException {
+    @Test public void testBalanceTransactionList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);

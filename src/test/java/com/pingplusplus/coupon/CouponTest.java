@@ -1,7 +1,7 @@
 package com.pingplusplus.coupon;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Coupon;
 import com.pingplusplus.model.CouponCollection;
 import com.pingplusplus.model.CouponTemplate;
@@ -20,9 +20,7 @@ public class CouponTest extends PingppTestBase {
      * 创建单个优惠券 Coupon
      */
     @Test
-    public void testCouponCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testCouponCreate() throws PingppException {
         String userId = "test_user_001"; // 用户 ID, 必传
         Map<String, Object> params = new HashMap<>();
         params.put("coupon_template", "300117082315262900016402"); // 优惠券模板 id, 必传
@@ -37,9 +35,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 批量创建优惠券
      */
-    @Test public void testCouponBatchCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponBatchCreate() throws PingppException {
         String couponId = "300117082315262900016402"; // 优惠券模板 id
         Map<String, Object> params = new HashMap<>();
         List<String> users = new ArrayList<>(); // 用户 ID 列表
@@ -53,9 +49,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 查询单个优惠券 Coupon
      */
-    @Test public void testCouponRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponRetrieve() throws PingppException {
         String userId = "test_user_001";
         String couponId = "300317082315265100025202";
         // 查询单个优惠券 Coupon
@@ -69,9 +63,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 查询用户优惠券 Coupon 列表
      */
-    @Test public void testUserCouponList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testUserCouponList() throws PingppException {
         String userId = "test_user_001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -87,9 +79,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 查询优惠券模板下的优惠券列表
      */
-    @Test public void testCouponList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponList() throws PingppException {
         String couponId = "300117082315262900016402";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -105,9 +95,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 更新优惠券 Coupon
      */
-    @Test public void testCouponUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponUpdate() throws PingppException {
         String userId = "test_user_001";
         String couponId = "300317082315265100025202";
         Map<String, Object> params = new HashMap<>();
@@ -127,9 +115,7 @@ public class CouponTest extends PingppTestBase {
     /**
      * 删除优惠券 Coupon
      */
-    @Test public void testCouponDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCouponDelete() throws PingppException {
         String userId = "test_user_001";
         String couponId = "300317022810293600038701";
         // 删除优惠券 Coupon

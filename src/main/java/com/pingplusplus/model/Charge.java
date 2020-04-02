@@ -1,7 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.InvalidRequestException;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -262,36 +264,24 @@ public class Charge extends APIResource {
      *
      * @param params
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Charge create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return create(null, params);
+            throws PingppException {
+        return create(params, null);
     }
 
     /**
      * 创建 charge
      *
      * @param params
-     * @param apiKey Ping++ ApiKey
+     * @param options the specific options
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge create(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.POST, classURL(Charge.class), apiKey, params, Charge.class);
+    public static Charge create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Charge.class), params, Charge.class, options);
     }
 
     /**
@@ -299,16 +289,9 @@ public class Charge extends APIResource {
      *
      * @param id
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Charge retrieve(String id) throws PingppException {
         return retrieve(id, null, null);
     }
 
@@ -316,18 +299,24 @@ public class Charge extends APIResource {
      * 查询 charge
      *
      * @param id
+     * @param params
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge retrieve(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, apiKey, null);
+    public static Charge retrieve(String id, Map<String, Object> params) throws PingppException {
+        return retrieve(id, params, null);
+    }
+
+    /**
+     * 查询 charge
+     *
+     * @param id
+     * @param options the specific options
+     * @return Charge
+     * @throws PingppException
+     */
+    public static Charge retrieve(String id, RequestOptions options) throws PingppException {
+        return retrieve(id, null, options);
     }
 
     /**
@@ -335,37 +324,12 @@ public class Charge extends APIResource {
      *
      * @param id
      * @param params
+     * @param options the specific options
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge retrieve(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return retrieve(id, null, params);
-    }
-
-    /**
-     * 查询 charge
-     *
-     * @param id
-     * @param params
-     * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
-     */
-    public static Charge retrieve(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return request(RequestMethod.GET, instanceURL(Charge.class, id), apiKey, params, Charge.class);
+    public static Charge retrieve(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Charge.class, id), params, Charge.class, options);
     }
 
     /**
@@ -373,64 +337,52 @@ public class Charge extends APIResource {
      *
      * @param params
      * @return ChargeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static ChargeCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return list(null, params);
+            throws PingppException {
+        return list(params, null);
     }
 
     /**
      * 查询 charge 列表
      *
      * @param params
+     * @param options the specific options
      * @return ChargeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static ChargeCollection list(String apiKey, Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    public static ChargeCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
         if (params != null
                 && ((params.containsKey("app") && (params.get("app") instanceof Map) && ((Map) params.get("app")).containsKey("id"))
                 || (params.containsKey("app[id]") && (params.get("app[id]") instanceof String)))) {
-            return request(RequestMethod.GET, classURL(Charge.class), apiKey, params, ChargeCollection.class);
+            return request(RequestMethod.GET, classURL(Charge.class), params, ChargeCollection.class, options);
         }
-        throw new InvalidRequestException("Please pass app[id] as parameter.", "app[id]", null);
+        throw new InvalidRequestException(
+                "Please pass app[id] as parameter.",
+                "invalid_request_error",
+                "request_param_error",
+                "app[id]",
+                0,
+                null);
     }
 
     /**
      * 撤销 charge
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
      * @param params
+     * @param options the specific options
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge reverse(String id, String apiKey, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Charge reverse(String id, Map<String, Object> params, RequestOptions options) throws PingppException {
         String reverseUrl = String.format("%s/reverse", instanceURL(Charge.class, id));
         if (params == null) {
             params = new HashMap<String, Object>();
         }
-        return request(RequestMethod.POST, reverseUrl, apiKey, params, Charge.class);
+        return APIResource.request(APIResource.RequestMethod.POST, reverseUrl, params, Charge.class, options);
     }
 
     /**
@@ -439,17 +391,10 @@ public class Charge extends APIResource {
      * @param id
      * @param params
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge reverse(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return reverse(id, null, params);
+    public static Charge reverse(String id, Map<String, Object> params) throws PingppException {
+        return reverse(id, params, null);
     }
 
     /**
@@ -457,16 +402,9 @@ public class Charge extends APIResource {
      *
      * @param id
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge reverse(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
+    public static Charge reverse(String id) throws PingppException {
         return reverse(id, null, null);
     }
 
@@ -474,18 +412,11 @@ public class Charge extends APIResource {
      * 撤销 charge
      *
      * @param id
-     * @param apiKey  Ping++ ApiKey
+     * @param options the specific options
      * @return Charge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
-    public static Charge reverse(String id, String apiKey) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException, ChannelException, RateLimitException {
-        return reverse(id, apiKey, null);
+    public static Charge reverse(String id, RequestOptions options) throws PingppException {
+        return reverse(id, null, options);
     }
 }

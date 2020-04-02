@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -221,17 +222,24 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param params
      * @return Withdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Withdrawal create(Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(Withdrawal.class), params, Withdrawal.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 withdrawal
+     *
+     * @param params
+     * @param options the specific options
+     * @return Withdrawal
+     * @throws PingppException
+     */
+    public static Withdrawal create(Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Withdrawal.class), params, Withdrawal.class, options);
     }
 
     /**
@@ -239,17 +247,24 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param id
      * @return Withdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Withdrawal retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Withdrawal.class, id), null, Withdrawal.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 withdrawal
+     *
+     * @param id
+     * @param options the specific options
+     * @return Withdrawal
+     * @throws PingppException
+     */
+    public static Withdrawal retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Withdrawal.class, id), null, Withdrawal.class, options);
     }
 
     /**
@@ -257,17 +272,24 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param params
      * @return WithdrawalCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static WithdrawalCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(Withdrawal.class), params, WithdrawalCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 withdrawal 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return WithdrawalCollection
+     * @throws PingppException
+     */
+    public static WithdrawalCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Withdrawal.class), params, WithdrawalCollection.class, options);
     }
 
     /**
@@ -276,17 +298,25 @@ public class Withdrawal extends AppBasedResource {
      * @param id
      * @param params
      * @return Withdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Withdrawal update(String id, Map<String, Object>params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.PUT, instanceURL(Withdrawal.class, id), params, Withdrawal.class);
+            throws PingppException {
+        return update(id, params, null);
+    }
+
+    /**
+     * 更新 withdrawal
+     *
+     * @param id
+     * @param params
+     * @param options the specific options
+     * @return Withdrawal
+     * @throws PingppException
+     */
+    public static Withdrawal update(String id, Map<String, Object>params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.PUT, instanceURL(Withdrawal.class, id), params, Withdrawal.class, options);
     }
 
     /**
@@ -294,19 +324,28 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param id
      * @return Withdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Withdrawal cancel(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "canceled");
-        return update(id, params);
+        return update(id, params, null);
+    }
+
+    /**
+     * 取消 withdrawal
+     *
+     * @param id
+     * @param options the specific options
+     * @return Withdrawal
+     * @throws PingppException
+     */
+    public static Withdrawal cancel(String id, RequestOptions options)
+            throws PingppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "canceled");
+        return update(id, params, options);
     }
 
     /**
@@ -314,18 +353,27 @@ public class Withdrawal extends AppBasedResource {
      *
      * @param id
      * @return Withdrawal
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Withdrawal confirm(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+            throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("status", "pending");
-        return update(id, params);
+        return update(id, params, null);
+    }
+
+    /**
+     * 确认 withdrawal
+     *
+     * @param id
+     * @param options the specific options
+     * @return Withdrawal
+     * @throws PingppException
+     */
+    public static Withdrawal confirm(String id, RequestOptions options)
+            throws PingppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("status", "pending");
+        return update(id, params, options);
     }
 }

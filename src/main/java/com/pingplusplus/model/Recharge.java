@@ -1,8 +1,9 @@
 package com.pingplusplus.model;
 
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.AppBasedResource;
+import com.pingplusplus.net.RequestOptions;
 
 import java.util.Map;
 
@@ -166,17 +167,24 @@ public class Recharge extends AppBasedResource {
      *
      * @param params
      * @return Recharge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Recharge create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.POST, classURL(Recharge.class), params, Recharge.class);
+            throws PingppException {
+        return create(params, null);
+    }
+
+    /**
+     * 创建 recharge
+     *
+     * @param params
+     * @param options the specific options
+     * @return Recharge
+     * @throws PingppException
+     */
+    public static Recharge create(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.POST, classURL(Recharge.class), params, Recharge.class, options);
     }
 
     /**
@@ -184,17 +192,24 @@ public class Recharge extends AppBasedResource {
      *
      * @param id
      * @return Recharge
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static Recharge retrieve(String id)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, instanceURL(Recharge.class, id), null, Recharge.class);
+            throws PingppException {
+        return retrieve(id, null);
+    }
+
+    /**
+     * 查询 recharge
+     *
+     * @param id
+     * @param options the specific options
+     * @return Recharge
+     * @throws PingppException
+     */
+    public static Recharge retrieve(String id, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, instanceURL(Recharge.class, id), null, Recharge.class, options);
     }
 
     /**
@@ -202,16 +217,23 @@ public class Recharge extends AppBasedResource {
      *
      * @param params
      * @return RechargeCollection
-     * @throws AuthenticationException
-     * @throws InvalidRequestException
-     * @throws APIConnectionException
-     * @throws APIException
-     * @throws ChannelException
-     * @throws RateLimitException
+     * @throws PingppException
      */
     public static RechargeCollection list(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
-        return request(APIResource.RequestMethod.GET, classURL(Recharge.class), params, RechargeCollection.class);
+            throws PingppException {
+        return list(params, null);
+    }
+
+    /**
+     * 查询 recharge 列表
+     *
+     * @param params
+     * @param options the specific options
+     * @return RechargeCollection
+     * @throws PingppException
+     */
+    public static RechargeCollection list(Map<String, Object> params, RequestOptions options)
+            throws PingppException {
+        return APIResource.request(APIResource.RequestMethod.GET, classURL(Recharge.class), params, RechargeCollection.class, options);
     }
 }

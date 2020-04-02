@@ -2,7 +2,7 @@ package com.pingplusplus.order;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.*;
 import org.junit.Test;
 
@@ -20,9 +20,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 创建 order
      */
-    @Test public void testCreateOrder() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCreateOrder() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", "test_user_001"); // 用户在当前 app 下的 User ID, 可选
         params.put("app", PingppTestData.getAppID()); // App ID, 必传
@@ -47,26 +45,26 @@ public class OrderTest extends PingppTestBase {
     /**
      * 支付 order
      */
-    @Test public void testPayOrder() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testPayOrder() {
         Map<String, Object> params = new HashMap<>();
         params.put("channel", "alipay_wap");
         params.put("charge_amount", 100);
         Map<String, Object> extra = new HashMap<>(); // extra: 根据各个渠道传入相应的参数
         extra.put("success_url", "http://www.pingxx.com");
         params.put("extra", extra);
-        Order order = Order.pay("2001708220000281981", params); // 创建支付 Order 对象 方法
-
-        assertEquals("object should be order", "order", order.getObject());
+        Order order; // 创建支付 Order 对象 方法
+        try {
+            order = Order.pay("2001708220000281981", params);
+            assertEquals("object should be order", "order", order.getObject());
+        } catch (PingppException e) {
+            System.out.println(e.toString());
+        }
     }
 
     /**
      * 取消 order
      */
-    @Test public void testCancelOrder() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testCancelOrder() throws PingppException {
         Order order = Order.cancel("2001708220000280391"); // 取消 Order 对象方法
 
         assertEquals("object should be order", "order", order.getObject());
@@ -75,9 +73,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 查询单个 order
      */
-    @Test public void testOrderRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderRetrieve() throws PingppException {
         Order obj = Order.retrieve("2001708220000281981"); // 查询单个 order 方法  参数: orderId
 
         assertNotNull(obj);
@@ -87,9 +83,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 获取 order 列表
      */
-    @Test public void testGetOrderList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testGetOrderList() throws PingppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
         params.put("per_page", 3);
@@ -106,9 +100,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 查询订单中 Charge 对象
      */
-    @Test public void testOrderChargeRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderChargeRetrieve() throws PingppException {
         // 查询订单中 Charge 对象
         // 参数一: order id
         // 参数二: charge id
@@ -119,9 +111,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 查询订单中 Charge 列表
      */
-    @Test public void testOrderChargeList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderChargeList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 10);
@@ -136,9 +126,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 创建 order 退款
      */
-    @Test public void testOrderRefundCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderRefundCreate() throws PingppException {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("description", "Order refund test."); // 必传
@@ -155,9 +143,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 查询 order 退款
      */
-    @Test public void testOrderRefundRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderRefundRetrieve() throws PingppException {
         // 查询 order 退款方法
         // 参数一: orderId
         // 参数二: refundId
@@ -168,9 +154,7 @@ public class OrderTest extends PingppTestBase {
     /**
      * 查询 order 退款列表
      */
-    @Test public void testOrderRefundList() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testOrderRefundList() throws PingppException {
 
         // 查询 order 退款列表
         // 参数: orderId

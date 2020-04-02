@@ -2,7 +2,7 @@ package com.pingplusplus.transfer;
 
 import com.pingplusplus.PingppTestBase;
 import com.pingplusplus.PingppTestData;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Transfer;
 import com.pingplusplus.model.TransferCollection;
 import org.junit.Test;
@@ -19,8 +19,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- alipay 渠道
      */
-    @Test public void testAlipayTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testAlipayTransferCreate() throws PingppException {
 
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 alipay 为 1 ~ 64 位不能重复的数字字母组合;
@@ -56,8 +55,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- allinpay 渠道
      */
-    @Test public void testAllinpayTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testAllinpayTransferCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 allinpay 限长20-40位不能重复的数字字母组合，必须以签约的通联的商户号开头（建议组合格式：通联商户号 + 时间戳 + 固定位数顺序流水号，不包含+号）
         params.put("order_no", "099002017" + System.currentTimeMillis());
@@ -95,8 +93,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- jdpay 渠道
      */
-    @Test public void testJdpayTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testJdpayTransferCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 jdpay 限长1-64位不能重复的数字字母组合；
         params.put("order_no", "2017" + System.currentTimeMillis());
@@ -129,8 +126,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- unionpay 渠道
      */
-    @Test public void testUnionpayTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testUnionpayTransferCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 unionpay 为1~16位的纯数字。
         params.put("order_no", "17" + System.currentTimeMillis());
@@ -175,8 +171,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- wx_pub 渠道
      */
-    @Test public void testWxPubTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testWxPubTransferCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合;
         params.put("order_no", "2017" + System.currentTimeMillis());
@@ -210,8 +205,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 创建 Transfer 对象- balance 渠道
      */
-    @Test public void testBalanceTransferCreate() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testBalanceTransferCreate() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         // 付款使用的商户内部订单号。 wx_pub 规定为 1 ~ 50 位不能重复的数字字母组合;
         params.put("order_no", "2017" + System.currentTimeMillis());
@@ -237,8 +231,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 查询指定 Transfer 对象
      */
-    @Test public void testTransferRetrieve() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testTransferRetrieve() throws PingppException {
         // 参数: transfer id
         Transfer obj = Transfer.retrieve("tr_WTarz1Ga9q90X1O4q91Oevv1");
         assertEquals("object should be transfer", "transfer", obj.getObject());
@@ -247,8 +240,7 @@ public class TransferTest extends PingppTestBase {
     /**
      * 查询 Transfer 对象列表
      */
-    @Test public void testTransferList() throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException, ChannelException, RateLimitException {
+    @Test public void testTransferList() throws PingppException {
         Map<String, Object> params = new HashMap<>();
         params.put("limit", 5);
         Map<String, Object> app = new HashMap<>();

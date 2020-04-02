@@ -1,7 +1,7 @@
 package com.pingplusplus.sub_app;
 
 import com.pingplusplus.PingppTestBase;
-import com.pingplusplus.exception.*;
+import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Channel;
 import com.pingplusplus.model.DeletedChannel;
 import org.junit.Test;
@@ -16,9 +16,7 @@ public class SubAppChannelTest extends PingppTestBase {
      * 配置子商户 app 渠道参数
      */
     @Test
-    public void testSubAppChannelCreate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    public void testSubAppChannelCreate() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
 
         Map<String, Object> params = new HashMap<>();
@@ -42,9 +40,7 @@ public class SubAppChannelTest extends PingppTestBase {
     /**
      * 查询子商户 app 渠道参数
      */
-    @Test public void testSubAppChannelRetrieve() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppChannelRetrieve() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         String channel = "bfb";
 
@@ -59,9 +55,7 @@ public class SubAppChannelTest extends PingppTestBase {
     /**
      * 更新子商户 app 渠道参数
      */
-    @Test public void testSubAppChannelUpdate() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppChannelUpdate() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         String channel = "bfb";
 
@@ -85,9 +79,7 @@ public class SubAppChannelTest extends PingppTestBase {
     /**
      * 删除子商户 app 渠道参数
      */
-    @Test public void testSubAppChannelDelete() throws RateLimitException,
-            APIException, ChannelException, InvalidRequestException,
-            APIConnectionException, AuthenticationException {
+    @Test public void testSubAppChannelDelete() throws PingppException {
         String subAppId = "app_rbDmXLHmLqbTLKm9";
         String channel = "bfb";
 
