@@ -267,9 +267,9 @@ public class ChargeExample {
     private Map<String, Object> alipayWapExtra() {
         Map<String, Object> extra = new HashMap<>();
 
-        // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("success_url", "https://example.com/success");
-        // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("cancel_url", "https://example.com/cancel");
 
         // 可选，2016 年 6 月 16 日之前登录 Ping++ 管理平台填写支付宝手机网站的渠道参数的旧接口商户，需要更新接口时设置此参数值为true，6月16号后接入的新接口商户不需要设置该参数。
@@ -283,7 +283,7 @@ public class ChargeExample {
 
     private Map<String, Object> alipayPcDirectExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("success_url", "https://example.com/success");
 
         // 可选，是否开启防钓鱼网站的验证参数（如果已申请开通防钓鱼时间戳验证，则此字段必填）。
@@ -373,7 +373,7 @@ public class ChargeExample {
 
     private Map<String, Object> bfbWapExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("result_url", "https://example.com/success");
 
         // 必须，是否需要登录百度钱包来进行支付。
@@ -390,7 +390,7 @@ public class ChargeExample {
 
     private Map<String, Object> upacpWapExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("result_url", "https://example.com/success");
 
         return extra;
@@ -398,7 +398,7 @@ public class ChargeExample {
 
     private Map<String, Object> upacpPcExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
         extra.put("result_url", "https://example.com/success");
 
         return extra;
