@@ -11,6 +11,7 @@ public class Refund extends APIResource {
     String object;
     String orderNo;
     Integer amount;
+    String currency;
     Long created;
     Boolean succeed;
     String status;
@@ -167,6 +168,13 @@ public class Refund extends APIResource {
         this.extra = extra;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
     /**
      * 创建 refund
      *

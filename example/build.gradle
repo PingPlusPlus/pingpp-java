@@ -1,12 +1,8 @@
 apply plugin: 'java'
 
-repositories {
-    jcenter()
-}
-
 dependencies {
     compile 'com.google.code.gson:gson:2.8.5'
-    compile 'commons-codec:commons-codec:1.10'
+    compile 'commons-codec:commons-codec:1.13'
 
     compile project(':')
 }

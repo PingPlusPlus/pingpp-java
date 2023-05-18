@@ -45,7 +45,7 @@ maven 远程仓库
 <dependency>
     <groupId>Pingplusplus</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.4.0</version>
+    <version>2.4.1</version>
     <type>jar</type>
 </dependency>
 ```
@@ -65,7 +65,7 @@ repositories {
 安装 Ping++ SDK
 
 ```
-compile 'Pingplusplus:pingpp-java:2.4.0'
+compile 'Pingplusplus:pingpp-java:2.4.1'
 ```
 
 ## 初始化
