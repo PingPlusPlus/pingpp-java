@@ -1,16 +1,20 @@
 buildscript {
     repositories {
-        jcenter()
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        mavenLocal()
+        mavenCentral()
     }
-}
-
-plugins {
-    id "com.jfrog.bintray" version "1.8.0"
 }
 
 allprojects {
     repositories {
-        jcenter()
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        mavenLocal()
+        mavenCentral()
     }
     apply plugin: 'maven'
     apply plugin: 'maven-publish'
@@ -21,8 +25,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.8.5'
-    compile 'commons-codec:commons-codec:1.10'
+    compile 'com.google.code.gson:gson:2.8.9'
+    compile 'commons-codec:commons-codec:1.13'
 
     testCompile 'junit:junit:4.12'
 }
@@ -49,7 +53,6 @@ publishing {
             artifact javadocJar
             groupId 'Pingplusplus'
             artifactId 'pingpp-java'
-            version releaseVersion
 
             pom.withXml {
                 def root = asNode()
@@ -59,25 +62,6 @@ publishing {
         }
     }
 }
-
-bintray {
-    user = bintrayUser
-    key = bintrayApiKey
-    publications = ['mavenJava']
-    dryRun = false
-    publish = true
-    pkg {
-        repo = 'maven'
-        name = 'pingplusplus'
-        licenses = ['MIT']
-        labels = ['Ping++', 'pingxx', 'payment']
-        vcsUrl = 'https://github.com/PingPlusPlus/pingpp-java.git'
-        version {
-            name = releaseVersion
-        }
-    }
-}
-
 model {
     tasks.generatePomFileForMavenJavaPublication {
         destination = file("pom.xml")
