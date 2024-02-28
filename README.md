@@ -35,7 +35,7 @@ maven 远程仓库
     </snapshots>
     <id>central</id>
     <name>bintray</name>
-    <url>https://jcenter.bintray.com</url>
+    <url>https://maven.aliyun.com/repository/jcenter</url>
 </repository>
 ```
 
@@ -45,7 +45,7 @@ maven 远程仓库
 <dependency>
     <groupId>Pingplusplus</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.4.1</version>
+    <version>2.4.0</version>
     <type>jar</type>
 </dependency>
 ```
@@ -57,7 +57,7 @@ gradle 远程仓库
 ```
 repositories {
     maven {
-        url  "https://jcenter.bintray.com"
+        url "https://maven.aliyun.com/repository/jcenter"
     }
 }
 ```
@@ -65,7 +65,7 @@ repositories {
 安装 Ping++ SDK
 
 ```
-compile 'Pingplusplus:pingpp-java:2.4.1'
+compile 'Pingplusplus:pingpp-java:2.4.0'
 ```
 
 ## 初始化
