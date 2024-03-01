@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.8.5'
+    compile 'com.google.code.gson:gson:2.8.9'
     compile 'commons-codec:commons-codec:1.13'
 
     compile project(':')

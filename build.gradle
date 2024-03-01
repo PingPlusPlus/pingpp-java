@@ -28,7 +28,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.9'
     compile 'commons-codec:commons-codec:1.13'
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13.2'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -45,23 +45,6 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            artifact sourcesJar
-            artifact javadocJar
-            groupId 'Pingplusplus'
-            artifactId 'pingpp-java'
-
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('name', 'pingpp-java')
-                root.appendNode('url', 'https://github.com/PingPlusPlus/pingpp-java')
-            }
-        }
-    }
-}
 model {
     tasks.generatePomFileForMavenJavaPublication {
         destination = file("pom.xml")
