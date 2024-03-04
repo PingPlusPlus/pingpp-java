@@ -1,23 +1,13 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://maven.aliyun.com/repository/central'
-        }
-        mavenLocal()
         mavenCentral()
     }
 }
 
 allprojects {
     repositories {
-        maven {
-            url 'https://maven.aliyun.com/repository/central'
-        }
-        mavenLocal()
         mavenCentral()
     }
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
     apply plugin: 'java'
 }
 
@@ -25,28 +15,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.8.9'
-    compile 'commons-codec:commons-codec:1.13'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'commons-codec:commons-codec:1.13'
 
-    testCompile 'junit:junit:4.13.2'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar, javadocJar
-}
-
-model {
-    tasks.generatePomFileForMavenJavaPublication {
-        destination = file("pom.xml")
-    }
+    testImplementation 'junit:junit:4.13.2'
 }

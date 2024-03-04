@@ -15,7 +15,7 @@ Java 要求 JDK 8 及以上。
 
 ### 手动安装
 
-JAR 下载地址: [pingpp-java](https://jcenter.bintray.com/Pingplusplus/pingpp-java/)
+JAR 下载地址: [pingpp-java](https://mvnrepository.com/artifact/com.pingxx/pingpp-java)
 
 请根据版本号下载相应的 JAR 文件并导入至工程。
 
@@ -29,14 +29,7 @@ JAR 下载地址: [pingpp-java](https://jcenter.bintray.com/Pingplusplus/pingpp-
 maven 远程仓库
 
 ``` xml
-<repository>
-    <snapshots>
-        <enabled>false</enabled>
-    </snapshots>
-    <id>central</id>
-    <name>bintray</name>
-    <url>https://maven.aliyun.com/repository/jcenter</url>
-</repository>
+mavenCentral
 ```
 
 安装 Ping++ SDK
@@ -45,7 +38,7 @@ maven 远程仓库
 <dependency>
     <groupId>Pingplusplus</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.4.0</version>
+    <version>2.4.1</version>
     <type>jar</type>
 </dependency>
 ```
@@ -56,16 +49,14 @@ gradle 远程仓库
 
 ```
 repositories {
-    maven {
-        url "https://maven.aliyun.com/repository/jcenter"
-    }
+    mavenCentral()
 }
 ```
 
 安装 Ping++ SDK
 
 ```
-compile 'Pingplusplus:pingpp-java:2.4.0'
+implementation 'Pingplusplus:pingpp-java:2.4.1'
 ```
 
 ## 初始化
