@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 2.5.0
+
+- 新增: 响应签名验签
+- 新增: 微信扣款预扣费通知实现
+- 更新: `RequestOptions` 新增`Ping++`公钥设置参数
+- 更新: webhook验签方法移动至 `PingppSignature` 类中
+- 更新: `gson` 到`2.10`;`commons-codec` 到 `1.17.0`
+
 ## 2.4.1
 
 - 修改: Refund 对象新增`currency` 字段
