@@ -82,17 +82,17 @@ public class CaseInsensitiveMap<V> extends AbstractMap<String, V>
 
     @Override
     public Set<String> keySet() {
-        return this.store.values().stream().map(entry -> entry.getKey()).collect(Collectors.toSet());
+        return this.store.values().stream().map(Entry::getKey).collect(Collectors.toSet());
     }
 
     @Override
     public Collection<V> values() {
-        return this.store.values().stream().map(entry -> entry.getValue()).collect(Collectors.toList());
+        return this.store.values().stream().map(Entry::getValue).collect(Collectors.toList());
     }
 
     @Override
     public Set<Entry<String, V>> entrySet() {
-        return this.store.values().stream().collect(Collectors.toSet());
+        return new HashSet<>(this.store.values());
     }
 
     // Utility

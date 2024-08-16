@@ -1,10 +1,12 @@
 package com.pingplusplus.util;
 
-import com.google.gson.*;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.pingplusplus.exception.ChannelException;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -157,8 +159,7 @@ public class WxpubOAuth {
         String queryString = WxpubOAuth.httpBuildQuery(data);
         String accessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?" + queryString;
         String resp = httpGet(accessTokenUrl);
-        JsonParser jp = new JsonParser();
-        JsonObject respJson = jp.parse(resp).getAsJsonObject();
+        JsonObject respJson = JsonParser.parseString(resp).getAsJsonObject();
         if (respJson.has("errcode")) {
             return respJson.toString();
         }
@@ -169,7 +170,7 @@ public class WxpubOAuth {
         queryString = WxpubOAuth.httpBuildQuery(data);
         String jsapiTicketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?" + queryString;
         resp = httpGet(jsapiTicketUrl);
-        JsonObject ticket = jp.parse(resp).getAsJsonObject();
+        JsonObject ticket = JsonParser.parseString(resp).getAsJsonObject();
         return ticket.get("ticket").getAsString();
     }
 
@@ -183,8 +184,7 @@ public class WxpubOAuth {
     public static String getSignature(String charge, String jsapiTicket, String url) {
         if (null == charge || null == jsapiTicket || charge.isEmpty() || jsapiTicket.isEmpty())
             return null;
-        JsonParser jp = new JsonParser();
-        JsonObject chargeJson = jp.parse(charge).getAsJsonObject();
+        JsonObject chargeJson = JsonParser.parseString(charge).getAsJsonObject();
         if (!chargeJson.has("credential")) {
             return null;
         }
@@ -206,9 +206,7 @@ public class WxpubOAuth {
             crypt.reset();
             crypt.update(string1.getBytes(CHARSET));
             signature = byteToHex(crypt.digest());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

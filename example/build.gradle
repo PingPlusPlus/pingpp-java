@@ -1,8 +1,13 @@
 apply plugin: 'java'
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'commons-codec:commons-codec:1.13'
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'commons-codec:commons-codec:1.17.0'
 
-    implementation 'com.pingxx:pingpp-java:2.4.1'
+    // 方法 1. 本地文件系统依赖
+    // implementation fileTree(dir: 'lib', includes: ['*jar'])
+    // 方法 2. 仓库依赖
+    // implementation 'com.pingxx:pingpp-sdk:1.2.0'
+    // 方法 3.模块依赖
+    implementation project(':pingpp-sdk')
 }

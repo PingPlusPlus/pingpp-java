@@ -1,5 +1,11 @@
 package com.pingplusplus;
 
+import com.pingplusplus.net.APIResource;
+import com.pingplusplus.util.StreamUtils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /**
  * Ping++ Base class
  */
@@ -11,7 +17,7 @@ public abstract class Pingpp {
     /**
      * version
      */
-    public static final String VERSION = "2.4.1";
+    public static final String VERSION = "2.5.0";
     /**
      * api key
      */
@@ -24,6 +30,7 @@ public abstract class Pingpp {
     private static volatile String apiBase = LIVE_API_BASE;
 
     public static volatile String privateKey;
+    public static volatile String verifyPublicKey;
     public static volatile String privateKeyPath;
 
     public static Boolean DEBUG = false;
@@ -99,7 +106,6 @@ public abstract class Pingpp {
 
     /**
      * 设置数据读取超时时间 (毫秒)
-     *
      * 不同接口的耗时时间不一样，部分接口的耗时可能比较长。
      *
      * @param timeout timeout value in milliseconds
@@ -132,5 +138,24 @@ public abstract class Pingpp {
 
     public static void setAcceptLanguage(String acceptLanguage) {
         Pingpp.acceptLanguage = acceptLanguage;
+    }
+
+    public static void setVerifyPublicKeyPath(String keyFilePath) throws IOException {
+        Pingpp.verifyPublicKey = readKeyFromFilePath(keyFilePath);
+    }
+
+    /**
+     * 读取密钥文件
+     *
+     * @param filePath 文件路径
+     * @return 密钥内容
+     * @throws IOException IO 异常
+     */
+    private static String readKeyFromFilePath(String filePath) throws IOException {
+        FileInputStream inputStream = new FileInputStream(filePath);
+        String privateKey = StreamUtils.readToEnd(inputStream, APIResource.CHARSET);
+        inputStream.close();
+
+        return privateKey;
     }
 }
