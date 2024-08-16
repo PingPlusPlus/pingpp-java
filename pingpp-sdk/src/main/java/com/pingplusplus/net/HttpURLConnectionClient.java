@@ -2,6 +2,8 @@ package com.pingplusplus.net;
 
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
+import com.pingplusplus.exception.AuthenticationException;
+import com.pingplusplus.util.PingppSignature;
 import com.pingplusplus.util.StreamUtils;
 import com.pingplusplus.util.StringUtils;
 
@@ -37,6 +39,10 @@ public class HttpURLConnectionClient extends HttpClient {
 
             if (responseCode >= 200 && responseCode < 300) {
                 responseBody = StreamUtils.readToEnd(conn.getInputStream(), APIResource.CHARSET);
+                boolean verified = PingppSignature.verify(headers, responseBody, request.options.getVerifyPublicKey(), APIResource.CHARSET.name());
+                if (!verified) {
+                    throw new AuthenticationException("响应签名验证失败，请检查验签公钥是否正确");
+                }
             } else {
                 responseBody = StreamUtils.readToEnd(conn.getErrorStream(), APIResource.CHARSET);
             }
@@ -49,6 +55,8 @@ public class HttpURLConnectionClient extends HttpClient {
                                     + "Please check your internet connection and try again.",
                             Pingpp.getApiBase(), e.getMessage()),
                     e);
+        } catch (AuthenticationException e) {
+            throw new RuntimeException(e);
         } finally {
             if (conn != null) {
                 conn.disconnect();

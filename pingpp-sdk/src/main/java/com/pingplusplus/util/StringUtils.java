@@ -35,4 +35,25 @@ public class StringUtils {
 
         return sb.toString();
     }
+
+    /**
+     * 是否为空
+     *
+     * @param cs 字符串
+     * @return 空 {@code true}; 非空 {@code false}.
+     */
+    public static boolean isBlank(final CharSequence cs) {
+        if (cs == null) {
+            return true;
+        }
+        int l = cs.length();
+        if (l > 0) {
+            for (int i = 0; i < l; i++) {
+                if (!Character.isWhitespace(cs.charAt(i))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

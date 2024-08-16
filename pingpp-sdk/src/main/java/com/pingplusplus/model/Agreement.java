@@ -190,6 +190,8 @@ public class Agreement extends APIResource {
         return retrieve(id, null);
     }
 
+
+
     /**
      * 查询签约(agreement)
      *
@@ -251,4 +253,6 @@ public class Agreement extends APIResource {
         params.put("status", "canceled");
         return APIResource.request(RequestMethod.PUT, instanceURL(Agreement.class, id), params, Agreement.class, options);
     }
+
+
 }

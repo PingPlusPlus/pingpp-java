@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "maven-publish"
+    id "java"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    testCompileOnly {
+        extendsFrom testAnnotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'commons-codec:commons-codec:1.17.0'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+java {
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+}

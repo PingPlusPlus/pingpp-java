@@ -6,6 +6,7 @@ public class RequestOptions {
     private final String apiKey;
     private final String appId;
     private final String privateKey;
+    private final String verifyPublicKey;
 
     private final int connectTimeout;
     private final int readTimeout;
@@ -19,6 +20,7 @@ public class RequestOptions {
                 Pingpp.apiKey,
                 Pingpp.appId,
                 Pingpp.privateKey,
+                Pingpp.verifyPublicKey,
                 Pingpp.getConnectTimeout(),
                 Pingpp.getReadTimeout(),
                 Pingpp.getMaxNetworkRetries(),
@@ -29,6 +31,7 @@ public class RequestOptions {
             String apiKey,
             String appId,
             String privateKey,
+            String verifyPublicKey,
             int connectTimeout,
             int readTimeout,
             int maxNetworkRetries,
@@ -36,6 +39,7 @@ public class RequestOptions {
         this.apiKey = apiKey;
         this.appId = appId;
         this.privateKey = privateKey;
+        this.verifyPublicKey = verifyPublicKey;
         this.connectTimeout = connectTimeout;
         this.readTimeout = readTimeout;
         this.maxNetworkRetries = maxNetworkRetries;
@@ -70,6 +74,8 @@ public class RequestOptions {
         return acceptLanguage;
     }
 
+    public String getVerifyPublicKey() {return verifyPublicKey;}
+
     public static RequestOptionsBuilder builder() {
         return new RequestOptionsBuilder();
     }
@@ -82,6 +88,7 @@ public class RequestOptions {
         private int readTimeout;
         private int maxNetworkRetries;
         private String acceptLanguage;
+        private String verifyPublicKey;
 
         public RequestOptionsBuilder() {
             this.apiKey = Pingpp.apiKey;
@@ -171,6 +178,7 @@ public class RequestOptions {
                     normalizeApiKey(this.apiKey),
                     normalizeAppId(this.appId),
                     normalizePrivateKey(this.privateKey),
+                    normalizePublicVerifyKey(this.verifyPublicKey),
                     connectTimeout,
                     readTimeout,
                     maxNetworkRetries,
@@ -210,6 +218,17 @@ public class RequestOptions {
         String normalized = privateKey.trim();
         if (normalized.isEmpty()) {
             throw new InvalidRequestOptionsException("Empty privateKey specified!");
+        }
+        return normalized;
+    }
+
+    private static String normalizePublicVerifyKey(String verifyPublicKey) {
+        if (verifyPublicKey == null) {
+            return null;
+        }
+        String normalized = verifyPublicKey.trim();
+        if (normalized.isEmpty()) {
+            throw new InvalidRequestOptionsException("Empty publicVerifyKey specified!");
         }
         return normalized;
     }
