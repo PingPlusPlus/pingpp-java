@@ -7,7 +7,7 @@ dependencies {
     // 方法 1. 本地文件系统依赖
     // implementation fileTree(dir: 'lib', includes: ['*jar'])
     // 方法 2. 仓库依赖
-    // implementation 'com.pingxx:pingpp-sdk:1.2.0'
+    //  implementation 'com.pingxx:pingpp-java:2.5.2'
     // 方法 3.模块依赖
     implementation project(':pingpp-sdk')
 }

@@ -3,9 +3,9 @@ package com.pingplusplus.net;
 import com.google.gson.*;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.*;
-import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.model.*;
 import com.pingplusplus.serializer.*;
+import com.pingplusplus.util.GsonUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -41,8 +41,7 @@ public abstract class APIResource extends PingppObject {
     /**
      * Gson object use to transform json string to resource object
      */
-    public static final Gson GSON = new GsonBuilder()
-            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+    public static final Gson GSON = GsonUtils.baseGsonBuilder()
             .registerTypeAdapter(Charge.class, new ChargeDeserializer())
             .registerTypeAdapter(RedEnvelope.class, new RedEnvelopeDeserializer())
             .registerTypeAdapter(Transfer.class, new TransferDeserializer())

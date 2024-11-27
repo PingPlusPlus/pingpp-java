@@ -10,13 +10,3 @@ allprojects {
     }
     apply plugin: 'java'
 }
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-dependencies {
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation 'commons-codec:commons-codec:1.17.0'
-
-    testImplementation 'junit:junit:4.13.2'
-}

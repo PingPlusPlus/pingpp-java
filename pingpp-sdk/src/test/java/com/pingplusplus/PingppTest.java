@@ -2,6 +2,7 @@ package com.pingplusplus;
 
 import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.*;
+import com.pingplusplus.net.APIResource;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,6 +24,49 @@ public class PingppTest {
         // 建议使用 PKCS8 编码的私钥，可以用 openssl 将 PKCS1 转成 PKCS8
         Pingpp.privateKey = PingppTestData.getPKCS8PrivateKey();
         Pingpp.DEBUG = true;
+    }
+
+    @Test public void testDeserialize() {
+        String jsonStr = "{\n" +
+                "    \"id\": \"ch_1234567890\",\n" +
+                "    \"object\": \"charge\",\n" +
+                "    \"livemode\": true,\n" +
+                "    \"paid\": true,\n" +
+                "    \"refunded\": true,\n" +
+                "    \"extra\": {\n" +
+                "        \"discount_code\": \"ABCD\",\n" +
+                "        \"discount_amount\": 20,\n" +
+                "        \"score\": 60.12\n" +
+                "    },\n" +
+                "    \"time_paid\": 1732609210,\n" +
+                "    \"time_expire\": 1732610502,\n" +
+                "    \"time_settle\": null,\n" +
+                "    \"transaction_no\": \"6523236536624\",\n" +
+                "    \"amount_refunded\": 0,\n" +
+                "    \"failure_code\": null,\n" +
+                "    \"failure_msg\": null,\n" +
+                "    \"metadata\": {\n" +
+                "        \"code\": \"10000\",\n" +
+                "        \"type\": \"PAYMENT\",\n" +
+                "        \"list\": [10, 100, 1000]" +
+                "    },\n" +
+                "    \"credential\": {},\n" +
+                "    \"description\": \"DESC\"\n" +
+                "}";
+        Charge ch = APIResource.getGson().fromJson(jsonStr, Charge.class);
+        Object discountAmount = ch.getExtra().get("discount_amount");
+        assertEquals(Long.class, discountAmount.getClass());
+        assertEquals(20L, discountAmount);
+        Object score = ch.getExtra().get("score");
+        assertEquals(Double.class, score.getClass());
+        System.out.println("score value: " + score);
+
+        Object metaCode = ch.getMetadata().get("code");
+        assertEquals(String.class, metaCode.getClass());
+        Object metaList = ch.getMetadata().get("list");
+        assertEquals(ArrayList.class, metaList.getClass());
+        Object metaListEle = ((ArrayList<Object>) metaList).get(0);
+        assertEquals(Long.class, metaListEle.getClass());
     }
 
     @Test public void testSetApiKey() {

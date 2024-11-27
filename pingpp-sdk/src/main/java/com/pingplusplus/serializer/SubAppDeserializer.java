@@ -2,6 +2,7 @@ package com.pingplusplus.serializer;
 
 import com.google.gson.*;
 import com.pingplusplus.model.*;
+import com.pingplusplus.util.GsonUtils;
 
 import java.lang.reflect.Type;
 
@@ -16,9 +17,7 @@ public class SubAppDeserializer implements JsonDeserializer<SubApp> {
         JsonObject subAppJson = jsonElement.getAsJsonObject();
 
 
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
+        Gson gson = GsonUtils.baseGsonBuilder().create();
         JsonElement userElement = subAppJson.get("user");
         SubApp subApp = gson.fromJson(jsonElement, SubApp.class);
 

@@ -1,8 +1,6 @@
 package com.pingplusplus.serializer;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -11,6 +9,7 @@ import com.google.gson.JsonParseException;
 import com.pingplusplus.model.App;
 import com.pingplusplus.model.ChargeRefundCollection;
 import com.pingplusplus.model.Transfer;
+import com.pingplusplus.util.GsonUtils;
 
 import java.lang.reflect.Type;
 
@@ -22,7 +21,7 @@ public class TransferDeserializer implements JsonDeserializer<Transfer> {
     public Transfer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
         JsonObject transFerJson = json.getAsJsonObject();
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        Gson gson = GsonUtils.baseGsonBuilder()
                 .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
                 .create();
         JsonElement appElement = transFerJson.get("app");

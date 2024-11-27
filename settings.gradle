@@ -1,4 +1,3 @@
 rootProject.name = 'pingpp-java'
-include 'example'
 include 'pingpp-sdk'
-
+include 'example'
