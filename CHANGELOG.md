@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 2.5.3
+
+- 新增: 签约修改接口
+
 ## 2.5.2
 
 - 修改: 正确 `Map<String, Object>` 以及 `List<Object>` 内的元素类型

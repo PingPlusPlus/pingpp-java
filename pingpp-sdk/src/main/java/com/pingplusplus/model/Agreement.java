@@ -3,6 +3,7 @@ package com.pingplusplus.model;
 import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.net.APIResource;
 import com.pingplusplus.net.RequestOptions;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -254,5 +255,26 @@ public class Agreement extends APIResource {
         return APIResource.request(RequestMethod.PUT, instanceURL(Agreement.class, id), params, Agreement.class, options);
     }
 
+    /**
+     * 签约修改
+     * @param id
+     * @param params
+     * @param options
+     * @return
+     * @throws PingppException
+     */
+    public static Agreement modify(String id,Map<String, Object> params, RequestOptions options) throws PingppException {
+        return APIResource.request(RequestMethod.POST, String.format("%s/%s/modify/", classURL(Agreement.class), id), params, Agreement.class, options);
+    }
 
+    /**
+     * 签约修改
+     * @param id
+     * @param params
+     * @return
+     * @throws PingppException
+     */
+    public static Agreement modify(String id, Map<String, Object> params) throws PingppException {
+        return modify(id, params, null);
+    }
 }

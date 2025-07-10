@@ -15,7 +15,7 @@ public class AgreementNotifyExample {
 
     public static void runDemos(String appId) {
         AgreementNotifyExample example = new AgreementNotifyExample(appId);
-        System.out.println("------- 创建 charge -------");
+        System.out.println("------- 签约扣款-商户预扣费通知 -------");
         example.create("agr_123456");
     }
 

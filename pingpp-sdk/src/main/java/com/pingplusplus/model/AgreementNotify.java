@@ -31,7 +31,7 @@ public class AgreementNotify extends APIResource {
     }
 
     /**
-     *
+     * 签约扣款-商户预扣费通知
      * @param agreementId
      * @param params
      * @param options

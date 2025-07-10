@@ -86,6 +86,9 @@ public class Main {
         // 报关
         // 请使用 live key 调用该接口
         CustomsExample.runDemos(appId);
+
+        //签约代扣示例
+        AgreementExample.runDemos(appId);
     }
 
     private static final SecureRandom random = new SecureRandom();
