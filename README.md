@@ -38,7 +38,7 @@ mavenCentral
 <dependency>
     <groupId>com.pingxx</groupId>
     <artifactId>pingpp-java</artifactId>
-    <version>2.5.3</version>
+    <version>2.5.4</version>
     <type>jar</type>
 </dependency>
 ```
@@ -56,7 +56,7 @@ repositories {
 安装 Ping++ SDK
 
 ```
-implementation 'com.pingxx:pingpp-java:2.5.3'
+implementation 'com.pingxx:pingpp-java:2.5.4'
 ```
 
 ## 初始化

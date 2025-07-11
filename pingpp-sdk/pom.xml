@@ -3,13 +3,9 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.pingxx</groupId>
-    <artifactId>pingpp-java-parent</artifactId>
-    <version>2.5.3</version>
-  </parent>
-
+  <groupId>com.pingxx</groupId>
   <artifactId>pingpp-java</artifactId>
+  <version>2.5.4</version>
   <packaging>jar</packaging>
 
   <name>pingpp-java</name>
