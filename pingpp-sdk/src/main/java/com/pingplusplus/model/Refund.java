@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Refund extends APIResource {
     String id;
+    String app;
     String object;
     String orderNo;
     Integer amount;
@@ -174,6 +175,14 @@ public class Refund extends APIResource {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public String getApp() {
+        return app;
+    }
+
+    public void setApp(String app) {
+        this.app = app;
     }
     /**
      * 创建 refund
