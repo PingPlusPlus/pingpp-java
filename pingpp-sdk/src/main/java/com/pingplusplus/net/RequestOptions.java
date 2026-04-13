@@ -88,12 +88,23 @@ public class RequestOptions {
         private int readTimeout;
         private int maxNetworkRetries;
         private String acceptLanguage;
+
+        public String getVerifyPublicKey() {
+            return verifyPublicKey;
+        }
+
+        public RequestOptionsBuilder setVerifyPublicKey(String verifyPublicKey) {
+            this.verifyPublicKey = normalizePublicVerifyKey(verifyPublicKey);
+            return this;
+        }
+
         private String verifyPublicKey;
 
         public RequestOptionsBuilder() {
             this.apiKey = Pingpp.apiKey;
             this.appId = Pingpp.appId;
             this.privateKey = Pingpp.privateKey;
+            this.verifyPublicKey = Pingpp.verifyPublicKey;
             this.connectTimeout = Pingpp.getConnectTimeout();
             this.readTimeout = Pingpp.getReadTimeout();
             this.maxNetworkRetries = Pingpp.getMaxNetworkRetries();
@@ -129,6 +140,11 @@ public class RequestOptions {
 
         public RequestOptionsBuilder setPrivateKey(String privateKey) {
             this.privateKey = privateKey;
+            return this;
+        }
+
+        public RequestOptionsBuilder clearVerifyPublicKey() {
+            this.verifyPublicKey = null;
             return this;
         }
 
