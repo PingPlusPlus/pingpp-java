@@ -57,38 +57,38 @@ public class Main {
 
         // Charge 示例
         ChargeExample.runDemos(appId);
-//
-//        // Refund 示例
-//        RefundExample.runDemos();
-//
-//        // RedEnvelope 示例
-//        RedEnvelopeExample.runDemos(appId);
-//
-//        // Transfer 示例
-//        TransferExample.runDemos(appId);
-//
-//        // Event 示例
-//        EventExample.runDemos();
-//
-//        // Webhooks 验证示例
-//        WebhooksVerifyExample.runDemos();
-//
-//        // 微信公众号 openid 相关示例
-//        WxPubOAuthExample.runDemos(appId);
-//
-//        // 身份证银行卡信息认证接口
-//        // 请使用 live key 调用该接口
-//        // IdentificationExample.runDemos(appId);
-//
-//        // 批量付款示例
-//        BatchTransferExample.runDemos(appId);
-//
-//        // 报关
-//        // 请使用 live key 调用该接口
-//        CustomsExample.runDemos(appId);
-//
-//        //签约代扣示例
-//        AgreementExample.runDemos(appId);
+
+        // Refund 示例
+        RefundExample.runDemos();
+
+        // RedEnvelope 示例
+        RedEnvelopeExample.runDemos(appId);
+
+        // Transfer 示例
+        TransferExample.runDemos(appId);
+
+        // Event 示例
+        EventExample.runDemos();
+
+        // Webhooks 验证示例
+        WebhooksVerifyExample.runDemos();
+
+        // 微信公众号 openid 相关示例
+        WxPubOAuthExample.runDemos(appId);
+
+        // 身份证银行卡信息认证接口
+        // 请使用 live key 调用该接口
+        // IdentificationExample.runDemos(appId);
+
+        // 批量付款示例
+        BatchTransferExample.runDemos(appId);
+
+        // 报关
+        // 请使用 live key 调用该接口
+        CustomsExample.runDemos(appId);
+
+        //签约代扣示例
+        AgreementExample.runDemos(appId);
     }
 
     private static final SecureRandom random = new SecureRandom();
