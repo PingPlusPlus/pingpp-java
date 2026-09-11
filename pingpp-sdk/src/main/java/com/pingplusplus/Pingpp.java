@@ -17,7 +17,7 @@ public abstract class Pingpp {
     /**
      * version
      */
-    public static final String VERSION = "2.5.6";
+    public static final String VERSION = "2.5.7";
     /**
      * api key
      */

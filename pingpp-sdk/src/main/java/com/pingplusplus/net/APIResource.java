@@ -105,18 +105,12 @@ public abstract class APIResource extends PingppObject {
                 return "royalty_template";
             case "balancesettlement":
                 return "balance_settlement";
-            case "subbank":
-                return "sub_bank";
             case "splitreceiver":
                 return "split_receiver";
             case "splitprofit":
                 return "split_profit";
             case "profittransaction":
                 return "profit_transaction";
-            case "userpic":
-                return "users/upload_pic";
-            case "contact":
-                return "sub_apps/contact";
             default:
                 return className;
         }
