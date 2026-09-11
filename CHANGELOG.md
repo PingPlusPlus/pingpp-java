@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 2.5.7
+
+- 新增 TradeDetail 交易详情接口
+- 下线SubBank、Contact、UserPic 接口
+
 ## 2.5.6
 
 - 更新: `RequestOptions` 新增`Ping++`验签公钥设置参数

@@ -10,6 +10,7 @@ package com.pingxx.example;
 import com.pingplusplus.exception.PingppException;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.model.ChargeCollection;
+import com.pingplusplus.model.TradeDetail;
 
 import java.util.*;
 
@@ -105,6 +106,25 @@ public class ChargeExample {
         }
 
         return charge;
+    }
+
+    /**
+     * 查询 Charge 的渠道交易明细。
+     * 该接口仅适用于已支付成功且支持交易明细查询的 Charge。
+     *
+     * @param chargeId Charge 对象 ID
+     * @return 渠道交易明细
+     */
+    public TradeDetail retrieveTradeDetail(String chargeId) {
+        TradeDetail tradeDetail = null;
+        try {
+            tradeDetail = TradeDetail.retrieve(chargeId);
+            System.out.println(tradeDetail);
+        } catch (PingppException e) {
+            e.printStackTrace();
+        }
+
+        return tradeDetail;
     }
 
     /**
